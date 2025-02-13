@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Draggable from "react-draggable";
 
 /**
@@ -183,7 +183,6 @@ const SettingMetaBox = (props) => {
 					<FieldWrapper label="Visibility">                  
 					<div className="visibility-control-container">
 						<div className="tabs">
-							{console.log(formField.disabled)}
 							<input
 								checked={formField.type === 'recaptcha' ? !isSiteKeyEmpty : !formField.disabled}
 								onChange={(e) => onChange('disabled', !e.target.checked)}
