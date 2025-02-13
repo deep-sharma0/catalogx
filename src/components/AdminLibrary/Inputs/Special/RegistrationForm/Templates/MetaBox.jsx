@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Draggable from "react-draggable";
 
 /**
@@ -48,7 +48,18 @@ const InputField = ({ label, type = "text", value, onChange, className}) => (
 const SettingMetaBox = (props) => {
 	const { formField, inputTypeList, onChange, onTypeChange, opened } = props;
 	const [hasOpened, setHasOpened] = useState(opened.click);
-	const [isSiteKeyEmpty, setIsSiteKeyEmpty] = useState(!formField.sitekey);
+	// Check if the site key is valid for reCAPTCHA v3
+	const isValidSiteKey = (key) => /^6[0-9A-Za-z_-]{39}$/.test(key);
+
+	const [isSiteKeyEmpty, setIsSiteKeyEmpty] = useState(
+		formField.type === 'recaptcha' && !isValidSiteKey(formField.sitekey)
+	);
+
+	useEffect(() => {
+		if (formField.type === 'recaptcha') {
+			onChange("disabled", isSiteKeyEmpty);
+		}
+	}, [isSiteKeyEmpty]); 
 
 	useEffect(() => {
 		setHasOpened(opened.click);
@@ -112,9 +123,7 @@ const SettingMetaBox = (props) => {
 				className={isSiteKeyEmpty ? "highlight" : ""}
 				onChange={(value) => {
 					onChange("sitekey", value);
-					// Check if the site key is valid for reCAPTCHA v3
-					const isValidSiteKey = /^6[0-9A-Za-z_-]{39}$/.test(value);
-					setIsSiteKeyEmpty(!isValidSiteKey); 
+					setIsSiteKeyEmpty(!isValidSiteKey(value));
 				}}
 				/>
 				<p>
@@ -174,6 +183,7 @@ const SettingMetaBox = (props) => {
 					<FieldWrapper label="Visibility">                  
 					<div className="visibility-control-container">
 						<div className="tabs">
+							{console.log(formField.disabled)}
 							<input
 								checked={formField.type === 'recaptcha' ? !isSiteKeyEmpty : !formField.disabled}
 								onChange={(e) => onChange('disabled', !e.target.checked)}

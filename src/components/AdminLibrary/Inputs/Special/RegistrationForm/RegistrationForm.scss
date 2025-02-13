@@ -681,11 +681,11 @@
   margin: 0;
 }
 
-.visibility-control-container input[id="radio-1"]:checked~.glider {
+.visibility-control-container input[id="visible"]:checked~.glider {
   transform: translateX(0);
 }
 
-.visibility-control-container input[id="radio-2"]:checked~.glider {
+.visibility-control-container input[id="hidden"]:checked~.glider {
   transform: translateX(100%);
 }
 
