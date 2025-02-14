@@ -1,0 +1,13 @@
+{
+  "apiVersion": 2,
+  "name": "catalogx/quote-cart",
+  "title": "Quote Cart",
+  "category": "catalogx",
+  "icon": "list-view",
+  "description": "A block that displays quote cart using React.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "catalogx",
+  "editorScript": "file:./index.js"
+}

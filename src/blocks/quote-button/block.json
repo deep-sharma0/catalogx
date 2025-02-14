@@ -1,0 +1,12 @@
+{
+    "apiVersion": 2,
+    "name": "catalogx/quote-button",
+    "title": "Quote Button",
+    "category": "catalogx",
+    "icon": "button",
+    "description": "A custom quote button for single product pages.",
+    "supports": {
+        "html": false
+    },
+    "editorScript": "file:./index.js"
+}

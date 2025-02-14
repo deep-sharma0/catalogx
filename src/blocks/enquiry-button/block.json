@@ -1,0 +1,13 @@
+{
+    "apiVersion": 2,
+    "name": "catalogx/enquiry-button",
+    "title": "Enquiry Button",
+    "category": "catalogx",
+    "icon": "button",
+    "description": "A block that displays enquiry button.",
+    "supports": {
+        "html": false
+    },
+    "textdomain": "catalogx",
+    "editorScript": "file:./index.js"
+}

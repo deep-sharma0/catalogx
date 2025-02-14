@@ -1,0 +1,7 @@
+{
+    "apiVersion": 2,
+    "name": "catalogx/setup-wizard",
+    "category": "catalogx",
+    "title": "Setup Wizard",
+    "editorScript": "file:./index.js"
+}

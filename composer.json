@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-4": {
+            "CatalogEnquiry\\": ["classes/", "modules/"]
+        }
+    },
+    "require": {}
+}
