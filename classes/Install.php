@@ -174,7 +174,7 @@ class Install {
                         MAX(CASE WHEN pm.meta_key = '_enquiry_useremail' THEN pm.meta_value END) as useremail,
                         MAX(CASE WHEN pm.meta_key = '_user_enquiry_fields' THEN pm.meta_value END) as additional_fields,
                         MAX(CASE WHEN pm.meta_key = '_enquiry_product' THEN pm.meta_value END) as product_ids,
-                        MAX(CASE WHEN pm.meta_key = '_enquiry_product_quantity' THEN pm.meta_value END) as product_quantitys,
+                        MAX(CASE WHEN pm.meta_key = '_enquiry_product_quantity' THEN pm.meta_value END) as product_quantitys
                     FROM {$wpdb->prefix}posts as p
                     JOIN {$wpdb->prefix}postmeta as pm ON p.ID = pm.post_id
                     WHERE p.post_type = 'wcce_enquiry'
@@ -191,11 +191,11 @@ class Install {
                         [
                             'id'                     => $enquiry[ 'id' ],
                             'user_id'                => $enquiry[ 'user_id' ],
-                            'user_name'              => $enquiry[ 'user_name' ],
+                            'user_name'              => $enquiry[ 'username' ],
                             'user_email'             => $enquiry[ 'useremail' ],
                             'user_additional_fields' => $enquiry[ 'additional_fields' ],
                             'date'                   => $enquiry[ 'date' ],
-                            'product_info'           => [ $product_ids => $product_quantitys ],
+                            'product_info'           => serialize([ $product_ids => $product_quantitys ]),
                         ]
                     );
 
