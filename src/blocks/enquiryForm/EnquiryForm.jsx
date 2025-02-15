@@ -35,7 +35,7 @@ const FreeForm = (props) => {
              // check file size
             if(file){
                 if (file.size > maxFileSize) {
-                    setErrorMessage(`File size exceeds ${filesizeLimitField.value} MB. Please upload a smaller file.`);
+                    setErrorMessage(`File size exceeds ${filesizeLimitField.label} MB. Please upload a smaller file.`);
                     return;
                 }
                 setErrorMessage(""); // Clear any previous error message

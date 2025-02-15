@@ -194,7 +194,7 @@ const FromViewer = (props) => {
     const handleFileChange = (name, event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
-            setFileName(selectedFile.size);
+            setFileName(selectedFile.name);
             setFile(selectedFile);
             setInputs((prevData) => ({
                 ...prevData,

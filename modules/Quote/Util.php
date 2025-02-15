@@ -1,6 +1,6 @@
 <?php 
 
-namespace CatalogEnquiry\Quote;
+namespace Catalogx\Quote;
 
 class Util {
 

@@ -1,6 +1,6 @@
 <?php 
 
-namespace CatalogEnquiry\RoleBased;
+namespace Catalogx\RoleBased;
 
 class Admin {
     /**

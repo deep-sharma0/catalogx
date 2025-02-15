@@ -1,6 +1,6 @@
 <?php
 
-namespace CatalogEnquiry;
+namespace Catalogx;
 
 class Rest {
     /**

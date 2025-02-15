@@ -1,8 +1,8 @@
 <?php
 
-namespace CatalogEnquiry\Quote;
+namespace Catalogx\Quote;
 
-use CatalogEnquiry\Utill;
+use Catalogx\Utill;
 
 class Frontend {
     /**

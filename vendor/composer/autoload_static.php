@@ -9,12 +9,12 @@ class ComposerStaticInit8d070178755c320c69f93ee4800660ef
     public static $prefixLengthsPsr4 = array (
         'C' => 
         array (
-            'CatalogEnquiry\\' => 15,
+            'Catalogx\\' => 9,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'CatalogEnquiry\\' => 
+        'Catalogx\\' => 
         array (
             0 => __DIR__ . '/../..' . '/classes',
             1 => __DIR__ . '/../..' . '/modules',

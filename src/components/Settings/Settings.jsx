@@ -64,7 +64,7 @@ const Settings = () => {
                     currentTab={ location.get( 'subtab' ) }
                     getForm={getForm}
                     BannerSection = { ! appLocalizer.khali_dabba && BannerSection }
-                    prepareUrl={(subTab) => `?page=catalog#&tab=settings&subtab=${subTab}` }
+                    prepareUrl={(subTab) => `?page=catalogx#&tab=settings&subtab=${subTab}` }
                 />
             </SettingProvider>
         </>

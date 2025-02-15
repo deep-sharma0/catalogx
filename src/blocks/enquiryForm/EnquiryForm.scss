@@ -36,6 +36,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
+  .adminLib-cross:before {
+    content: "\e916";
+  }
+  .adminLib-cloud-upload:before {
+    content: "\e950";
+  }
   .adminLib-tools:before {
     content: "\e700";
   }
@@ -169,9 +175,6 @@
   }
   .adminLib-settings:before {
     content: "\e915";
-  }
-  .adminLib-cross:before {
-    content: "\e916";
   }
   .adminLib-icon-yes:before {
     content: "\e917";
@@ -340,9 +343,6 @@
   }
   .adminLib-multi-select:before {
     content: "\e94e";
-  }
-  .adminLib-cloud-upload:before {
-    content: "\e950";
   }
   .adminLib-help:before {
     content: "\e951";

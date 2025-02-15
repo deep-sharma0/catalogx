@@ -1,6 +1,7 @@
 <?php
 
-namespace CatalogEnquiry;
+
+namespace Catalogx;
 
 /**
  * Catalog enquiry frontend class

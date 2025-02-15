@@ -1,6 +1,6 @@
 <?php
 
-namespace CatalogEnquiry;
+namespace Catalogx;
 
 defined('ABSPATH') || exit;
 

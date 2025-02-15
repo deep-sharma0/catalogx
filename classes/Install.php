@@ -1,5 +1,5 @@
 <?php
-namespace CatalogEnquiry;
+namespace Catalogx;
 
 class Install {
     const VERSION_KEY = 'catalog_enquiry_plugin_version';

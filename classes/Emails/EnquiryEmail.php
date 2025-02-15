@@ -1,7 +1,7 @@
 <?php
 
-namespace CatalogEnquiry\Emails;
-use CatalogEnquiry\Utill;
+namespace Catalogx\Emails;
+use Catalogx\Utill;
 
 /**
  * Email to Admin for customer enquiry.

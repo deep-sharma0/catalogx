@@ -1,6 +1,6 @@
 <?php
 
-namespace CatalogEnquiry\Core;
+namespace Catalogx\Core;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 

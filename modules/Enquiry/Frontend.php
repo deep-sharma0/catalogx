@@ -1,9 +1,9 @@
 <?php 
 
-namespace CatalogEnquiry\Enquiry;
+namespace Catalogx\Enquiry;
 
-use CatalogEnquiry\CatalogEnquiry;
-use CatalogEnquiry\Utill;
+use Catalogx\Catalogx;
+use Catalogx\Utill;
 
 class Frontend{
     /**
@@ -94,7 +94,7 @@ class Frontend{
             $button_css .= $additional_css_settings;
         }
         
-        $settings_array[ 'button_text' ] = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogEnquiry\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
+        $settings_array[ 'button_text' ] = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \Catalogx\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
         $button_position_settings = Catalog()->setting->get_setting( 'shop_page_button_position_setting' );
         $button_position_settings = is_array($button_position_settings) ? $button_position_settings : [];
         $position = array_search('enquery_button', $button_position_settings);
@@ -161,8 +161,8 @@ class Frontend{
             'nonce'         => wp_create_nonce( 'wp_rest' ),
             'settings_free' => $this->catalog_free_form_settings(),
             'settings_pro'  => $this->catalog_pro_form_settings(),
-            'khali_dabba'    => \CatalogEnquiry\Utill::is_khali_dabba(),
-            'product_data'  => (\CatalogEnquiry\Utill::is_khali_dabba() && !empty(Catalog_PRO()->cart->get_cart_data())) ? Catalog_PRO()->cart->get_cart_data() : '',
+            'khali_dabba'    => \Catalogx\Utill::is_khali_dabba(),
+            'product_data'  => (\Catalogx\Utill::is_khali_dabba() && !empty(Catalog_PRO()->cart->get_cart_data())) ? Catalog_PRO()->cart->get_cart_data() : '',
             'default_placeholder'  => [
                 'name'  => $current_user->display_name,
                 'email' => $current_user->user_email
@@ -288,7 +288,7 @@ class Frontend{
         if (isset($additional_css_settings) && !empty($additional_css_settings)) {
             $button_css .= $additional_css_settings;
         }
-        $button_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogEnquiry\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
+        $button_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \Catalogx\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
         if ( is_shop() ) {
             global $product;
             $product_link = get_permalink( $product->get_id() );

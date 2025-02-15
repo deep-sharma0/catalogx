@@ -1,17 +1,17 @@
 <?php
 
-namespace CatalogEnquiry;
-use Automattic\Jetpack\Connection\Utils;
+namespace Catalogx;
+use \Automattic\WooCommerce\Utilities\FeaturesUtil;
 
 /**
- * Catalog enquiry class main function
+ * Catalogx class main function
  *
- * @class 		Catalog enquiry class
+ * @class 		Catalogx class
  * @version		3.0.2
  * @author 		CatalogX
  */
 
-final class CatalogEnquiry {
+final class Catalogx {
 
 	private static $instance = null;
     private $file            = '';
@@ -45,7 +45,7 @@ final class CatalogEnquiry {
      * @return void
      */
     public function declare_compatibility() {
-        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility ( 'custom_order_tables', WP_CONTENT_DIR.'/plugins/woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php', true );
+        FeaturesUtil::declare_compatibility ( 'custom_order_tables', WP_CONTENT_DIR.'/plugins/woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php', true );
         
     }
 	
@@ -141,7 +141,7 @@ final class CatalogEnquiry {
 
 	function plugin_link( $links ) {	
 		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=catalog#&tab=settings&subtab=general' ) . '">' . __( 'Settings', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=general' ) . '">' . __( 'Settings', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>',
 			'<a href="https://multivendorx.com/support-forum/forum/wcmp-catalog-enquiry/">' . __( 'Support', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>',			
 		);	
 		$links = array_merge( $plugin_links, $links );

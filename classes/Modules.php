@@ -1,6 +1,6 @@
 <?php
 
-namespace CatalogEnquiry;
+namespace Catalogx;
 
 /**
  * Catalog Modules Class
@@ -56,17 +56,17 @@ class Modules {
                 'catalog' => [
                     'id'             => 'catalog',
                     'module_file'    => Catalog()->plugin_path . 'modules/Catalog/Module.php',
-                    'module_class'   => 'CatalogEnquiry\Catalog\Module',
+                    'module_class'   => 'Catalogx\Catalog\Module',
                 ],
                 'enquiry' => [
                     'id'             => 'enquiry',
                     'module_file'    => Catalog()->plugin_path . 'modules/Enquiry/Module.php',
-                    'module_class'   => 'CatalogEnquiry\Enquiry\Module',
+                    'module_class'   => 'Catalogx\Enquiry\Module',
                 ],
                 'quote'    => [
                     'id'             => 'quote',
                     'module_file'    => Catalog()->plugin_path . 'modules/Quote/Module.php',
-                    'module_class'   => 'CatalogEnquiry\Quote\Module',
+                    'module_class'   => 'Catalogx\Quote\Module',
                 ],
                 // 'wholesale'    => [
                 //     'id'             => 'wholesale',

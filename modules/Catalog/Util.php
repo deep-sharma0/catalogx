@@ -1,6 +1,6 @@
 <?php 
 
-namespace CatalogEnquiry\Catalog;
+namespace Catalogx\Catalog;
 
 class Util {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace CatalogEnquiry;
+namespace Catalogx;
 
 /**
  * Setup Wizard Class
@@ -43,7 +43,7 @@ class SetupWizard {
                 'apiurl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'restUrl' => 'catalog/v1',
-                'redirect_url' => admin_url() . 'admin.php?page=catalog#&tab=modules',
+                'redirect_url' => admin_url() . 'admin.php?page=catalogx#&tab=modules',
             ]);
         }
     }

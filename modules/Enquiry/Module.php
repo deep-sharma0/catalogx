@@ -1,8 +1,8 @@
 <?php 
 
-namespace CatalogEnquiry\Enquiry;
+namespace Catalogx\Enquiry;
 
-use CatalogEnquiry\Utill;
+use Catalogx\Utill;
 
 class Module {
     /**

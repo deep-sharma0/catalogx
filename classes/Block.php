@@ -1,7 +1,7 @@
 <?php
 
-namespace CatalogEnquiry;
-use CatalogEnquiry\Enquiry\Module;
+namespace Catalogx;
+use Catalogx\Enquiry\Module;
 
 defined( 'ABSPATH' ) || exit;
 

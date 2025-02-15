@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@import './../../config.scss';
 
 .load-table {
   border-collapse: collapse;
@@ -14,7 +14,7 @@
     word-break: normal;
     border-color: rgba(0, 0, 0, 0.2);
     color: #333;
-    background-color: $color-white;
+    background-color: #fff;
     flex-grow: 1;
 
     &:first-child {

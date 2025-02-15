@@ -1,5 +1,5 @@
 <?php
-namespace CatalogEnquiry\Emails;
+namespace Catalogx\Emails;
 /**
  * Email for request quote send 
  *

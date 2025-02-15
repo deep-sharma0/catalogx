@@ -1,6 +1,6 @@
 <?php
 
-namespace CatalogEnquiry;
+namespace Catalogx;
 
 class Admin {
     /**
@@ -19,71 +19,71 @@ class Admin {
         global $submenu;
 
         add_menu_page(
-            __( 'catalog', 'catalogx' ),
+            __( 'catalogx', 'catalogx' ),
             __( 'CatalogX', 'catalogx' ),
             'manage_woocommerce',
-            'catalog',
+            'catalogx',
             [ $this, 'menu_page_callback' ],
             'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g fill="#9EA3A8" fill-rule="nonzero"><path d="M7.8,5.4c0,0.5-0.4,0.9-0.9,0.9C6.6,6.3,6.3,6,6.1,5.7c0-0.1-0.1-0.2-0.1-0.3    c0-0.5,0.4-0.9,0.9-0.9c0.1,0,0.2,0,0.3,0.1C7.6,4.7,7.8,5,7.8,5.4z M5,7.4c-0.1,0-0.2,0-0.2,0c-0.6,0-1.1,0.5-1.1,1.1    C3.6,9,4,9.4,4.4,9.6c0.1,0,0.2,0.1,0.3,0.1c0.6,0,1.1-0.5,1.1-1.1C5.9,7.9,5.5,7.5,5,7.4z M5.8,1.7c-0.6,0-1,0.5-1,1s0.5,1,1,1    s1-0.5,1-1S6.3,1.7,5.8,1.7z M2.9,2.1c-0.3,0-0.5,0.2-0.5,0.5s0.2,0.5,0.5,0.5s0.5-0.2,0.5-0.5S3.2,2.1,2.9,2.1z M0.8,5.7    C0.3,5.7,0,6.1,0,6.5s0.3,0.8,0.8,0.8s0.8-0.3,0.8-0.8S1.2,5.7,0.8,5.7z M20,10.6c-0.1,4.3-3.6,7.7-7.9,7.7c-1.2,0-2.3-0.3-3.4-0.7    l-3.5,0.6l1.4-2c-1.5-1.4-2.5-3.5-2.5-5.7c0-0.2,0-0.4,0-0.5c0.3,0.1,0.6,0.1,0.9,0C5.9,9.7,6.4,9,6.3,8.3c0-0.2-0.1-0.4-0.2-0.5    C5.7,7,4.9,6.8,4.2,6.9C4,7,3.8,7,3.7,7C3,6.9,2.5,6.4,2.4,5.8c-0.2-1,0.6-1.9,1.6-1.9C4.6,4,5.1,4.4,5.3,5c0,0.1,0,0.2,0,0.2    c0.1,0.5,0.4,1,0.9,1.2c0.2,0.1,0.5,0.2,0.7,0.2c0.7,0,1.3-0.6,1.3-1.3c0-0.5-0.3-1-0.8-1.2c1.4-1.1,3.2-1.7,5.1-1.6    C16.7,2.8,20.1,6.3,20,10.6z M14.9,8.2c0-0.3-0.2-0.5-0.5-0.5H9.9c-0.3,0-0.5,0.2-0.5,0.5v4.6c0,0.3,0.2,0.5,0.5,0.5h2.6l0.5,1.1    h1.2l-0.5-1.1h0.9c0.3,0,0.5-0.2,0.5-0.5V8.2z M10.4,12.2h1.6l-0.3-0.6l0.9-0.4l0.5,1h0.8V8.7h-3.5V12.2z"/></g></svg>' ),
             50
         );
 
         add_submenu_page(
-            'catalog',
+            'catalogx',
             __( 'Enquiry Messages', 'catalogx' ),
             __( 'Enquiry Messages', 'catalogx' ),
             'manage_woocommerce',
-            'catalog#&tab=enquiry-messages',
+            'catalogx#&tab=enquiry-messages',
             '__return_null'
         );
 
         add_submenu_page(
-            'catalog',
+            'catalogx',
             __( 'Quotation Requests', 'catalogx' ),
             __( 'Quotation Requests', 'catalogx' ),
             'manage_woocommerce',
-            'catalog#&tab=quote-requests',
+            'catalogx#&tab=quote-requests',
             '__return_null'
         );
 
         add_submenu_page(
-            'catalog',
+            'catalogx',
             __( 'Wholesale Users', 'catalogx' ),
             __( 'Wholesale Users', 'catalogx' ),
             'manage_woocommerce',
-            'catalog#&tab=wholesale-users',
+            'catalogx#&tab=wholesale-users',
             '__return_null'
         );
 
         add_submenu_page(
-            'catalog',
+            'catalogx',
             __('Dynamic Pricing Rules', 'catalogx'),
             __('Dynamic Pricing Rules', 'catalogx'),
             'manage_woocommerce',
-            'catalog#&tab=rules',
+            'catalogx#&tab=rules',
             '__return_null'
         );
 
         add_submenu_page(
-            'catalog',
+            'catalogx',
             __( 'Settings', 'catalogx' ),
             __( 'Settings', 'catalogx' ),
             'manage_woocommerce',
-            'catalog#&tab=settings&subtab=all_settings',
+            'catalogx#&tab=settings&subtab=all_settings',
             '__return_null'
         );
 
         add_submenu_page(
-            'catalog',
+            'catalogx',
             __( 'Modules', 'catalogx' ),
             __( 'Modules', 'catalogx' ),
             'manage_woocommerce',
-            'catalog#&tab=modules',
+            'catalogx#&tab=modules',
             '__return_null'
         );
 
         if ( ! Utill::is_khali_dabba() ) {
-            $submenu[ 'catalog' ][] = [
+            $submenu[ 'catalogx' ][] = [
                 '<style>
 					a:has(.upgrade-to-pro){
 						background: linear-gradient(-28deg, #f6a091, #bb939c, #5f6eb3) !important;
@@ -96,7 +96,7 @@ class Admin {
             ];
         }
 
-        remove_submenu_page( 'catalog', 'catalog' );
+        remove_submenu_page( 'catalogx', 'catalogx' );
     }
 
     /**
@@ -113,7 +113,7 @@ class Admin {
      */
     public function enqueue_script() {
 
-        if ( get_current_screen()->id !== 'toplevel_page_catalog' ) return ;
+        if ( get_current_screen()->id !== 'toplevel_page_catalogx' ) return ;
 
         // Support for media
         wp_enqueue_media();
@@ -253,13 +253,13 @@ class Admin {
             'khali_dabba'                => Utill::is_khali_dabba(),
             'pro_url'                   => esc_url( WOOCOMMERCE_CATALOG_ENQUIRY_PRO_SHOP_URL ),
             'order_edit'                => admin_url( "admin.php?page=wc-orders&action=edit" ),
-            'site_url'                  => admin_url( 'admin.php?page=catalog#&tab=settings&subtab=all_settings' ),
-            'module_page_url'           => admin_url( 'admin.php?page=catalog#&tab=modules' ),
-            'settings_page_url'           => admin_url( 'admin.php?page=catalog#&tab=settings&subtab=all_settings' ),
-            'enquiry_form_settings_url'   => admin_url( 'admin.php?page=catalog#&tab=settings&subtab=enquiry_form_customization' ),
-            'customization_settings_url'  => admin_url( 'admin.php?page=catalog#&tab=settings&subtab=enquiry_catalog_customization' ),
-            'wholesale_settings_url'      => admin_url( 'admin.php?page=catalog#&tab=settings&subtab=wholesale' ),
-            'rule_url'                    => admin_url( 'admin.php?page=catalog#&tab=rules' ),
+            'site_url'                  => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=all_settings' ),
+            'module_page_url'           => admin_url( 'admin.php?page=catalogx#&tab=modules' ),
+            'settings_page_url'           => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=all_settings' ),
+            'enquiry_form_settings_url'   => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=enquiry_form_customization' ),
+            'customization_settings_url'  => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=enquiry_catalog_customization' ),
+            'wholesale_settings_url'      => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=wholesale' ),
+            'rule_url'                    => admin_url( 'admin.php?page=catalogx#&tab=rules' ),
             'currency'                  => get_woocommerce_currency(),
             'stock_alert_open'          => is_plugin_active('woocommerce-product-stock-alert/product_stock_alert.php'),
             'mvx_active'                => Utill::is_active_MVX(),

@@ -32,7 +32,7 @@ const Route = () => {
 const App = () => {
     const currentTabParams = new URLSearchParams(useLocation().hash);
 
-    document.querySelectorAll('#toplevel_page_catalog>ul>li>a').forEach((menuItem) => {
+    document.querySelectorAll('#toplevel_page_catalogx>ul>li>a').forEach((menuItem) => {
         const menuItemUrl = new URL(menuItem.href);
         const menuItemHashParams = new URLSearchParams(menuItemUrl.hash.substring(1));
 

@@ -1,8 +1,8 @@
 <?php 
 
-namespace CatalogEnquiry\RoleBased;
+namespace Catalogx\RoleBased;
 
-use CatalogEnquiry\Utill;
+use Catalogx\Utill;
 
 class Module {
     /**

@@ -1,8 +1,8 @@
 <?php 
 
-namespace CatalogEnquiry\Enquiry;
-use CatalogEnquiry\Utill;
-use CatalogEnquiry\Enquiry\Module;
+namespace Catalogx\Enquiry;
+use Catalogx\Utill;
+use Catalogx\Enquiry\Module;
 
 class Rest {
     /**
@@ -50,7 +50,7 @@ class Rest {
 
         // Create attachment of files
         foreach ( $file_data as $file ) {
-            $attachment_id = \CatalogEnquiry\Utill::create_attachment_from_files_array($file);
+            $attachment_id = \Catalogx\Utill::create_attachment_from_files_array($file);
             if (!empty($attachment_id)) {
                 $attachments[] = get_attached_file($attachment_id);
             }
@@ -62,7 +62,7 @@ class Rest {
         // Get the product related info
         $product_info = [];
 
-        if ( \CatalogEnquiry\Utill::is_khali_dabba() ) {
+        if ( \Catalogx\Utill::is_khali_dabba() ) {
             $product_data = Catalog_PRO()->cart->get_cart_data();
             
             if ( $product_data ) {
@@ -164,7 +164,7 @@ class Rest {
             
             $msg = __( "Enquiry sent successfully", 'catalogx' );
             
-            if ( \CatalogEnquiry\Utill::is_khali_dabba() ) { 
+            if ( \Catalogx\Utill::is_khali_dabba() ) { 
                 Catalog_PRO()->cart->unset_session(); 
             }
 

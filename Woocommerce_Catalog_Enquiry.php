@@ -21,7 +21,7 @@ require_once trailingslashit(dirname(__FILE__)).'config.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 function Catalog() {
-    return \CatalogEnquiry\CatalogEnquiry::init(__FILE__);
+    return \Catalogx\Catalogx::init(__FILE__);
 }
 
 Catalog();
