@@ -32,14 +32,14 @@ const Checkboxes = (props) => {
             {
                 options.map((option, index) => {
                     return (
-                        <div key={index} className='select-items'>
+                        <div key={option} className='select-items'>
                             <input
                                 type="checkbox"
-                                id={index}
+                                id={option.value}
                                 checked={checkedItems.find((item) => item.value === option.value)}
                                 onChange={(e) => handleChange(option, e.target.checked)}
                             />
-                            <label htmlFor={index}>
+                            <label htmlFor={option.value}>
                                 {option.label}
                             </label>
                         </div>
@@ -113,12 +113,12 @@ const Radio = (props) => {
                         <div key={index} className='select-items'>
                             <input
                                 type="radio"
-                                id={index}
+                                id={option.value}
                                 value={option.value}
                                 checked={selectdedItem === option.value}
                                 onChange={handleChange}
                             />
-                            <label htmlFor={index}>
+                            <label htmlFor={option.value}>
                                 {option.label}
                             </label>
                         </div>
@@ -149,7 +149,6 @@ const FromViewer = (props) => {
     const [file, setFile] = useState(null); 
 
     const recaptchaField = formList.find((field) => field.type === "recaptcha");
-    console.log(recaptchaField)
     const siteKey = recaptchaField ? recaptchaField.sitekey : null;
 
     useEffect(() => {  
@@ -226,8 +225,6 @@ const FromViewer = (props) => {
         <main className='enquiry-pro-form'>
             {
                 formList.map((field) => {
-                    console.log('name',field.name)
-                    console.log(field.disabled)
                     if (field.disabled) { return }
 
                     switch (field.type) {
@@ -417,7 +414,7 @@ const FromViewer = (props) => {
                         } 
                         handleSubmit(e)
                     }}
-                    children={'submit'}
+                    children={'Submit'}
                 />
                 <button id='close-enquiry-popup' className='close-enquiry-popup'>Close</button>
             </section>
