@@ -132,9 +132,9 @@ class Rest {
 			]);
 
             if (Utill::is_khali_dabba()) {
-                $html = \CatalogEnquiryPro\Enquiry\Util::get_html($enquiry_data);
+                $html = \CatalogxPro\Enquiry\Util::get_html($enquiry_data);
                 if ($html) { 
-                    $pdf_maker = new \CatalogEnquiryPro\PDFMaker($html);
+                    $pdf_maker = new \CatalogxPro\PDFMaker($html);
                     $pdf = $pdf_maker->output();
 
                     // Save the PDF to a temporary location

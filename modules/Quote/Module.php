@@ -26,7 +26,7 @@ class Module {
         $this->init_classes();
 
         if ( Utill::is_khali_dabba() ) {
-            new \CatalogEnquiryPro\Quote\Module();
+            new \CatalogxPro\Quote\Module();
         }
 
         if (Catalog()->modules->is_active('quote')) {

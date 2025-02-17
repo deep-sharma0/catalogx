@@ -102,53 +102,53 @@ export default function banner() {
                                 <ul className="carousel-list">
                                     <li className="carousel-item active">
                                         <div className="admin-pro-txt-items">
-                                            <h3>Advanced Enquiries</h3>
-                                            <p>Rich customer-admin messaging system</p>
+                                            <h3>{__('Advanced Enquiries', 'catalogx')}</h3>
+                                            <p>{__('Rich customer-admin messaging system', 'catalogx')}</p>
                                             <a
                                                 href={appLocalizer.pro_url}
                                                 target='_blank'
                                                 className="admin-btn btn-red"
                                             >
-                                                View Pricing
+                                                {__('View Pricing', 'catalogx')}
                                             </a>
                                         </div>
                                     </li>
                                     <li class="carousel-item">
                                     <div className="admin-pro-txt-items">
-                                            <h3>Dynamic Pricing</h3>
-                                            <p>Automated multi-tier price rules</p>
+                                            <h3>{__('Dynamic Pricing', 'catalogx')}</h3>
+                                            <p>{__('Automated multi-tier price rules', 'catalogx')}</p>
                                             <a
                                                 href={appLocalizer.pro_url}
                                                 target='_blank'
                                                 className="admin-btn btn-red"
                                             >
-                                                View Pricing
+                                                {__('View Pricing', 'catalogx')}
                                             </a>
                                         </div>
                                     </li>
                                     <li class="carousel-item">
                                     <div className="admin-pro-txt-items">
-                                            <h3>Wholesale Sales</h3>
-                                            <p>B2B ordering with bulk discounts</p>
+                                            <h3>{__('Wholesale Sales', 'catalogx')}</h3>
+                                            <p>{__('B2B ordering with bulk discounts', 'catalogx')}</p>
                                             <a
                                                 href={appLocalizer.pro_url}
                                                 target='_blank'
                                                 className="admin-btn btn-red"
                                             >
-                                                View Pricing
+                                                {__('View Pricing', 'catalogx')}
                                             </a>
                                         </div>
                                     </li>
                                     <li class="carousel-item">
                                     <div className="admin-pro-txt-items">
-                                            <h3>Custom Quotes</h3>
-                                            <p>Speed up sales with personalized quotes.</p>
+                                            <h3>{__('Custom Quotes', 'catalogx')}</h3>
+                                            <p>{__('Speed up sales with personalized quotes.', 'catalogx')}</p>
                                             <a
                                                 href={appLocalizer.pro_url}
                                                 target='_blank'
                                                 className="admin-btn btn-red"
                                             >
-                                                View Pricing
+                                                {__('View Pricing', 'catalogx')}
                                             </a>
                                         </div>
                                     </li>

@@ -26,7 +26,7 @@ class Module {
         $this->init_classes();
 
         if ( Utill::is_khali_dabba() ) {
-            new \CatalogEnquiryPro\Enquiry\Module();
+            new \CatalogxPro\Enquiry\Module();
         }
         
     }

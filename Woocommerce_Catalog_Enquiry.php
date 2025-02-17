@@ -6,7 +6,7 @@
  * Author: MultiVendorX
  * Version: 5.0.10
  * Author URI: https://multivendorx.com/
- * WC requires at least: 4.2
+ * WC requires at least: 5.5
  * WC tested up to: 9.3.3
  * Text Domain: catalogx
  * Domain Path: /languages/

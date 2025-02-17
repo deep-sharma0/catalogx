@@ -15,7 +15,6 @@ class Frontend{
             remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
             remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
             // for block support
-            add_filter( 'woocommerce_loop_add_to_cart_link', '__return_empty_string', 10 );
             remove_action('woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30);
         }
 
@@ -30,7 +29,12 @@ class Frontend{
 
         // Hooks for exclutions
         add_action( 'woocommerce_after_shop_loop_item_title' , [ $this, 'price_for_selected_product' ] , 5 );
-        add_action( 'woocommerce_after_shop_loop_item' , [ $this, 'add_to_cart_button_for_selected_product' ], 5 );
+        if (wp_is_block_theme()) {
+            add_filter( 'woocommerce_loop_add_to_cart_link', [ $this, 'add_to_cart_button_for_block' ], 10, 2 );
+        } else {
+            add_action( 'woocommerce_after_shop_loop_item' , [ $this, 'add_to_cart_button_for_selected_product' ], 5 );
+        }
+        
         add_action( 'woocommerce_single_product_summary', [ $this, 'catalog_woocommerce_template_single' ], 5 );
 
         $this->register_description_box();
@@ -153,22 +157,25 @@ class Frontend{
     }
 
     /**
+     * Shop page add to cart button exclusion for block
+     * @return void
+     */
+    public function add_to_cart_button_for_block( $button, $product ) {
+        return !Util::is_available_for_product( $product->get_id() ) ? $button : '';
+    }
+
+    /**
      * Shop page add to cart button exclusion
      * @return void
      */
     public function add_to_cart_button_for_selected_product() {
         global $post;
-
+                
         if ( !Util::is_available_for_product($post->ID)) {
             add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
-            remove_filter('woocommerce_loop_add_to_cart_link', '__return_empty_string', 10);
-            // add_filter('woocommerce_loop_add_to_cart_link', fn($button) => $button, 10);
-        } 
-        else {
+        } else {
             if ( !empty(Catalog()->setting->get_setting( 'is_hide_cart_checkout' )) ) {   
                 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
-                // for block support
-                add_filter( 'woocommerce_loop_add_to_cart_link', '__return_empty_string', 10 );  
             }
         }
     }
@@ -181,25 +188,15 @@ class Frontend{
         global $post;
 
         if ( !Util::is_available_for_product( $post->ID ) && is_product() ) {
-        
-            add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-            remove_filter('woocommerce_get_price_html', '__return_empty_string');
+            if ( wp_is_block_theme() === false ) {
+                add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+                add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+            } else {
+                remove_filter('woocommerce_get_price_html', '__return_empty_string');
+                add_action('woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30);
+            }
             add_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );           
-            add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
-            add_action('woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30);
             add_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 ); 
-            
-        // } else {
-            // remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-            // remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );
-            // // for block support
-            // add_filter( 'woocommerce_get_price_html', '__return_empty_string' );
-            // if ( !empty(Catalog()->setting->get_setting( 'is_hide_cart_checkout' )) ) {          
-            //     remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
-            //     remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
-            //     // for block support
-            //     remove_action('woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30);
-            // }  
         }
     }
 

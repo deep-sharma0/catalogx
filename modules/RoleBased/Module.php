@@ -25,7 +25,7 @@ class Module {
         $this->init_classes();
 
         if ( Utill::is_khali_dabba() ) {
-            new \CatalogEnquiryPro\RoleBased\Module();
+            new \CatalogxPro\RoleBased\Module();
         }
 
         add_action('init', [$this, 'main' ]);
