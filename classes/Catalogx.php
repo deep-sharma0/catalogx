@@ -41,6 +41,15 @@ final class Catalogx {
 		add_filter( 'woocommerce_email_classes', [ $this, 'load_emails' ] );
     }
 
+	function set_array($array) {
+		$this->container['block_paths'] = $array;
+		return $this->container['block_paths'];
+	}
+
+	function get_array() {
+		return $this->container['block_paths'];
+
+	}
 	/**
      * Add High Performance Order Storage Support
      * @return void

@@ -44,7 +44,9 @@ class Block {
 					],
 				],
             ];
-            Catalog()->block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
+            $block_paths = Catalog()->get_array();
+            $block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
+            Catalog()->set_array($block_paths);
         }
 
         if (Catalog()->modules->is_active('quote')) {
@@ -101,11 +103,11 @@ class Block {
                 ],
             ];
 
-            Catalog()->block_paths += [
-                'blocks/quote-cart'      => 'build/blocks/quote-cart/index.js',
-                'blocks/quote-button'    => 'build/blocks/quote-button/index.js',
-                'blocks/quote-thank-you' => 'build/blocks/quote-thank-you/index.js',
-            ];
+            $block_paths = Catalog()->get_array();
+            $block_paths['blocks/quote-cart'] = 'build/blocks/quote-cart/index.js';
+            $block_paths['blocks/quote-button'] = 'build/blocks/quote-button/index.js';
+            $block_paths['blocks/quote-thank-you'] = 'build/blocks/quote-thank-you/index.js';
+            Catalog()->set_array($block_paths);
         }
 
         return $blocks;
