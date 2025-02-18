@@ -24,6 +24,7 @@ class Admin {
                 'exclude_from_search'       => false,
                 'show_in_admin_all_list'    => true,
                 'show_in_admin_status_list' => true,
+                /* translators: %s: Number of order status as new quote. */
                 'label_count'               => _n_noop( 'New Quote Request <span class="count">(%s)</span>', 'New Quote Requests <span class="count">(%s)</span>', 'catalogx' ),
             ]
         );
@@ -36,6 +37,7 @@ class Admin {
                 'exclude_from_search'       => false,
                 'show_in_admin_all_list'    => true,
                 'show_in_admin_status_list' => true,
+                /* translators: %s: Number of order status as pending quote. */
                 'label_count'               => _n_noop( 'Pending Quote <span class="count">(%s)</span>', 'Pending Quote <span class="count">(%s)</span>', 'catalogx' ),
             ]
         );
@@ -48,6 +50,7 @@ class Admin {
                 'exclude_from_search'       => false,
                 'show_in_admin_all_list'    => true,
                 'show_in_admin_status_list' => true,
+                /* translators: %s: Number of order status as expired quote. */
                 'label_count'               => _n_noop( 'Expired Quote <span class="count">(%s)</span>', 'Expired Quotes <span class="count">(%s)</span>', 'catalogx' ),
             ]
         );
@@ -60,6 +63,7 @@ class Admin {
                 'exclude_from_search'       => false,
                 'show_in_admin_all_list'    => true,
                 'show_in_admin_status_list' => true,
+                /* translators: %s: Number of order status as accepted quote. */
                 'label_count'               => _n_noop( 'Accepted Quote <span class="count">(%s)</span>', 'Accepted Quote <span class="count">(%s)</span>', 'catalogx' ),
             ]
         );
@@ -72,6 +76,7 @@ class Admin {
                 'exclude_from_search'       => false,
                 'show_in_admin_all_list'    => true,
                 'show_in_admin_status_list' => true,
+                /* translators: %s: Number of order status as rejected quote. */
                 'label_count'               => _n_noop( 'Rejected Quote <span class="count">(%s)</span>', 'Rejected Quote <span class="count">(%s)</span>', 'catalogx' ),
             ]
         );

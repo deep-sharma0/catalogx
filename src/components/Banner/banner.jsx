@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Dialog from "@mui/material/Dialog";
 import Popoup from '../PopupContent/PopupContent';
 import './banner.scss';
+import { __ } from '@wordpress/i18n';
 
 export default function banner() {
     if(localStorage.getItem('banner') != 'false'){

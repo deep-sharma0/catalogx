@@ -16,6 +16,7 @@ class Block {
         // Enqueue the script and style for block editor
         add_action( 'enqueue_block_editor_assets', [ $this,'enqueue_block_editor_assets'] );
         add_action( 'wp_enqueue_scripts', [ $this,'enqueue_block_assets'] );
+        add_action( 'wp_enqueue_scripts', [ $this,'enqueue_block_text_domain'], 100 );
 
         $this->blocks = $this->initialize_blocks();
     }
@@ -106,6 +107,7 @@ class Block {
     public function enqueue_block_editor_assets() {
         foreach ($this->blocks as $block_script) {
             wp_enqueue_script($block_script['name'], Catalog()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], Catalog()->version, true);
+            wp_set_script_translations( $block_script['name'], 'catalogx' );
             if (isset($block_script['localize']) && !empty($block_script['localize'])) {
                 $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
                 wp_localize_script($block_script['name'], $block_script['localize']['object_name'], $block_script['localize']['data']);
@@ -121,6 +123,7 @@ class Block {
         foreach ($this->blocks as $block_script) {
             if (has_block('catalogx/' . $block_script['name'], $post->post_content)) {
                 wp_enqueue_script($block_script['name'], Catalog()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], Catalog()->version, true);
+                wp_set_script_translations( $block_script['name'], 'catalogx' );
                 if (isset($block_script['localize']) && !empty($block_script['localize'])) {
                     $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
                     wp_localize_script($block_script['name'], $block_script['localize']['object_name'], $block_script['localize']['data']);
@@ -129,6 +132,15 @@ class Block {
                     wp_enqueue_style( $block_script['required_style'], Catalog()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
                 }
             }
+		}
+    }
+
+    public function enqueue_block_text_domain() {
+        global $post;
+        foreach ($this->blocks as $block_script) {
+            // if (has_block('catalogx/' . $block_script['name'], $post->post_content)) {
+                wp_set_script_translations( $block_script['name'], 'catalogx' );
+            // }
 		}
     }
 

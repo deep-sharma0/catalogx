@@ -9,6 +9,7 @@ class Admin {
     public function __construct() {
         add_action( 'admin_menu', [ $this, 'add_menu' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_script' ] );
+        add_action( 'load_script_textdomain_relative_path', [ $this, 'path' ], 10, 2 );
     }
 
     /**
@@ -268,4 +269,27 @@ class Admin {
         ]));
     }
 
+    function path($path, $url) {
+
+        // file_put_contents( plugin_dir_path(__FILE__) . "/error.log", date("d/m/Y H:i:s", time()) . ":url:  : " . var_export($url, true) . "\n", FILE_APPEND);
+        
+        if (strpos($url, 'woocommerce-catalog-enquiry') !== false) {
+            if (strpos($url, 'block') === false) {
+                $path = 'build/index.js';
+            }
+            if (strpos($url, 'blocks/enquiry-button') !== false) {
+                $path = 'build/blocks/enquiry-button/index.js';
+            }
+            if (strpos($url, 'blocks/quote-cart') !== false) {
+                $path = 'build/blocks/quote-cart/index.js';
+            }
+        }
+
+        // $path = 'build/index.js';
+
+        file_put_contents( plugin_dir_path(__FILE__) . "/error.log", date("d/m/Y H:i:s", time()) . ":path:  : " . var_export($path, true) . "\n", FILE_APPEND);
+        return $path;
+
+    }
+//dfbff627e6c248bcb3b61d7d06da9ca9
 }
