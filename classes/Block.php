@@ -155,7 +155,7 @@ class Block {
         // Adding a new category.
         $categories[] = [
             'slug'  => 'catalogx',
-            'title' => __( 'Catalogx', 'catalogx' )
+            'title' => 'CatalogX'
         ];
         return $categories;
     }

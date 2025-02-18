@@ -10,8 +10,8 @@ export default {
         {
             key: 'is_hide_cart_checkout',
             type: 'checkbox',
-            label: __( "Turn off sitewide buying", 'catalogx' ),
-             desc: __('Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href="https://catalogx.com/pricing/" target="_blank">CatalogX Pro</a>.', 'catalogx'),
+            label: __( "Turn off sitewide buying", "catalogx" ),
+             desc: __("Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href=\"https://catalogx.com/pricing/\" target=\"_blank\">CatalogX Pro</a>.", "catalogx"),
             options: [
                 {
                     key: "is_hide_cart_checkout",
@@ -65,7 +65,7 @@ export default {
             key: 'is_enable_out_of_stock',
             type: 'checkbox',
             label: __( "Enquiry for out-of-stock products only", 'catalogx' ),
-            desc: __("Enquiry button is shown exclusively for products that are out of stock. For items that are in stock, the Add-to-Cart button will be displayed instead.", 'catalogx'),
+            desc: __("Enquiry button is shown exclusively for products that are out of stock. For items that are in stock, the Add-to-Cart button will be displayed instead.", "catalogx"),
             options: [
                 {
                     key: "is_enable_out_of_stock",
@@ -117,7 +117,7 @@ export default {
             key: 'is_page_redirect',
             type: 'checkbox',
             label: __( "Redirect after enquiry form Submission", 'catalogx' ),
-            desc: __("Enable this to redirect user to another page after successful enquiry submission.", 'catalogx'),
+            desc: __("Enable this to redirect user to another page after successful enquiry submission.", "catalogx"),
             options: [
                 {
                     key: "is_page_redirect",
@@ -143,7 +143,7 @@ export default {
             key: 'is_enable_multiple_product_enquiry',
             type: 'checkbox',
             label: __( "Multi-product enquiry", 'catalogx' ),
-            desc: __("Enable multiple enquiry flow so customers can add several products to their enquiry cart and submit a single enquiry for all selected items.", 'catalogx'),
+            desc: __("Enable multiple enquiry flow so customers can add several products to their enquiry cart and submit a single enquiry for all selected items.", "catalogx"),
             options: [
                 {
                     key: "is_enable_multiple_product_enquiry",
@@ -177,8 +177,8 @@ export default {
         {
             key: 'set_expiry_time',
             type: 'text',
-            label:  __( 'Quotation expiry duration', 'catalogx' ),
-            desc: __( 'Set the period after which a quotation will expire and no longer be valid for purchase.', 'catalogx' ),
+            label:  __( "Quotation expiry duration", "catalogx" ),
+            desc: __( "Set the period after which a quotation will expire and no longer be valid for purchase.", "catalogx" ),
             parameter: __('days', 'catalogx'),
             proSetting: true,
             moduleEnabled: 'quote',

@@ -12,7 +12,7 @@ export default {
             key: "approve_wholesaler",
             type: "settingToggle",
             label: __("Approval of wholesale users through registration form", "catalogx"),
-            desc: __('Manual - Admin approves new wholesalers manually from "Wholeseller Users" page. <br>  Automatic - Instant wholesaler approval upon sign-up', 'catalogx'),
+            desc: __("Manual - Admin approves new wholesalers manually from 'Wholeseller Users' page. <br>  Automatic - Instant wholesaler approval upon sign-up", "catalogx"),
             options: [
                 {
                     key: "manual",
@@ -32,7 +32,7 @@ export default {
             key: "disable_coupon_for_wholesale",
             type: "checkbox",
             label: __("Coupon restriction for wholesalers", "catalogx"),
-            desc: __('Prevent wholesale users from applying any coupon and get addional discount on their orders.', 'catalogx'),
+            desc: __("Prevent wholesale users from applying any coupon and get addional discount on their orders.", "catalogx"),
             options: [
                 {
                     key: "disable_coupon_for_wholesale",
@@ -48,7 +48,7 @@ export default {
             key: "show_wholesale_price",
             type: "checkbox",
             label: __("Promote wholesale discounts to non-wholesale users", "catalogx"),
-             desc: __('Display discounted prices on product pages to entice regular customers into becoming wholesalers.', 'catalogx'),
+            desc: __("Display discounted prices on product pages to entice regular customers into becoming wholesalers.", "catalogx"),
             options: [
                 {
                     key: "show_wholesale_price",
@@ -64,7 +64,7 @@ export default {
             key: "enable_order_form",
             type: "checkbox",
             label: __("Dedicated wholesale-only product list", "catalogx"),
-            desc: __('Enables a dedicated wholesale-only page displaying all wholesale products for easy browsing and single-click checkout by logged-in wholesalers.', 'catalogx'),
+            desc: __("Enables a dedicated wholesale-only page displaying all wholesale products for easy browsing and single-click checkout by logged-in wholesalers.", "catalogx"),
             options: [
                 {
                     key: "enable_order_form",

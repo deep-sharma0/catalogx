@@ -20,8 +20,8 @@ class Admin {
         global $submenu;
 
         add_menu_page(
-            __( 'catalogx', 'catalogx' ),
-            __( 'CatalogX', 'catalogx' ),
+            'CatalogX',
+            'CatalogX',
             'manage_woocommerce',
             'catalogx',
             [ $this, 'menu_page_callback' ],
