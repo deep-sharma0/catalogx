@@ -56,4 +56,4 @@ if(isset($enquiry_data['comment']))
 
 echo "\n\n\n****************************************************\n\n";
 
-echo apply_filters('woocommerce_catalog_enquiry_email_footer_text', sprintf( __( '%s - Powered by WC Catalog Enquiry', 'catalogx' ), get_bloginfo( 'name', 'display' ) ) );
+echo apply_filters('woocommerce_catalog_enquiry_email_footer_text', sprintf( __( '%s - Powered by CatalogX', 'catalogx' ), get_bloginfo( 'name', 'display' ) ) );

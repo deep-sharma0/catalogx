@@ -174,6 +174,7 @@ class Rest {
             $order->update_status('wc-quote-rejected');
             $order->set_customer_note($reason);
             $order->save();
+            /* translators: %s: reject quotation number. */
             return rest_ensure_response(['message' => sprintf( __( 'You have confirmed rejection of the quotation No: %d', 'catalogx' ) , $order_id )]);
         }
     }

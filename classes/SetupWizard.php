@@ -37,6 +37,7 @@ class SetupWizard {
 
         if ( $current_screen->id === 'dashboard_page_catalog-setup' ) {
             wp_enqueue_script('setup_wizard_js', Catalog()->plugin_url . 'build/blocks/setupWizard/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'react-jsx-runtime'  ], Catalog()->version, true);
+            wp_set_script_translations( 'setup_wizard_js', 'catalogx' );
             wp_enqueue_style('setup_wizard_css', Catalog()->plugin_url . 'build/blocks/setupWizard/index.css');
             wp_localize_script(
                 'setup_wizard_js', 'appLocalizer', [
