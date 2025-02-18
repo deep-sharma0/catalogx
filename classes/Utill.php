@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx;
+namespace CatalogX;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -19,7 +19,7 @@ class Utill {
      * Function to console and debug errors.
      */
     public static function log( $str ) {
-        $file = Catalog()->plugin_path . 'log/catalog.txt';
+        $file = CatalogX()->plugin_path . 'log/catalog.txt';
 
         if ( file_exists( $file ) ) {
             // Open the file to get existing content
@@ -48,7 +48,7 @@ class Utill {
 	 */
 	public static function is_khali_dabba() {
 		if ( defined( 'CATALOG_ENQUIRY_PRO_PLUGIN_TOKEN' ) ) {
-			return Catalog_PRO()->license->is_active();
+			return CatalogX_Pro()->license->is_active();
 		}
 	}
 
@@ -65,7 +65,7 @@ class Utill {
         if ( $args && is_array( $args ) )
             extract( $args );
 
-        $located = Catalog()->plugin_path.'templates/'.$template_name;
+        $located = CatalogX()->plugin_path.'templates/'.$template_name;
         
         load_template( $located, false, $args );
     }
@@ -93,7 +93,7 @@ class Utill {
         $form_settings = [];
 
         foreach ( $setting_keys as $setting_key ) {
-            $form_settings[ $setting_key ] = Catalog()->setting->get_setting( $setting_key, '', $tabName );
+            $form_settings[ $setting_key ] = CatalogX()->setting->get_setting( $setting_key, '', $tabName );
         }
 
         return $form_settings;

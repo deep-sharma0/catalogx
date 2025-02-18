@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx\Quote;
+namespace CatalogX\Quote;
 
 class Admin {
     /**

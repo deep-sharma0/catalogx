@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx\Quote;
+namespace CatalogX\Quote;
 
 class Rest {
     /**
@@ -15,34 +15,34 @@ class Rest {
      * @return void
      */
     public function register_rest_api() {
-        register_rest_route( Catalog()->rest_namespace, '/get-all-quote', [
+        register_rest_route( CatalogX()->rest_namespace, '/get-all-quote', [
             'callback'              => [ $this, 'get_all_quote' ],
             'methods'               => \WP_REST_Server::ALLMETHODS,
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/quote-update-cart', [
+        register_rest_route( CatalogX()->rest_namespace, '/quote-update-cart', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'quote_update_cart' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/quote-remove-cart', [
+        register_rest_route( CatalogX()->rest_namespace, '/quote-remove-cart', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'quote_remove_cart' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/quote-send', [
+        register_rest_route( CatalogX()->rest_namespace, '/quote-send', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'quote_send' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/reject-quote-my-acount', [
+        register_rest_route( CatalogX()->rest_namespace, '/reject-quote-my-acount', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'reject_quote_my_account' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
     }
@@ -57,7 +57,7 @@ class Rest {
         $page = $request['page'];
     
         // Get all cart data
-        $all_cart_data = Catalog()->quotecart->get_cart_data();
+        $all_cart_data = CatalogX()->quotecart->get_cart_data();
     
         // Calculate pagination
         $total_items = count( $all_cart_data );
@@ -108,7 +108,7 @@ class Rest {
         foreach ($products as $key => $product) {
             $product_id = $product['id'];
             $quantity = $product['quantity'];
-            Catalog()->quotecart->update_cart( $product['key'], 'quantity', $quantity );
+            CatalogX()->quotecart->update_cart( $product['key'], 'quantity', $quantity );
             $update_msg =  __( 'Quote cart updated!', 'catalogx');
         }
 
@@ -126,9 +126,9 @@ class Rest {
         $key = $request->get_param('key');
         $status = false;
         if ( $product_id && isset( $key ) ) {
-            $status = Catalog()->quotecart->remove_cart( $key );
+            $status = CatalogX()->quotecart->remove_cart( $key );
         }
-        return rest_ensure_response(['status' => $status, 'cart_data' => Catalog()->quotecart->get_cart_data()]);
+        return rest_ensure_response(['status' => $status, 'cart_data' => CatalogX()->quotecart->get_cart_data()]);
     }
 
     /**
@@ -144,7 +144,7 @@ class Rest {
         $customer_email = sanitize_email($form_data['email']);
         $customer_phone = sanitize_text_field($form_data['phone']);
         $customer_message = sanitize_textarea_field($form_data['message']);
-        $product_data = Catalog()->quotecart->get_cart_data();
+        $product_data = CatalogX()->quotecart->get_cart_data();
         
         
         // Create a new customer or retrieve existing customer based on email
@@ -154,7 +154,7 @@ class Rest {
         $order_id = Util::create_new_order($customer_id, $customer_name, $customer_email, $customer_phone, $customer_message, $product_data);
         
         if ($order_id) {
-            $redirect_url = add_query_arg(['order_id' => $order_id], get_permalink(Catalog()->setting->get_option('woocommerce_myaccount_page_id')) . 'request-quote-thank-you/');
+            $redirect_url = add_query_arg(['order_id' => $order_id], get_permalink(CatalogX()->setting->get_option('woocommerce_myaccount_page_id')) . 'request-quote-thank-you/');
             return rest_ensure_response( ['order_id' => $order_id, 'redirect_url' => $redirect_url ]);
         } 
     }

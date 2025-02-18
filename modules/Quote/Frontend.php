@@ -1,8 +1,8 @@
 <?php
 
-namespace Catalogx\Quote;
+namespace CatalogX\Quote;
 
-use Catalogx\Utill;
+use CatalogX\Utill;
 
 class Frontend {
     /**
@@ -11,7 +11,7 @@ class Frontend {
     public function __construct() {
         if ( ! Util::is_available() ) return;
 
-        $display_quote_button = Catalog()->setting->get_setting( 'quote_user_permission' );
+        $display_quote_button = CatalogX()->setting->get_setting( 'quote_user_permission' );
         // print_r($display_quote_button);
         // die;
         if ($display_quote_button && in_array('logged_out', $display_quote_button) && !is_user_logged_in()) {
@@ -31,10 +31,10 @@ class Frontend {
      */
     public function enqueue_scripts() {
         if (is_shop() || is_product()) {
-             $frontend_script_path = Catalog()->plugin_url . 'modules/Quote/js/';
+             $frontend_script_path = CatalogX()->plugin_url . 'modules/Quote/js/';
             $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
 
-            wp_enqueue_script('add_to_quote_js', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], Catalog()->version, true);
+            wp_enqueue_script('add_to_quote_js', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], CatalogX()->version, true);
             wp_localize_script(
                 'add_to_quote_js',
                 'quote_cart',
@@ -64,7 +64,7 @@ class Frontend {
         $view_quote_btn_text = Utill::get_translated_string( 'catalogx', 'view_quote', 'View Quote' ); 
         $btn_style = '';
 
-        $settings_array = Catalog()->setting->get_setting( 'quote_button' );
+        $settings_array = CatalogX()->setting->get_setting( 'quote_button' );
         $btn_style = "";
         $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
         if ( !empty( $settings_array[ 'button_background_color' ] ) )
@@ -100,7 +100,7 @@ class Frontend {
             </style>';
         } 
         $quote_btn_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : $quote_btn_text;
-        Catalog()->util->get_template('quote-button-template.php',
+        CatalogX()->util->get_template('quote-button-template.php',
         [
             'class'             => 'add-request-quote-button ',
             'btn_style'         => $btn_style,
@@ -108,8 +108,8 @@ class Frontend {
             'product_id'        => $product->get_id(),
             'label'             => $quote_btn_text,
             'label_browse'      => $view_quote_btn_text,
-            'rqa_url'           => Catalog()->quotecart->get_request_quote_page_url(),
-            'exists'            => Catalog()->quotecart->exists_in_cart( $product->get_id() )
+            'rqa_url'           => CatalogX()->quotecart->get_request_quote_page_url(),
+            'exists'            => CatalogX()->quotecart->exists_in_cart( $product->get_id() )
         ]);
     }
 

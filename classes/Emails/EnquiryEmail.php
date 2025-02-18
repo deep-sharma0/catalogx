@@ -1,7 +1,7 @@
 <?php
 
-namespace Catalogx\Emails;
-use Catalogx\Utill;
+namespace CatalogX\Emails;
+use CatalogX\Utill;
 
 /**
  * Email to Admin for customer enquiry.
@@ -37,12 +37,12 @@ class EnquiryEmail extends \WC_Email {
 	protected function initialize_templates() {
 		// Determine the base template path based on Pro status and email setting
 		$is_khali_dabba = Utill::is_khali_dabba();
-		$email_setting = $is_khali_dabba ? Catalog()->setting->get_setting('selected_email_tpl') : '';
+		$email_setting = $is_khali_dabba ? CatalogX()->setting->get_setting('selected_email_tpl') : '';
 	
 		// Use Pro template path if Pro is active and email setting is not empty, otherwise fallback to default path
 		$base_template_path = ($is_khali_dabba && !empty($email_setting)) 
-			? Catalog_PRO()->plugin_path . 'templates/' 
-			: Catalog()->plugin_path . 'templates/';
+			? CatalogX_Pro()->plugin_path . 'templates/' 
+			: CatalogX()->plugin_path . 'templates/';
 	
 		// Define available email templates
 		$template_map = [

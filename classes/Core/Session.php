@@ -1,5 +1,5 @@
 <?php
-namespace Catalogx\Core;
+namespace CatalogX\Core;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

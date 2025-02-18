@@ -1,9 +1,8 @@
 <?php 
 
-namespace Catalogx\Enquiry;
+namespace CatalogX\Enquiry;
 
-use Catalogx\Catalogx;
-use Catalogx\Utill;
+use CatalogX\Utill;
 
 class Frontend{
     /**
@@ -13,12 +12,12 @@ class Frontend{
         // Check the exclution
         if ( ! Util::is_available() ) return;
 
-        $display_enquiry_button = Catalog()->setting->get_setting( 'enquiry_user_permission' );
+        $display_enquiry_button = CatalogX()->setting->get_setting( 'enquiry_user_permission' );
         if (is_array($display_enquiry_button) && in_array('enquiry_logged_out', $display_enquiry_button) && !is_user_logged_in()) {
             return;
         }
 
-        if ( ! empty( Catalog()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {
+        if ( ! empty( CatalogX()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {
             add_action( 'woocommerce_after_shop_loop_item', [$this, 'add_button_in_shop_page'] );
         }
 
@@ -44,16 +43,16 @@ class Frontend{
         if ( empty( $productObj ) )
             return;
 
-        if ( Catalog()->setting->get_setting( 'is_enable_multiple_product_enquiry' ) && Utill::is_khali_dabba() ) {
+        if ( CatalogX()->setting->get_setting( 'is_enable_multiple_product_enquiry' ) && Utill::is_khali_dabba() ) {
             return;
         }
 
         $current_user   = wp_get_current_user();
 
-        $settings_array = Catalog()->setting->get_setting( 'enquery_button' );
+        $settings_array = CatalogX()->setting->get_setting( 'enquery_button' );
         $settings_array = is_array($settings_array) ? $settings_array : [];
 
-        $form_settings =  Catalog()->setting->get_setting( 'form_customizer' );
+        $form_settings =  CatalogX()->setting->get_setting( 'form_customizer' );
         $form_settings = is_array( $form_settings ) ? $form_settings : [];
 
         $button_css = $button_onhover_style = "";
@@ -89,13 +88,13 @@ class Frontend{
             </style>';
         }
 
-        $additional_css_settings = Catalog()->setting->get_setting( 'custom_css_product_page' );
+        $additional_css_settings = CatalogX()->setting->get_setting( 'custom_css_product_page' );
         if (isset($additional_css_settings) && !empty($additional_css_settings)) {
             $button_css .= $additional_css_settings;
         }
         
-        $settings_array[ 'button_text' ] = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \Catalogx\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
-        $button_position_settings = Catalog()->setting->get_setting( 'shop_page_button_position_setting' );
+        $settings_array[ 'button_text' ] = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogX\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
+        $button_position_settings = CatalogX()->setting->get_setting( 'shop_page_button_position_setting' );
         $button_position_settings = is_array($button_position_settings) ? $button_position_settings : [];
         $position = array_search('enquery_button', $button_position_settings);
         $position = $position !== false ? $position : 0;
@@ -103,7 +102,7 @@ class Frontend{
         ?>
         <div id="woocommerce-catalog" name="woocommerce_catalog">
         <?php 
-            if (Catalog()->setting->get_setting( 'is_enable_out_of_stock' ) ){
+            if (CatalogX()->setting->get_setting( 'is_enable_out_of_stock' ) ){
                 if ( !$productObj->managing_stock() && !$productObj->is_in_stock()) { ?>
                 <div position = "<?php echo $position; ?>">
                     <button class="woocommerce-catalog-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalog-modal"><?php echo esc_html( $settings_array[ 'button_text' ] ); ?></button>
@@ -127,7 +126,7 @@ class Frontend{
                 ?>" />
             <input type="hidden" name="user_id_for_enquiry" id="user-id-for-enquiry" value="<?php echo $current_user->ID; ?>" />  			
         </div>
-        <div id="catalog-modal" style="display: none;" class="catalog-modal <?php echo (Catalog()->setting->get_setting( 'is_disable_popup' ) == 'popup') ? 'popup_enable' : '' ?>">
+        <div id="catalog-modal" style="display: none;" class="catalog-modal <?php echo (CatalogX()->setting->get_setting( 'is_disable_popup' ) == 'popup') ? 'popup_enable' : '' ?>">
         </div>	
         <?php
     }
@@ -153,16 +152,16 @@ class Frontend{
     public function frontend_scripts() {
         $current_user = wp_get_current_user();
 
-        wp_register_script( 'frontend_js', Catalog()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
-        wp_register_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], Catalog()->version, true );
+        wp_register_script( 'frontend_js', CatalogX()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], CatalogX()->version, true );
+        wp_register_script('enquiry_form_js', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], CatalogX()->version, true );
         wp_localize_script(
             'enquiry_form_js', 'enquiry_form_data', [
             'apiurl'        => untrailingslashit(get_rest_url()),
             'nonce'         => wp_create_nonce( 'wp_rest' ),
             'settings_free' => $this->catalog_free_form_settings(),
             'settings_pro'  => $this->catalog_pro_form_settings(),
-            'khali_dabba'    => \Catalogx\Utill::is_khali_dabba(),
-            'product_data'  => (\Catalogx\Utill::is_khali_dabba() && !empty(Catalog_PRO()->cart->get_cart_data())) ? Catalog_PRO()->cart->get_cart_data() : '',
+            'khali_dabba'    => \CatalogX\Utill::is_khali_dabba(),
+            'product_data'  => (\CatalogX\Utill::is_khali_dabba() && !empty(CatalogX_Pro()->cart->get_cart_data())) ? CatalogX_Pro()->cart->get_cart_data() : '',
             'default_placeholder'  => [
                 'name'  => $current_user->display_name,
                 'email' => $current_user->user_email
@@ -172,10 +171,10 @@ class Frontend{
         ]);
 
         if (is_product()) {
-            wp_enqueue_style( 'mvx-catalog-product-style', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.css' );
+            wp_enqueue_style( 'mvx-catalog-product-style', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.css' );
 
             // additional css
-            $additional_css_settings = Catalog()->setting->get_setting( 'custom_css_product_page' );
+            $additional_css_settings = CatalogX()->setting->get_setting( 'custom_css_product_page' );
             if (isset($additional_css_settings) && !empty($additional_css_settings)) {
                 wp_add_inline_style('mvx-catalog-product-style', $additional_css_settings);
             }
@@ -186,7 +185,7 @@ class Frontend{
     }
 
     public function catalog_free_form_settings() {
-        $form_settings = Catalog()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
+        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['freefromsetting'] as &$free_field ) {
@@ -200,7 +199,7 @@ class Frontend{
     }
 
     public function catalog_pro_form_settings() {
-        $form_settings = Catalog()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
+        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['formsettings']['formfieldlist'] as &$field ) {
@@ -245,17 +244,17 @@ class Frontend{
             return;
         }
 
-        if (!empty(Catalog()->setting->get_setting( 'is_enable_out_of_stock' )) ){
+        if (!empty(CatalogX()->setting->get_setting( 'is_enable_out_of_stock' )) ){
             if ( $product->is_in_stock()) {
                 return;
             }
         }
 
-        if ( Catalog()->setting->get_setting( 'is_enable_multiple_product_enquiry' ) && Utill::is_khali_dabba() ) {
+        if ( CatalogX()->setting->get_setting( 'is_enable_multiple_product_enquiry' ) && Utill::is_khali_dabba() ) {
             return;
         }
 
-        $settings_array = Catalog()->setting->get_setting( 'enquery_button' );
+        $settings_array = CatalogX()->setting->get_setting( 'enquery_button' );
         $settings_array = is_array($settings_array) ? $settings_array : [];
         $button_css = $button_onhover_style = "";
         $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
@@ -284,11 +283,11 @@ class Frontend{
             </style>';
         }
 
-        $additional_css_settings = Catalog()->setting->get_setting( 'custom_css_product_page' );
+        $additional_css_settings = CatalogX()->setting->get_setting( 'custom_css_product_page' );
         if (isset($additional_css_settings) && !empty($additional_css_settings)) {
             $button_css .= $additional_css_settings;
         }
-        $button_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \Catalogx\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
+        $button_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogX\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
         if ( is_shop() ) {
             global $product;
             $product_link = get_permalink( $product->get_id() );

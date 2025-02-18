@@ -1,8 +1,8 @@
 <?php 
 
-namespace Catalogx\Enquiry;
-use Catalogx\Utill;
-use Catalogx\Enquiry\Module;
+namespace CatalogX\Enquiry;
+use CatalogX\Utill;
+use CatalogX\Enquiry\Module;
 
 class Rest {
     /**
@@ -17,16 +17,16 @@ class Rest {
      * @return void
      */
     function register_rest_apis() {
-        register_rest_route( Catalog()->rest_namespace, '/save-form-data', [
+        register_rest_route( CatalogX()->rest_namespace, '/save-form-data', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'save_form_data' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ],
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ],
         ]);
 
-        register_rest_route( Catalog()->rest_namespace, '/render-enquiry-button', [
+        register_rest_route( CatalogX()->rest_namespace, '/render-enquiry-button', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'render_enquiry_button' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ],
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ],
         ]);
 	}
 
@@ -50,7 +50,7 @@ class Rest {
 
         // Create attachment of files
         foreach ( $file_data as $file ) {
-            $attachment_id = \Catalogx\Utill::create_attachment_from_files_array($file);
+            $attachment_id = \CatalogX\Utill::create_attachment_from_files_array($file);
             if (!empty($attachment_id)) {
                 $attachments[] = get_attached_file($attachment_id);
             }
@@ -62,8 +62,8 @@ class Rest {
         // Get the product related info
         $product_info = [];
 
-        if ( \Catalogx\Utill::is_khali_dabba() ) {
-            $product_data = Catalog_PRO()->cart->get_cart_data();
+        if ( \CatalogX\Utill::is_khali_dabba() ) {
+            $product_data = CatalogX_Pro()->cart->get_cart_data();
             
             if ( $product_data ) {
                 foreach ( $product_data as $data ) {
@@ -132,9 +132,9 @@ class Rest {
 			]);
 
             if (Utill::is_khali_dabba()) {
-                $html = \CatalogxPro\Enquiry\Util::get_html($enquiry_data);
+                $html = \CatalogXPro\Enquiry\Util::get_html($enquiry_data);
                 if ($html) { 
-                    $pdf_maker = new \CatalogxPro\PDFMaker($html);
+                    $pdf_maker = new \CatalogXPro\PDFMaker($html);
                     $pdf = $pdf_maker->output();
 
                     // Save the PDF to a temporary location
@@ -149,23 +149,23 @@ class Rest {
                 } else {
                     wp_die(__("PDF document could not be generated", 'mvx-pro'));
                 }
-                $attach_pdf = Catalog()->setting->get_setting( 'enquiry_pdf_permission' );
+                $attach_pdf = CatalogX()->setting->get_setting( 'enquiry_pdf_permission' );
                 if (is_array($attach_pdf) && in_array('attach_pdf_to_email', $attach_pdf, true)) {
                     $attachments[] = $file_path; // Add PDF to attachments
                 }
             }
                         
-            $additional_email = Catalog()->setting->get_setting( 'additional_alert_email' );
+            $additional_email = CatalogX()->setting->get_setting( 'additional_alert_email' );
             $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
 
 			$send_email->trigger( $additional_email, $enquiry_data, $attachments );
 				
-            $redirect_link = Catalog()->setting->get_setting( 'is_page_redirect' ) && Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
+            $redirect_link = CatalogX()->setting->get_setting( 'is_page_redirect' ) && CatalogX()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(CatalogX()->setting->get_setting( 'redirect_page_id' )) : '';
             
             $msg = __( "Enquiry sent successfully", 'catalogx' );
             
-            if ( \Catalogx\Utill::is_khali_dabba() ) { 
-                Catalog_PRO()->cart->unset_session(); 
+            if ( \CatalogX\Utill::is_khali_dabba() ) { 
+                CatalogX_Pro()->cart->unset_session(); 
             }
 
             return rest_ensure_response( [ 'redirect_link' => $redirect_link, 'msg' => $msg ] );

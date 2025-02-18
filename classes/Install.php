@@ -1,5 +1,5 @@
 <?php
-namespace Catalogx;
+namespace CatalogX;
 
 class Install {
     const VERSION_KEY = 'catalog_enquiry_plugin_version';
@@ -32,7 +32,7 @@ class Install {
 
         // Get the previous version and current version
         self::$previous_version = get_option( self::VERSION_KEY, '' );
-        self::$current_version  = Catalog()->version;
+        self::$current_version  = CatalogX()->version;
 
         $this->create_database_table();
 

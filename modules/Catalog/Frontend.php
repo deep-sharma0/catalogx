@@ -1,6 +1,6 @@
 <?php 
 
-namespace Catalogx\Catalog;
+namespace CatalogX\Catalog;
 
 class Frontend{
     /**
@@ -10,7 +10,7 @@ class Frontend{
         // Check the exclution
         if ( ! Util::is_available() ) return;
         // Remove add to cart button
-        if ( ! empty( Catalog()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {
+        if ( ! empty( CatalogX()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {
             remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
             remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
             remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
@@ -57,7 +57,7 @@ class Frontend{
             
             $available_variations = $variable_product->get_available_variations();
             
-            Catalog()->util->get_template('variable-product.php', [
+            CatalogX()->util->get_template('variable-product.php', [
                 'available_variations' => $available_variations
             ]);
 
@@ -74,13 +74,13 @@ class Frontend{
     public static function redirect_cart_checkout_page() {
 
         // Get setting for disable bying
-        $disable_bying = Catalog()->setting->get_setting( 'is_hide_cart_checkout' );
+        $disable_bying = CatalogX()->setting->get_setting( 'is_hide_cart_checkout' );
 
         // Check disable bying setting is enable or not
         if ( ! $disable_bying ) return;
 
         // Get force redirected url
-        $redirect_url = Catalog()->setting->get_setting( 'disable_cart_page_link' );
+        $redirect_url = CatalogX()->setting->get_setting( 'disable_cart_page_link' );
 
         /**
          * Filter for redirect url
@@ -112,7 +112,7 @@ class Frontend{
      */
     public function frontend_scripts() {
         if (is_product() || is_shop()) {
-            wp_enqueue_style( 'frontend_css', Catalog()->plugin_url . 'modules/Catalog/assets/css/frontend.css' );
+            wp_enqueue_style( 'frontend_css', CatalogX()->plugin_url . 'modules/Catalog/assets/css/frontend.css' );
         }
     }
 
@@ -129,7 +129,7 @@ class Frontend{
 
         ?>
         <div class="desc-box">
-            <?php $input_box = Catalog()->setting->get_setting( 'additional_input' );
+            <?php $input_box = CatalogX()->setting->get_setting( 'additional_input' );
             if ($input_box) { ?>
                 <div class="desc">
                     <?php echo $input_box; ?>
@@ -145,7 +145,7 @@ class Frontend{
      */
     public function price_for_selected_product() { 
         global $post;
-        $price_hide_product_page = Catalog()->setting->get_setting( 'hide_product_price' );
+        $price_hide_product_page = CatalogX()->setting->get_setting( 'hide_product_price' );
         if ( ! Util::is_available_for_product( $post->ID  ) && $price_hide_product_page && is_shop() ) {
             add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
             remove_filter('woocommerce_get_price_html', '__return_empty_string');
@@ -174,7 +174,7 @@ class Frontend{
         if ( !Util::is_available_for_product($post->ID)) {
             add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
         } else {
-            if ( !empty(Catalog()->setting->get_setting( 'is_hide_cart_checkout' )) ) {   
+            if ( !empty(CatalogX()->setting->get_setting( 'is_hide_cart_checkout' )) ) {   
                 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
             }
         }
@@ -207,7 +207,7 @@ class Frontend{
     public function register_description_box() {
         
         // Get shop page button settings
-        $position_settings = Catalog()->setting->get_setting( 'shop_page_possition_setting' );
+        $position_settings = CatalogX()->setting->get_setting( 'shop_page_possition_setting' );
         $position_settings = is_array( $position_settings ) ? $position_settings : [];
 
         // Priority of colide position

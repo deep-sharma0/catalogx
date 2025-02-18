@@ -1,6 +1,6 @@
 <?php 
 
-namespace Catalogx\Catalog;
+namespace CatalogX\Catalog;
 
 class Module{
     /**

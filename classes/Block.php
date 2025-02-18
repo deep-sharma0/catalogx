@@ -1,7 +1,7 @@
 <?php
 
-namespace Catalogx;
-use Catalogx\Enquiry\Module;
+namespace CatalogX;
+use CatalogX\Enquiry\Module;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -25,7 +25,7 @@ class Block {
         $blocks = [];
         $current_user = wp_get_current_user();
 
-        if (Catalog()->modules->is_active('enquiry')) {
+        if (CatalogX()->modules->is_active('enquiry')) {
             $blocks[] = [
                 'name' => 'enquiry-button', // block name
                 'render_php_callback_function' => [$this, 'render_enquiry_button_block'], // php render calback function
@@ -39,17 +39,17 @@ class Block {
                     // all the data that is required in index.js
 					'data' => [
                         'apiUrl'  => '', // this set blank because in scope the get_rest_url() is not defined
-                        'restUrl' => Catalog()->rest_namespace,
+                        'restUrl' => CatalogX()->rest_namespace,
                         'nonce'   => wp_create_nonce( 'catalog-security-nonce' )
 					],
 				],
             ];
-            $block_paths = Catalog()->get_array();
+            $block_paths = CatalogX()->get_block_paths();
             $block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
-            Catalog()->set_array($block_paths);
+            CatalogX()->set_block_paths($block_paths);
         }
 
-        if (Catalog()->modules->is_active('quote')) {
+        if (CatalogX()->modules->is_active('quote')) {
             $blocks[] = [
                 'name' => 'quote-button', // block name
                 'render_php_callback_function' => '',
@@ -103,11 +103,11 @@ class Block {
                 ],
             ];
 
-            $block_paths = Catalog()->get_array();
+            $block_paths = CatalogX()->get_block_paths();
             $block_paths['blocks/quote-cart'] = 'build/blocks/quote-cart/index.js';
             $block_paths['blocks/quote-button'] = 'build/blocks/quote-button/index.js';
             $block_paths['blocks/quote-thank-you'] = 'build/blocks/quote-thank-you/index.js';
-            Catalog()->set_array($block_paths);
+            CatalogX()->set_block_paths($block_paths);
         }
 
         return $blocks;
@@ -115,14 +115,14 @@ class Block {
 
     public function enqueue_block_editor_assets() {
         foreach ($this->blocks as $block_script) {
-            wp_enqueue_script($block_script['name'], Catalog()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], Catalog()->version, true);
+            wp_enqueue_script($block_script['name'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], CatalogX()->version, true);
             wp_set_script_translations( $block_script['name'], 'catalogx' );
             if (isset($block_script['localize']) && !empty($block_script['localize'])) {
                 $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
                 wp_localize_script($block_script['name'], $block_script['localize']['object_name'], $block_script['localize']['data']);
             }
             if (!empty($block_script['required_style'])) {
-                wp_enqueue_style( $block_script['required_style'], Catalog()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
+                wp_enqueue_style( $block_script['required_style'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
             }
 		}
     }
@@ -131,14 +131,14 @@ class Block {
         global $post;
         foreach ($this->blocks as $block_script) {
             if (has_block('catalogx/' . $block_script['name'], $post->post_content)) {
-                wp_enqueue_script($block_script['name'], Catalog()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], Catalog()->version, true);
+                wp_enqueue_script($block_script['name'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], CatalogX()->version, true);
                 wp_set_script_translations( $block_script['name'], 'catalogx' );
                 if (isset($block_script['localize']) && !empty($block_script['localize'])) {
                     $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
                     wp_localize_script($block_script['name'], $block_script['localize']['object_name'], $block_script['localize']['data']);
                 }
                 if (!empty($block_script['required_style'])) {
-                    wp_enqueue_style( $block_script['required_style'], Catalog()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
+                    wp_enqueue_style( $block_script['required_style'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
                 }
             }
 		}
@@ -165,7 +165,7 @@ class Block {
     public function register_blocks() {
     
         foreach ($this->blocks as $block) {
-            register_block_type(Catalog()->text_domain . '/' . $block['name'], [
+            register_block_type(CatalogX()->text_domain . '/' . $block['name'], [
                 'render_callback' => $block['render_php_callback_function'],
                 'enqueue_scripts' => $block['required_scripts'],
                 'style'           => $block['required_style'],

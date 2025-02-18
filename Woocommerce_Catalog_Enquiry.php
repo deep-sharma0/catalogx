@@ -20,8 +20,8 @@ if (!defined('ABSPATH')) {
 require_once trailingslashit(dirname(__FILE__)).'config.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
-function Catalog() {
-    return \Catalogx\Catalogx::init(__FILE__);
+function CatalogX() {
+    return \CatalogX\CatalogX::init(__FILE__);
 }
 
-Catalog();
+CatalogX();

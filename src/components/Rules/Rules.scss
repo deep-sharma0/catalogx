@@ -201,20 +201,8 @@
 
             .rule-status{
                 position: relative;
-                padding: 0.5rem 1rem;
-                font-size: 0.75rem;
                 background-color: #522c81ad;
                 color: #fff;
-                border-radius: 0.25rem;
-                box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
-                cursor: pointer;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                user-select: none;
-                width: 4.875rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
 
                 input{
                     position: absolute;
@@ -239,6 +227,7 @@
             .section-items-label {
                 font-size: 0.875rem;
                 min-width: 9.375rem;
+                width: 30%;
             }
 
             input[type="text"],
@@ -314,6 +303,12 @@
                 transform: translateX(100%);
             }
 
+            &.product-quantity{
+                gap:0;
+                input{
+                    margin-top: 0.125rem;
+                }
+            }
 
             .glider {
                 position: absolute;

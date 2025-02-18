@@ -1,8 +1,8 @@
 <?php 
 
-namespace Catalogx\RoleBased;
+namespace CatalogX\RoleBased;
 
-use Catalogx\Utill;
+use CatalogX\Utill;
 
 class Module {
     /**
@@ -25,7 +25,8 @@ class Module {
         $this->init_classes();
 
         if ( Utill::is_khali_dabba() ) {
-            new \CatalogxPro\RoleBased\Module();
+            new \CatalogXPro
+            \RoleBased\Module();
         }
 
         add_action('init', [$this, 'main' ]);
@@ -102,7 +103,7 @@ class Module {
                 $role = $wp_roles->roles[reset($user_roles)];
                 
                 $settings = array(
-                    'min_quantity' => Catalog()->setting->get_setting('minimum_quantity'),
+                    'min_quantity' => CatalogX()->setting->get_setting('minimum_quantity'),
                     'discount_type' => isset($role['discount_type']) ? $role['discount_type'] : '',
                     'discount_amount' => isset($role['discount_amount']) ? floatval($role['discount_amount']) : 0,
                 );

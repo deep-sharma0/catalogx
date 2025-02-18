@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx;
+namespace CatalogX;
 
 class Admin {
     /**
@@ -211,7 +211,7 @@ class Admin {
         $settings_value = [];
         $tabs_names     = [ 'enquiry_catalog_customization', 'all_settings', 'enquiry_form_customization', 'enquiry_quote_exclusion', 'tools', 'enquiry_email_temp', 'wholesale', 'wholesale_registration', 'pages' ];
         foreach ( $tabs_names as $tab_name ) {
-            $settings_value[ $tab_name ] = Catalog()->setting->get_option( 'catalog_' . $tab_name . '_settings' );
+            $settings_value[ $tab_name ] = CatalogX()->setting->get_option( 'catalog_' . $tab_name . '_settings' );
         }
 
         if ($current_user_role === 'administrator') {
@@ -224,8 +224,8 @@ class Admin {
         
 
         // Enque script and style
-        wp_enqueue_style('mvx-catalog-style', Catalog()->plugin_url . 'build/index.css');
-        wp_enqueue_script('mvx-catalog-script', Catalog()->plugin_url . 'build/index.js', [ 'wp-element', 'wp-i18n', 'react-jsx-runtime' ], '1.0.0', true);
+        wp_enqueue_style('mvx-catalog-style', CatalogX()->plugin_url . 'build/index.css');
+        wp_enqueue_script('mvx-catalog-script', CatalogX()->plugin_url . 'build/index.js', [ 'wp-element', 'wp-i18n', 'react-jsx-runtime' ], '1.0.0', true);
         wp_set_script_translations( 'mvx-catalog-script', 'catalogx' );
 
         // Localize script
@@ -241,16 +241,16 @@ class Admin {
             'all_product_cat'           => $product_cat,
             'all_product_tag'           => $product_tags,
             'settings_databases_value'  => $settings_value,
-            'active_modules'            => Catalog()->modules->get_active_modules(),
+            'active_modules'            => CatalogX()->modules->get_active_modules(),
             'user_role'                 => $current_user_role,
-            'banner_img'                => Catalog()->plugin_url . 'assets/images/catalog-pro-add-admin-banner.jpg',
-            'template1'                 => Catalog()->plugin_url . 'assets/images/email/templates/default_wc_tpl.png',
-            'template2'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_1.png',
-            'template3'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_2.png',
-            'template4'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_3.png',
-            'template5'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_4.png',
-            'template6'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_5.png',
-            'template7'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_6.png',
+            'banner_img'                => CatalogX()->plugin_url . 'assets/images/catalog-pro-add-admin-banner.jpg',
+            'template1'                 => CatalogX()->plugin_url . 'assets/images/email/templates/default_wc_tpl.png',
+            'template2'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_1.png',
+            'template3'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_2.png',
+            'template4'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_3.png',
+            'template5'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_4.png',
+            'template6'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_5.png',
+            'template7'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_6.png',
             'khali_dabba'                => Utill::is_khali_dabba(),
             'pro_url'                   => esc_url( WOOCOMMERCE_CATALOG_ENQUIRY_PRO_SHOP_URL ),
             'order_edit'                => admin_url( "admin.php?page=wc-orders&action=edit" ),
@@ -264,14 +264,14 @@ class Admin {
             'currency'                  => get_woocommerce_currency(),
             'stock_alert_open'          => is_plugin_active('woocommerce-product-stock-alert/product_stock_alert.php'),
             'mvx_active'                => Utill::is_active_MVX(),
-            'quote_module_active'       => Catalog()->modules->is_active('quote'),
+            'quote_module_active'       => CatalogX()->modules->is_active('quote'),
             'quote_base_url'            => $quote_base_url
         ]));
     }
 
     public function replace_path($path, $url) {
         if (strpos($url, 'woocommerce-catalog-enquiry') !== false) {   
-            foreach (Catalog()->block_paths as $key => $new_path) {
+            foreach (CatalogX()->block_paths as $key => $new_path) {
                 if (strpos($url, $key) !== false) {
                     $path = $new_path;
                 }

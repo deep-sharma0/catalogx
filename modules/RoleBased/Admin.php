@@ -1,6 +1,6 @@
 <?php 
 
-namespace Catalogx\RoleBased;
+namespace CatalogX\RoleBased;
 
 class Admin {
     /**
@@ -15,22 +15,22 @@ class Admin {
      * @return void
      */
     public function register_rest_api() {
-        register_rest_route( Catalog()->rest_namespace, '/get-roles', [
+        register_rest_route( CatalogX()->rest_namespace, '/get-roles', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'get_roles' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/add-role', [
+        register_rest_route( CatalogX()->rest_namespace, '/add-role', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'add_role' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/edit-role', [
+        register_rest_route( CatalogX()->rest_namespace, '/edit-role', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'edit_role' ],
-            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
     }
     
@@ -95,7 +95,7 @@ class Admin {
         $value  = $request->get_param( 'value' );
 
         $role_key = wp_roles()->role_key;
-        $roles    = Catalog()->setting->get_option( $role_key );
+        $roles    = CatalogX()->setting->get_option( $role_key );
         
         if ( isset( $roles[ $id ] ) ) {
             $roles[ $id ][ $key ] = $value;

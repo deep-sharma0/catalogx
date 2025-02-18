@@ -1,8 +1,8 @@
 <?php 
 
-namespace Catalogx\Enquiry;
+namespace CatalogX\Enquiry;
 
-use Catalogx\Utill;
+use CatalogX\Utill;
 
 class Module {
     /**
@@ -26,7 +26,7 @@ class Module {
         $this->init_classes();
 
         if ( Utill::is_khali_dabba() ) {
-            new \CatalogxPro\Enquiry\Module();
+            new \CatalogXPro\Enquiry\Module();
         }
         
     }

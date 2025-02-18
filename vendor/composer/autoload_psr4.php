@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Catalogx\\' => array($baseDir . '/classes', $baseDir . '/modules'),
+    'CatalogX\\' => array($baseDir . '/classes', $baseDir . '/modules'),
 );

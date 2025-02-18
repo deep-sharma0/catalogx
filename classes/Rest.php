@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx;
+namespace CatalogX;
 
 class Rest {
     /**
@@ -16,38 +16,38 @@ class Rest {
      */
     function register_rest_apis() {
 
-        register_rest_route( Catalog()->rest_namespace, '/save_enquiry', [
+        register_rest_route( CatalogX()->rest_namespace, '/save_enquiry', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'save_settings' ],
             'permission_callback'   => [ $this, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/module_manage', [
+        register_rest_route( CatalogX()->rest_namespace, '/module_manage', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'manage_module' ],
             'permission_callback'   => [ $this, 'catalog_permission' ]
         ] );
 
         // setup wizard api
-        register_rest_route( Catalog()->rest_namespace, '/module-save', [
+        register_rest_route( CatalogX()->rest_namespace, '/module-save', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'save_module' ],
             'permission_callback'   => [ $this, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/save-settings', [
+        register_rest_route( CatalogX()->rest_namespace, '/save-settings', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'save_settings_wizard' ],
             'permission_callback'   => [ $this, 'catalog_permission' ]
         ] );
 
-        register_rest_route( Catalog()->rest_namespace, '/tour', [
+        register_rest_route( CatalogX()->rest_namespace, '/tour', [
             'methods'               => 'GET',
             'callback'              => [ $this, 'get_tour_status' ],
             'permission_callback'   => [ $this, 'catalog_permission' ],
         ]);
     
-        register_rest_route(Catalog()->rest_namespace, '/tour', [
+        register_rest_route(CatalogX()->rest_namespace, '/tour', [
             'methods'               => 'POST',
             'callback'              => [ $this, 'set_tour_status' ],
             'permission_callback'   => [ $this, 'catalog_permission' ],
@@ -87,7 +87,7 @@ class Rest {
         $optionname         = 'catalog_' . $settingsname . '_settings';
 
         // save the settings in database
-        Catalog()->setting->update_option( $optionname, $get_settings_data );
+        CatalogX()->setting->update_option( $optionname, $get_settings_data );
 
         do_action( 'catalog_settings_after_save', $settingsname, $get_settings_data );
 
@@ -108,11 +108,11 @@ class Rest {
         // Handle the actions
         switch ( $action ) {
             case 'activate':
-                Catalog()->modules->activate_modules([$moduleId]);
+                CatalogX()->modules->activate_modules([$moduleId]);
                 break;
             
             default:
-                Catalog()->modules->deactivate_modules([$moduleId]);
+                CatalogX()->modules->deactivate_modules([$moduleId]);
                 break;
         }
     }
@@ -125,7 +125,7 @@ class Rest {
     public function save_module( $request ) {
         $modules = $request->get_param('modules');
         foreach ($modules as $module_id) {
-            Catalog()->modules->activate_modules([$module_id]);
+            CatalogX()->modules->activate_modules([$module_id]);
         }
     }
 
@@ -140,13 +140,13 @@ class Rest {
         if ($action == 'enquiry') {
             $display_option = $request->get_param('displayOption');
             $restrict_user = $request->get_param('restrictUserEnquiry');
-            Catalog()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
-            Catalog()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
+            CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
+            CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
         }
         
         if ($action == 'quote') {
             $restrict_user = $request->get_param('restrictUserQuote');
-            Catalog()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
+            CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
         }
 
         if ($action == 'wholesale') {
@@ -159,7 +159,7 @@ class Rest {
                 'wholesale_amount' => floatval($amount),
                 'minimum_quantity' => intval($quantity),
             );
-            Catalog()->setting->update_setting('wholesale_discount', $wholesale_discount, 'catalog_wholesale_settings');
+            CatalogX()->setting->update_setting('wholesale_discount', $wholesale_discount, 'catalog_wholesale_settings');
         }
     }
 

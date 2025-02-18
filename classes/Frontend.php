@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Catalogx;
+namespace CatalogX;
 
 /**
  * Catalog enquiry frontend class
@@ -29,7 +29,7 @@ class Frontend {
      */
     public function display_button_group() {
         // Get shop page button settings
-        $position_settings = Catalog()->setting->get_setting( 'shop_page_possition_setting' );
+        $position_settings = CatalogX()->setting->get_setting( 'shop_page_possition_setting' );
         $position_settings = is_array( $position_settings ) ? $position_settings : [];
 
         // Priority of colide position
@@ -102,7 +102,7 @@ class Frontend {
      * @return void
      */
     public function display_price_and_description() {
-        $price_hide_product_page = Catalog()->setting->get_setting( 'hide_product_price' );
+        $price_hide_product_page = CatalogX()->setting->get_setting( 'hide_product_price' );
         if ( $price_hide_product_page && is_product() ) {
             add_filter( 'woocommerce_show_variation_price', '__return_false' );
             remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
@@ -111,7 +111,7 @@ class Frontend {
             add_filter( 'woocommerce_get_price_html', '__return_empty_string' );
         }
         
-        $desc_hide_product_page = Catalog()->setting->get_setting( 'hide_product_desc' );
+        $desc_hide_product_page = CatalogX()->setting->get_setting( 'hide_product_desc' );
         if ( $desc_hide_product_page ) {
             remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
             // for block support
@@ -131,10 +131,10 @@ class Frontend {
          */
         $discount = apply_filters( 'catalog_calculate_discount_in_cart_and_checkout', 0 );
 
-        if ($discount > 0) {
+        // if ($discount > 0) {
             // Apply the discount as a fee
             WC()->cart->add_fee( __('Discount', 'catalogx'), $discount, true );
-        }
+        // }
     }
 
 }

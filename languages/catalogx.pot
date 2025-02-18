@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CatalogX - Product Catalog Mode For WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-15 07:14+0000\n"
+"POT-Creation-Date: 2025-02-18 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,13 +13,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.14; wp-6.7.1\n"
+"X-Loco-Version: 2.7.1; wp-6.7.2\n"
 "X-Domain: catalogx"
 
-#: templates/emails/enquiry-email.php:140
+#. %s: email footer which display the site name.
+#: templates/emails/enquiry-email.php:141
 #: templates/emails/plain/enquiry-email.php:59
 #, php-format
-msgid "%s - Powered by WC Catalog Enquiry"
+msgid "%s - Powered by CatalogX"
 msgstr ""
 
 #: src/template/settings/wholesale.js:83
@@ -28,23 +29,8 @@ msgid ""
 "discount amount, and minimum quantity for wholesellers"
 msgstr ""
 
-#: src/template/modules/index.js:16
-msgid ""
-"<span class='highlight'>Free:</span> Add enquiry button for single product "
-"email enquiries to admin.<br><br> <span class='highlight'>Pro:</span> Full "
-"messaging hub with two-way communication, multi-product enquiries, and "
-"centralized management."
-msgstr ""
-
-#: src/template/modules/index.js:25
-msgid ""
-"<span class='highlight'>Free:</span> Add quotation button for customers to "
-"request product quotes via email.<br><br> <span class='highlight'>Pro:</span>"
-" Manage quotations with dedicated list views, generate and monitor quotes "
-"from admin panel, offer PDF downloads, and set expiry dates."
-msgstr ""
-
-#: modules/Quote/Admin.php:63
+#. %s: Number of order status as accepted quote.
+#: modules/Quote/Admin.php:67
 #, php-format
 msgid "Accepted Quote <span class=\"count\">(%s)</span>"
 msgid_plural "Accepted Quote <span class=\"count\">(%s)</span>"
@@ -60,7 +46,7 @@ msgid "Addional CSS"
 msgstr ""
 
 #: templates/emails/request-quote.php:59
-#: templates/emails/plain/request-quote.php:24
+#: templates/emails/plain/request-quote.php:27
 msgid "Additional Details:"
 msgstr ""
 
@@ -68,16 +54,24 @@ msgstr ""
 msgid "Admin will get an email when a customer enquires about a product."
 msgstr ""
 
+#: src/components/Banner/banner.jsx:106
+msgid "Advanced Enquiries"
+msgstr ""
+
 #: src/template/settings/wholesale.js:14
 msgid "Approval of wholesale users through registration form"
 msgstr ""
 
-#: src/template/settings/allSettings.js:202
+#: src/template/settings/allSettings.js:203
 msgid "Attach with Email"
 msgstr ""
 
-#: src/template/settings/allSettings.js:193
+#: src/template/settings/allSettings.js:194
 msgid "Attachment"
+msgstr ""
+
+#: src/components/Banner/banner.jsx:120
+msgid "Automated multi-tier price rules"
 msgstr ""
 
 #: src/template/settings/wholesale.js:24
@@ -88,6 +82,10 @@ msgstr ""
 msgid "Available Shortcodes"
 msgstr ""
 
+#: src/components/Banner/banner.jsx:133
+msgid "B2B ordering with bulk discounts"
+msgstr ""
+
 #: src/template/settings/allSettings.js:28
 msgid "Cart / Checkout Redirect Page"
 msgstr ""
@@ -96,24 +94,12 @@ msgstr ""
 msgid "Catalog"
 msgstr ""
 
-#: classes/Admin.php:22
-msgid "catalog"
-msgstr ""
-
 #: src/template/settings/catalogCustomization.js:14
 msgid "Catalog Customizer"
 msgstr ""
 
 #: src/template/modules/index.js:6
 msgid "Catalog Showcase"
-msgstr ""
-
-#: classes/Admin.php:23
-msgid "CatalogX"
-msgstr ""
-
-#: classes/Block.php:139
-msgid "Catalogx"
 msgstr ""
 
 #. Name of the plugin
@@ -136,6 +122,10 @@ msgstr ""
 msgid "Coupon restriction for wholesalers"
 msgstr ""
 
+#: src/components/Banner/banner.jsx:145
+msgid "Custom Quotes"
+msgstr ""
+
 #: src/template/settings/wholesaleRegistration.js:6
 msgid "Custom Wholesale Form Builder"
 msgstr ""
@@ -144,19 +134,20 @@ msgstr ""
 msgid "Customer Details"
 msgstr ""
 
-#: templates/emails/plain/request-quote.php:19
+#: templates/emails/plain/request-quote.php:22
 msgid "Customer Details:"
 msgstr ""
 
 #: templates/emails/request-quote.php:53
-#: templates/emails/plain/request-quote.php:20
+#: templates/emails/plain/request-quote.php:23
 msgid "Customer Name:"
 msgstr ""
 
-#: src/template/settings/allSettings.js:181
+#: src/template/settings/allSettings.js:182
 msgid "days"
 msgstr ""
 
+#. %s: Show the admin name.
 #: templates/emails/request-quote.php:11
 #: templates/emails/plain/request-quote.php:8
 #, php-format
@@ -176,12 +167,20 @@ msgstr ""
 msgid "Design a personalized enquiry form with built-in form builder. "
 msgstr ""
 
-#: classes/Frontend.php:135
+#: classes/Frontend.php:136
 msgid "Discount"
+msgstr ""
+
+#: src/components/Roles/roles.jsx:124
+msgid "Discount Amount"
 msgstr ""
 
 #: src/template/settings/wholesale.js:82
 msgid "Discount rule"
+msgstr ""
+
+#: src/components/Roles/roles.jsx:110
+msgid "Discount Type"
 msgstr ""
 
 #: src/template/settings/wholesale.js:51
@@ -190,11 +189,11 @@ msgid ""
 "becoming wholesalers."
 msgstr ""
 
-#: src/template/settings/allSettings.js:99
+#: src/template/settings/allSettings.js:100
 msgid "Display enquiry form as"
 msgstr ""
 
-#: src/template/settings/allSettings.js:198
+#: src/template/settings/allSettings.js:199
 msgid "Download as PDF"
 msgstr ""
 
@@ -206,7 +205,11 @@ msgstr ""
 msgid "Drag-and-drop to create and customize single product page elements."
 msgstr ""
 
-#: classes/Admin.php:60 classes/Admin.php:61 src/template/modules/index.js:42
+#: src/components/Banner/banner.jsx:119
+msgid "Dynamic Pricing"
+msgstr ""
+
+#: classes/Admin.php:61 classes/Admin.php:62 src/template/modules/index.js:42
 msgid "Dynamic Pricing Rules"
 msgstr ""
 
@@ -219,17 +222,18 @@ msgid "Email to request a quote"
 msgstr ""
 
 #: templates/emails/request-quote.php:54
-#: templates/emails/plain/request-quote.php:21
+#: templates/emails/plain/request-quote.php:24
+#: src/blocks/quote-cart/QuoteListTable.jsx:216
 msgid "Email:"
 msgstr ""
 
-#: src/template/settings/allSettings.js:145
+#: src/template/settings/allSettings.js:146
 msgid ""
 "Enable multiple enquiry flow so customers can add several products to their "
 "enquiry cart and submit a single enquiry for all selected items."
 msgstr ""
 
-#: src/template/settings/allSettings.js:119
+#: src/template/settings/allSettings.js:120
 msgid ""
 "Enable this to redirect user to another page after successful enquiry "
 "submission."
@@ -242,7 +246,7 @@ msgid ""
 msgstr ""
 
 #: src/template/settings/allSettings.js:48
-#: src/template/settings/allSettings.js:208
+#: src/template/settings/allSettings.js:209
 #: src/template/settings/exclusion.js:51
 msgid "Enquiry"
 msgstr ""
@@ -273,7 +277,7 @@ msgstr ""
 msgid "Enquiry Form Builder"
 msgstr ""
 
-#: classes/Admin.php:33 classes/Admin.php:34
+#: classes/Admin.php:34 classes/Admin.php:35
 msgid "Enquiry Messages"
 msgstr ""
 
@@ -299,7 +303,8 @@ msgstr ""
 msgid "Exclusion"
 msgstr ""
 
-#: modules/Quote/Admin.php:51
+#. %s: Number of order status as expired quote.
+#: modules/Quote/Admin.php:54
 #, php-format
 msgid "Expired Quote <span class=\"count\">(%s)</span>"
 msgid_plural "Expired Quotes <span class=\"count\">(%s)</span>"
@@ -323,17 +328,11 @@ msgstr ""
 msgid "https://multivendorx.com/"
 msgstr ""
 
-#: src/template/modules/index.js:7
-msgid ""
-"Ideal for showcasing products by hiding prices, disabling purchases, and "
-"restricting cart/checkout access."
-msgstr ""
-
 #: src/template/settings/allSettings.js:54
 msgid "If enabled, non-logged-in users can't access the enquiry flow."
 msgstr ""
 
-#: src/template/settings/allSettings.js:165
+#: src/template/settings/allSettings.js:166
 msgid "If enabled, non-logged-in users cannot submit quotation requests."
 msgstr ""
 
@@ -341,7 +340,7 @@ msgstr ""
 msgid "In-Stock notify me button "
 msgstr ""
 
-#: src/template/settings/allSettings.js:164
+#: src/template/settings/allSettings.js:165
 msgid "Limit quotation requests to logged-in users only"
 msgstr ""
 
@@ -361,15 +360,23 @@ msgstr ""
 
 #: src/template/settings/wholesale.js:15
 msgid ""
-"Manual - Admin approves new wholesalers manually from \"Wholeseller Users\" "
+"Manual - Admin approves new wholesalers manually from 'Wholeseller Users' "
 "page. <br>  Automatic - Instant wholesaler approval upon sign-up"
 msgstr ""
 
-#: classes/Admin.php:78 classes/Admin.php:79
+#: src/blocks/quote-cart/QuoteListTable.jsx:236
+msgid "Message:"
+msgstr ""
+
+#: src/components/Roles/roles.jsx:134
+msgid "Minimum Quantity"
+msgstr ""
+
+#: classes/Admin.php:79 classes/Admin.php:80
 msgid "Modules"
 msgstr ""
 
-#: src/template/settings/allSettings.js:144
+#: src/template/settings/allSettings.js:145
 msgid "Multi-product enquiry"
 msgstr ""
 
@@ -381,7 +388,12 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: modules/Quote/Admin.php:27
+#: src/blocks/quote-cart/QuoteListTable.jsx:206
+msgid "Name:"
+msgstr ""
+
+#. %s: Number of order status as new quote.
+#: modules/Quote/Admin.php:28
 #, php-format
 msgid "New Quote Request <span class=\"count\">(%s)</span>"
 msgid_plural "New Quote Requests <span class=\"count\">(%s)</span>"
@@ -404,52 +416,68 @@ msgstr ""
 msgid "No product selected."
 msgstr ""
 
-#: modules/Quote/Admin.php:58 modules/Quote/Admin.php:87
+#: modules/Quote/Admin.php:61 modules/Quote/Admin.php:92
 msgctxt "Order status"
 msgid "Accepted Quote"
 msgstr ""
 
-#: modules/Quote/Admin.php:46 modules/Quote/Admin.php:86
+#: modules/Quote/Admin.php:48 modules/Quote/Admin.php:91
 msgctxt "Order status"
 msgid "Expired Quote"
 msgstr ""
 
-#: modules/Quote/Admin.php:22 modules/Quote/Admin.php:84
+#: modules/Quote/Admin.php:22 modules/Quote/Admin.php:89
 msgctxt "Order status"
 msgid "New Quote Request"
 msgstr ""
 
-#: modules/Quote/Admin.php:34 modules/Quote/Admin.php:85
+#: modules/Quote/Admin.php:35 modules/Quote/Admin.php:90
 msgctxt "Order status"
 msgid "Pending Quote"
 msgstr ""
 
-#: modules/Quote/Admin.php:70 modules/Quote/Admin.php:88
+#: modules/Quote/Admin.php:74 modules/Quote/Admin.php:93
 msgctxt "Order status"
 msgid "Rejected Quote"
+msgstr ""
+
+#: src/blocks/quote-thank-you/QuoteThankYou.jsx:63
+msgid ""
+"Our team is reviewing your details and will get back to you shortly with a "
+"personalized quote. We appreciate your patience and look forward to serving "
+"you!"
 msgstr ""
 
 #: src/template/settings/pages.js:6
 msgid "Page Endpoint"
 msgstr ""
 
-#: src/template/settings/allSettings.js:188
+#: src/template/settings/allSettings.js:189
 msgid "PDF Manager"
 msgstr ""
 
-#: modules/Quote/Admin.php:39
+#. %s: Number of order status as pending quote.
+#: modules/Quote/Admin.php:41
 #, php-format
 msgid "Pending Quote <span class=\"count\">(%s)</span>"
 msgid_plural "Pending Quote <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
+#: src/blocks/quote-cart/QuoteListTable.jsx:226
+msgid "Phone:"
+msgstr ""
+
+#: src/blocks/quote-thank-you/QuoteThankYou.jsx:46
+msgid "Please feel free to enter here your reason or provide us your feedback:"
+msgstr ""
+
 #: templates/emails/enquiry-email.php:14
 #: templates/emails/plain/enquiry-email.php:13
 msgid "Please find the product enquiry, details are given below"
 msgstr ""
 
-#: src/template/settings/allSettings.js:136
+#: src/template/settings/allSettings.js:137
 msgid "Post enquiry submission redirect page"
 msgstr ""
 
@@ -463,13 +491,15 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: templates/emails/plain/request-quote.php:16
+#. %s: Show the price of the product.
+#: templates/emails/plain/request-quote.php:19
 #, php-format
 msgid "Price: %s"
 msgstr ""
 
 #: templates/emails/enquiry-email.php:20 templates/emails/request-quote.php:19
 #: src/template/settings/exclusion.js:30
+#: src/blocks/quote-cart/QuoteListTable.jsx:145
 msgid "Product"
 msgstr ""
 
@@ -505,7 +535,8 @@ msgstr ""
 msgid "Product Url"
 msgstr ""
 
-#: templates/emails/plain/request-quote.php:14
+#. %s: Show the product name.
+#: templates/emails/plain/request-quote.php:15
 #, php-format
 msgid "Product: %s"
 msgstr ""
@@ -522,12 +553,17 @@ msgstr ""
 msgid "Qty"
 msgstr ""
 
-#: templates/emails/plain/request-quote.php:15
+#. %s: Show the quantity of the product.
+#: templates/emails/plain/request-quote.php:17
 #, php-format
 msgid "Qty: %s"
 msgstr ""
 
-#: src/template/modules/index.js:24 src/template/settings/allSettings.js:159
+#: src/blocks/quote-cart/QuoteListTable.jsx:155
+msgid "Quantity"
+msgstr ""
+
+#: src/template/modules/index.js:24 src/template/settings/allSettings.js:160
 msgid "Quotation"
 msgstr ""
 
@@ -535,20 +571,20 @@ msgstr ""
 msgid "Quotation Confirmation"
 msgstr ""
 
-#: src/template/settings/allSettings.js:179
+#: src/template/settings/allSettings.js:180
 msgid "Quotation expiry duration"
 msgstr ""
 
-#: classes/Admin.php:42 classes/Admin.php:43
+#: classes/Admin.php:43 classes/Admin.php:44
 msgid "Quotation Requests"
 msgstr ""
 
-#: src/template/settings/allSettings.js:213
+#: src/template/settings/allSettings.js:214
 #: src/template/settings/exclusion.js:55
 msgid "Quote"
 msgstr ""
 
-#: modules/Quote/Rest.php:101
+#: modules/Quote/Rest.php:112
 msgid "Quote cart updated!"
 msgstr ""
 
@@ -556,7 +592,7 @@ msgstr ""
 msgid "Recipient email for new subscriber"
 msgstr ""
 
-#: src/template/settings/allSettings.js:118
+#: src/template/settings/allSettings.js:119
 msgid "Redirect after enquiry form Submission"
 msgstr ""
 
@@ -567,7 +603,12 @@ msgid ""
 "href=\"https://catalogx.com/pricing/\" target=\"_blank\">CatalogX Pro</a>."
 msgstr ""
 
-#: modules/Quote/Admin.php:75
+#: src/blocks/quote-thank-you/QuoteThankYou.jsx:49
+msgid "Reject the quote"
+msgstr ""
+
+#. %s: Number of order status as rejected quote.
+#: modules/Quote/Admin.php:80
 #, php-format
 msgid "Rejected Quote <span class=\"count\">(%s)</span>"
 msgid_plural "Rejected Quote <span class=\"count\">(%s)</span>"
@@ -586,29 +627,41 @@ msgstr ""
 msgid "Review all system logs and errors"
 msgstr ""
 
-#: src/template/settings/allSettings.js:137
+#: src/components/Banner/banner.jsx:107
+msgid "Rich customer-admin messaging system"
+msgstr ""
+
+#: src/components/Roles/roles.jsx:100
+msgid "Role"
+msgstr ""
+
+#: src/components/Roles/roles.jsx:193
+msgid "Roles"
+msgstr ""
+
+#: src/template/settings/allSettings.js:138
 msgid "Select page where user will be redirected after successful enquiry."
 msgstr ""
 
 #: src/template/settings/pages.js:15
 msgid ""
 "Select the page on which you have inserted <code>[catalog_enquiry_cart]"
-"</code> shortcode ."
+"</code> shortcode."
 msgstr ""
 
 #: src/template/settings/pages.js:23
 msgid ""
 "Select the page on which you have inserted <code>[request_quote]</code> "
-"shortcode ."
+"shortcode."
 msgstr ""
 
 #: src/template/settings/pages.js:31
 msgid ""
 "Select the page on which you have inserted <code>[wholesale_product_list]"
-"</code> shortcode ."
+"</code> shortcode."
 msgstr ""
 
-#: src/template/settings/allSettings.js:100
+#: src/template/settings/allSettings.js:101
 msgid ""
 "Select whether the form is displayed directly on the page or in a pop-up "
 "window."
@@ -616,6 +669,10 @@ msgstr ""
 
 #: src/template/settings/enquiryEmailTemplate.js:7
 msgid "Select your preffered enquiry details email template"
+msgstr ""
+
+#: src/blocks/quote-cart/QuoteListTable.jsx:247
+msgid "Send Quote"
 msgstr ""
 
 #: src/template/settings/pages.js:14
@@ -634,7 +691,7 @@ msgid ""
 "list to exclude admin from receiving these notifications."
 msgstr ""
 
-#: src/template/settings/allSettings.js:180
+#: src/template/settings/allSettings.js:181
 msgid ""
 "Set the period after which a quotation will expire and no longer be valid "
 "for purchase."
@@ -650,7 +707,7 @@ msgstr ""
 msgid "Set Wholesale Product List Page"
 msgstr ""
 
-#: classes/Admin.php:69 classes/Admin.php:70
+#: classes/Admin.php:70 classes/Admin.php:71
 msgid "Settings"
 msgstr ""
 
@@ -660,6 +717,14 @@ msgstr ""
 
 #: src/template/settings/allSettings.js:5
 msgid "Shopping Journey"
+msgstr ""
+
+#: src/components/Banner/banner.jsx:146
+msgid "Speed up sales with personalized quotes."
+msgstr ""
+
+#: src/blocks/quote-cart/QuoteListTable.jsx:163
+msgid "Subtotal"
 msgstr ""
 
 #: src/template/settings/exclusion.js:40
@@ -683,7 +748,11 @@ msgstr ""
 msgid "Turn off sitewide buying"
 msgstr ""
 
-#: classes/Admin.php:93
+#: src/blocks/quote-cart/QuoteListTable.jsx:179
+msgid "Update Cart"
+msgstr ""
+
+#: classes/Admin.php:94
 msgid "Upgrade to pro"
 msgstr ""
 
@@ -711,23 +780,33 @@ msgstr ""
 msgid "User Subject : "
 msgstr ""
 
+#: src/components/Banner/banner.jsx:113 src/components/Banner/banner.jsx:126
+#: src/components/Banner/banner.jsx:139 src/components/Banner/banner.jsx:152
+msgid "View Pricing"
+msgstr ""
+
 #: src/template/settings/wholesale.js:6
 msgid "Wholesale"
 msgstr ""
 
-#: src/template/modules/index.js:33
-msgid "Wholesale Pricing"
+#: src/components/Banner/banner.jsx:132
+msgid "Wholesale Sales"
 msgstr ""
 
 #: src/template/settings/wholesale.js:7
 msgid "Wholesale sign up and registration management."
 msgstr ""
 
-#: classes/Admin.php:51 classes/Admin.php:52
+#: classes/Admin.php:52 classes/Admin.php:53
 msgid "Wholesale Users"
 msgstr ""
 
-#: modules/Quote/Rest.php:166
+#: src/blocks/quote-thank-you/QuoteThankYou.jsx:44
+msgid "You are about to reject the quote"
+msgstr ""
+
+#. %s: reject quotation number.
+#: modules/Quote/Rest.php:178
 msgid "You have confirmed rejection of the quotation No: %d"
 msgstr ""
 

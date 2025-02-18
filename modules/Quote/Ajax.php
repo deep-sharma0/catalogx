@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx\Quote;
+namespace CatalogX\Quote;
 
 class Ajax {
     /**
@@ -29,7 +29,7 @@ class Ajax {
         if ( ! $is_valid ) {
             $errors[] = __( 'Error occurred while adding product to Request a Quote list.', 'catalogx' );
         } else {
-            $return = Catalog()->quotecart->add_cart_item( $postdata );
+            $return = CatalogX()->quotecart->add_cart_item( $postdata );
         }
 
         if ( 'true' === $return ) {
@@ -43,7 +43,7 @@ class Ajax {
             [
             'result'     => $return,
             'message'    => $message,
-            'rqa_url'    => Catalog()->quotecart->get_request_quote_page_url(),
+            'rqa_url'    => CatalogX()->quotecart->get_request_quote_page_url(),
             // 'variations' => implode( ',', $this->get_variations_list() ),
             ]
             

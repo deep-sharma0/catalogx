@@ -1,17 +1,17 @@
 <?php
 
-namespace Catalogx;
+namespace CatalogX;
 use \Automattic\WooCommerce\Utilities\FeaturesUtil;
 
 /**
- * Catalogx class main function
+ * CatalogX class main function
  *
- * @class 		Catalogx class
+ * @class 		CatalogX class
  * @version		3.0.2
  * @author 		CatalogX
  */
 
-final class Catalogx {
+final class CatalogX {
 
 	private static $instance = null;
     private $file            = '';
@@ -41,15 +41,15 @@ final class Catalogx {
 		add_filter( 'woocommerce_email_classes', [ $this, 'load_emails' ] );
     }
 
-	function set_array($array) {
-		$this->container['block_paths'] = $array;
+	public function set_block_paths($paths) {
+		$this->container['block_paths'] = $paths;
 		return $this->container['block_paths'];
 	}
-
-	function get_array() {
+	
+	public function get_block_paths() {
 		return $this->container['block_paths'];
+	}	
 
-	}
 	/**
      * Add High Performance Order Storage Support
      * @return void
@@ -105,7 +105,7 @@ final class Catalogx {
 	}
 
 	function catalog_register_form_strings() {
-		$form_settings =  Catalog()->setting->get_option('catalog_enquiry_form_customization_settings');
+		$form_settings =  CatalogX()->setting->get_option('catalog_enquiry_form_customization_settings');
 
 		if ( function_exists( 'icl_register_string' ) ) {
 			foreach ( $form_settings['formsettings']['formfieldlist'] as $field ) {
@@ -221,7 +221,7 @@ final class Catalogx {
 
 		if (!get_option('catalog_tour_active')) {
 			add_option('catalog_tour_active', true);
-			add_option('catalog_tour_version', Catalog()->version);
+			add_option('catalog_tour_version', CatalogX()->version);
 		}
         flush_rewrite_rules();
 		ob_end_clean();

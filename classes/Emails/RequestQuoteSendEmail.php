@@ -1,5 +1,6 @@
 <?php
-namespace Catalogx\Emails;
+namespace CatalogX\Emails;
+
 /**
  * Email for request quote send 
  *
@@ -32,7 +33,7 @@ if ( ! class_exists( 'RequestQuoteSendEmail' ) ) {
 
 			$this->template_html  = 'emails/request-quote.php';
 			$this->template_plain = 'emails/plain/request-quote.php';
-			$this->template_base  = Catalog()->plugin_path . 'templates/';
+			$this->template_base  = CatalogX()->plugin_path . 'templates/';
 
              // Call parent constuctor
              parent::__construct();
@@ -44,7 +45,7 @@ if ( ! class_exists( 'RequestQuoteSendEmail' ) ) {
      * @return void
      */
     function trigger( $products, $customer_data ) {
-        $additional_email = Catalog()->setting->get_setting( 'additional_alert_email' );
+        $additional_email = CatalogX()->setting->get_setting( 'additional_alert_email' );
         
         $this->recipient      = $additional_email;
         $this->products         = $products;

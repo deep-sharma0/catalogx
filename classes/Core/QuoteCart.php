@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx\Core;
+namespace CatalogX\Core;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 

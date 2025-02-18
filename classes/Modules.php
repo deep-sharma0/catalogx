@@ -1,6 +1,6 @@
 <?php
 
-namespace Catalogx;
+namespace CatalogX;
 
 /**
  * Catalog Modules Class
@@ -55,24 +55,19 @@ class Modules {
             $this->modules = apply_filters( 'catalog_modules', [
                 'catalog' => [
                     'id'             => 'catalog',
-                    'module_file'    => Catalog()->plugin_path . 'modules/Catalog/Module.php',
-                    'module_class'   => 'Catalogx\Catalog\Module',
+                    'module_file'    => CatalogX()->plugin_path . 'modules/Catalog/Module.php',
+                    'module_class'   => 'CatalogX\Catalog\Module',
                 ],
                 'enquiry' => [
                     'id'             => 'enquiry',
-                    'module_file'    => Catalog()->plugin_path . 'modules/Enquiry/Module.php',
-                    'module_class'   => 'Catalogx\Enquiry\Module',
+                    'module_file'    => CatalogX()->plugin_path . 'modules/Enquiry/Module.php',
+                    'module_class'   => 'CatalogX\Enquiry\Module',
                 ],
                 'quote'    => [
                     'id'             => 'quote',
-                    'module_file'    => Catalog()->plugin_path . 'modules/Quote/Module.php',
-                    'module_class'   => 'Catalogx\Quote\Module',
+                    'module_file'    => CatalogX()->plugin_path . 'modules/Quote/Module.php',
+                    'module_class'   => 'CatalogX\Quote\Module',
                 ],
-                // 'wholesale'    => [
-                //     'id'             => 'wholesale',
-                //     'module_file'    => Catalog()->plugin_path . 'modules/Wholesale/Module.php',
-                //     'module_class'   => 'CatalogEnquiry\Wholesale\Module',
-                // ],
             ]);
         }
 
@@ -90,7 +85,7 @@ class Modules {
             return $this->active_modules;
         }
 
-        $this->active_modules = Catalog()->setting->get_option( self::ACTIVE_MODULES_DB_KEY, [] );
+        $this->active_modules = CatalogX()->setting->get_option( self::ACTIVE_MODULES_DB_KEY, [] );
 
         return $this->active_modules;
     }

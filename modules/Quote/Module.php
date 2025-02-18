@@ -1,8 +1,8 @@
 <?php
 
-namespace Catalogx\Quote;
+namespace CatalogX\Quote;
 
-use Catalogx\Utill;
+use CatalogX\Utill;
 
 class Module {
     /**
@@ -26,10 +26,10 @@ class Module {
         $this->init_classes();
 
         if ( Utill::is_khali_dabba() ) {
-            new \CatalogxPro\Quote\Module();
+            new \CatalogXPro\Quote\Module();
         }
 
-        if (Catalog()->modules->is_active('quote')) {
+        if (CatalogX()->modules->is_active('quote')) {
             $this->create_page_for_quote();
             $this->create_page_for_quote_thank_you();
         }
