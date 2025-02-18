@@ -30,6 +30,7 @@ final class Catalogx {
         $this->container[ 'version' ]        = WOOCOMMERCE_CATALOG_ENQUIRY_PLUGIN_VERSION;
         $this->container[ 'rest_namespace' ] = WOOCOMMERCE_CATALOG_ENQUIRY_REST_NAMESPACE;
 		$this->container[ 'text_domain' ]    = WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN;
+		$this->container[ 'block_paths' ]    = [];
 
         register_activation_hook( $file, [ $this, 'activate' ] );
 		register_deactivation_hook( $file, [ $this, 'deactivate' ] );

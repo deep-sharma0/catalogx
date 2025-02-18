@@ -270,16 +270,8 @@ class Admin {
     }
 
     public function replace_path($path, $url) {
-        if (strpos($url, 'woocommerce-catalog-enquiry') !== false) {
-            $block_paths = [
-                'blocks/enquiry-button'  => 'build/blocks/enquiry-button/index.js',
-                'blocks/quote-cart'      => 'build/blocks/quote-cart/index.js',
-                'blocks/quote-button'    => 'build/blocks/quote-button/index.js',
-                'blocks/quote-thank-you' => 'build/blocks/quote-thank-you/index.js',
-                'blocks/setupWizard'     => 'build/blocks/setupWizard/index.js',
-            ];
-    
-            foreach ($block_paths as $key => $new_path) {
+        if (strpos($url, 'woocommerce-catalog-enquiry') !== false) {   
+            foreach (Catalog()->block_paths as $key => $new_path) {
                 if (strpos($url, $key) !== false) {
                     $path = $new_path;
                 }
@@ -291,6 +283,6 @@ class Admin {
         }
         
         return $path;
-    }    
+    }
 
 }

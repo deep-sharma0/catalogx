@@ -17,10 +17,10 @@ class Shortcode {
 
         $current_user = wp_get_current_user();
         if (Catalog()->modules->is_active('quote')) {
-            wp_enqueue_script('quote-cart_js', Catalog()->plugin_url . 'build/blocks/quote-cart/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], Catalog()->version, true);
+            wp_enqueue_script('quote-cart', Catalog()->plugin_url . 'build/blocks/quote-cart/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], Catalog()->version, true);
             wp_set_script_translations( 'quote-cart', 'catalogx' );
             wp_localize_script(
-                'quote_list_js', 'quote_cart', [
+                'quote-cart', 'quote_cart', [
                 'apiUrl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'restUrl' => 'catalog/v1',

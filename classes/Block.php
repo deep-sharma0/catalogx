@@ -44,6 +44,7 @@ class Block {
 					],
 				],
             ];
+            Catalog()->block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
         }
 
         if (Catalog()->modules->is_active('quote')) {
@@ -98,6 +99,12 @@ class Block {
                         'khali_dabba'           => Utill::is_khali_dabba(),
                     ]
                 ],
+            ];
+
+            Catalog()->block_paths += [
+                'blocks/quote-cart'      => 'build/blocks/quote-cart/index.js',
+                'blocks/quote-button'    => 'build/blocks/quote-button/index.js',
+                'blocks/quote-thank-you' => 'build/blocks/quote-thank-you/index.js',
             ];
         }
 
