@@ -10,7 +10,7 @@ export default {
         {
             key: 'is_hide_cart_checkout',
             type: 'checkbox',
-            label: __( "Turn off sitewide buying", "catalogx" ),
+            label: __( "Sitewide buy mode", "catalogx" ),
              desc: __("Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href=\"https://catalogx.com/pricing/\" target=\"_blank\">CatalogX Pro</a>.", "catalogx"),
             options: [
                 {
@@ -139,21 +139,21 @@ export default {
             options: appLocalizer.all_pages,
             moduleEnabled: 'enquiry',
         },
-        {
-            key: 'is_enable_multiple_product_enquiry',
-            type: 'checkbox',
-            label: __( "Multi-product enquiry", 'catalogx' ),
-            desc: __("Enable multiple enquiry flow so customers can add several products to their enquiry cart and submit a single enquiry for all selected items.", "catalogx"),
-            options: [
-                {
-                    key: "is_enable_multiple_product_enquiry",
-                    value: "is_enable_multiple_product_enquiry"
-                }
-            ],
-            proSetting: true,
-            look: "toggle",
-            moduleEnabled: 'enquiry',
-        },
+        // {
+        //     key: 'is_enable_multiple_product_enquiry',
+        //     type: 'checkbox',
+        //     label: __( "Multi-product enquiry", 'catalogx' ),
+        //     desc: __("Enable multiple enquiry flow so customers can add several products to their enquiry cart and submit a single enquiry for all selected items.", "catalogx"),
+        //     options: [
+        //         {
+        //             key: "is_enable_multiple_product_enquiry",
+        //             value: "is_enable_multiple_product_enquiry"
+        //         }
+        //     ],
+        //     proSetting: true,
+        //     look: "toggle",
+        //     moduleEnabled: 'enquiry',
+        // },
         {
             key: 'separator_content',
             type: 'section',

@@ -248,7 +248,7 @@ class Install {
                 'is_disable_popup'        => !empty($previous_general_settings[ 'is_disable_popup' ]) ? 'inline' : 'popup',
                 'is_hide_cart_checkout'   => ['is_hide_cart_checkout'],
                 'set_expiry_time'         => 'Never',
-                'is_enable_multiple_product_enquiry'    => $previous_general_settings[ 'is_enable_multiple_product_enquiry' ] ?? [],
+                'is_enable_multiple_product_enquiry'    => $previous_general_settings[ 'is_enable_multiple_product_enquiry' ] ?? ['is_enable_multiple_product_enquiry'],
             ];
 
             update_option( 'catalog_all_settings_settings', $all_settings );

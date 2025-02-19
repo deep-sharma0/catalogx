@@ -31,7 +31,7 @@ export default [
     {
         id: 'wholesale',
         name: __("Wholesale Pricing", "catalogx;"),
-        desc: "<fieldset><legend>Free</legend><span>Custom wholesale registration forms builder, admin approval, wholesale order lists, and coupon restrictions for wholesale users.</span></fieldset>",
+        desc: "<fieldset><legend><i class='adminLib-pro-tab'></i> Pro</legend><span>Custom wholesale registration forms builder, admin approval, wholesale order lists, and coupon restrictions for wholesale users.</span></fieldset>",
         icon: 'adminLib-warehousing-icon',
         doc_link: 'https://catalogx.com/docs/wholesale-pricing/',
         settings_link: appLocalizer.wholesale_settings_url,
