@@ -78,7 +78,7 @@ class Block {
 					'object_name' => 'quote_cart',
 					'data' => [
                         'apiUrl' => '',
-						'restUrl' => 'catalog/v1',
+						'restUrl' => 'catalogx/v1',
 						'nonce'  => wp_create_nonce('wp_rest'),
                         'name'  => $current_user->display_name,
                         'email' => $current_user->user_email
@@ -165,7 +165,7 @@ class Block {
     public function register_blocks() {
     
         foreach ($this->blocks as $block) {
-            register_block_type(CatalogX()->text_domain . '/' . $block['name'], [
+            register_block_type('catalogx/' . $block['name'], [
                 'render_callback' => $block['render_php_callback_function'],
                 'enqueue_scripts' => $block['required_scripts'],
                 'style'           => $block['required_style'],

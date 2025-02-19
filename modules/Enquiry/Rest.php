@@ -23,9 +23,9 @@ class Rest {
             'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ],
         ]);
 
-        register_rest_route( CatalogX()->rest_namespace, '/render-enquiry-button', [
+        register_rest_route( CatalogX()->rest_namespace, '/buttons', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'render_enquiry_button' ],
+            'callback'              => [ $this, 'render_buttons' ],
             'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ],
         ]);
 	}
@@ -178,7 +178,7 @@ class Rest {
      * render enquiry button shortcode into block
      * @return \WP_Error|\WP_REST_Response
      */
-    public function render_enquiry_button($request) {
+    public function render_buttons($request) {
         $product_id = $request->get_param('product_id');
 
         // Start output buffering

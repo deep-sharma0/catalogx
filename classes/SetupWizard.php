@@ -43,7 +43,7 @@ class SetupWizard {
                 'setup_wizard_js', 'appLocalizer', [
                 'apiurl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
-                'restUrl' => 'catalog/v1',
+                'restUrl' => 'catalogx/v1',
                 'redirect_url' => admin_url() . 'admin.php?page=catalogx#&tab=modules',
             ]);
         }

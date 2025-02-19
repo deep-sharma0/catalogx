@@ -16,30 +16,31 @@ class Rest {
      */
     function register_rest_apis() {
 
-        register_rest_route( CatalogX()->rest_namespace, '/save_enquiry', [
+        register_rest_route( CatalogX()->rest_namespace, '/settings', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'save_settings' ],
             'permission_callback'   => [ $this, 'catalog_permission' ]
         ] );
 
-        register_rest_route( CatalogX()->rest_namespace, '/module_manage', [
+        // enable/disable the module
+        register_rest_route( CatalogX()->rest_namespace, '/modules', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'manage_module' ],
             'permission_callback'   => [ $this, 'catalog_permission' ]
         ] );
 
         // setup wizard api
-        register_rest_route( CatalogX()->rest_namespace, '/module-save', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'save_module' ],
-            'permission_callback'   => [ $this, 'catalog_permission' ]
-        ] );
+        // register_rest_route( CatalogX()->rest_namespace, '/module-save', [
+        //     'methods'               => \WP_REST_Server::ALLMETHODS,
+        //     'callback'              => [ $this, 'save_module' ],
+        //     'permission_callback'   => [ $this, 'catalog_permission' ]
+        // ] );
 
-        register_rest_route( CatalogX()->rest_namespace, '/save-settings', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'save_settings_wizard' ],
-            'permission_callback'   => [ $this, 'catalog_permission' ]
-        ] );
+        // register_rest_route( CatalogX()->rest_namespace, '/save-settings', [
+        //     'methods'               => \WP_REST_Server::ALLMETHODS,
+        //     'callback'              => [ $this, 'save_settings_wizard' ],
+        //     'permission_callback'   => [ $this, 'catalog_permission' ]
+        // ] );
 
         register_rest_route( CatalogX()->rest_namespace, '/tour', [
             'methods'               => 'GET',
@@ -93,6 +94,21 @@ class Rest {
 
         $all_details[ 'error' ] = __( 'Settings Saved', 'catalogx' );
 
+        //setup wizard settings
+        $action = $request->get_param('action');
+
+        if ($action == 'enquiry') {
+            $display_option = $request->get_param('displayOption');
+            $restrict_user = $request->get_param('restrictUserEnquiry');
+            CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
+            CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
+        }
+        
+        if ($action == 'quote') {
+            $restrict_user = $request->get_param('restrictUserQuote');
+            CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
+        }
+
         return rest_ensure_response($all_details);
 	}
 
@@ -105,6 +121,11 @@ class Rest {
         $moduleId   = $request->get_param( 'id' );
         $action     = $request->get_param( 'action' );
 
+        // Setup wizard module
+        $modules = $request->get_param('modules');
+        foreach ($modules as $module_id) {
+            CatalogX()->modules->activate_modules([$module_id]);
+        }
         // Handle the actions
         switch ( $action ) {
             case 'activate':
@@ -122,46 +143,33 @@ class Rest {
      * @param mixed $request
      * @return void
      */
-    public function save_module( $request ) {
-        $modules = $request->get_param('modules');
-        foreach ($modules as $module_id) {
-            CatalogX()->modules->activate_modules([$module_id]);
-        }
-    }
+    // public function save_module( $request ) {
+    //     $modules = $request->get_param('modules');
+    //     foreach ($modules as $module_id) {
+    //         CatalogX()->modules->activate_modules([$module_id]);
+    //     }
+    // }
 
     /**
      * Manage settings from setup wizard.
      * @param mixed $request
      * @return void
      */
-    public function save_settings_wizard( $request ) {
-        $action = $request->get_param('action');
+    // public function save_settings_wizard( $request ) {
+    //     $action = $request->get_param('action');
 
-        if ($action == 'enquiry') {
-            $display_option = $request->get_param('displayOption');
-            $restrict_user = $request->get_param('restrictUserEnquiry');
-            CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
-            CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
-        }
+    //     if ($action == 'enquiry') {
+    //         $display_option = $request->get_param('displayOption');
+    //         $restrict_user = $request->get_param('restrictUserEnquiry');
+    //         CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
+    //         CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
+    //     }
         
-        if ($action == 'quote') {
-            $restrict_user = $request->get_param('restrictUserQuote');
-            CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
-        }
-
-        if ($action == 'wholesale') {
-            $type = $request->get_param('wholesaleType');
-            $amount = $request->get_param('wholesaleAmount');
-            $quantity = $request->get_param('minimumQuantity');
-
-            $wholesale_discount = array(
-                'wholesale_discount_type' => $type,
-                'wholesale_amount' => floatval($amount),
-                'minimum_quantity' => intval($quantity),
-            );
-            CatalogX()->setting->update_setting('wholesale_discount', $wholesale_discount, 'catalog_wholesale_settings');
-        }
-    }
+    //     if ($action == 'quote') {
+    //         $restrict_user = $request->get_param('restrictUserQuote');
+    //         CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
+    //     }
+    // }
 
     /**
      * Catalog rest api permission functions

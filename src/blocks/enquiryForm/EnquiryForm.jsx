@@ -231,7 +231,7 @@ const EnquiryForm = (props) => {
     const formData = enquiry_form_data;
     const proActive = formData.khali_dabba;
 
-    const submitUrl = `${enquiry_form_data.apiurl}/catalog/v1/save-form-data`;
+    const submitUrl = `${enquiry_form_data.apiurl}/catalogx/v1/save-form-data`;
 
     const onSubmit = (formData) => {
         setLoading(true);

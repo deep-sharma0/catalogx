@@ -26,7 +26,7 @@ const Modules = (props) => {
         const modulesToSave = Object.keys(selectedModules).filter(key => selectedModules[key]);
         axios({
             method: "post",
-            url: getApiLink('module-save'),
+            url: getApiLink('modules'),
             headers: { "X-WP-Nonce": appLocalizer.nonce },
             data: { modules: modulesToSave }
         }).then((response) => {

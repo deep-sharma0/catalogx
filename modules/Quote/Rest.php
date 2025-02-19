@@ -15,24 +15,24 @@ class Rest {
      * @return void
      */
     public function register_rest_api() {
-        register_rest_route( CatalogX()->rest_namespace, '/get-all-quote', [
-            'callback'              => [ $this, 'get_all_quote' ],
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
+        register_rest_route( CatalogX()->rest_namespace, '/quote-cart', [
+            [
+                'methods'             => 'POST',
+                'callback'            => [ $this, 'get_all_quote' ],
+                'permission_callback' => [ CatalogX()->restapi, 'catalog_permission' ],
+            ],
+            [
+                'methods'             => 'PUT',
+                'callback'            => [ $this, 'quote_update_cart' ],
+                'permission_callback' => [ CatalogX()->restapi, 'catalog_permission' ],
+            ],
+            [
+                'methods'             => 'DELETE',
+                'callback'            => [ $this, 'quote_remove_cart' ],
+                'permission_callback' => [ CatalogX()->restapi, 'catalog_permission' ],
+            ],
         ] );
-
-        register_rest_route( CatalogX()->rest_namespace, '/quote-update-cart', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'quote_update_cart' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
-        ] );
-
-        register_rest_route( CatalogX()->rest_namespace, '/quote-remove-cart', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'quote_remove_cart' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
-        ] );
-
+        
         register_rest_route( CatalogX()->rest_namespace, '/quote-send', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'quote_send' ],

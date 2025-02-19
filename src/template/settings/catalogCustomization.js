@@ -6,7 +6,7 @@ export default {
     name: __("Product Page Builder", "catalogx"),
     desc: __("Drag-and-drop to create and customize single product page elements.", "catalogx"),
     icon: 'adminLib-web-page-website',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'catalog_customizer',

@@ -6,7 +6,7 @@ export default {
     name: __("Wholesale", "catalogx"),
     desc: __("Wholesale sign up and registration management.", "catalogx"),
     icon: 'adminLib-warehousing-icon',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal : [
         {
             key: "approve_wholesaler",

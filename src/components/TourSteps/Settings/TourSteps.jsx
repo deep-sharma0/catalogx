@@ -291,7 +291,7 @@ const Tour = () => {
     const finishTour = () => {
         setIsOpen(false); // Close the tour
         try {
-            axios.post(`${appLocalizer.apiurl}/catalog/v1/tour`, { active: false });
+            axios.post(`${appLocalizer.apiurl}/catalogx/v1/tour`, { active: false });
             console.log('Tour marked as complete.');
         } catch (error) {
             console.error('Error updating tour flag:', error);
@@ -303,7 +303,7 @@ const Tour = () => {
         const fetchTourState = async () => {
             if (window.location.href == appLocalizer.module_page_url) {
                 try {
-                    const response = await axios.get(`${appLocalizer.apiurl}/catalog/v1/tour`);
+                    const response = await axios.get(`${appLocalizer.apiurl}/catalogx/v1/tour`);
                     console.log(response)
                     if (response.data.active != '') {
                         setSteps(settingsTourSteps);

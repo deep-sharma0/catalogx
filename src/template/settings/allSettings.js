@@ -5,17 +5,17 @@ export default {
     name: __("Shopping Journey", "catalogx"),
     desc: __("Set up sales flow and catalog mode with integrated enquiry and quotation management.", "catalogx"),
     icon: 'adminLib-cart',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal: [
         {
-            key: 'is_hide_cart_checkout',
+            key: 'enable_cart_checkout',
             type: 'checkbox',
             label: __( "Sitewide buy mode", "catalogx" ),
              desc: __("Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href=\"https://catalogx.com/pricing/\" target=\"_blank\">CatalogX Pro</a>.", "catalogx"),
             options: [
                 {
-                    key: "is_hide_cart_checkout",
-                    value: "is_hide_cart_checkout"
+                    key: "enable_cart_checkout",
+                    value: "enable_cart_checkout"
                 }
             ],
             proSetting: true,
@@ -36,8 +36,8 @@ export default {
                 ...appLocalizer.all_pages
             ],
             dependent: {
-                key: "is_hide_cart_checkout",
-                set: true
+                key: "enable_cart_checkout",
+                set: false
             },
             proSetting: true,
             moduleEnabled: 'catalog',

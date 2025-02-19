@@ -24,7 +24,7 @@ class Shortcode {
                 'quote-cart', 'quote_cart', [
                 'apiUrl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
-                'restUrl' => 'catalog/v1',
+                'restUrl' => 'catalogx/v1',
                 'name'  => $current_user->display_name,
                 'email' => $current_user->user_email
             ]);

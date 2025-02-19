@@ -6,7 +6,7 @@ export default {
     name: __("Enquiry Email ", "catalogx"),
     desc: __("Select your preffered enquiry details email template", "catalogx"),
     icon: 'adminLib-mail',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'separator_content',

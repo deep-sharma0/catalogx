@@ -6,7 +6,7 @@ export default {
     name: __("Exclusion", "catalogx"),
     desc: __("Exclude catalog viewing, inquiries, and quotes by user roles and product attributes.", "catalogx"),
     icon: 'adminLib-exclude',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'exclusion',

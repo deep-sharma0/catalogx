@@ -246,7 +246,7 @@ class Install {
                 'is_page_redirect'        => $previous_general_settings[ 'is_page_redirect' ] ?? [],
                 'redirect_page_id'        => $previous_general_settings[ 'redirect_page_id' ] ? $previous_general_settings[ 'redirect_page_id' ]['value'] : '',
                 'is_disable_popup'        => !empty($previous_general_settings[ 'is_disable_popup' ]) ? 'inline' : 'popup',
-                'is_hide_cart_checkout'   => ['is_hide_cart_checkout'],
+                'enable_cart_checkout'   => [],
                 'set_expiry_time'         => 'Never',
                 'is_enable_multiple_product_enquiry'    => $previous_general_settings[ 'is_enable_multiple_product_enquiry' ] ?? ['is_enable_multiple_product_enquiry'],
             ];

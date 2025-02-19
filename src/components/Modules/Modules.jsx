@@ -48,7 +48,7 @@ const Modules = () => {
       removeModule(moduleId);
     }
     
-    const response = await sendApiResponse(getApiLink("module_manage"), {
+    const response = await sendApiResponse(getApiLink("modules"), {
       id: moduleId,
       action,
     });

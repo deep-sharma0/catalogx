@@ -6,7 +6,7 @@ export default {
     name: __("Custom Wholesale Form Builder", "catalogx"),
     desc: __("Drag-and-drop interface to tailor the wholesale registration form.", "catalogx"),
     icon: 'adminLib-contact-form',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal : [
         {
             key: 'wholesale_from_settings',

@@ -47,7 +47,7 @@ const QuoteList = () => {
 		//Fetch the data to show in the table
 		axios({
 			method: "post",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/get-all-quote`,
+			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-cart`,
 			headers: { "X-WP-Nonce": quote_cart.nonce },
 			data: {
 				page: currentPage,
@@ -62,8 +62,8 @@ const QuoteList = () => {
 
 	const handleRemoveCart = (e, id, key) => {
 		axios({
-			method: "post",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-remove-cart`,
+			method: "delete",
+			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-cart`,
 			headers: { "X-WP-Nonce": quote_cart.nonce },
 			data: {
 				productId : id,
@@ -92,8 +92,8 @@ const QuoteList = () => {
     	}));
 
 		axios({
-			method: "post",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-update-cart`,
+			method: "put",
+			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-cart`,
 			headers: { "X-WP-Nonce": quote_cart.nonce },
 			data: {
 				products : newProductQuantity

@@ -27,9 +27,8 @@ final class CatalogX {
 		$this->file = $file;
         $this->container[ 'plugin_url' ]     = trailingslashit( plugins_url( '', $plugin = $file ) );
         $this->container[ 'plugin_path' ]    = trailingslashit( dirname( $file ) );
-        $this->container[ 'version' ]        = WOOCOMMERCE_CATALOG_ENQUIRY_PLUGIN_VERSION;
-        $this->container[ 'rest_namespace' ] = WOOCOMMERCE_CATALOG_ENQUIRY_REST_NAMESPACE;
-		$this->container[ 'text_domain' ]    = WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN;
+        $this->container[ 'version' ]        = CATALOGX_PLUGIN_VERSION;
+        $this->container[ 'rest_namespace' ] = CATALOGX_REST_NAMESPACE;
 		$this->container[ 'block_paths' ]    = [];
 
         register_activation_hook( $file, [ $this, 'activate' ] );
@@ -39,6 +38,7 @@ final class CatalogX {
         add_action( 'woocommerce_loaded', [ $this, 'init_plugin' ] );
         add_action( 'plugins_loaded', [ $this, 'is_woocommerce_loaded'] );
 		add_filter( 'woocommerce_email_classes', [ $this, 'load_emails' ] );
+
     }
 
 	public function set_block_paths($paths) {
@@ -151,12 +151,12 @@ final class CatalogX {
 
 	function plugin_link( $links ) {	
 		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=general' ) . '">' . __( 'Settings', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>',
-			'<a href="https://multivendorx.com/support-forum/forum/wcmp-catalog-enquiry/">' . __( 'Support', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>',			
+			'<a href="' . admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=general' ) . '">' . __( 'Settings', 'catalogx' ) . '</a>',
+			'<a href="https://multivendorx.com/support-forum/forum/wcmp-catalog-enquiry/">' . __( 'Support', 'catalogx' ) . '</a>',			
 		);	
 		$links = array_merge( $plugin_links, $links );
 		if ( apply_filters( 'woocommerce_catalog_enquiry_free_active', true ) ) {
-			$links[] = '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" target="_blank">' . __( 'Upgrade to Pro', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>';
+			$links[] = '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" target="_blank">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>';
 		}
 		return $links;
 	}
@@ -164,7 +164,7 @@ final class CatalogX {
 	function plugin_row_meta( $links, $file ) {
 		if($file == 'woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php' && apply_filters( 'woocommerce_catalog_enquiry_free_active', true )){
 			$row_meta = array(
-				'pro'    => '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" title="' . esc_attr( __( 'Upgrade to Pro', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) ) . '">' . __( 'Upgrade to Pro', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>'
+				'pro'    => '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" title="' . esc_attr( __( 'Upgrade to Pro', 'catalogx' ) ) . '">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>'
 			);
 			return array_merge( $links, $row_meta );
 		}else{
@@ -189,7 +189,7 @@ final class CatalogX {
     function woocommerce_admin_notice() {
         ?>
         <div class="error">
-			<p><?php printf( __( '%sWoocommerce Catalog Enquiry is inactive.%s The %sWooCommerce plugin%s must be active for the Woocommerce Catalog Enquiry to work. Please %sinstall & activate WooCommerce%s', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ), '<strong>', '</strong>', '<a target="_blank" href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>', '<a href="' . admin_url( 'plugins.php' ) . '">', '&nbsp;&raquo;</a>' ); ?></p>
+			<p><?php printf( __( '%sWoocommerce Catalog Enquiry is inactive.%s The %sWooCommerce plugin%s must be active for the Woocommerce Catalog Enquiry to work. Please %sinstall & activate WooCommerce%s', 'catalogx' ), '<strong>', '</strong>', '<a target="_blank" href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>', '<a href="' . admin_url( 'plugins.php' ) . '">', '&nbsp;&raquo;</a>' ); ?></p>
         </div>
         <?php
     }

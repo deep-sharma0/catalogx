@@ -66,10 +66,10 @@ class Frontend{
     public static function redirect_cart_checkout_page() {
 
         // Get setting for disable bying
-        $disable_bying = CatalogX()->setting->get_setting( 'is_hide_cart_checkout' );
+        $disable_bying = CatalogX()->setting->get_setting( 'enable_cart_checkout' );
 
         // Check disable bying setting is enable or not
-        if ( ! $disable_bying ) return;
+        if ( !empty($disable_bying) ) return;
 
         // Get force redirected url
         $redirect_url = CatalogX()->setting->get_setting( 'disable_cart_page_link' );
@@ -154,7 +154,7 @@ class Frontend{
             return $button;
         }
         
-        return empty( CatalogX()->setting->get_setting( 'is_hide_cart_checkout' ) ) ? $button : '';
+        return empty( CatalogX()->setting->get_setting( 'enable_cart_checkout' ) ) ? '' : $button;
         
     }
 
@@ -166,7 +166,7 @@ class Frontend{
         global $post;
                 
         if ( Util::is_available_for_product($post->ID)) {
-            if ( !empty(CatalogX()->setting->get_setting( 'is_hide_cart_checkout' )) ) {   
+            if ( empty(CatalogX()->setting->get_setting( 'enable_cart_checkout' )) ) {   
                 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
                 add_filter( 'woocommerce_loop_add_to_cart_link', '__return_empty_string', 10 );
             }
@@ -181,10 +181,12 @@ class Frontend{
         global $post;
 
         if ( Util::is_available_for_product( $post->ID ) && is_product() ) {
-            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
-            remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
-            // for block support
-            remove_action('woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30);
+            if ( empty(CatalogX()->setting->get_setting( 'enable_cart_checkout' )) ) {
+                remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+                remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
+                // for block support
+                remove_action('woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30);
+            }
         }
     }
 

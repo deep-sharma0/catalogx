@@ -6,7 +6,7 @@ export default {
     name: __("Enquiry Form Builder", "catalogx"),
     desc: __("Design a personalized enquiry form with built-in form builder. ", "catalogx"),
     icon: 'adminLib-contact-form',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal: [
         {
             key: 'form_customizer',

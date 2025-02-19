@@ -6,7 +6,7 @@ export default {
     name: __("Page Endpoint", "catalogx"),
     desc: __("Manage the endpoints for all pages on the site, ensuring proper routing and access.", "catalogx"),
     icon: 'adminLib-book',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal : [
         {
             key: 'set_enquiry_cart_page',

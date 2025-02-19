@@ -6,7 +6,7 @@ export default {
     name: __("Tools", "catalogx"),
     desc: __("Review all system logs and errors", "catalogx"),
     icon: 'adminLib-paint-brush',
-    submitUrl: 'save_enquiry',
+    submitUrl: 'settings',
     modal : [
         {
             key: "custom_css_product_page",

@@ -30,7 +30,7 @@ const Enquiry = (props) => {
 
         axios({
             method: "post",
-            url: getApiLink('save-settings'),
+            url: getApiLink('settings'),
             headers: { "X-WP-Nonce": appLocalizer.nonce },
             data: data
         }).then((response) => {
