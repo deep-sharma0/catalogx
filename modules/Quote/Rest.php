@@ -2,6 +2,8 @@
 
 namespace CatalogX\Quote;
 
+use CatalogX\CatalogX;
+
 class Rest {
     /**
      * Rest class constructor functions
@@ -33,17 +35,17 @@ class Rest {
             ],
         ] );
         
-        register_rest_route( CatalogX()->rest_namespace, '/quote-send', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'quote_send' ],
+        register_rest_route( CatalogX()->rest_namespace, '/quotes', [
+            'methods'               => 'POST',
+            'callback'              => [ $this, 'process_quote_request' ],
             'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
         ] );
 
-        register_rest_route( CatalogX()->rest_namespace, '/reject-quote-my-acount', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'reject_quote_my_account' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
-        ] );
+        // register_rest_route( CatalogX()->rest_namespace, '/reject-quote-my-acount', [
+        //     'methods'               => \WP_REST_Server::ALLMETHODS,
+        //     'callback'              => [ $this, 'reject_quote_my_acount' ],
+        //     'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
+        // ] );
 
     }
 
@@ -132,50 +134,147 @@ class Rest {
     }
 
     /**
-     * send quote from cart and create order
+     * send quote from cart and create order or reject quote from my-account page
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
-    public function quote_send( $request ) {
-        $form_data = $request->get_param('formData');
-        
-        // Sanitize form data
-        $customer_name = sanitize_text_field($form_data['name']);
-        $customer_email = sanitize_email($form_data['email']);
-        $customer_phone = sanitize_text_field($form_data['phone']);
-        $customer_message = sanitize_textarea_field($form_data['message']);
-        $product_data = CatalogX()->quotecart->get_cart_data();
-        
-        
-        // Create a new customer or retrieve existing customer based on email
-        $customer_id = Util::get_customer_id_by_email($customer_email);
-        
-        // Create a new order
-        $order_id = Util::create_new_order($customer_id, $customer_name, $customer_email, $customer_phone, $customer_message, $product_data);
-        
-        if ($order_id) {
-            $redirect_url = add_query_arg(['order_id' => $order_id], get_permalink(CatalogX()->setting->get_option('woocommerce_myaccount_page_id')) . 'request-quote-thank-you/');
-            return rest_ensure_response( ['order_id' => $order_id, 'redirect_url' => $redirect_url ]);
-        } 
-    }
+    public function process_quote_request( $request ) {
+        $request_data = $request->get_params();
+        $form_data = $request_data['formData'] ?? $request_data['enquiry'] ?? [];
 
+        // Handle rejection case
+        if (!empty($order_id = $request->get_param('orderId'))) {
+            $status =  $request->get_param('status');
+            $reason =  $request->get_param('reason');
+            if (!empty($order_id) && !empty($status) && !empty($reason)) {
+                $order = wc_get_order($order_id);
+                $order->update_status('wc-quote-rejected');
+                $order->set_customer_note($reason);
+                $order->save();
+                /* translators: %s: reject quotation number. */
+                return rest_ensure_response(['message' => sprintf( __( 'You have confirmed rejection of the quotation No: %d', 'catalogx' ) , $order_id )]);
+            }
+        }
+
+        if (empty($form_data)) {
+            return new WP_Error('invalid_data', __('Missing form data.', 'your-text-domain'), ['status' => 400]);
+        }
+    
+        // Sanitize input fields
+        $customer_name = isset($form_data['name']) ? sanitize_text_field($form_data['name']) : '';
+        $customer_email = isset($form_data['email']) ? sanitize_email($form_data['email']) : '';
+        $customer_phone = isset($form_data['phone']) ? sanitize_text_field($form_data['phone']) : '';
+        $customer_message = isset($form_data['message']) ? sanitize_textarea_field($form_data['message']) : '';
+    
+        // Retrieve customer or create guest data
+        $customer = empty($customer_email) ? get_user_by( 'email', $form_data['email'] ) : get_user_by('email', $customer_email);
+        $customer_id = $customer ? $customer->ID : Util::get_customer_id_by_email($customer_email);
+    
+        // Order arguments
+        $args = [
+            'status'      => 'wc-quote-new',
+            'customer_id' => $customer_id,
+        ];
+    
+        // Create order
+        $order = wc_create_order($args);
+        if (!$order) {
+            return new WP_Error('order_error', __('Failed to create order.', 'catalogx'), ['status' => 500]);
+        }
+    
+        // Add customer details
+        $order->set_customer_id($customer_id);
+        $order->set_billing_first_name($customer_name ?: ($customer ? $customer->display_name : ''));
+        $order->set_billing_email(empty($customer_email) ? $customer->user_email : $customer_email);
+        $order->set_billing_phone($customer_phone);
+    
+        // Get product data
+        $product_data = isset($request_data['formData']) ? CatalogX()->quotecart->get_cart_data() : $form_data['product_info'];
+        $product_info = [];
+        $product_ids = [];
+    
+        foreach ($product_data as $item) {
+            $product_id = isset($item['product_id']) ? $item['product_id'] : (isset($item['id']) ? $item['id'] : null);
+            $quantity = isset($item['quantity']) ? intval($item['quantity']) : 0;
+    
+            $product_info[] = ['product_id' => $product_id, 'quantity' => $quantity];
+            if ($product_id && $quantity > 0) {
+                $product = wc_get_product($product_id);
+                if ($product) {
+                    $order->add_product($product, $quantity);
+                }
+            }
+            $product_ids[] = $product_id;
+        }
+    
+        // Add order notes and metadata
+        if (!empty($customer_message)) {
+            $order->add_order_note($customer_message);
+        }
+        $order->calculate_totals();
+        $order->add_meta_data('quote_req', 'yes');
+        $order->add_meta_data('quote_customer_name', $customer_name);
+        $order->add_meta_data('quote_customer_email', $customer_email);
+        $order->add_meta_data('quote_customer_msg', $customer_message);
+        $order->save();
+    
+        // If this request comes from an enquiry (like `create_quote` function)
+        if (isset($form_data['id']) && \CatalogX\Utill::is_khali_dabba()) {
+            $enquiry_id = $form_data['id'];
+            $admin_email = get_option('admin_email');
+            $admin_data = get_user_by('email', $admin_email);
+            $from_user = $admin_data->ID;
+            $to_user = $customer_id;
+    
+            \CatalogXPro\Enquiry\Util::add_enquiry_message([
+                'from_user'    => $from_user,
+                'to_user'      => $to_user,
+                'chat_message' => "Your Quote is created and Quote number is " . $order->get_id(),
+                'product_id'   => serialize($product_ids),
+                'enquiry_id'   => $enquiry_id,
+            ]);
+        }
+    
+        // Send email
+        $customer_data = [
+            'name'  => $customer_name,
+            'email' => $customer_email,
+            'details'   => $customer_message,
+        ];
+        $email = WC()->mailer()->emails['requestQuoteSendEmail'];
+        $email->trigger($product_info, $customer_data);
+    
+        // Clear cart if applicable
+        if (isset($request_data['formData'])) {
+            CatalogX()->quotecart->clear_cart();
+        }
+    
+        // Redirect URL for thank you page
+        $redirect_url = add_query_arg(['order_id' => $order->get_id()], get_permalink(CatalogX()->setting->get_option('woocommerce_myaccount_page_id')) . 'request-quote-thank-you/');
+    
+        return rest_ensure_response([
+            'order_id'     => $order->get_id(),
+            'redirect_url' => $redirect_url,
+        ]);
+    }
+    
     /**
      * reject quote from my-account page
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */    
-    public function reject_quote_my_acount($request) {
+    // public function reject_quote_my_acount($request) {
 
-        $order_id =  $request->get_param('orderId');
-        $status =  $request->get_param('status');
-        $reason =  $request->get_param('reason');
-        if (!empty($order_id) && !empty($status) && !empty($reason)) {
-            $order = wc_get_order($order_id);
-            $order->update_status('wc-quote-rejected');
-            $order->set_customer_note($reason);
-            $order->save();
-            /* translators: %s: reject quotation number. */
-            return rest_ensure_response(['message' => sprintf( __( 'You have confirmed rejection of the quotation No: %d', 'catalogx' ) , $order_id )]);
-        }
-    }
+    //     $order_id =  $request->get_param('orderId');
+    //     $status =  $request->get_param('status');
+    //     $reason =  $request->get_param('reason');
+    //     if (!empty($order_id) && !empty($status) && !empty($reason)) {
+    //         $order = wc_get_order($order_id);
+    //         $order->update_status('wc-quote-rejected');
+    //         $order->set_customer_note($reason);
+    //         $order->save();
+    //         /* translators: %s: reject quotation number. */
+    //         return rest_ensure_response(['message' => sprintf( __( 'You have confirmed rejection of the quotation No: %d', 'catalogx' ) , $order_id )]);
+    //     }
+    // }
 }

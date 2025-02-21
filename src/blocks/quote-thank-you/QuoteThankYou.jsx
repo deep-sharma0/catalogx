@@ -24,7 +24,7 @@ const QuoteThankYou = () => {
     const handleRejectQuote = () => {
         axios({
 			method: "post",
-			url: getApiLink('reject-quote-my-acount'),
+			url: getApiLink('quotes'),
 			headers: { "X-WP-Nonce": appLocalizer.nonce },
 			data: {
 				orderId: orderId,

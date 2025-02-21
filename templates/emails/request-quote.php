@@ -55,10 +55,11 @@ do_action( 'woocommerce_email_header', $email_heading  ); ?>
         <a href="mailto:<?php echo esc_attr($customer_data['email']); ?>">
             <?php echo esc_html($customer_data['email']); ?>
         </a></p>
-
-        <p><strong><?php _e('Additional Details:', 'catalogx'); ?></strong><br>
-            <?php echo nl2br(esc_html($customer_data['details'])); ?>
-        </p>
+        <?php if (!empty($customer_data['details'])) { ?>
+            <p><strong><?php _e('Additional Details:', 'catalogx'); ?></strong><br>
+                <?php echo nl2br(esc_html($customer_data['details'])); ?>
+            </p>
+        <?php } ?>
 
     </div>
 </div>

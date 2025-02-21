@@ -17,8 +17,8 @@ class Rest {
      * @return void
      */
     function register_rest_apis() {
-        register_rest_route( CatalogX()->rest_namespace, '/save-form-data', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
+        register_rest_route( CatalogX()->rest_namespace, '/enquiries', [
+            'methods'               => 'POST',
             'callback'              => [ $this, 'save_form_data' ],
             'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ],
         ]);

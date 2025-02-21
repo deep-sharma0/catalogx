@@ -110,7 +110,7 @@ const QuoteList = () => {
 		setLoading(true);
 		axios({
 			method: "post",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-send`,
+			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quotes`,
 			headers: { "X-WP-Nonce": quote_cart.nonce },
 			data: {
 				formData : formData,
