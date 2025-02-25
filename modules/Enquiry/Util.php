@@ -73,11 +73,11 @@ class Util {
             $product_author = get_mvx_product_vendors($product_id) ? get_mvx_product_vendors($product_id)->id : 0;
             $settings = get_user_meta($product_author, 'vendor_enquiry_settings', true);
             if ($product_author) {
-                $settings = isset($settings['woocommerce_product_list']) && is_array( $settings['woocommerce_product_list'] ) ? $settings['woocommerce_product_list'] : [];
-                if (!empty($settings)) {
+                $product_settings = isset($settings['woocommerce_product_list']) && is_array( $settings['woocommerce_product_list'] ) ? $settings['woocommerce_product_list'] : [];
+                if (!empty($product_settings)) {
                     $exclude_products = array_map( function( $product ) {
                         return $product[ 'value' ];
-                    }, $settings );
+                    }, $product_settings );
             
                     if ( in_array( $product_id, $exclude_products ) ) {
                         return false;
