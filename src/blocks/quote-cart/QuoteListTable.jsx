@@ -249,7 +249,12 @@ const QuoteList = () => {
 					{	
 						responseContent &&
 						<section className={`response-message-container ${responseStatus}`}>
-							<p>{responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"}</p>
+							{/* <p>{responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"}</p> */}
+							<p>
+								{responseStatus === 'error' 
+									? __('Something went wrong! Try Again', 'catalogx') 
+									: __('Form submitted successfully', 'catalogx')}
+							</p>
 						</section>
 					}
 				</div>

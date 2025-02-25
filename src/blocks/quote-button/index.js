@@ -1,5 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 
 // Register the block
 registerBlockType('catalogx/quote-button', {
@@ -10,14 +11,14 @@ registerBlockType('catalogx/quote-button', {
         const blockProps = useBlockProps();
         return (
             <div {...blockProps}>
-                <button className="add-request-quote-button">Add to Quote</button>
+                <button className="add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
             </div>
         );
     },
     save() {
         return (
             <div>
-                <button className="add-request-quote-button">Add to Quote</button>
+                <button className="add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
                 <div className="quote-message-container"></div>
             </div>
         );

@@ -71,35 +71,6 @@ class Utill {
     }
 
     /**
-     * Get the settings array. Non set value is replaced with default value.
-     * @return array
-     */
-    public static function get_form_settings_array($tabName = '') {
-        $setting_keys = [
-            'button_text',
-            'button_link',
-            'alert_text_color',
-            'button_background_color',
-            'button_border_color',
-            'button_text_color',
-            'button_background_color_onhover',
-            'button_text_color_onhover',
-            'button_border_color_onhover',
-            'button_font_size',
-            'button_border_size',
-            'button_border_radious',
-        ];
-
-        $form_settings = [];
-
-        foreach ( $setting_keys as $setting_key ) {
-            $form_settings[ $setting_key ] = CatalogX()->setting->get_setting( $setting_key, '', $tabName );
-        }
-
-        return $form_settings;
-    }
-
-    /**
      * Create atachment from array of fiels.
      * @param mixed $files_array
      * @return int|\WP_Error

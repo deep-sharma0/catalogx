@@ -131,10 +131,10 @@ class Frontend {
          */
         $discount = apply_filters( 'catalog_calculate_discount_in_cart_and_checkout', 0 );
 
-        // if ($discount > 0) {
+        if ($discount != 0) {
             // Apply the discount as a fee
             WC()->cart->add_fee( __('Discount', 'catalogx'), $discount, true );
-        // }
+        }
     }
 
 }

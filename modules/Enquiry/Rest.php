@@ -55,36 +55,30 @@ class Rest {
                 $attachments[] = get_attached_file($attachment_id);
             }
         }
-        
-        unset( $post_params[ 'quantity' ] );
-        unset( $post_params[ 'productId' ] );
 
-        // Get the product related info
+        unset($post_params['quantity'], $post_params['productId']);
+
+        // Gather product information
         $product_info = [];
-
-        if ( \CatalogX\Utill::is_khali_dabba() ) {
-            $product_data = CatalogX_Pro()->cart->get_cart_data();
-            
-            if ( $product_data ) {
-                foreach ( $product_data as $data ) {
-                    $product_info[ $data[ 'product_id' ] ] = $data[ 'quantity' ] ? $data[ 'quantity' ] : 1;
-                }
+        if (\CatalogX\Utill::is_khali_dabba()) {
+            foreach ((array) CatalogX_Pro()->cart->get_cart_data() as $data) {
+                $product_info[$data['product_id']] = $data['quantity'] ?? 1;
             }
         }
-
-        if ( empty( $product_info ) ) {
-            $product_info[ $product_id ] = $quantity;
+        if (empty($product_info)) {
+            $product_info[$product_id] = $quantity;
         }
-       // Get extra fields
+
+        // Get extra fields
         $other_fields = [];
         foreach ( $post_params as $key => $value ) {
             switch ( $key ) {
                 case 'name':
-                    $customer_name = $user_name ? $user_name : $value ;
+                    $customer_name = !empty($user_name) ? $user_name : $value ;
                     break;
 
                 case 'email':
-                    $customer_email = $user_email ? $user_email : $value;
+                    $customer_email = !empty($user_email) ? $user_email : $value;
                     break;
                 
                 default:
@@ -95,6 +89,7 @@ class Rest {
                     break;
             }
         }
+
         // Prepare data for insertion
         $data = [
             'product_info'           => serialize( $product_info ),

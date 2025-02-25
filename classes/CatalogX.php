@@ -79,13 +79,12 @@ final class CatalogX {
 		
 		do_action( 'catalog_enquiry_loaded' );
 
-
 	}
 	
 	/**
 	 * Load setup class 
 	 */
-	function catalog_setup_wizard() {
+	public function catalog_setup_wizard() {
 		
 		new SetupWizard();
 		if (get_option('catalog_plugin_activated')) {
@@ -96,15 +95,23 @@ final class CatalogX {
 	
 	}
 
-	function catalog_register_strings() {
-		if ( function_exists( 'icl_register_string' ) ) {
-			icl_register_string( 'catalogx', 'add_to_quote', 'Add to Quote' );
-			icl_register_string( 'catalogx', 'view_quote', 'View Quote' );
-			icl_register_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
+	public function catalog_register_strings() {
+		if ( ! function_exists( 'icl_register_string' ) ) {
+			return;
+		}
+		
+		$strings = [
+			'add_to_quote' => 'Add to Quote',
+			'view_quote' => 'View Quote',
+			'send_an_enquiry' => 'Send an enquiry',
+		];
+		
+		foreach ( $strings as $key => $value ) {
+			icl_register_string( 'catalogx', $key, $value );
 		}
 	}
 
-	function catalog_register_form_strings() {
+	public function catalog_register_form_strings() {
 		$form_settings =  CatalogX()->setting->get_option('catalog_enquiry_form_customization_settings');
 
 		if ( function_exists( 'icl_register_string' ) ) {
@@ -149,7 +156,7 @@ final class CatalogX {
 		$this->container['modules']->load_active_modules();
 	}
 
-	function plugin_link( $links ) {	
+	public function plugin_link( $links ) {	
 		$plugin_links = array(
 			'<a href="' . admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=general' ) . '">' . __( 'Settings', 'catalogx' ) . '</a>',
 			'<a href="https://multivendorx.com/support-forum/forum/wcmp-catalog-enquiry/">' . __( 'Support', 'catalogx' ) . '</a>',			
@@ -161,7 +168,7 @@ final class CatalogX {
 		return $links;
 	}
 
-	function plugin_row_meta( $links, $file ) {
+	public function plugin_row_meta( $links, $file ) {
 		if($file == 'woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php' && apply_filters( 'woocommerce_catalog_enquiry_free_active', true )){
 			$row_meta = array(
 				'pro'    => '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" title="' . esc_attr( __( 'Upgrade to Pro', 'catalogx' ) ) . '">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>'
@@ -186,7 +193,7 @@ final class CatalogX {
      * Display Woocommerce inactive notice.
      * @return void
      */
-    function woocommerce_admin_notice() {
+    public function woocommerce_admin_notice() {
         ?>
         <div class="error">
 			<p><?php printf( __( '%sWoocommerce Catalog Enquiry is inactive.%s The %sWooCommerce plugin%s must be active for the Woocommerce Catalog Enquiry to work. Please %sinstall & activate WooCommerce%s', 'catalogx' ), '<strong>', '</strong>', '<a target="_blank" href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>', '<a href="' . admin_url( 'plugins.php' ) . '">', '&nbsp;&raquo;</a>' ); ?></p>
@@ -241,14 +248,12 @@ final class CatalogX {
 	 * @return void
 	 */
 	public function load_plugin_textdomain() {
-		$locale = is_admin() && function_exists('get_user_locale') ? get_user_locale() : get_locale();
-		$locale = apply_filters('woocommerce_catalog_enquiry_plugin_locale', $locale, 'catalogx');
-	
-		// Load the text domain from the global WordPress languages directory
-		load_textdomain('catalogx', WP_LANG_DIR . '/woocommerce-catalog-enquiry/catalogx-' . $locale . '.mo');
-	
-		// Load the text domain from the plugin's languages directory
-		load_plugin_textdomain('catalogx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
+		if ( version_compare( $GLOBALS['wp_version'], '6.7', '<' ) ) {
+			load_plugin_textdomain('catalogx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
+        } else {
+            load_textdomain( 'catalogx', WP_LANG_DIR . '/plugins/catalogx-' . determine_locale() . '.mo' );
+
+        }
 	}
 	
 

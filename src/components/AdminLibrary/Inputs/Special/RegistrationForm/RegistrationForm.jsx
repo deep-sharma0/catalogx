@@ -6,6 +6,7 @@ import './RegistrationForm.scss'
 import Elements from "./Templates/elements";
 import SettingMetaBox from "./Templates/MetaBox";
 import ButtonCustomizer from "../ButtonCustomizer";
+import { __ } from "@wordpress/i18n";
 
 import { useSetting } from "../../../../../contexts/SettingContext"; 
 
@@ -113,7 +114,7 @@ const AddNewBtn = (props) => {
                         <div onClick={(event) => { onAddNew?.() }}>
                             <i className="admin-font adminLib-move"></i>
                         </div>
-                        <p>Click to add next text field</p>
+                        <p>{ __('Click to add next text field', 'catalogx') }</p>
                     </div>
                     :
                     <div className="add-new-sections" onClick={(event) => { onAddNew?.() }} >

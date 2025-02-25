@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Select from 'react-select';
+import { __ } from '@wordpress/i18n';
 import './EnquiryForm.scss';
 import FromViewer from '../libreary/FormViewer';
 import axios from 'axios';
@@ -18,7 +18,6 @@ const FreeForm = (props) => {
     const [errorMessage, setErrorMessage] = useState("");
     const [captchaStatus, setCaptchaStatus] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
-
 
     /**
      * Handle input change
@@ -52,15 +51,18 @@ const FreeForm = (props) => {
             }));
         }
     };
+
     const [inputs, setInputs] = useState(() => {
         const initialState = {};
         formFields.forEach((field) => {
-            initialState[field.key] = enquiry_form_data.default_placeholder[field.key] || ""; 
+            if (enquiry_form_data.default_placeholder[field.key]) {
+                initialState[field.key] = enquiry_form_data.default_placeholder[field.key];
+            }
         });
         return initialState;
     });
     
-
+    
     /**
      * Handle input submit
      * @param {*} e 
@@ -178,7 +180,7 @@ const FreeForm = (props) => {
                                                 <p className="heading">
                                                     {fileName == '' ? (
                                                         <>
-                                                            <span>Click to upload</span> or drag and drop
+                                                            <span>{ __('Click to upload', 'catalogx') }</span> { __('or drag and drop', 'catalogx') }
                                                         </>
                                                     ) : fileName}
                                                 </p>
@@ -216,9 +218,9 @@ const FreeForm = (props) => {
                         return
                     handleSubmit(e)
                 }}>
-                    Submit</button>
+                    {__('Submit', 'catalogx')}</button>
 
-                <button id='close-enquiry-popup' className='close-enquiry-popup'>Close</button>
+                <button id='close-enquiry-popup' className='close-enquiry-popup'>{__('Close', 'catalogx')}</button>
            </section>
         </div>
     );

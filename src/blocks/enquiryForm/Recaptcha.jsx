@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { __ } from '@wordpress/i18n';
 
 const Recaptcha = (props) => {
     const { captchaValid } = props;
@@ -36,10 +37,12 @@ const Recaptcha = (props) => {
                 value={userInput}
                 placeholder="Enter security code"
             />
-            <p>Your security code is: {securityCode}</p>
+            <p>{ __('Your security code is:', 'catalogx') } { securityCode }</p>
             
             {!isCaptchaValid && (
-                <p style={{ color: 'red' }}>Invalid security code, please try again.</p>
+                <p style={{ color: 'red' }}>
+                { __('Invalid security code, please try again.', 'catalogx') }
+                </p>
             )}
         </>
     );

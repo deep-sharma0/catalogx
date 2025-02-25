@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import Recapcha from '../../../../../../assets/images/recaptcha.png';
+import { __ } from "@wordpress/i18n";
 
 const Recaptach = (props) => {
     const { formField, onChange } = props;
@@ -7,7 +6,7 @@ const Recaptach = (props) => {
     return (
         <>
             <div className={`main-input-wrapper ${!formField.sitekey ? 'recaptcha' : ''}`}>
-                <p>reCAPTCHA has been successfully added to the form.</p>
+                <p>{__("reCAPTCHA has been successfully added to the form.", "catalogx")}</p>
             </div>
         </>
     )

@@ -221,7 +221,6 @@ class Admin {
         } else {
             $quote_base_url = '/';
         }
-        
 
         // Enque script and style
         wp_enqueue_style('mvx-catalog-style', CatalogX()->plugin_url . 'build/index.css');

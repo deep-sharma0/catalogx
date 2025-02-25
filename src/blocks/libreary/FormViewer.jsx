@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import Button from './Button';
 import './FromViewer.scss';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Render checkboxes
@@ -349,7 +350,7 @@ const FromViewer = (props) => {
                                                 <p className="heading">
                                                     {fileName == '' ? (
                                                         <>
-                                                            <span>Click to upload</span> or drag and drop
+                                                            <span>{ __('Click to upload', 'catalogx') }</span> { __('or drag and drop', 'catalogx') }
                                                         </>
                                                     ) : fileName}
                                                 </p>
@@ -416,7 +417,7 @@ const FromViewer = (props) => {
                     }}
                     children={'Submit'}
                 />
-                <button id='close-enquiry-popup' className='close-enquiry-popup'>Close</button>
+                <button id='close-enquiry-popup' className='close-enquiry-popup'>{__('Close', 'catalogx')}</button>
             </section>
 
         </main>

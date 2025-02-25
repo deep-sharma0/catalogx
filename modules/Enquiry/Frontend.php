@@ -17,7 +17,7 @@ class Frontend{
             return;
         }
 
-        if ( !empty( CatalogX()->setting->get_setting( 'enable_cart_checkout' ) ) ) {
+        if ( empty( CatalogX()->setting->get_setting( 'enable_cart_checkout' ) ) ) {
             add_action( 'woocommerce_after_shop_loop_item', [$this, 'add_button_in_shop_page'] );
         }
 
