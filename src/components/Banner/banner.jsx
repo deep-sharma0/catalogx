@@ -28,6 +28,9 @@ export default function banner() {
 
         const carouselItems = document.querySelectorAll('.carousel-item');
         const totalItems = carouselItems.length;
+
+        if (!totalItems) return;
+        
         let currentIndex = 0;
         let interval;
 
