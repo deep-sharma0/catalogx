@@ -29,7 +29,7 @@ class Block {
                 'name' => 'enquiry-button', // block name
                 'render_php_callback_function' => [$this, 'render_enquiry_button_block'], // php render calback function
                 'required_script' => '', // the script which is required in the frontend of the block
-                'required_scripts' => ['frontend_js', 'enquiry_form_js' ], // the scripts which are required in the frontend of the block
+                'required_scripts' => ['frontend-script', 'enquiry-form-script' ], // the scripts which are required in the frontend of the block
                 'required_style'   => 'catalogx-enquiry-form-style', // the style which is required in the frontend of the block
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'], // the react dependencies which required in js
@@ -77,7 +77,7 @@ class Block {
 					'object_name' => 'quote_cart',
 					'data' => [
                         'apiUrl' => '',
-						'restUrl' => 'catalogx/v1',
+						'restUrl' => CatalogX()->rest_namespace,
 						'nonce'  => wp_create_nonce('wp_rest'),
                         'name'  => $current_user->display_name,
                         'email' => $current_user->user_email

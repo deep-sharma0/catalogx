@@ -94,7 +94,7 @@ class EnquiryEmail extends \WC_Email {
 	 * Add vendor emails to the recipient list.
 	 */
 	protected function add_vendor_emails() {
-		if (!Utill::is_active_plugin('mvx')) return;
+		if (!Utill::is_active_plugin('multivendorx')) return;
 
 		foreach ($this->product_id as $product_id => $quantity) {
 			$vendor = function_exists('get_mvx_product_vendors') ? get_mvx_product_vendors($product_id) : null;

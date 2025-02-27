@@ -118,12 +118,12 @@ class Utill {
      */
     public static function is_active_plugin($name = '') {
         require_once ABSPATH . 'wp-admin/includes/plugin.php';
-        
-        if ($name == 'stock') {
+
+        if ($name == 'notifima') {
             return is_plugin_active('woocommerce-product-stock-alert/product_stock_alert.php');
         }
         
-        if ($name == 'mvx') {
+        if ($name == 'multivendorx') {
             return is_plugin_active('dc-woocommerce-multi-vendor/dc_product_vendor.php');
         }
         

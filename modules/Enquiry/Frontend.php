@@ -152,10 +152,10 @@ class Frontend{
     public function frontend_scripts() {
         $current_user = wp_get_current_user();
 
-        wp_register_script( 'frontend_js', CatalogX()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], CatalogX()->version, true );
-        wp_register_script('enquiry_form_js', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], CatalogX()->version, true );
+        wp_register_script( 'frontend-script', CatalogX()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], CatalogX()->version, true );
+        wp_register_script('enquiry-form-script', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], CatalogX()->version, true );
         wp_localize_script(
-            'enquiry_form_js', 'enquiry_form_data', [
+            'enquiry-form-script', 'enquiry_form_data', [
             'apiurl'        => untrailingslashit(get_rest_url()),
             'nonce'         => wp_create_nonce( 'wp_rest' ),
             'settings_free' => $this->catalog_free_form_settings(),
@@ -179,8 +179,8 @@ class Frontend{
                 wp_add_inline_style('catalogx-enquiry-form-style', $additional_css_settings);
             }
             
-            wp_enqueue_script( 'frontend_js' );
-            wp_enqueue_script( 'enquiry_form_js' );
+            wp_enqueue_script( 'frontend-script' );
+            wp_enqueue_script( 'enquiry-form-script' );
         }
     }
 

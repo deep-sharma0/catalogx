@@ -232,7 +232,7 @@ class Admin {
             'apiurl'                    => untrailingslashit( get_rest_url() ),
             'nonce'                     => wp_create_nonce('wp_rest'),
             'tab_name'                 => "CatalogX",
-            'restUrl'                  => 'catalogx/v1',
+            'restUrl'                  => CatalogX()->rest_namespace,
             'all_pages'                 => $all_pages,
             'role_array'                => $all_roles,
             'all_users'                 => $all_users,
@@ -261,8 +261,8 @@ class Admin {
             'wholesale_settings_url'      => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=wholesale' ),
             'rule_url'                    => admin_url( 'admin.php?page=catalogx#&tab=rules' ),
             'currency'                  => get_woocommerce_currency(),
-            'notifima_active'           => Utill::is_active_plugin('stock'),
-            'mvx_active'                => Utill::is_active_plugin('mvx'),
+            'notifima_active'           => Utill::is_active_plugin('notifima'),
+            'mvx_active'                => Utill::is_active_plugin('multivendorx'),
             'quote_module_active'       => CatalogX()->modules->is_active('quote'),
             'quote_base_url'            => $quote_base_url
         ]));

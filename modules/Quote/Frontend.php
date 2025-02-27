@@ -34,9 +34,9 @@ class Frontend {
              $frontend_script_path = CatalogX()->plugin_url . 'modules/Quote/js/';
             $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
 
-            wp_enqueue_script('add_to_quote_js', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], CatalogX()->version, true);
+            wp_enqueue_script('add-to-quote-cart-script', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], CatalogX()->version, true);
             wp_localize_script(
-                'add_to_quote_js',
+                'add-to-quote-cart-script',
                 'quote_cart',
                 [
                     'ajaxurl' => admin_url('admin-ajax.php'),

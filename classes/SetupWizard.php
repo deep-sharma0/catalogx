@@ -36,14 +36,14 @@ class SetupWizard {
         $current_screen = get_current_screen();
 
         if ( $current_screen->id === 'dashboard_page_catalog-setup' ) {
-            wp_enqueue_script('setup_wizard_js', CatalogX()->plugin_url . 'build/blocks/setupWizard/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'react-jsx-runtime'  ], CatalogX()->version, true);
-            wp_set_script_translations( 'setup_wizard_js', 'catalogx' );
-            wp_enqueue_style('setup_wizard_css', CatalogX()->plugin_url . 'build/blocks/setupWizard/index.css');
+            wp_enqueue_script('setup-wizard-script', CatalogX()->plugin_url . 'build/blocks/setupWizard/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'react-jsx-runtime'  ], CatalogX()->version, true);
+            wp_set_script_translations( 'setup-wizard-script', 'catalogx' );
+            wp_enqueue_style('setup-wizard-style', CatalogX()->plugin_url . 'build/blocks/setupWizard/index.css');
             wp_localize_script(
-                'setup_wizard_js', 'appLocalizer', [
+                'setup-wizard-script', 'appLocalizer', [
                 'apiurl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
-                'restUrl' => 'catalogx/v1',
+                'restUrl' => CatalogX()->rest_namespace,
                 'redirect_url' => admin_url() . 'admin.php?page=catalogx#&tab=modules',
             ]);
         }
