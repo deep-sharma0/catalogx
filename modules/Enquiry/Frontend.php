@@ -171,12 +171,12 @@ class Frontend{
         ]);
 
         if (is_product()) {
-            wp_enqueue_style( 'mvx-catalog-product-style', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.css' );
+            wp_enqueue_style( 'catalogx-enquiry-form-style', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.css' );
 
             // additional css
             $additional_css_settings = CatalogX()->setting->get_setting( 'custom_css_product_page' );
             if (isset($additional_css_settings) && !empty($additional_css_settings)) {
-                wp_add_inline_style('mvx-catalog-product-style', $additional_css_settings);
+                wp_add_inline_style('catalogx-enquiry-form-style', $additional_css_settings);
             }
             
             wp_enqueue_script( 'frontend_js' );
@@ -185,7 +185,7 @@ class Frontend{
     }
 
     public function catalog_free_form_settings() {
-        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
+        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry-form-customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['freefromsetting'] as &$free_field ) {
@@ -199,7 +199,7 @@ class Frontend{
     }
 
     public function catalog_pro_form_settings() {
-        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
+        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry-form-customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['formsettings']['formfieldlist'] as &$field ) {

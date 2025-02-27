@@ -142,7 +142,7 @@ class Rest {
                     $pdf_maker->get_pdf_headers($file_path, $pdf_output, $pdf);
                     // echo $pdf;
                 } else {
-                    wp_die(__("PDF document could not be generated", 'mvx-pro'));
+                    wp_die(__("PDF document could not be generated", 'catalogx-pro'));
                 }
                 $attach_pdf = CatalogX()->setting->get_setting( 'enquiry_pdf_permission' );
                 if (is_array($attach_pdf) && in_array('attach_pdf_to_email', $attach_pdf, true)) {

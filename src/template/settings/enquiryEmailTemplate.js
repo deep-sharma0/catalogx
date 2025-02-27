@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'enquiry_email_temp',
+    id: 'enquiry-email-temp',
     priority: 50,
     name: __("Enquiry Email ", "catalogx"),
     desc: __("Select your preffered enquiry details email template", "catalogx"),

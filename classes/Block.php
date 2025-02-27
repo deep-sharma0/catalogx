@@ -16,7 +16,6 @@ class Block {
         // Enqueue the script and style for block editor
         add_action( 'enqueue_block_editor_assets', [ $this,'enqueue_block_editor_assets'] );
         add_action( 'wp_enqueue_scripts', [ $this,'enqueue_block_assets'] );
-        add_action( 'wp_enqueue_scripts', [ $this,'enqueue_block_text_domain'], 100 );
 
         $this->blocks = $this->initialize_blocks();
     }
@@ -31,7 +30,7 @@ class Block {
                 'render_php_callback_function' => [$this, 'render_enquiry_button_block'], // php render calback function
                 'required_script' => '', // the script which is required in the frontend of the block
                 'required_scripts' => ['frontend_js', 'enquiry_form_js' ], // the scripts which are required in the frontend of the block
-                'required_style'   => 'mvx-catalog-product-style', // the style which is required in the frontend of the block
+                'required_style'   => 'catalogx-enquiry-form-style', // the style which is required in the frontend of the block
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'], // the react dependencies which required in js
                 'localize' => [
@@ -141,15 +140,6 @@ class Block {
                     wp_enqueue_style( $block_script['required_style'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
                 }
             }
-		}
-    }
-
-    public function enqueue_block_text_domain() {
-        global $post;
-        foreach ($this->blocks as $block_script) {
-            // if (has_block('catalogx/' . $block_script['name'], $post->post_content)) {
-                wp_set_script_translations( $block_script['name'], 'catalogx' );
-            // }
 		}
     }
 

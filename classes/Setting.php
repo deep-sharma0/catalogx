@@ -66,15 +66,15 @@ class Setting {
          */
         $this->settings_keys = apply_filters( 'catalog_register_settings_keys', [
             'catalog_extra_settings',
-            'catalog_enquiry_catalog_customization_settings',
-            'catalog_all_settings_settings',
+            'catalog_enquiry-catalog-customization_settings',
+            'catalog_all-settings_settings',
             'catalog_tools_settings',
             'catalog_pages_settings',
-            'catalog_enquiry_quote_exclusion_settings',
-            'catalog_enquiry_form_customization_settings',
-            'catalog_enquiry_email_temp_settings',
+            'catalog_enquiry-quote-exclusion_settings',
+            'catalog_enquiry-form-customization_settings',
+            'catalog_enquiry-email-temp_settings',
             'catalog_wholesale_settings',
-            'catalog_wholesale_registration_settings'
+            'catalog_wholesale-registration_settings'
         ]);
 
         return $this->settings_keys;

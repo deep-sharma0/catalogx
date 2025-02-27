@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 export default {
-    id: 'enquiry_form_customization',
+    id: 'enquiry-form-customization',
     priority: 30,
     name: __("Enquiry Form Builder", "catalogx"),
     desc: __("Design a personalized enquiry form with built-in form builder. ", "catalogx"),

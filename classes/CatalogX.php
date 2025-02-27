@@ -112,7 +112,7 @@ final class CatalogX {
 	}
 
 	public function catalog_register_form_strings() {
-		$form_settings =  CatalogX()->setting->get_option('catalog_enquiry_form_customization_settings');
+		$form_settings =  CatalogX()->setting->get_option('catalog_enquiry-form-customization_settings');
 
 		if ( function_exists( 'icl_register_string' ) ) {
 			foreach ( $form_settings['formsettings']['formfieldlist'] as $field ) {
@@ -137,7 +137,7 @@ final class CatalogX {
 		}
 
 		// Save the form settings to the options table
-		update_option( 'catalog_enquiry_form_customization_settings', $form_settings );
+		update_option( 'catalog_enquiry-form-customization_settings', $form_settings );
 	}
 
 	public function init_classes() {
@@ -239,7 +239,7 @@ final class CatalogX {
      * @return void
      */
     public function deactivate() {
-        
+        delete_option('catalog_plugin_installed');
     }
 
 	/**

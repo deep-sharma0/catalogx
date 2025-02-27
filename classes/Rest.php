@@ -100,13 +100,13 @@ class Rest {
         if ($action == 'enquiry') {
             $display_option = $request->get_param('displayOption');
             $restrict_user = $request->get_param('restrictUserEnquiry');
-            CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
-            CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
+            CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all-settings_settings');
+            CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all-settings_settings');
         }
         
         if ($action == 'quote') {
             $restrict_user = $request->get_param('restrictUserQuote');
-            CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
+            CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all-settings_settings');
         }
 
         return rest_ensure_response($all_details);
@@ -137,39 +137,6 @@ class Rest {
                 break;
         }
     }
-
-    /**
-     * Manage module from setup wizard.
-     * @param mixed $request
-     * @return void
-     */
-    // public function save_module( $request ) {
-    //     $modules = $request->get_param('modules');
-    //     foreach ($modules as $module_id) {
-    //         CatalogX()->modules->activate_modules([$module_id]);
-    //     }
-    // }
-
-    /**
-     * Manage settings from setup wizard.
-     * @param mixed $request
-     * @return void
-     */
-    // public function save_settings_wizard( $request ) {
-    //     $action = $request->get_param('action');
-
-    //     if ($action == 'enquiry') {
-    //         $display_option = $request->get_param('displayOption');
-    //         $restrict_user = $request->get_param('restrictUserEnquiry');
-    //         CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all_settings_settings');
-    //         CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all_settings_settings');
-    //     }
-        
-    //     if ($action == 'quote') {
-    //         $restrict_user = $request->get_param('restrictUserQuote');
-    //         CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all_settings_settings');
-    //     }
-    // }
 
     /**
      * Catalog rest api permission functions

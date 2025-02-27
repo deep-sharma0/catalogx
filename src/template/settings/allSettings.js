@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 export default {
-    id: 'all_settings',
+    id: 'all-settings',
     priority: 20,
     name: __("Shopping Journey", "catalogx"),
     desc: __("Set up sales flow and catalog mode with integrated enquiry and quotation management.", "catalogx"),
@@ -92,7 +92,7 @@ export default {
                 }
             ],
             moduleEnabled: 'enquiry',
-            dependentPlugin: appLocalizer.stock_alert_open
+            dependentPlugin: appLocalizer.notifima_active
         },
         {
             key: 'is_disable_popup',

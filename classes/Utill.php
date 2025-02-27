@@ -116,11 +116,18 @@ class Utill {
      * Check mvx is active or not
      * @return bool
      */
-    public static function is_active_MVX() {
-        if(class_exists('MVX'))
-          return true;
-        else
-          return false;
+    public static function is_active_plugin($name = '') {
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        
+        if ($name == 'stock') {
+            return is_plugin_active('woocommerce-product-stock-alert/product_stock_alert.php');
+        }
+        
+        if ($name == 'mvx') {
+            return is_plugin_active('dc-woocommerce-multi-vendor/dc_product_vendor.php');
+        }
+        
+        return false;
     }
 
     /**

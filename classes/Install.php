@@ -236,7 +236,7 @@ class Install {
                 ]
             ];
 
-            update_option( 'catalog_enquiry_catalog_customization_settings', $page_builder_setting );
+            update_option( 'catalog_enquiry-catalog-customization_settings', $page_builder_setting );
 
             
             // Update shopping gurnal
@@ -251,7 +251,7 @@ class Install {
                 'is_enable_multiple_product_enquiry'    => $previous_general_settings[ 'is_enable_multiple_product_enquiry' ] ?? ['is_enable_multiple_product_enquiry'],
             ];
 
-            update_option( 'catalog_all_settings_settings', $all_settings );
+            update_option( 'catalog_all-settings_settings', $all_settings );
             
             $email_settings = [
                 'additional_alert_email'  => !empty($previous_general_settings[ 'other_emails' ]) ? $previous_general_settings[ 'other_emails' ] : get_option( 'admin_email' ),
@@ -266,7 +266,7 @@ class Install {
                 $email_settings['additional_alert_email'] = implode(', ', $emails_array);
             }
 
-            update_option( 'catalog_enquiry_email_temp_settings', $email_settings );
+            update_option( 'catalog_enquiry-email-temp_settings', $email_settings );
 
             // Update pages settings
             $page_settings = [
@@ -384,7 +384,7 @@ class Install {
                 'freefromsetting' => $free_form,          
             ];
     
-            update_option( 'catalog_enquiry_form_customization_settings', $form_settings );
+            update_option( 'catalog_enquiry-form-customization_settings', $form_settings );
 
             $wholesale_form = [ 
                 [
@@ -419,7 +419,7 @@ class Install {
                 ],         
             ];
 
-            update_option( 'catalog_wholesale_registration_settings', $wholesale_from_settings );
+            update_option( 'catalog_wholesale-registration_settings', $wholesale_from_settings );
 
             //// Update exclusion settings
             $previous_exclusion_settings = get_option( 'mvx_catalog_exclusion_tab_settings', [] );
@@ -486,7 +486,7 @@ class Install {
                 'enquiry_exclusion_category_list'   => $exclusion_category_list,
             ];
 
-            update_option( 'catalog_enquiry_quote_exclusion_settings', $exclusion_settings );
+            update_option( 'catalog_enquiry-quote-exclusion_settings', $exclusion_settings );
         }
     }
 

@@ -9,7 +9,7 @@ class Admin {
     public function __construct() {
         add_action( 'admin_menu', [ $this, 'add_menu' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_script' ] );
-        add_action( 'load_script_textdomain_relative_path', [ $this, 'replace_path' ], 10, 2 );
+        add_action( 'load_script_textdomain_relative_path', [ $this, 'textdomain_relative_path' ], 10, 2 );
     }
 
     /**
@@ -25,7 +25,7 @@ class Admin {
             'manage_woocommerce',
             'catalogx',
             [ $this, 'menu_page_callback' ],
-            'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g fill="#9EA3A8" fill-rule="nonzero"><path d="M7.8,5.4c0,0.5-0.4,0.9-0.9,0.9C6.6,6.3,6.3,6,6.1,5.7c0-0.1-0.1-0.2-0.1-0.3    c0-0.5,0.4-0.9,0.9-0.9c0.1,0,0.2,0,0.3,0.1C7.6,4.7,7.8,5,7.8,5.4z M5,7.4c-0.1,0-0.2,0-0.2,0c-0.6,0-1.1,0.5-1.1,1.1    C3.6,9,4,9.4,4.4,9.6c0.1,0,0.2,0.1,0.3,0.1c0.6,0,1.1-0.5,1.1-1.1C5.9,7.9,5.5,7.5,5,7.4z M5.8,1.7c-0.6,0-1,0.5-1,1s0.5,1,1,1    s1-0.5,1-1S6.3,1.7,5.8,1.7z M2.9,2.1c-0.3,0-0.5,0.2-0.5,0.5s0.2,0.5,0.5,0.5s0.5-0.2,0.5-0.5S3.2,2.1,2.9,2.1z M0.8,5.7    C0.3,5.7,0,6.1,0,6.5s0.3,0.8,0.8,0.8s0.8-0.3,0.8-0.8S1.2,5.7,0.8,5.7z M20,10.6c-0.1,4.3-3.6,7.7-7.9,7.7c-1.2,0-2.3-0.3-3.4-0.7    l-3.5,0.6l1.4-2c-1.5-1.4-2.5-3.5-2.5-5.7c0-0.2,0-0.4,0-0.5c0.3,0.1,0.6,0.1,0.9,0C5.9,9.7,6.4,9,6.3,8.3c0-0.2-0.1-0.4-0.2-0.5    C5.7,7,4.9,6.8,4.2,6.9C4,7,3.8,7,3.7,7C3,6.9,2.5,6.4,2.4,5.8c-0.2-1,0.6-1.9,1.6-1.9C4.6,4,5.1,4.4,5.3,5c0,0.1,0,0.2,0,0.2    c0.1,0.5,0.4,1,0.9,1.2c0.2,0.1,0.5,0.2,0.7,0.2c0.7,0,1.3-0.6,1.3-1.3c0-0.5-0.3-1-0.8-1.2c1.4-1.1,3.2-1.7,5.1-1.6    C16.7,2.8,20.1,6.3,20,10.6z M14.9,8.2c0-0.3-0.2-0.5-0.5-0.5H9.9c-0.3,0-0.5,0.2-0.5,0.5v4.6c0,0.3,0.2,0.5,0.5,0.5h2.6l0.5,1.1    h1.2l-0.5-1.1h0.9c0.3,0,0.5-0.2,0.5-0.5V8.2z M10.4,12.2h1.6l-0.3-0.6l0.9-0.4l0.5,1h0.8V8.7h-3.5V12.2z"/></g></svg>' ),
+            'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PGcgZmlsbD0iIzlFQTNBOCIgZmlsbC1ydWxlPSJub256ZXJvIj48cGF0aCBkPSJNNy44LDUuNGMwLDAuNS0wLjQsMC45LTAuOSwwLjlDNi42LDYuMyw2LjMsNiw2LjEsNS43YzAtMC4xLTAuMS0wLjItMC4xLTAuMyAgICBjMC0wLjUsMC40LTAuOSwwLjktMC45YzAuMSwwLDAuMiwwLDAuMywwLjFDNy42LDQuNyw3LjgsNSw3LjgsNS40eiBNNSw3LjRjLTAuMSwwLTAuMiwwLTAuMiwwYy0wLjYsMC0xLjEsMC41LTEuMSwxLjEgICAgQzMuNiw5LDQsOS40LDQuNCw5LjZjMC4xLDAsMC4yLDAuMSwwLjMsMC4xYzAuNiwwLDEuMS0wLjUsMS4xLTEuMUM1LjksNy45LDUuNSw3LjUsNSw3LjR6IE01LjgsMS43Yy0wLjYsMC0xLDAuNS0xLDFzMC41LDEsMSwxICAgIHMxLTAuNSwxLTFTNi4zLDEuNyw1LjgsMS43eiBNMi45LDIuMWMtMC4zLDAtMC41LDAuMi0wLjUsMC41czAuMiwwLjUsMC41LDAuNXMwLjUtMC4yLDAuNS0wLjVTMy4yLDIuMSwyLjksMi4xeiBNMC44LDUuNyAgICBDMC4zLDUuNywwLDYuMSwwLDYuNXMwLjMsMC44LDAuOCwwLjhzMC44LTAuMywwLjgtMC44UzEuMiw1LjcsMC44LDUuN3ogTTIwLDEwLjZjLTAuMSw0LjMtMy42LDcuNy03LjksNy43Yy0xLjIsMC0yLjMtMC4zLTMuNC0wLjcgICAgbC0zLjUsMC42bDEuNC0yYy0xLjUtMS40LTIuNS0zLjUtMi41LTUuN2MwLTAuMiwwLTAuNCwwLTAuNWMwLjMsMC4xLDAuNiwwLjEsMC45LDBDNS45LDkuNyw2LjQsOSw2LjMsOC4zYzAtMC4yLTAuMS0wLjQtMC4yLTAuNSAgICBDNS43LDcsNC45LDYuOCw0LjIsNi45QzQsNywzLjgsNywzLjcsN0MzLDYuOSwyLjUsNi40LDIuNCw1LjhjLTAuMi0xLDAuNi0xLjksMS42LTEuOUM0LjYsNCw1LjEsNC40LDUuMyw1YzAsMC4xLDAsMC4yLDAsMC4yICAgIGMwLjEsMC41LDAuNCwxLDAuOSwxLjJjMC4yLDAuMSwwLjUsMC4yLDAuNywwLjJjMC43LDAsMS4zLTAuNiwxLjMtMS4zYzAtMC41LTAuMy0xLTAuOC0xLjJjMS40LTEuMSwzLjItMS43LDUuMS0xLjYgICAgQzE2LjcsMi44LDIwLjEsNi4zLDIwLDEwLjZ6IE0xNC45LDguMmMwLTAuMy0wLjItMC41LTAuNS0wLjVIOS45Yy0wLjMsMC0wLjUsMC4yLTAuNSwwLjV2NC42YzAsMC4zLDAuMiwwLjUsMC41LDAuNWgyLjZsMC41LDEuMSAgICBoMS4ybC0wLjUtMS4xaDAuOWMwLjMsMCwwLjUtMC4yLDAuNS0wLjVWOC4yeiBNMTAuNCwxMi4yaDEuNmwtMC4zLTAuNmwwLjktMC40bDAuNSwxaDAuOFY4LjdoLTMuNVYxMi4yeiIvPjwvZz48L3N2Zz4=',
             50
         );
 
@@ -70,7 +70,7 @@ class Admin {
             __( 'Settings', 'catalogx' ),
             __( 'Settings', 'catalogx' ),
             'manage_woocommerce',
-            'catalogx#&tab=settings&subtab=all_settings',
+            'catalogx#&tab=settings&subtab=all-settings',
             '__return_null'
         );
 
@@ -209,7 +209,7 @@ class Admin {
 
         // Get all tab setting's database value
         $settings_value = [];
-        $tabs_names     = [ 'enquiry_catalog_customization', 'all_settings', 'enquiry_form_customization', 'enquiry_quote_exclusion', 'tools', 'enquiry_email_temp', 'wholesale', 'wholesale_registration', 'pages' ];
+        $tabs_names     = [ 'enquiry-catalog-customization', 'all-settings', 'enquiry-form-customization', 'enquiry-quote-exclusion', 'tools', 'enquiry-email-temp', 'wholesale', 'wholesale-registration', 'pages' ];
         foreach ( $tabs_names as $tab_name ) {
             $settings_value[ $tab_name ] = CatalogX()->setting->get_option( 'catalog_' . $tab_name . '_settings' );
         }
@@ -223,12 +223,12 @@ class Admin {
         }
 
         // Enque script and style
-        wp_enqueue_style('mvx-catalog-style', CatalogX()->plugin_url . 'build/index.css');
-        wp_enqueue_script('mvx-catalog-script', CatalogX()->plugin_url . 'build/index.js', [ 'wp-element', 'wp-i18n', 'react-jsx-runtime' ], '1.0.0', true);
-        wp_set_script_translations( 'mvx-catalog-script', 'catalogx' );
+        wp_enqueue_style('catalogx-style', CatalogX()->plugin_url . 'build/index.css');
+        wp_enqueue_script('catalogx-script', CatalogX()->plugin_url . 'build/index.js', [ 'wp-element', 'wp-i18n', 'react-jsx-runtime' ], '1.0.0', true);
+        wp_set_script_translations( 'catalogx-script', 'catalogx' );
 
         // Localize script
-        wp_localize_script( 'mvx-catalog-script', 'appLocalizer', apply_filters( 'catalog_settings', [
+        wp_localize_script( 'catalogx-script', 'appLocalizer', apply_filters( 'catalog_settings', [
             'apiurl'                    => untrailingslashit( get_rest_url() ),
             'nonce'                     => wp_create_nonce('wp_rest'),
             'tab_name'                 => "CatalogX",
@@ -253,22 +253,22 @@ class Admin {
             'khali_dabba'                => Utill::is_khali_dabba(),
             'pro_url'                   => esc_url( CATALOGX_PRO_SHOP_URL ),
             'order_edit'                => admin_url( "admin.php?page=wc-orders&action=edit" ),
-            'site_url'                  => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=all_settings' ),
+            'site_url'                  => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=all-settings' ),
             'module_page_url'           => admin_url( 'admin.php?page=catalogx#&tab=modules' ),
-            'settings_page_url'           => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=all_settings' ),
-            'enquiry_form_settings_url'   => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=enquiry_form_customization' ),
-            'customization_settings_url'  => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=enquiry_catalog_customization' ),
+            'settings_page_url'           => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=all-settings' ),
+            'enquiry_form_settings_url'   => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=enquiry-form-customization' ),
+            'customization_settings_url'  => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=enquiry-catalog-customization' ),
             'wholesale_settings_url'      => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=wholesale' ),
             'rule_url'                    => admin_url( 'admin.php?page=catalogx#&tab=rules' ),
             'currency'                  => get_woocommerce_currency(),
-            'stock_alert_open'          => is_plugin_active('woocommerce-product-stock-alert/product_stock_alert.php'),
-            'mvx_active'                => Utill::is_active_MVX(),
+            'notifima_active'           => Utill::is_active_plugin('stock'),
+            'mvx_active'                => Utill::is_active_plugin('mvx'),
             'quote_module_active'       => CatalogX()->modules->is_active('quote'),
             'quote_base_url'            => $quote_base_url
         ]));
     }
 
-    public function replace_path($path, $url) {
+    public function textdomain_relative_path($path, $url) {
         if (strpos($url, 'woocommerce-catalog-enquiry') !== false) {   
             foreach (CatalogX()->block_paths as $key => $new_path) {
                 if (strpos($url, $key) !== false) {

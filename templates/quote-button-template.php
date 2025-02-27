@@ -1,6 +1,6 @@
 <?php
 /**
- * MVX Catalog Enquiry Cart Button Section
+ * Catalogx Quote Button Section
  *
  * Override this template by copying it to yourtheme/woocommerce-catalog-enquiry/quote-button-template.php
  *
