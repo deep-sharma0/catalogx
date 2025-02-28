@@ -24,14 +24,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/multivendorx/woocommerce-catalog-enquiry.git"
+		"url": "git+https://github.com/multivendorx/catalogx.git"
 	},
 	"author": "MultiVendorX",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/multivendorx/woocommerce-catalog-enquiry/issues"
+		"url": "https://github.com/multivendorx/catalogx/issues"
 	},
-	"homepage": "https://github.com/multivendorx/woocommerce-catalog-enquiry#readme",
+	"homepage": "https://github.com/multivendorx/catalogx#readme",
 	"devDependencies": {
 		"@wordpress/scripts": "^29.0.0"
 	},

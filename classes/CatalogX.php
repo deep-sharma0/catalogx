@@ -158,11 +158,11 @@ final class CatalogX {
 	public function plugin_link( $links ) {	
 		$plugin_links = array(
 			'<a href="' . admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=general' ) . '">' . __( 'Settings', 'catalogx' ) . '</a>',
-			'<a href="https://multivendorx.com/support-forum/forum/wcmp-catalog-enquiry/">' . __( 'Support', 'catalogx' ) . '</a>',			
+			'<a href="https://catalogx.com/support/">' . __( 'Support', 'catalogx' ) . '</a>',			
 		);	
 		$links = array_merge( $plugin_links, $links );
 		if ( apply_filters( 'woocommerce_catalog_enquiry_free_active', true ) ) {
-			$links[] = '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" target="_blank">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>';
+			$links[] = '<a href="https://catalogx.com/pricing/" target="_blank">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>';
 		}
 		return $links;
 	}
@@ -170,7 +170,7 @@ final class CatalogX {
 	public function plugin_row_meta( $links, $file ) {
 		if($file == 'woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php' && apply_filters( 'woocommerce_catalog_enquiry_free_active', true )){
 			$row_meta = array(
-				'pro'    => '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" title="' . esc_attr( __( 'Upgrade to Pro', 'catalogx' ) ) . '">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>'
+				'pro'    => '<a href="https://catalogx.com/pricing/" title="' . esc_attr( __( 'Upgrade to Pro', 'catalogx' ) ) . '">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>'
 			);
 			return array_merge( $links, $row_meta );
 		}else{

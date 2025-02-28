@@ -29,19 +29,6 @@ class Rest {
             'permission_callback'   => [ $this, 'catalog_permission' ]
         ] );
 
-        // setup wizard api
-        // register_rest_route( CatalogX()->rest_namespace, '/module-save', [
-        //     'methods'               => \WP_REST_Server::ALLMETHODS,
-        //     'callback'              => [ $this, 'save_module' ],
-        //     'permission_callback'   => [ $this, 'catalog_permission' ]
-        // ] );
-
-        // register_rest_route( CatalogX()->rest_namespace, '/save-settings', [
-        //     'methods'               => \WP_REST_Server::ALLMETHODS,
-        //     'callback'              => [ $this, 'save_settings_wizard' ],
-        //     'permission_callback'   => [ $this, 'catalog_permission' ]
-        // ] );
-
         register_rest_route( CatalogX()->rest_namespace, '/tour', [
             'methods'               => 'GET',
             'callback'              => [ $this, 'get_tour_status' ],
@@ -143,7 +130,6 @@ class Rest {
      * @return bool
      */
 	public function catalog_permission() {
-		// return current_user_can('manage_options');
-        return true;
+		return current_user_can('manage_options');
 	}
 }
