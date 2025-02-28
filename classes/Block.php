@@ -13,9 +13,8 @@ class Block {
         add_filter( 'block_categories_all', [$this, 'register_block_category'] );
         // Register the block
         add_action( 'init', [$this, 'register_blocks'] );
-        // Enqueue the script and style for block editor
-        add_action( 'enqueue_block_editor_assets', [ $this,'enqueue_block_editor_assets'] );
-        add_action( 'wp_enqueue_scripts', [ $this,'enqueue_block_assets'] );
+        // Localize the script for block
+        add_action( 'enqueue_block_assets', [ $this,'enqueue_all_block_assets'] );
 
         $this->blocks = $this->initialize_blocks();
     }
@@ -27,10 +26,6 @@ class Block {
         if (CatalogX()->modules->is_active('enquiry')) {
             $blocks[] = [
                 'name' => 'enquiry-button', // block name
-                'render_php_callback_function' => [$this, 'render_enquiry_button_block'], // php render calback function
-                'required_script' => '', // the script which is required in the frontend of the block
-                'required_scripts' => ['frontend-script', 'enquiry-form-script' ], // the scripts which are required in the frontend of the block
-                'required_style'   => 'catalogx-enquiry-form-style', // the style which is required in the frontend of the block
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'], // the react dependencies which required in js
                 'localize' => [
@@ -51,10 +46,6 @@ class Block {
         if (CatalogX()->modules->is_active('quote')) {
             $blocks[] = [
                 'name' => 'quote-button', // block name
-                'render_php_callback_function' => '',
-                'required_script' => '',
-                'required_scripts' => '',
-                'required_style'   => '',
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
@@ -67,10 +58,6 @@ class Block {
 
             $blocks[] =  [
                 'name' => 'quote-cart', // block name
-                'render_php_callback_function' => '',
-                'required_script' => '',
-                'required_scripts' => '',
-                'required_style'   => 'quote_list_css',
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
@@ -87,10 +74,6 @@ class Block {
 
             $blocks[] = [
                 'name' => 'quote-thank-you', // block name
-                'render_php_callback_function' => '',
-                'required_script' => '',
-                'required_scripts' => '',
-                'required_style'   => '',
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
@@ -112,33 +95,14 @@ class Block {
         return $blocks;
     }
 
-    public function enqueue_block_editor_assets() {
+    public function enqueue_all_block_assets() {
+        global $post;
         foreach ($this->blocks as $block_script) {
-            wp_enqueue_script($block_script['name'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], CatalogX()->version, true);
             wp_set_script_translations( $block_script['name'], 'catalogx' );
             if (isset($block_script['localize']) && !empty($block_script['localize'])) {
                 $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
-                wp_localize_script($block_script['name'], $block_script['localize']['object_name'], $block_script['localize']['data']);
-            }
-            if (!empty($block_script['required_style'])) {
-                wp_enqueue_style( $block_script['required_style'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
-            }
-		}
-    }
-
-    public function enqueue_block_assets() {
-        global $post;
-        foreach ($this->blocks as $block_script) {
-            if (has_block('catalogx/' . $block_script['name'], $post->post_content)) {
-                wp_enqueue_script($block_script['name'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.js', $block_script['react_dependencies'], CatalogX()->version, true);
-                wp_set_script_translations( $block_script['name'], 'catalogx' );
-                if (isset($block_script['localize']) && !empty($block_script['localize'])) {
-                    $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
-                    wp_localize_script($block_script['name'], $block_script['localize']['object_name'], $block_script['localize']['data']);
-                }
-                if (!empty($block_script['required_style'])) {
-                    wp_enqueue_style( $block_script['required_style'], CatalogX()->plugin_url . 'build/blocks/' . $block_script['name'] . '/index.css' );
-                }
+                wp_localize_script('catalogx-' . $block_script['name'] . '-editor-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
+                wp_localize_script('catalogx-' . $block_script['name'] . '-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
             }
 		}
     }
@@ -155,23 +119,8 @@ class Block {
     public function register_blocks() {
     
         foreach ($this->blocks as $block) {
-            register_block_type('catalogx/' . $block['name'], [
-                'render_callback' => $block['render_php_callback_function'],
-                'enqueue_scripts' => $block['required_scripts'],
-                'style'           => $block['required_style'],
-                'script'          => $block['required_style'],
-            ]);
+            register_block_type( CatalogX()->plugin_path . 'build/blocks/' . $block['name']);
         }
-    }
-
-    public function render_enquiry_button_block($attributes) {
-        ob_start();
-        // Extract the productId from attributes
-        $product_id = isset($attributes['productId']) ? intval($attributes['productId']) : null;
-
-        Module::init()->frontend->add_enquiry_button($product_id);
-    
-        return ob_get_clean();
     }
     
 }

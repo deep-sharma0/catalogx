@@ -101,7 +101,7 @@ class Frontend{
      */
     public function frontend_scripts() {
         if (is_product() || is_shop()) {
-            wp_enqueue_style( 'frontend_css', CatalogX()->plugin_url . 'modules/Catalog/assets/css/frontend.css' );
+            wp_enqueue_style( 'catalog-frontend-style', CatalogX()->plugin_url . 'modules/Catalog/assets/css/frontend.css' );
         }
     }
 

@@ -9,5 +9,17 @@
     "html": false
   },
   "textdomain": "catalogx",
-  "editorScript": "file:./index.js"
+  "editorScript": [
+    "file:./index.js",
+    "frontend-script",
+    "enquiry-form-script"
+  ],
+  "script": [
+    "file:./index.js",
+    "frontend-script",
+    "enquiry-form-script"
+  ],
+  "editorStyle": "catalogx-enquiry-form-style",
+  "style": "catalogx-enquiry-form-style",
+  "render": "file:./render.php"
 }

@@ -152,6 +152,7 @@ class Frontend{
     public function frontend_scripts() {
         $current_user = wp_get_current_user();
 
+        wp_register_style( 'catalogx-enquiry-form-style', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.css' );
         wp_register_script( 'frontend-script', CatalogX()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], CatalogX()->version, true );
         wp_register_script('enquiry-form-script', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], CatalogX()->version, true );
         wp_localize_script(
@@ -171,7 +172,7 @@ class Frontend{
         ]);
 
         if (is_product()) {
-            wp_enqueue_style( 'catalogx-enquiry-form-style', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.css' );
+            wp_enqueue_style( 'catalogx-enquiry-form-style' );
 
             // additional css
             $additional_css_settings = CatalogX()->setting->get_setting( 'custom_css_product_page' );
