@@ -67,7 +67,6 @@ final class CatalogX {
 		
 		if (is_admin() && !defined('DOING_AJAX')) {
             add_filter('plugin_action_links_' . plugin_basename($file), [ $this, 'plugin_link' ] );
-            add_filter('plugin_action_links_' . plugin_basename($file), [ $this, 'plugin_link' ] );
 			add_filter( 'plugin_row_meta', [ $this, 'plugin_row_meta'], 10, 2 );
         }
 
