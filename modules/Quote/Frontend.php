@@ -2,8 +2,6 @@
 
 namespace CatalogX\Quote;
 
-use CatalogX\Utill;
-
 class Frontend {
     /**
      * Frontend class constructor functions
@@ -60,8 +58,8 @@ class Frontend {
             return;
         }
 
-        $quote_btn_text = Utill::get_translated_string( 'catalogx', 'add_to_quote', 'Add to Quote' );    
-        $view_quote_btn_text = Utill::get_translated_string( 'catalogx', 'view_quote', 'View Quote' ); 
+        $quote_btn_text = \CatalogX\Util::get_translated_string( 'catalogx', 'add_to_quote', 'Add to Quote' );    
+        $view_quote_btn_text = \CatalogX\Util::get_translated_string( 'catalogx', 'view_quote', 'View Quote' ); 
         $btn_style = '';
 
         $settings_array = CatalogX()->setting->get_setting( 'quote_button' );

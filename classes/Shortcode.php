@@ -24,24 +24,25 @@ class Shortcode {
                 'quote-cart', 'quote_cart', [
                 'apiUrl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
-                'restUrl' => 'catalogx/v1',
+                'restUrl' => CatalogX()->rest_namespace,
                 'name'  => $current_user->display_name,
                 'email' => $current_user->user_email
             ]);
-            wp_enqueue_style('quote_list_css', CatalogX()->plugin_url . 'build/blocks/quote-cart/index.css');
+            wp_register_style('quote-cart-style', CatalogX()->plugin_url . 'build/blocks/quote-cart/index.css');
+            wp_enqueue_style('quote-cart-style');
     
-            wp_enqueue_script('quote_thank_you_js', CatalogX()->plugin_url . 'build/blocks/quote-thank-you/index.js', [ 'wp-blocks', 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], CatalogX()->version, true);
+            wp_enqueue_script('quote-thank-you-script', CatalogX()->plugin_url . 'build/blocks/quote-thank-you/index.js', [ 'wp-blocks', 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], CatalogX()->version, true);
             wp_set_script_translations( 'quote-thank-you', 'catalogx' );
             wp_localize_script(
-                'quote_thank_you_js', 'quote_thank_you', [
+                'quote-thank-you-script', 'quote_thank_you', [
                 'apiUrl' => untrailingslashit(get_rest_url()),
                 'quote_my_account_url'  => site_url('/my-account/all-quotes/'),
-                'khali_dabba'           => Utill::is_khali_dabba(),
+                'khali_dabba'           => Util::is_khali_dabba(),
             ]);
         }
     }
 
-	function display_request_quote() {
+	public function display_request_quote() {
         $this->frontend_scripts();
 		ob_start();
         ?>
@@ -51,7 +52,7 @@ class Shortcode {
 		return ob_get_clean();
 	}
     
-    function display_request_quote_thank_you() {
+    public function display_request_quote_thank_you() {
         $this->frontend_scripts();
         ob_start();
         ?>

@@ -73,7 +73,6 @@ final class CatalogX {
 		$this->init_classes();
 		
 		add_action( 'init', [ $this, 'catalog_register_strings' ] );
-		add_action( 'init', [ $this, 'catalog_register_form_strings' ] );
 		add_action( 'init', [ $this, 'catalog_setup_wizard' ] );
 		
 		do_action( 'catalog_enquiry_loaded' );
@@ -108,9 +107,7 @@ final class CatalogX {
 		foreach ( $strings as $key => $value ) {
 			icl_register_string( 'catalogx', $key, $value );
 		}
-	}
 
-	public function catalog_register_form_strings() {
 		$form_settings =  CatalogX()->setting->get_option('catalog_enquiry-form-customization_settings');
 
 		if ( function_exists( 'icl_register_string' ) ) {
@@ -144,7 +141,7 @@ final class CatalogX {
         $this->container['admin']    	= new Admin();
         $this->container['frontend'] 	= new Frontend();
 		$this->container['restapi']	 	= new Rest();
-		$this->container['util']     	= new Utill();
+		$this->container['util']     	= new Util();
 		$this->container['modules']	 	= new Modules();
 		$this->container['shortcode']	= new Shortcode();
 		$this->container['block'] 		= new Block();

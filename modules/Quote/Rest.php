@@ -219,7 +219,7 @@ class Rest {
         $order->save();
     
         // If this request comes from an enquiry (like `create_quote` function)
-        if (isset($form_data['id']) && \CatalogX\Utill::is_khali_dabba()) {
+        if (isset($form_data['id']) && \CatalogX\Util::is_khali_dabba()) {
             $enquiry_id = $form_data['id'];
             $admin_email = get_option('admin_email');
             $admin_data = get_user_by('email', $admin_email);

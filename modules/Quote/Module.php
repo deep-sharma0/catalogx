@@ -2,8 +2,6 @@
 
 namespace CatalogX\Quote;
 
-use CatalogX\Utill;
-
 class Module {
     /**
      * Container contain all helper class
@@ -25,7 +23,7 @@ class Module {
         // Init helper classes
         $this->init_classes();
 
-        if ( Utill::is_khali_dabba() ) {
+        if ( \CatalogX\Util::is_khali_dabba() ) {
             new \CatalogXPro\Quote\Module();
         }
 

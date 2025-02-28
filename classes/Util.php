@@ -4,7 +4,7 @@ namespace CatalogX;
 
 defined( 'ABSPATH' ) || exit;
 
-class Utill {
+class Util {
     /**
      * Constent holds table name
      * @var array
@@ -43,16 +43,16 @@ class Utill {
     }
 
     /**
-	 * Check is Catalog Pro is active or not.
-	 * @return bool
-	 */
-	public static function is_khali_dabba() {
-		if ( defined( 'CATALOG_ENQUIRY_PRO_PLUGIN_TOKEN' ) ) {
-			return CatalogX_Pro()->license->is_active();
-		} else {
+     * Check is Catalog Pro is active or not.
+     * @return bool
+     */
+    public static function is_khali_dabba() {
+        if ( defined( 'CATALOG_ENQUIRY_PRO_PLUGIN_TOKEN' ) ) {
+            return CatalogX_Pro()->license->is_active();
+        } else {
             return false;
         }
-	}
+    }
 
     /**
      * Get other templates ( e.g. product attributes ) passing attributes and including the file.

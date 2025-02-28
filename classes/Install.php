@@ -78,7 +78,7 @@ class Install {
 
         // Create enquiry table
         $wpdb->query(
-           "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ] . "` (
+           "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Util::TABLES[ 'enquiry' ] . "` (
                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
                 `product_info` text NOT NULL,
                 `user_id` bigint(20) NOT NULL DEFAULT 0,
@@ -93,7 +93,7 @@ class Install {
 
         // Create rules table
         $wpdb->query(
-            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'rule' ] . "` (
+            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Util::TABLES[ 'rule' ] . "` (
                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
                 `name` text,
                 `user_id` bigint(20),
@@ -112,24 +112,24 @@ class Install {
         if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             // Rebame the table
             $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`"
+                "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Util::TABLES[ 'message' ] . "`"
             );
 
             // Add column to table
             $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                "ALTER TABLE `{$wpdb->prefix}" . Util::TABLES[ 'message' ] . "`
                 ADD COLUMN attachment bigint(20);"
             );
             $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                "ALTER TABLE `{$wpdb->prefix}" . Util::TABLES[ 'message' ] . "`
                 ADD COLUMN reaction varchar(20);"
             );
             $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                "ALTER TABLE `{$wpdb->prefix}" . Util::TABLES[ 'message' ] . "`
                 ADD COLUMN star boolean;"
             );
             $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                "ALTER TABLE `{$wpdb->prefix}" . Util::TABLES[ 'message' ] . "`
                 ADD COLUMN reply text DEFAULT NULL;"
             );
         }
@@ -187,7 +187,7 @@ class Install {
                     $product_quantitys  = $enquiry[ 'product_quantitys' ];
 
                     $wpdb->insert(
-                        "{$wpdb->prefix}" . Utill::TABLES['enquiry'],
+                        "{$wpdb->prefix}" . Util::TABLES['enquiry'],
                         [
                             'id'                     => $enquiry[ 'id' ],
                             'user_id'                => $enquiry[ 'user_id' ],
@@ -203,7 +203,7 @@ class Install {
                     wp_delete_post( $enquiry[ 'id' ], false );
                 }
             } catch ( \Exception $e ) {
-                Utill::log( $e->getMessage() );
+                Util::log( $e->getMessage() );
             }
         }
     }

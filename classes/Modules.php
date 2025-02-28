@@ -99,7 +99,7 @@ class Modules {
             return;
         }
 
-        $license_active    = Utill::is_khali_dabba();
+        $license_active    = Util::is_khali_dabba();
         $active_modules    = $this->get_active_modules();
         $all_modules       = $this->get_all_modules();
         $activated_modules = [];
@@ -183,7 +183,7 @@ class Modules {
      */
     public function get_avialable_modules() {
         $modules           = $this->get_all_modules();
-        $license_active    = Utill::is_khali_dabba();
+        $license_active    = Util::is_khali_dabba();
         $available_modules = [];
 
         foreach ( $modules as $module_id => $module ) {

@@ -38,6 +38,8 @@ class Block {
 					],
 				],
             ];
+
+            //this path is set for load the translation
             $block_paths = CatalogX()->get_block_paths();
             $block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
             CatalogX()->set_block_paths($block_paths);
@@ -80,7 +82,7 @@ class Block {
                     'object_name' => 'quote_thank_you',
                     'data' => [
                         'quote_my_account_url'  => site_url('/my-account/all-quotes/'),
-                        'khali_dabba'           => Utill::is_khali_dabba(),
+                        'khali_dabba'           => Util::is_khali_dabba(),
                     ]
                 ],
             ];

@@ -1,7 +1,7 @@
 <?php
 
 namespace CatalogX\Emails;
-use CatalogX\Utill;
+use CatalogX\Util;
 
 /**
  * Email to Admin for customer enquiry.
@@ -36,7 +36,7 @@ class EnquiryEmail extends \WC_Email {
 
 	protected function initialize_templates() {
 		// Determine the base template path based on Pro status and email setting
-		$is_khali_dabba = Utill::is_khali_dabba();
+		$is_khali_dabba = Util::is_khali_dabba();
 		$email_setting = $is_khali_dabba ? CatalogX()->setting->get_setting('selected_email_tpl') : '';
 	
 		// Use Pro template path if Pro is active and email setting is not empty, otherwise fallback to default path
@@ -94,7 +94,7 @@ class EnquiryEmail extends \WC_Email {
 	 * Add vendor emails to the recipient list.
 	 */
 	protected function add_vendor_emails() {
-		if (!Utill::is_active_plugin('multivendorx')) return;
+		if (!Util::is_active_plugin('multivendorx')) return;
 
 		foreach ($this->product_id as $product_id => $quantity) {
 			$vendor = function_exists('get_mvx_product_vendors') ? get_mvx_product_vendors($product_id) : null;

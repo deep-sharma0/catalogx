@@ -1,7 +1,6 @@
 <?php 
 
 namespace CatalogX\Enquiry;
-use CatalogX\Utill;
 use CatalogX\Enquiry\Module;
 
 class Rest {
@@ -50,7 +49,7 @@ class Rest {
 
         // Create attachment of files
         foreach ( $file_data as $file ) {
-            $attachment_id = \CatalogX\Utill::create_attachment_from_files_array($file);
+            $attachment_id = \CatalogX\Util::create_attachment_from_files_array($file);
             if (!empty($attachment_id)) {
                 $attachments[] = get_attached_file($attachment_id);
             }
@@ -60,7 +59,7 @@ class Rest {
 
         // Gather product information
         $product_info = [];
-        if (\CatalogX\Utill::is_khali_dabba()) {
+        if (\CatalogX\Util::is_khali_dabba()) {
             foreach ((array) CatalogX_Pro()->cart->get_cart_data() as $data) {
                 $product_info[$data['product_id']] = $data['quantity'] ?? 1;
             }
@@ -100,7 +99,7 @@ class Rest {
         ];
 
         $product_variations = ( get_transient( 'variation_list' ) ) ? get_transient( 'variation_list' ) : [];
-        $result = $wpdb->insert("{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ], $data );
+        $result = $wpdb->insert("{$wpdb->prefix}" . \CatalogX\Util::TABLES[ 'enquiry' ], $data );
 
         if ( $result ) {
             $enquiry_id   = $wpdb->insert_id;
@@ -115,7 +114,7 @@ class Rest {
                 }
             }
     
-            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}" . Utill::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s, attachment=%d", $to_user_id, $user->ID, $chat_message, serialize( $product_info ), $enquiry_id, 'unread', $attachment_id ) );
+            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}" . \CatalogX\Util::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s, attachment=%d", $to_user_id, $user->ID, $chat_message, serialize( $product_info ), $enquiry_id, 'unread', $attachment_id ) );
 
             $enquiry_data = apply_filters( 'woocommerce_catalog_enquiry_form_data', [
                 'enquiry_id'            => $enquiry_id,
@@ -126,7 +125,7 @@ class Rest {
 				'user_enquiry_fields'   => $other_fields,
 			]);
 
-            if (Utill::is_khali_dabba()) {
+            if (\CatalogX\Util::is_khali_dabba()) {
                 $html = \CatalogXPro\Enquiry\Util::get_html($enquiry_data);
                 if ($html) { 
                     $pdf_maker = new \CatalogXPro\PDFMaker($html);
@@ -159,7 +158,7 @@ class Rest {
             
             $msg = __( "Enquiry sent successfully", 'catalogx' );
             
-            if ( \CatalogX\Utill::is_khali_dabba() ) { 
+            if ( \CatalogX\Util::is_khali_dabba() ) { 
                 CatalogX_Pro()->cart->unset_session(); 
             }
 
