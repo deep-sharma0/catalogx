@@ -83,7 +83,7 @@ class Admin {
             '__return_null'
         );
 
-        if ( ! Util::is_khali_dabba() ) {
+        if ( ! Utill::is_khali_dabba() ) {
             $submenu[ 'catalogx' ][] = [
                 '<style>
 					a:has(.upgrade-to-pro){
@@ -250,7 +250,7 @@ class Admin {
             'template5'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_4.png',
             'template6'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_5.png',
             'template7'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_6.png',
-            'khali_dabba'                => Util::is_khali_dabba(),
+            'khali_dabba'                => Utill::is_khali_dabba(),
             'pro_url'                   => esc_url( CATALOGX_PRO_SHOP_URL ),
             'order_edit'                => admin_url( "admin.php?page=wc-orders&action=edit" ),
             'site_url'                  => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=all-settings' ),
@@ -261,8 +261,8 @@ class Admin {
             'wholesale_settings_url'      => admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=wholesale' ),
             'rule_url'                    => admin_url( 'admin.php?page=catalogx#&tab=rules' ),
             'currency'                  => get_woocommerce_currency(),
-            'notifima_active'           => Util::is_active_plugin('notifima'),
-            'mvx_active'                => Util::is_active_plugin('multivendorx'),
+            'notifima_active'           => Utill::is_active_plugin('notifima'),
+            'mvx_active'                => Utill::is_active_plugin('multivendorx'),
             'quote_module_active'       => CatalogX()->modules->is_active('quote'),
             'quote_base_url'            => $quote_base_url
         ]));

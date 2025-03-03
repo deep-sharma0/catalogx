@@ -2,7 +2,7 @@
 
 namespace CatalogX\Enquiry;
 
-use CatalogX\Util;
+use CatalogX\Utill;
 
 class Module {
     /**
@@ -25,7 +25,7 @@ class Module {
         // Init helper classes
         $this->init_classes();
 
-        if ( Util::is_khali_dabba() ) {
+        if ( Utill::is_khali_dabba() ) {
             new \CatalogXPro\Enquiry\Module();
         }
         

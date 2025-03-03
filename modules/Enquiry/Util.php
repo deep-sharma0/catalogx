@@ -2,6 +2,8 @@
 
 namespace CatalogX\Enquiry;
 
+use CatalogX\Utill;
+
 class Util {
 
     /**
@@ -67,7 +69,7 @@ class Util {
             return false;
         }
 
-        if (\CatalogX\Util::is_active_plugin('multivendorx')) {
+        if (Utill::is_active_plugin('multivendorx')) {
             $product_author = get_mvx_product_vendors($product_id) ? get_mvx_product_vendors($product_id)->id : 0;
             $settings = get_user_meta($product_author, 'vendor_enquiry_settings', true);
             if ($product_author) {
