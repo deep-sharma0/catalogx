@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 quote_action: 'add_item'
             });
 
-            fetch(quote_button.ajaxurl, {
+            fetch(quoteButton.ajaxurl, {
                 method: 'POST',
                 body: requestData
             })

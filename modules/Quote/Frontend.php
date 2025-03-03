@@ -37,7 +37,7 @@ class Frontend {
             wp_enqueue_script('add-to-quote-cart-script', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], CatalogX()->version, true);
             wp_localize_script(
                 'add-to-quote-cart-script',
-                'quote_cart',
+                'addToQuoteCart',
                 [
                     'ajaxurl' => admin_url('admin-ajax.php'),
                     'loader' => admin_url('images/wpspin_light.gif'),

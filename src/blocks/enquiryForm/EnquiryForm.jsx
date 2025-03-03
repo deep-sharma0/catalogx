@@ -55,8 +55,8 @@ const FreeForm = (props) => {
     const [inputs, setInputs] = useState(() => {
         const initialState = {};
         formFields.forEach((field) => {
-            if (enquiry_form_data.default_placeholder[field.key]) {
-                initialState[field.key] = enquiry_form_data.default_placeholder[field.key];
+            if (enquiryFormData.default_placeholder[field.key]) {
+                initialState[field.key] = enquiryFormData.default_placeholder[field.key];
             }
         });
         return initialState;
@@ -117,7 +117,7 @@ const FreeForm = (props) => {
                                     <input
                                         type="text"
                                         name={field.key}
-                                        value={enquiry_form_data.default_placeholder.name || inputs[field.key]}
+                                        value={enquiryFormData.default_placeholder.name || inputs[field.key]}
                                         onChange={handleChange}
                                         required
                                     />
@@ -131,7 +131,7 @@ const FreeForm = (props) => {
                                         <input
                                             type="email"
                                             name={field.key}
-                                            value={enquiry_form_data.default_placeholder.email || inputs[field.key]}
+                                            value={enquiryFormData.default_placeholder.email || inputs[field.key]}
                                             onChange={handleChange}
                                             required
                                         />
@@ -230,10 +230,10 @@ const EnquiryForm = (props) => {
     const [ loading, setLoading ] = useState(false);
     const [ toast, setToast ] = useState(false);
     const [ responseMessage, setResponseMessage ] = useState('');
-    const formData = enquiry_form_data;
+    const formData = enquiryFormData;
     const proActive = formData.khali_dabba;
 
-    const submitUrl = `${enquiry_form_data.apiurl}/catalogx/v1/enquiries`;
+    const submitUrl = `${enquiryFormData.apiurl}/catalogx/v1/enquiries`;
 
     const onSubmit = (formData) => {
         setLoading(true);
@@ -252,7 +252,7 @@ const EnquiryForm = (props) => {
         axios.post(submitUrl, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
-              "X-WP-Nonce": enquiry_form_data.nonce
+              "X-WP-Nonce": enquiryFormData.nonce
             },
           })
           .then(response => {
@@ -293,7 +293,7 @@ const EnquiryForm = (props) => {
                 <div className='modal-close-btn'>
                     <i className='admin-font adminLib-cross'></i>
                 </div>
-                <div>{enquiry_form_data.content_before_form}</div>
+                <div>{enquiryFormData.content_before_form}</div>
                 {
                     proActive ?
                     <FromViewer
@@ -306,7 +306,7 @@ const EnquiryForm = (props) => {
                         onSubmit={onSubmit}
                     />
                 }
-                <div>{enquiry_form_data.content_after_form}</div>
+                <div>{enquiryFormData.content_after_form}</div>
             </div>
         </div>
     );

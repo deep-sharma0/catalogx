@@ -14,8 +14,8 @@ const QuoteList = () => {
 	const [responseStatus, setResponseStatus] = useState('');
 	const [totalRows, setTotalRows] = useState();
 	const [formData, setFormData] = useState({
-        name: quote_cart.name || '',
-        email: quote_cart.email || '',
+        name: quoteCart.name || '',
+        email: quoteCart.email || '',
         phone: '',
         message: '',
     });
@@ -47,8 +47,8 @@ const QuoteList = () => {
 		//Fetch the data to show in the table
 		axios({
 			method: "post",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-cart`,
-			headers: { "X-WP-Nonce": quote_cart.nonce },
+			url: `${quoteCart.apiUrl}/${quoteCart.restUrl}/quote-cart`,
+			headers: { "X-WP-Nonce": quoteCart.nonce },
 			data: {
 				page: currentPage,
             	row: rowsPerPage,
@@ -63,8 +63,8 @@ const QuoteList = () => {
 	const handleRemoveCart = (e, id, key) => {
 		axios({
 			method: "delete",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-cart`,
-			headers: { "X-WP-Nonce": quote_cart.nonce },
+			url: `${quoteCart.apiUrl}/${quoteCart.restUrl}/quote-cart`,
+			headers: { "X-WP-Nonce": quoteCart.nonce },
 			data: {
 				productId : id,
 				key : key
@@ -93,8 +93,8 @@ const QuoteList = () => {
 
 		axios({
 			method: "put",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quote-cart`,
-			headers: { "X-WP-Nonce": quote_cart.nonce },
+			url: `${quoteCart.apiUrl}/${quoteCart.restUrl}/quote-cart`,
+			headers: { "X-WP-Nonce": quoteCart.nonce },
 			data: {
 				products : newProductQuantity
 			},
@@ -110,8 +110,8 @@ const QuoteList = () => {
 		setLoading(true);
 		axios({
 			method: "post",
-			url: `${quote_cart.apiUrl}/${quote_cart.restUrl}/quotes`,
-			headers: { "X-WP-Nonce": quote_cart.nonce },
+			url: `${quoteCart.apiUrl}/${quoteCart.restUrl}/quotes`,
+			headers: { "X-WP-Nonce": quoteCart.nonce },
 			data: {
 				formData : formData,
 			},

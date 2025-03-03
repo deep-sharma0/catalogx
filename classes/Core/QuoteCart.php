@@ -158,7 +158,7 @@ class QuoteCart {
         $cart_data['quantity'] = ( isset( $cart_data['quantity'] ) ) ? (int) $cart_data['quantity'] : 1;
         $return = '';
         
-        do_action( 'woocommerce_catalog_add_to_enquiry_cart', $cart_data );
+        do_action( 'woocommerce_catalog_add_to_quote_cart', $cart_data );
         
         if ( !$this->exists_in_cart( $cart_data['product_id'] ) ) {
             $enquiry = array(

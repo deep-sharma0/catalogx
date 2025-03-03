@@ -72,29 +72,23 @@ final class CatalogX {
 
 		$this->init_classes();
 		
-		add_action( 'init', [ $this, 'catalog_register_strings' ] );
-		add_action( 'init', [ $this, 'catalog_register_form_strings' ] );
-		add_action( 'init', [ $this, 'catalog_setup_wizard' ] );
+		add_action( 'init', [ $this, 'catalog_register_strings_and_setup_wizard' ] );
 		
 		do_action( 'catalog_enquiry_loaded' );
 
 	}
 	
 	/**
-	 * Load setup class 
+	 * Load setup class and register string
 	 */
-	public function catalog_setup_wizard() {
-		
+	public function catalog_register_strings_and_setup_wizard() {
 		new SetupWizard();
 		if (get_option('catalog_plugin_activated')) {
 			delete_option('catalog_plugin_activated');
 			wp_redirect(admin_url('admin.php?page=catalog-setup'));
 			exit;
 		}
-	
-	}
 
-	public function catalog_register_strings() {
 		if ( ! function_exists( 'icl_register_string' ) ) {
 			return;
 		}
@@ -108,9 +102,7 @@ final class CatalogX {
 		foreach ( $strings as $key => $value ) {
 			icl_register_string( 'catalogx', $key, $value );
 		}
-	}
 
-	public function catalog_register_form_strings() {
 		$form_settings =  CatalogX()->setting->get_option('catalog_enquiry-form-customization_settings');
 
 		if ( function_exists( 'icl_register_string' ) ) {

@@ -156,7 +156,7 @@ class Frontend{
         wp_register_script( 'frontend-script', CatalogX()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], CatalogX()->version, true );
         wp_register_script('enquiry-form-script', CatalogX()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], CatalogX()->version, true );
         wp_localize_script(
-            'enquiry-form-script', 'enquiry_form_data', [
+            'enquiry-form-script', 'enquiryFormData', [
             'apiurl'        => untrailingslashit(get_rest_url()),
             'nonce'         => wp_create_nonce( 'wp_rest' ),
             'settings_free' => $this->catalog_free_form_settings(),

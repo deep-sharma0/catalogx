@@ -53,8 +53,8 @@ const QuoteThankYou = () => {
                 <div>
                     <p>Thank you for your quote request{' '}
                         <strong>
-                            {quote_thank_you.khali_dabba ? (
-                                <a href={`${quote_thank_you.quote_my_account_url}`}>{orderId}</a>
+                            {quoteThankYou.khali_dabba ? (
+                                <a href={`${quoteThankYou.quote_my_account_url}`}>{orderId}</a>
                             ) : (
                                 orderId
                             )}

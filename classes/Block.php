@@ -51,7 +51,7 @@ class Block {
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
-					'object_name' => 'quote_button',
+					'object_name' => 'quoteButton',
 					'data' => [
                         'ajaxurl' => admin_url('admin-ajax.php'),
 					],
@@ -63,7 +63,7 @@ class Block {
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
-					'object_name' => 'quote_cart',
+					'object_name' => 'quoteCart',
 					'data' => [
                         'apiUrl' => '',
 						'restUrl' => CatalogX()->rest_namespace,
@@ -79,7 +79,7 @@ class Block {
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
-                    'object_name' => 'quote_thank_you',
+                    'object_name' => 'quoteThankYou',
                     'data' => [
                         'quote_my_account_url'  => site_url('/my-account/all-quotes/'),
                         'khali_dabba'           => Utill::is_khali_dabba(),

@@ -21,7 +21,7 @@ class Shortcode {
             wp_enqueue_script('quote-cart', CatalogX()->plugin_url . 'build/blocks/quote-cart/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], CatalogX()->version, true);
             wp_set_script_translations( 'quote-cart', 'catalogx' );
             wp_localize_script(
-                'quote-cart', 'quote_cart', [
+                'quote-cart', 'quoteCart', [
                 'apiUrl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'restUrl' => CatalogX()->rest_namespace,
@@ -32,9 +32,9 @@ class Shortcode {
             wp_enqueue_style('quote-cart-style');
     
             wp_enqueue_script('quote-thank-you-script', CatalogX()->plugin_url . 'build/blocks/quote-thank-you/index.js', [ 'wp-blocks', 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], CatalogX()->version, true);
-            wp_set_script_translations( 'quote-thank-you', 'catalogx' );
+            wp_set_script_translations( 'quote-thank-you-script', 'catalogx' );
             wp_localize_script(
-                'quote-thank-you-script', 'quote_thank_you', [
+                'quote-thank-you-script', 'quoteThankYou', [
                 'apiUrl' => untrailingslashit(get_rest_url()),
                 'quote_my_account_url'  => site_url('/my-account/all-quotes/'),
                 'khali_dabba'           => Utill::is_khali_dabba(),

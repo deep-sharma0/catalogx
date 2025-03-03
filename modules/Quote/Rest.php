@@ -72,7 +72,7 @@ class Rest {
         $quote_list = [];
         foreach ( $paginated_cart_data as $key => $item ) {
             $product = wc_get_product( $item['product_id'] );
-            $thumbnail = $product->get_image( apply_filters( 'woocommerce_catalog_enquiry_cart_item_thumbnail_size', [84, 84] ) );
+            $thumbnail = $product->get_image( apply_filters( 'woocommerce_catalog_quote_cart_item_thumbnail_size', [84, 84] ) );
             $name = '';
             if ( $item['variation'] ) {
                 foreach ( $item['variation'] as $label => $value ) {

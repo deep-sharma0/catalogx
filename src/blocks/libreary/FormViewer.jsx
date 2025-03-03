@@ -242,7 +242,7 @@ const FromViewer = (props) => {
                                         name={field.name}
                                         value={
                                             field.name === 'name' 
-                                                ? (enquiry_form_data.default_placeholder.name || inputs[field.name]) 
+                                                ? (enquiryFormData.default_placeholder.name || inputs[field.name]) 
                                                 : inputs[field.name]
                                         }
                                         placeholder={field.placeholder}
@@ -259,7 +259,7 @@ const FromViewer = (props) => {
                                     <input
                                         type="email"
                                         name={field.name}
-                                        value={enquiry_form_data.default_placeholder.email || inputs[field.key]}
+                                        value={enquiryFormData.default_placeholder.email || inputs[field.key]}
                                         placeholder={field.placeholder}
                                         onChange={(e) => handleChange(field.name, e.target.value)}
                                         required={field.required}

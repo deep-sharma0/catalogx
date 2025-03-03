@@ -18,9 +18,9 @@ jQuery( function( $ ) {
             quote_action:   'add_item'
         };
 
-        currentElement.after(' <img src="' + quote_cart.loader + '" >');
+        currentElement.after(' <img src="' + addToQuoteCart.loader + '" >');
         
-        $.post(quote_cart.ajaxurl, requestData, function (response) {
+        $.post(addToQuoteCart.ajaxurl, requestData, function (response) {
 
             currentElement.next().remove();
             if (response.result == 'true' || response.result == 'exists') {
