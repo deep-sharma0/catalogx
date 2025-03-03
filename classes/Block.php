@@ -38,6 +38,8 @@ class Block {
 					],
 				],
             ];
+
+            //this path is set for load the translation
             $block_paths = CatalogX()->get_block_paths();
             $block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
             CatalogX()->set_block_paths($block_paths);
