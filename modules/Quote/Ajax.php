@@ -18,12 +18,13 @@ class Ajax {
     public function add_item_in_cart() {
         $return             = 'false';
         $message            = '';
-        $product_id         = ( isset( $_POST['product_id'] ) && is_numeric( $_POST['product_id'] ) ) ? (int) $_POST['product_id'] : false;          
-        $is_valid_variation = ( isset( $_POST['variation_id'] ) && ! empty( $_POST['variation_id'] ) ) ? is_numeric( $_POST['variation_id'] ) : true;
-       
+        $product_id         = filter_input( INPUT_POST, 'product_id', FILTER_VALIDATE_INT );
+        $variation_id       = filter_input( INPUT_POST, 'variation_id', FILTER_VALIDATE_INT );
+        $is_valid_variation = ( $variation_id !== null ) ? ( $variation_id !== false ) : true;
+        
         $is_valid = apply_filters( 'catalog_add_item_in_cart_is_valid', $product_id && $is_valid_variation, $product_id );
-
-        $postdata = $_POST;
+    
+        $postdata = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
         $postdata = apply_filters( 'catalog_add_item_in_cart_prepare', $postdata, $product_id );
 
         if ( ! $is_valid ) {
@@ -39,14 +40,12 @@ class Ajax {
         } else {
             $message = $errors;
         }
-        wp_send_json(
-            [
-            'result'     => $return,
-            'message'    => $message,
-            'rqa_url'    => CatalogX()->quotecart->get_request_quote_page_url(),
-            // 'variations' => implode( ',', $this->get_variations_list() ),
-            ]
-            
-        );
+    
+        wp_send_json([
+            'result'  => $return,
+            'message' => $message,
+            'rqa_url' => CatalogX()->quotecart->get_request_quote_page_url(),
+        ]);
     }
+    
 }
