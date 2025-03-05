@@ -42,7 +42,7 @@ class Session extends  \WC_Session {
 	            define( 'COOKIEHASH', md5( wp_guess_url() ) );
 	    }
 
-	    $this->_cookie = 'woocommerce_catalog_session_' . COOKIEHASH;
+	    $this->_cookie = 'catalogx_session_' . COOKIEHASH;
 
 		if ( $cookie = $this->get_session_cookie() ) {
 			$this->_customer_id        = $cookie[0];
@@ -53,7 +53,7 @@ class Session extends  \WC_Session {
 			// Update session if its close to expiring
 			if ( time() > $this->_session_expiring ) {
 				$this->set_session_expiration();
-				$session_expiry_option = 'woocommerce_catalog_session_expires_' . $this->_customer_id;
+				$session_expiry_option = 'catalogx_session_expires_' . $this->_customer_id;
 
                 if ( false === get_option( $session_expiry_option ) ) {
                     add_option( $session_expiry_option, $this->_session_expiration, '', 'no' );
@@ -173,8 +173,8 @@ class Session extends  \WC_Session {
 		// Dirty if something changed - prevents saving nothing new
 		if ( $this->_dirty && $this->has_session() ) {
 
-			$session_option        = '_woocommerce_catalog_session_' . $this->_customer_id;
-            $session_expiry_option = '_woocommerce_catalog_session_expires_' . $this->_customer_id;
+			$session_option        = '_catalogx_session_' . $this->_customer_id;
+            $session_expiry_option = '_catalogx_session_expires_' . $this->_customer_id;
 
             if ( false === get_option( $session_option ) ) {
                 add_option( $session_option, $this->_data, '', 'no' );
@@ -215,7 +215,7 @@ class Session extends  \WC_Session {
             foreach ( $wc_session_expires as $option_name ) {
                 $session_id         = substr( $option_name, 20 );
                 $expired_sessions[] = $option_name;  // Expires key
-                $expired_sessions[] = "_woocommerce_catalog_session_$session_id"; // Session key
+                $expired_sessions[] = "_catalogx_session_$session_id"; // Session key
             }
 
             if ( ! empty( $expired_sessions ) ) {
@@ -250,7 +250,7 @@ class Session extends  \WC_Session {
 			return false;
 		}
 
-		return get_option( '_woocommerce_catalog_session_' . $customer_id);
+		return get_option( '_catalogx_session_' . $customer_id);
 	}
 
 	/**
@@ -260,8 +260,8 @@ class Session extends  \WC_Session {
 	 */
 	public function delete_session( $customer_id ) {
 		// Delete session
-        $session_option        = '_woocommerce_catalog_session_' . $customer_id;
-        $session_expiry_option = '_woocommerce_catalog_session_expires_' . $customer_id;
+        $session_option        = '_catalogx_session_' . $customer_id;
+        $session_expiry_option = '_catalogx_session_expires_' . $customer_id;
 
         delete_option( $session_option );
         delete_option( $session_expiry_option );

@@ -60,7 +60,7 @@ class QuoteCart {
 
     public function clean_session(){
         global $wpdb;
-        $query = $wpdb->query("DELETE FROM ". $wpdb->prefix ."options  WHERE option_name LIKE '_woocommerce_catalog_session_%'");
+        $query = $wpdb->query("DELETE FROM ". $wpdb->prefix ."options  WHERE option_name LIKE '_catalogx_session_%'");
     }
 
 
