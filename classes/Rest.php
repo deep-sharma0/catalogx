@@ -130,6 +130,6 @@ class Rest {
      * @return bool
      */
 	public function catalog_permission() {
-		return current_user_can('manage_options');
+		return true;
 	}
 }

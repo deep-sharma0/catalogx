@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CatalogX - Product Catalog Mode For WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-18 12:56+0000\n"
+"POT-Creation-Date: 2025-03-05 07:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -23,6 +23,39 @@ msgstr ""
 msgid "%s - Powered by CatalogX"
 msgstr ""
 
+#: classes/CatalogX.php:190
+#, php-format
+msgid ""
+"%sWoocommerce Catalog Enquiry is inactive.%s The %sWooCommerce plugin%s must "
+"be active for the Woocommerce Catalog Enquiry to work. Please %sinstall & "
+"activate WooCommerce%s"
+msgstr ""
+
+#: src/components/PopupContent/PopupContent.jsx:20
+msgid "1. Speed up sales with personalized quotes."
+msgstr ""
+
+#: src/components/PopupContent/PopupContent.jsx:21
+msgid "2. Boost bulk sales with exclusive pricing and wholesale order forms."
+msgstr ""
+
+#: src/components/PopupContent/PopupContent.jsx:22
+msgid ""
+"3. Enable multiple product enquiries at once to boost customer engagement."
+msgstr ""
+
+#: src/components/PopupContent/PopupContent.jsx:23
+msgid "4. Advanced enquiry messaging with file uploads, tagging, etc."
+msgstr ""
+
+#: src/components/PopupContent/PopupContent.jsx:24
+msgid "5. Increase revenue with tailored pricing for different user roles."
+msgstr ""
+
+#: src/components/PopupContent/PopupContent.jsx:25
+msgid "6. Drive higher sales with customized pricing for product categories."
+msgstr ""
+
 #: src/template/settings/wholesale.js:83
 msgid ""
 "<b>Bulk Discount Configuration: </b> Set discount type (percentage/fixed), "
@@ -37,8 +70,12 @@ msgid_plural "Accepted Quote <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: modules/RoleBased/Admin.php:88
-msgid "Add role successfully"
+#: src/components/PopupContent/PopupPluginDependency.jsx:17
+msgid "Add Enquiry Button for Out of Stock Products"
+msgstr ""
+
+#: src/blocks/quote-button/index.js:14 src/blocks/quote-button/index.js:21
+msgid "Add to Quote"
 msgstr ""
 
 #: src/template/settings/tools.js:15
@@ -54,7 +91,7 @@ msgstr ""
 msgid "Admin will get an email when a customer enquires about a product."
 msgstr ""
 
-#: src/components/Banner/banner.jsx:106
+#: src/components/Banner/banner.jsx:109
 msgid "Advanced Enquiries"
 msgstr ""
 
@@ -70,7 +107,7 @@ msgstr ""
 msgid "Attachment"
 msgstr ""
 
-#: src/components/Banner/banner.jsx:120
+#: src/components/Banner/banner.jsx:123
 msgid "Automated multi-tier price rules"
 msgstr ""
 
@@ -82,8 +119,36 @@ msgstr ""
 msgid "Available Shortcodes"
 msgstr ""
 
-#: src/components/Banner/banner.jsx:133
+#: src/components/Banner/banner.jsx:136
 msgid "B2B ordering with bulk discounts"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:77
+msgid "Background Color"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:121
+msgid "Background Color On Hover"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:161
+msgid "Border Color"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:214
+msgid "Border Color On Hover"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:195
+msgid "Border Radious"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:178
+msgid "Border Size"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:237
+msgid "Button text"
 msgstr ""
 
 #: src/template/settings/allSettings.js:28
@@ -110,8 +175,27 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
+#: src/components/AdminLibrary/Inputs/Special/RegistrationForm/RegistrationForm.jsx:117
+msgid "Click to add next text field"
+msgstr ""
+
+#: src/blocks/enquiryForm/EnquiryForm.jsx:183
+#: src/blocks/libreary/FormViewer.jsx:353
+#: src/components/AdminLibrary/Inputs/Special/RegistrationForm/Templates/Attachment.jsx:29
+msgid "Click to upload"
+msgstr ""
+
+#: src/blocks/enquiryForm/EnquiryForm.jsx:223
+#: src/blocks/libreary/FormViewer.jsx:420
+msgid "Close"
+msgstr ""
+
 #: src/template/settings/enquiryEmailTemplate.js:14
 msgid "Common Settings"
+msgstr ""
+
+#: src/components/AdminFooter/AdminFooter.jsx:20
+msgid "Contribute Here"
 msgstr ""
 
 #. Description of the plugin
@@ -122,7 +206,7 @@ msgstr ""
 msgid "Coupon restriction for wholesalers"
 msgstr ""
 
-#: src/components/Banner/banner.jsx:145
+#: src/components/Banner/banner.jsx:148
 msgid "Custom Quotes"
 msgstr ""
 
@@ -197,6 +281,10 @@ msgstr ""
 msgid "Download as PDF"
 msgstr ""
 
+#: src/components/PopupContent/PopupPluginDependency.jsx:22
+msgid "Download now"
+msgstr ""
+
 #: src/template/settings/wholesaleRegistration.js:7
 msgid "Drag-and-drop interface to tailor the wholesale registration form."
 msgstr ""
@@ -205,7 +293,7 @@ msgstr ""
 msgid "Drag-and-drop to create and customize single product page elements."
 msgstr ""
 
-#: src/components/Banner/banner.jsx:119
+#: src/components/Banner/banner.jsx:122
 msgid "Dynamic Pricing"
 msgstr ""
 
@@ -217,7 +305,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: classes/Emails/RequestQuoteSendEmail.php:30
+#: classes/Emails/RequestQuoteSendEmail.php:31
 msgid "Email to request a quote"
 msgstr ""
 
@@ -227,10 +315,8 @@ msgstr ""
 msgid "Email:"
 msgstr ""
 
-#: src/template/settings/allSettings.js:146
-msgid ""
-"Enable multiple enquiry flow so customers can add several products to their "
-"enquiry cart and submit a single enquiry for all selected items."
+#: src/components/PopupContent/ModulePopup.jsx:21
+msgid "Enable Now"
 msgstr ""
 
 #: src/template/settings/allSettings.js:120
@@ -285,8 +371,12 @@ msgstr ""
 msgid "Enquiry sent"
 msgstr ""
 
-#: modules/Enquiry/Rest.php:165
+#: modules/Enquiry/Rest.php:160
 msgid "Enquiry sent successfully"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ConnectButton/ConnectButton.jsx:160
+msgid "error log"
 msgstr ""
 
 #: modules/Quote/Ajax.php:30
@@ -295,7 +385,7 @@ msgstr ""
 
 #: src/template/settings/exclusion.js:7
 msgid ""
-"Exclude catalog viewing, inquiries, and quotes by user roles and product "
+"Exclude catalog viewing, enquiries, and quotes by user roles and product "
 "attributes."
 msgstr ""
 
@@ -311,12 +401,56 @@ msgid_plural "Expired Quotes <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
+#: src/components/AdminFooter/AdminFooter.jsx:14
+msgid "Explore Documentation"
+msgstr ""
+
+#: modules/Quote/Rest.php:182
+msgid "Failed to create order."
+msgstr ""
+
 #: src/blocks/enquiry-button/index.js:47
 msgid "Failed to load."
 msgstr ""
 
+#: src/components/AdminLibrary/Inputs/Special/FreeProFormCustomizer/FormCustomizer.jsx:123
+msgid "Field Name"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:94
+msgid "Font Color"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:138
+msgid "Font Color On Hover"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:252
+msgid "Font Size"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:269
+msgid "Font Width"
+msgstr ""
+
 #: src/template/settings/formCustomization.js:14
 msgid "Form Customizer"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/RegistrationForm/Templates/elements.jsx:10
+msgid "Form fields"
+msgstr ""
+
+#: src/blocks/quote-cart/QuoteListTable.jsx:256
+msgid "Form submitted successfully"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/AutoGeneratedDefaultInput/AutoGeneratedDefaultInput.jsx:81
+msgid "Generate"
+msgstr ""
+
+#: src/components/AdminFooter/AdminFooter.jsx:8
+msgid "Get in touch with Support"
 msgstr ""
 
 #: src/template/settings/exclusion.js:15
@@ -325,7 +459,7 @@ msgstr ""
 
 #. URI of the plugin
 #. Author URI of the plugin
-msgid "https://multivendorx.com/"
+msgid "https://catalogx.com/"
 msgstr ""
 
 #: src/template/settings/allSettings.js:54
@@ -338,6 +472,16 @@ msgstr ""
 
 #: src/template/settings/allSettings.js:85
 msgid "In-Stock notify me button "
+msgstr ""
+
+#: src/components/PopupContent/PopupPluginDependency.jsx:19
+msgid ""
+"Install the \"Back In Stock Notifier for WooCommerce\" plugin to enable the "
+"Enquiry button for out-of-stock products."
+msgstr ""
+
+#: src/blocks/enquiryForm/Recaptcha.jsx:44
+msgid "Invalid security code, please try again."
 msgstr ""
 
 #: src/template/settings/allSettings.js:165
@@ -364,6 +508,10 @@ msgid ""
 "page. <br>  Automatic - Instant wholesaler approval upon sign-up"
 msgstr ""
 
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:312
+msgid "Margin"
+msgstr ""
+
 #: src/blocks/quote-cart/QuoteListTable.jsx:236
 msgid "Message:"
 msgstr ""
@@ -374,10 +522,6 @@ msgstr ""
 
 #: classes/Admin.php:79 classes/Admin.php:80
 msgid "Modules"
-msgstr ""
-
-#: src/template/settings/allSettings.js:145
-msgid "Multi-product enquiry"
 msgstr ""
 
 #. Author of the plugin
@@ -400,11 +544,11 @@ msgid_plural "New Quote Requests <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: classes/Emails/RequestQuoteSendEmail.php:77
+#: classes/Emails/RequestQuoteSendEmail.php:78
 msgid "New Quote Request from {customer_name}"
 msgstr ""
 
-#: classes/Emails/RequestQuoteSendEmail.php:87
+#: classes/Emails/RequestQuoteSendEmail.php:88
 msgid "New Quote Submitted by {customer_name} - Please Review"
 msgstr ""
 
@@ -414,6 +558,12 @@ msgstr ""
 
 #: src/blocks/enquiry-button/index.js:50
 msgid "No product selected."
+msgstr ""
+
+#: src/blocks/enquiryForm/EnquiryForm.jsx:183
+#: src/blocks/libreary/FormViewer.jsx:353
+#: src/components/AdminLibrary/Inputs/Special/RegistrationForm/Templates/Attachment.jsx:29
+msgid "or drag and drop"
 msgstr ""
 
 #: modules/Quote/Admin.php:61 modules/Quote/Admin.php:92
@@ -446,6 +596,10 @@ msgid ""
 "Our team is reviewing your details and will get back to you shortly with a "
 "personalized quote. We appreciate your patience and look forward to serving "
 "you!"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:295
+msgid "Padding"
 msgstr ""
 
 #: src/template/settings/pages.js:6
@@ -584,8 +738,16 @@ msgstr ""
 msgid "Quote"
 msgstr ""
 
-#: modules/Quote/Rest.php:112
+#: modules/Quote/Rest.php:114
 msgid "Quote cart updated!"
+msgstr ""
+
+#: src/components/AdminFooter/AdminFooter.jsx:10
+msgid "Reach out to the support team for assistance or guidance."
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/RegistrationForm/Templates/Recaptcha.jsx:9
+msgid "reCAPTCHA has been successfully added to the form."
 msgstr ""
 
 #: src/template/settings/enquiryEmailTemplate.js:22
@@ -627,7 +789,7 @@ msgstr ""
 msgid "Review all system logs and errors"
 msgstr ""
 
-#: src/components/Banner/banner.jsx:107
+#: src/components/Banner/banner.jsx:110
 msgid "Rich customer-admin messaging system"
 msgstr ""
 
@@ -637,6 +799,10 @@ msgstr ""
 
 #: src/components/Roles/roles.jsx:193
 msgid "Roles"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/RegistrationForm/Templates/Divider.jsx:6
+msgid "Section Divider"
 msgstr ""
 
 #: src/template/settings/allSettings.js:138
@@ -679,6 +845,10 @@ msgstr ""
 msgid "Set Enquiry Cart Page"
 msgstr ""
 
+#: src/components/AdminLibrary/Inputs/Special/FreeProFormCustomizer/FormCustomizer.jsx:124
+msgid "Set new field name"
+msgstr ""
+
 #: src/template/settings/pages.js:22
 msgid "Set Request Quote Page"
 msgstr ""
@@ -707,11 +877,11 @@ msgstr ""
 msgid "Set Wholesale Product List Page"
 msgstr ""
 
-#: classes/Admin.php:70 classes/Admin.php:71
+#: classes/Admin.php:70 classes/Admin.php:71 classes/CatalogX.php:152
 msgid "Settings"
 msgstr ""
 
-#: classes/Rest.php:94
+#: classes/Rest.php:82
 msgid "Settings Saved"
 msgstr ""
 
@@ -719,19 +889,47 @@ msgstr ""
 msgid "Shopping Journey"
 msgstr ""
 
-#: src/components/Banner/banner.jsx:146
+#: src/template/settings/allSettings.js:13
+msgid "Sitewide buy mode"
+msgstr ""
+
+#: src/blocks/quote-cart/QuoteListTable.jsx:255
+msgid "Something went wrong! Try Again"
+msgstr ""
+
+#: src/components/Banner/banner.jsx:149
 msgid "Speed up sales with personalized quotes."
+msgstr ""
+
+#: src/blocks/enquiryForm/EnquiryForm.jsx:221
+msgid "Submit"
 msgstr ""
 
 #: src/blocks/quote-cart/QuoteListTable.jsx:163
 msgid "Subtotal"
 msgstr ""
 
+#: classes/CatalogX.php:153
+msgid "Support"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx:359
+msgid "System settings"
+msgstr ""
+
 #: src/template/settings/exclusion.js:40
 msgid "Tag"
 msgstr ""
 
-#: classes/Emails/RequestQuoteSendEmail.php:31
+#: src/components/AdminLibrary/Inputs/Special/ConnectButton/ConnectButton.jsx:158
+msgid "Test connection failed. Check further details in"
+msgstr ""
+
+#: src/components/AdminLibrary/Inputs/Special/ConnectButton/ConnectButton.jsx:164
+msgid "Test connection successful"
+msgstr ""
+
+#: classes/Emails/RequestQuoteSendEmail.php:32
 msgid "This email is sent when a user clicks on \"Request a quote\" button"
 msgstr ""
 
@@ -740,16 +938,34 @@ msgid ""
 "This option allows customers to subscribe for automatic stock notifications."
 msgstr ""
 
+#: src/components/PopupContent/ModulePopup.jsx:18
+#, javascript-format
+msgid "To activate please enable the %s module first"
+msgstr ""
+
+#: src/components/AdminFooter/AdminFooter.jsx:22
+msgid "To participate in product enhancement."
+msgstr ""
+
 #: src/template/settings/tools.js:6
 msgid "Tools"
 msgstr ""
 
-#: src/template/settings/allSettings.js:13
-msgid "Turn off sitewide buying"
+#: src/components/AdminFooter/AdminFooter.jsx:16
+msgid "Understand the plugin and its settings."
+msgstr ""
+
+#: src/components/PopupContent/PopupContent.jsx:18
+msgid "Unlock revenue-boosting features with CatalogX Pro today!"
 msgstr ""
 
 #: src/blocks/quote-cart/QuoteListTable.jsx:179
 msgid "Update Cart"
+msgstr ""
+
+#: classes/CatalogX.php:157 classes/CatalogX.php:165 classes/CatalogX.php:165
+#: src/components/PopupContent/PopupContent.jsx:27
+msgid "Upgrade to Pro"
 msgstr ""
 
 #: classes/Admin.php:94
@@ -780,8 +996,8 @@ msgstr ""
 msgid "User Subject : "
 msgstr ""
 
-#: src/components/Banner/banner.jsx:113 src/components/Banner/banner.jsx:126
-#: src/components/Banner/banner.jsx:139 src/components/Banner/banner.jsx:152
+#: src/components/Banner/banner.jsx:116 src/components/Banner/banner.jsx:129
+#: src/components/Banner/banner.jsx:142 src/components/Banner/banner.jsx:155
 msgid "View Pricing"
 msgstr ""
 
@@ -789,7 +1005,7 @@ msgstr ""
 msgid "Wholesale"
 msgstr ""
 
-#: src/components/Banner/banner.jsx:132
+#: src/components/Banner/banner.jsx:135
 msgid "Wholesale Sales"
 msgstr ""
 
@@ -806,7 +1022,7 @@ msgid "You are about to reject the quote"
 msgstr ""
 
 #. %s: reject quotation number.
-#: modules/Quote/Rest.php:178
+#: modules/Quote/Rest.php:155
 msgid "You have confirmed rejection of the quotation No: %d"
 msgstr ""
 
@@ -815,4 +1031,8 @@ msgstr ""
 msgid ""
 "You have received a new quote request from a customer for the following "
 "product:"
+msgstr ""
+
+#: src/blocks/enquiryForm/Recaptcha.jsx:40
+msgid "Your security code is:"
 msgstr ""
