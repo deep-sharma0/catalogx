@@ -71,7 +71,7 @@ class Rest {
         $all_details        = [];
         $get_settings_data  = $request->get_param( 'setting' );
         $settingsname       = $request->get_param( 'settingName' );
-        $settingsname       = str_replace( "-", "_", $settingsname );
+        // $settingsname       = str_replace( "-", "_", $settingsname );
         $optionname         = 'catalog_' . $settingsname . '_settings';
 
         // save the settings in database
