@@ -132,16 +132,6 @@ class Frontend{
      * Price exclusion for shop page
      * @return void
      */
-    // public function price_for_selected_product() { 
-    //     global $post;
-    //     $price_hide_product_page = CatalogX()->setting->get_setting( 'hide_product_price' );
-    //     if ( Util::is_available_for_product( $post->ID  ) && $price_hide_product_page && is_shop() ) {
-    //         remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-    //         // for block support
-    //         add_filter( 'woocommerce_get_price_html', '__return_empty_string' );
-    //     }
-    // }
-
     public function price_for_selected_product( $price, $product ) {
         $price_hide_product_page = CatalogX()->setting->get_setting( 'hide_product_price' );
         
