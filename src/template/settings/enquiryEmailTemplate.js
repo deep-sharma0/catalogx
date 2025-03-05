@@ -4,7 +4,7 @@ export default {
     id: 'enquiry-email-temp',
     priority: 50,
     name: __("Enquiry Email ", "catalogx"),
-    desc: __("Select your preffered enquiry details email template", "catalogx"),
+    desc: __("Select your preferred enquiry details email template", "catalogx"),
     icon: 'adminLib-mail',
     submitUrl: 'settings',
     modal: [

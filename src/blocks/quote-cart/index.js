@@ -15,21 +15,21 @@ registerBlockType("catalogx/quote-cart", {
 	edit() {
 		const blockProps = useBlockProps();
 		return (
-		<div {...blockProps} id="request_quote_list">
+		<div {...blockProps} id="request-quote-list">
 			{QuoteListTable()}
 		</div>
 		);
 	},
 	save() {
 		return (
-		<div id="request_quote_list">
+		<div id="request-quote-list">
 		</div>
 		);
 	},
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const element = document.getElementById("request_quote_list");
+  const element = document.getElementById("request-quote-list");
   if (element) {
     render(
       <BrowserRouter>

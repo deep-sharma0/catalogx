@@ -46,7 +46,7 @@ class Shortcode {
         $this->frontend_scripts();
 		ob_start();
         ?>
-        <div id="request_quote_list">
+        <div id="request-quote-list">
         </div>
         <?php
 		return ob_get_clean();
@@ -56,7 +56,7 @@ class Shortcode {
         $this->frontend_scripts();
         ob_start();
         ?>
-        <div id="quote_thank_you_page">
+        <div id="quote-thank-you-page">
         </div>
         <?php
         return ob_get_clean();
