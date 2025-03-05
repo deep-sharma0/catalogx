@@ -425,7 +425,7 @@ const CatalogCustomizer = (props) => {
             {!proSetting &&
               <article className='pro-banner'>
                 <p>Upgrade to pro for endless customization</p>
-                <a href="https://catalogx.com/pricing/" className="main-btn btn-purple" target='_blank'>Upgrade now</a>
+                <a href={appLocalizer.pro_url} className="main-btn btn-purple" target='_blank'>Upgrade now</a>
               </article>
             }
           </div>

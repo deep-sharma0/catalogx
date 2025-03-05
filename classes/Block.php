@@ -1,7 +1,6 @@
 <?php
 
 namespace CatalogX;
-use CatalogX\Enquiry\Module;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -40,9 +39,9 @@ class Block {
             ];
 
             //this path is set for load the translation
-            $block_paths = CatalogX()->get_block_paths();
+            $block_paths = CatalogX()->block_paths; // Uses __get()
             $block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
-            CatalogX()->set_block_paths($block_paths);
+            CatalogX()->block_paths = $block_paths; // Uses __set()            
         }
 
         if (CatalogX()->modules->is_active('quote')) {
@@ -87,21 +86,22 @@ class Block {
                 ],
             ];
 
-            $block_paths = CatalogX()->get_block_paths();
+            $block_paths = CatalogX()->block_paths; // Using __get()
             $block_paths['blocks/quote-cart'] = 'build/blocks/quote-cart/index.js';
             $block_paths['blocks/quote-button'] = 'build/blocks/quote-button/index.js';
             $block_paths['blocks/quote-thank-you'] = 'build/blocks/quote-thank-you/index.js';
-            CatalogX()->set_block_paths($block_paths);
+            CatalogX()->block_paths = $block_paths; // Using __set()
+            
         }
 
         return $blocks;
     }
 
     public function enqueue_all_block_assets() {
-        global $post;
         foreach ($this->blocks as $block_script) {
             wp_set_script_translations( $block_script['name'], 'catalogx' );
             if (isset($block_script['localize']) && !empty($block_script['localize'])) {
+                // apiUrl re-initialize here beacuse in array the url is not define
                 $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
                 wp_localize_script('catalogx-' . $block_script['name'] . '-editor-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
                 wp_localize_script('catalogx-' . $block_script['name'] . '-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
@@ -119,7 +119,6 @@ class Block {
     }
     
     public function register_blocks() {
-    
         foreach ($this->blocks as $block) {
             register_block_type( CatalogX()->plugin_path . 'build/blocks/' . $block['name']);
         }

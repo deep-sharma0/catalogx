@@ -1,6 +1,6 @@
 <?php
 /**
- * Woocommerce Catalog Enquiry Admin
+ * CatalogX Admin
  *
  * @author 	MultiVendorX
  * @version   3.3

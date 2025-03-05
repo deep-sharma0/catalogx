@@ -135,6 +135,17 @@ class Module {
         return new \WP_Error( sprintf('Call to unknown class %s.', $class ) );
     }
 
+    /**
+     * Magic setter function to store a reference of a class.
+     * Accepts a class name as the key and stores the instance in the container.
+     *
+     * @param string $class The class name or key to store the instance.
+     * @param object $value The instance of the class to store.
+     */
+	public function __set( $class, $value ) {
+		$this->container[ $class ] = $value;
+	}
+
 	/**
      * Initializes Catalog class.
      * Checks for an existing instance

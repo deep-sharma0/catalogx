@@ -11,7 +11,7 @@ export default {
             key: 'enable_cart_checkout',
             type: 'checkbox',
             label: __( "Sitewide buy mode", "catalogx" ),
-             desc: __("Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href=\"https://catalogx.com/pricing/\" target=\"_blank\">CatalogX Pro</a>.", "catalogx"),
+            desc: __("Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href= ' + appLocalizer.pro_url + ' target=\"_blank\">CatalogX Pro</a>.", "catalogx"),
             options: [
                 {
                     key: "enable_cart_checkout",
@@ -26,7 +26,6 @@ export default {
             key: 'disable_cart_page_link',
             type: 'select',
             label:  __( 'Cart / Checkout Redirect Page', 'catalogx' ),
-            // desc: apply_filters('woocommerce_catalog_redirect_disabled_cart_page', __( 'Select page where user will be redirected for disable cart page. To use this feature kindly upgrade to <a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" target="_blank">WooCommerce Catalog Enquiry Pro</a>.', 'catalogx' )),
             options: [
                 {
                     value:'',

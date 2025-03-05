@@ -28,7 +28,7 @@ final class CatalogX {
         $this->container[ 'plugin_url' ]     = trailingslashit( plugins_url( '', $plugin = $file ) );
         $this->container[ 'plugin_path' ]    = trailingslashit( dirname( $file ) );
         $this->container[ 'version' ]        = CATALOGX_PLUGIN_VERSION;
-        $this->container[ 'rest_namespace' ] = CATALOGX_REST_NAMESPACE;
+        $this->container[ 'rest_namespace' ] = 'catalogx/v1';
 		$this->container[ 'block_paths' ]    = [];
 
         register_activation_hook( $file, [ $this, 'activate' ] );
@@ -40,15 +40,6 @@ final class CatalogX {
 		add_filter( 'woocommerce_email_classes', [ $this, 'load_emails' ] );
 
     }
-
-	public function set_block_paths($paths) {
-		$this->container['block_paths'] = $paths;
-		return $this->container['block_paths'];
-	}
-	
-	public function get_block_paths() {
-		return $this->container['block_paths'];
-	}	
 
 	/**
      * Add High Performance Order Storage Support
@@ -150,11 +141,11 @@ final class CatalogX {
 	public function plugin_link( $links ) {	
 		$plugin_links = array(
 			'<a href="' . admin_url( 'admin.php?page=catalogx#&tab=settings&subtab=general' ) . '">' . __( 'Settings', 'catalogx' ) . '</a>',
-			'<a href="https://catalogx.com/support/">' . __( 'Support', 'catalogx' ) . '</a>',			
+			'<a href="https://catalogx.com/support/?utm_source=wpadmin&utm_medium=pluginsettings&utm_campaign=catalogx">' . __( 'Support', 'catalogx' ) . '</a>',			
 		);	
 		$links = array_merge( $plugin_links, $links );
 		if ( apply_filters( 'woocommerce_catalog_enquiry_free_active', true ) ) {
-			$links[] = '<a href="https://catalogx.com/pricing/" target="_blank">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>';
+			$links[] = '<a href="' . esc_url( CATALOGX_PRO_SHOP_URL ) . '" target="_blank">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>';
 		}
 		return $links;
 	}
@@ -162,7 +153,7 @@ final class CatalogX {
 	public function plugin_row_meta( $links, $file ) {
 		if($file == 'woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php' && apply_filters( 'woocommerce_catalog_enquiry_free_active', true )){
 			$row_meta = array(
-				'pro'    => '<a href="https://catalogx.com/pricing/" title="' . esc_attr( __( 'Upgrade to Pro', 'catalogx' ) ) . '">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>'
+				'pro'    => '<a href="' . esc_url( CATALOGX_PRO_SHOP_URL ) . '" title="' . esc_attr( __( 'Upgrade to Pro', 'catalogx' ) ) . '">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>'
 			);
 			return array_merge( $links, $row_meta );
 		}else{
@@ -187,7 +178,7 @@ final class CatalogX {
     public function woocommerce_admin_notice() {
         ?>
         <div class="error">
-			<p><?php printf( __( '%sWoocommerce Catalog Enquiry is inactive.%s The %sWooCommerce plugin%s must be active for the Woocommerce Catalog Enquiry to work. Please %sinstall & activate WooCommerce%s', 'catalogx' ), '<strong>', '</strong>', '<a target="_blank" href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>', '<a href="' . admin_url( 'plugins.php' ) . '">', '&nbsp;&raquo;</a>' ); ?></p>
+			<p><?php printf( __( '%sCatalogX is inactive.%s The %sWooCommerce plugin%s must be active for the CatalogX to work. Please %sinstall & activate WooCommerce%s', 'catalogx' ), '<strong>', '</strong>', '<a target="_blank" href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>', '<a href="' . admin_url( 'plugins.php' ) . '">', '&nbsp;&raquo;</a>' ); ?></p>
         </div>
         <?php
     }
@@ -246,7 +237,6 @@ final class CatalogX {
 
         }
 	}
-	
 
 	/**
      * Magic getter function to get the reference of class.
@@ -260,6 +250,17 @@ final class CatalogX {
         }
         return new \WP_Error( sprintf('Call to unknown class %s.', $class ) );
     }
+
+	/**
+     * Magic setter function to store a reference of a class.
+     * Accepts a class name as the key and stores the instance in the container.
+     *
+     * @param string $class The class name or key to store the instance.
+     * @param object $value The instance of the class to store.
+     */
+	public function __set( $class, $value ) {
+		$this->container[ $class ] = $value;
+	}
 
 	/**
      * Initializes the catalog enquiry class.

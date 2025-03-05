@@ -93,7 +93,7 @@ class Admin {
 				</style>
                 <div class="upgrade-to-pro"><i style="margin-right: 0.25rem" class="dashicons dashicons-awards"></i>' . __( 'Upgrade to pro', 'catalogx' ). '</div>',
                 'manage_woocommerce',
-                'https://catalogx.com/pricing/?utm_source=plugin&utm_medium=settings&utm_campaign=tracking'
+                CATALOGX_PRO_SHOP_URL
             ];
         }
 
