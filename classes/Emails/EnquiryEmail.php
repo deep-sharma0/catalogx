@@ -132,21 +132,21 @@ class EnquiryEmail extends \WC_Email {
 	 * Get email subject.
 	 */
 	public function get_default_subject() {
-		return apply_filters('woocommerce_catalog_enquiry_admin_email_subject', __('Product Enquiry for {PRODUCT_NAME} by {USER_NAME}', 'catalogx'), $this->object);
+		return apply_filters('catalogx_enquiry_admin_email_subject', __('Product Enquiry for {PRODUCT_NAME} by {USER_NAME}', 'catalogx'), $this->object);
 	}
 
 	/**
 	 * Get email heading.
 	 */
 	public function get_default_heading() {
-		return apply_filters('woocommerce_catalog_enquiry_admin_email_heading', __('Enquiry for {PRODUCT_NAME}', 'catalogx'), $this->object);
+		return apply_filters('catalogx_enquiry_admin_email_heading', __('Enquiry for {PRODUCT_NAME}', 'catalogx'), $this->object);
 	}
 
 	/**
 	 * Get email attachments.
 	 */
 	public function get_attachments() {
-		return apply_filters('woocommerce_catalog_enquiry_admin_email_attachments', $this->attachments, $this->id, $this->object);
+		return apply_filters('catalogx_enquiry_admin_email_attachments', $this->attachments, $this->id, $this->object);
 	}
 
 	/**
@@ -155,7 +155,7 @@ class EnquiryEmail extends \WC_Email {
 	public function get_headers() {
 		$header = "Content-Type: " . $this->get_content_type() . "\r\n";
 		$header .= 'Reply-to: ' . $this->cust_name . ' <' . $this->cust_email . ">\r\n";
-		return apply_filters('woocommerce_catalog_enquiry_admin_email_headers', $header, $this->id, $this->object);
+		return apply_filters('catalogx_enquiry_admin_email_headers', $header, $this->id, $this->object);
 	}
 
 	/**

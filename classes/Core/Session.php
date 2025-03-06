@@ -96,7 +96,7 @@ class Session extends  \WC_Session {
 			$this->_has_cookie = true;
 
 			// Set the cookie
-			wc_setcookie( $this->_cookie, $cookie_value, $this->_session_expiration, apply_filters( 'woocommerce_catalog_session_use_secure_cookie', false ) );
+			wc_setcookie( $this->_cookie, $cookie_value, $this->_session_expiration, apply_filters( 'catalogx_session_use_secure_cookie', false ) );
 		}
 	}
 
@@ -113,8 +113,8 @@ class Session extends  \WC_Session {
 	 * Set session expiration.
 	 */
 	public function set_session_expiration() {
-		$this->_session_expiring   = time() + intval( apply_filters( 'woocommerce_catalog_session_expiring', 60 * 60 * 47 ) ); // 47 Hours.
-		$this->_session_expiration = time() + intval( apply_filters( 'woocommerce_catalog_session_expiration', 60 * 60 * 48 ) ); // 48 Hours.
+		$this->_session_expiring   = time() + intval( apply_filters( 'catalogx_session_expiring', 60 * 60 * 47 ) ); // 47 Hours.
+		$this->_session_expiration = time() + intval( apply_filters( 'catalogx_session_expiration', 60 * 60 * 48 ) ); // 48 Hours.
 	}
 
 	/**
@@ -190,7 +190,7 @@ class Session extends  \WC_Session {
 	 */
 	public function destroy_session() {
 		// Clear cookie
-		wc_setcookie( $this->_cookie, '', time() - YEAR_IN_SECONDS, apply_filters( 'woocommerce_catalog_session_use_secure_cookie', false ) );
+		wc_setcookie( $this->_cookie, '', time() - YEAR_IN_SECONDS, apply_filters( 'catalogx_session_use_secure_cookie', false ) );
 
 		$this->delete_session( $this->_customer_id );
 

@@ -144,14 +144,14 @@ final class CatalogX {
 			'<a href="https://catalogx.com/support/?utm_source=wpadmin&utm_medium=pluginsettings&utm_campaign=catalogx">' . __( 'Support', 'catalogx' ) . '</a>',			
 		);	
 		$links = array_merge( $plugin_links, $links );
-		if ( apply_filters( 'woocommerce_catalog_enquiry_free_active', true ) ) {
+		if ( apply_filters( 'catalogx_free_active', true ) ) {
 			$links[] = '<a href="' . esc_url( CATALOGX_PRO_SHOP_URL ) . '" target="_blank">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>';
 		}
 		return $links;
 	}
 
 	public function plugin_row_meta( $links, $file ) {
-		if($file == 'woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php' && apply_filters( 'woocommerce_catalog_enquiry_free_active', true )){
+		if($file == 'woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php' && apply_filters( 'catalogx_free_active', true )){
 			$row_meta = array(
 				'pro'    => '<a href="' . esc_url( CATALOGX_PRO_SHOP_URL ) . '" title="' . esc_attr( __( 'Upgrade to Pro', 'catalogx' ) ) . '">' . __( 'Upgrade to Pro', 'catalogx' ) . '</a>'
 			);

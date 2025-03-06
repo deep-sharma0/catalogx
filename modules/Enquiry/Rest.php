@@ -117,7 +117,7 @@ class Rest {
     
             $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}" . Utill::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s, attachment=%d", $to_user_id, $user->ID, $chat_message, serialize( $product_info ), $enquiry_id, 'unread', $attachment_id ) );
 
-            $enquiry_data = apply_filters( 'woocommerce_catalog_enquiry_form_data', [
+            $enquiry_data = apply_filters( 'catalogx_enquiry_form_data', [
                 'enquiry_id'            => $enquiry_id,
 				'user_name'             => $customer_name ?? $user_name,
 				'user_email'            => $customer_email ?? $user_email,
