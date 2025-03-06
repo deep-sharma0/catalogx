@@ -74,13 +74,11 @@ export default {
             look: "toggle",
             moduleEnabled: 'enquiry',
         },
+        // This settings for notify me it works when only site off buying settings on and stock alert plugin active
+        // popup - propopup, modulepopup
         {
             key: 'notify_me_button',
             type: 'stock-alert-checkbox',
-            dependent: {
-                key: "is_enable_out_of_stock",
-                set: true
-            },
             label: __("In-Stock notify me button ", "catalogx"),
             desc: __("This option allows customers to subscribe for automatic stock notifications.", "catalogx"),
             options: [
@@ -90,8 +88,10 @@ export default {
                     value: "notify_me_button"
                 }
             ],
-            moduleEnabled: 'enquiry',
-            dependentPlugin: appLocalizer.notifima_active
+            moduleEnabled: '',
+            proSetting: true,
+            dependentPlugin: appLocalizer.notifima_active,
+            dependentSetting: 'enable_cart_checkout'
         },
         {
             key: 'is_disable_popup',

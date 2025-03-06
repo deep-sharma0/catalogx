@@ -48,7 +48,7 @@ class Rest {
      * @return \WP_Error|\WP_REST_Response
      */
     public function get_tour_status() {
-        $status = get_option('catalog_tour_active', false);
+        $status = get_option('catalogx_tour_active', false);
         return ['active' => $status];
     }
     
@@ -58,7 +58,7 @@ class Rest {
      * @return \WP_Error|\WP_REST_Response
      */
     public function set_tour_status($request) {
-        update_option('catalog_tour_active', $request->get_param( 'active' ));
+        update_option('catalogx_tour_active', $request->get_param( 'active' ));
         return ['success' => true];
     }
 

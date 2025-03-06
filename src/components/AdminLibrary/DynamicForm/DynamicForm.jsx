@@ -10,7 +10,6 @@ import { useModules } from '../../../contexts/ModuleContext.jsx';
 import { getApiLink, sendApiResponse } from "../../../services/apiService";
 import Dialog from "@mui/material/Dialog";
 import Popoup from "../../PopupContent/PopupContent";
-import PopupPluginDependency from "../../PopupContent/PopupPluginDependency";
 import ModulePopoup from "../../PopupContent/ModulePopup";
 import FormCustomizer from "../Inputs/Special/FormCustomizer";
 import FreeProFormCustomizer from "../Inputs/Special/FreeProFormCustomizer/FormCustomizer";
@@ -48,9 +47,12 @@ const DynamicForm = (props) => {
   const [countryState, setCountryState] = useState([]);
   const settingChanged = useRef(false);
   const [modelOpen, setModelOpen] = useState(false);
-  const [modelPluginOpen, setModelPluginOpen] = useState(false);
   const [modelModuleOpen, setModelModuleOpen] = useState(false);
-  const [moduleName, setModuleName] = useState("");
+  const [modulePopupData, setModulePopupData] = useState({
+    name: '',
+    settings: '',
+    plugin: '',
+});
   const { modules } = useModules();
 
   const counter = useRef(0);
@@ -112,14 +114,26 @@ const DynamicForm = (props) => {
     return false;
   }
 
-  const moduleEnabledChanged = (moduleEnabled) => {
-    if (moduleEnabled && !modules.includes( moduleEnabled )) {
+  const moduleEnabledChanged = (moduleEnabled, dependentSetting = "", dependentPlugin = false) => {
+    let popupData = { name: '', settings: '', plugin: '' };
+    if (moduleEnabled && !modules.includes(moduleEnabled)) {
+        popupData.name = moduleEnabled;
+    }
+    if (dependentSetting && Array.isArray(setting[dependentSetting]) && setting[dependentSetting].length === 0) {
+        popupData.settings = dependentSetting;
+    }
+    if (dependentPlugin) {
+        popupData.plugin = 'notifima';
+    }
+    if (popupData.name || popupData.settings || popupData.plugin) {
+      setModulePopupData(popupData);
       setModelModuleOpen(true);
-      setModuleName(moduleEnabled);
       return true;
     }
     return false;
   }
+
+
 
   const handleChange = (event, key, type = 'single', fromType = 'simple', arrayValue = []) => {
     settingChanged.current = true;
@@ -717,10 +731,8 @@ const DynamicForm = (props) => {
               value={value}
               proSetting={isProSetting(inputField.proSetting)}
               onChange={(e) => {
-                if (!inputField.dependentPlugin && !moduleEnabledChanged(inputField.moduleEnabled)) {
-                  setModelPluginOpen(true)
-                }
-                if ( !proSettingChanged(inputField.proSetting) && !moduleEnabledChanged(inputField.moduleEnabled) ) {
+                const dependentPlugin = inputField.dependentPlugin ? false : true;
+                if ( !proSettingChanged(inputField.proSetting) && !moduleEnabledChanged(inputField.moduleEnabled, inputField.dependentSetting, dependentPlugin) ) {
                   if (inputField.dependentPlugin) {
                     handleChange(e, inputField.key, "multiple");
                   }
@@ -886,7 +898,12 @@ const DynamicForm = (props) => {
               }}
               moduleChange={(moduleEnabled) => {
                 setModelModuleOpen(true);
-                setModuleName(moduleEnabled);
+                setModulePopupData({
+                  name: moduleEnabled,
+                  settings: '',
+                  plugin: '',
+                });
+                
               }}
             />
           );
@@ -1079,10 +1096,6 @@ const DynamicForm = (props) => {
     setModelOpen(false);
   };
 
-  const handleModelPopupClose = () => {
-    setModelPluginOpen(false);
-  };
-
   const handleModulePopupClose = () => {
     setModelModuleOpen(false);
   };
@@ -1104,18 +1117,6 @@ const DynamicForm = (props) => {
         </Dialog>
         <Dialog
           className="admin-module-popup"
-          open={modelPluginOpen}
-          onClose={handleModelPopupClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <span
-            className="admin-font adminLib-cross"
-            onClick={handleModelPopupClose}
-          ></span>
-          <PopupPluginDependency />
-        </Dialog>
-        <Dialog
-          className="admin-module-popup"
           open={modelModuleOpen}
           onClose={handleModulePopupClose}
           aria-labelledby="form-dialog-title"
@@ -1124,7 +1125,11 @@ const DynamicForm = (props) => {
             className="admin-font adminLib-cross"
             onClick={handleModulePopupClose}
           ></span>
-          <ModulePopoup name={moduleName}/>
+            <ModulePopoup 
+              name={modulePopupData.name} 
+              settings={modulePopupData.settings} 
+              plugin={modulePopupData.plugin} 
+            />
         </Dialog>
         {successMsg && (
           <div className="admin-notice-display-title">

@@ -74,8 +74,8 @@ final class CatalogX {
 	 */
 	public function catalog_register_strings_and_setup_wizard() {
 		new SetupWizard();
-		if (get_option('catalog_plugin_activated')) {
-			delete_option('catalog_plugin_activated');
+		if (get_option('catalogx_plugin_activated')) {
+			delete_option('catalogx_plugin_activated');
 			wp_redirect(admin_url('admin.php?page=catalog-setup'));
 			exit;
 		}
@@ -203,14 +203,14 @@ final class CatalogX {
 		ob_start();
 		$this->container['install'] = new Install();
 
-		if (!get_option('catalog_plugin_installed')) {
-			add_option('catalog_plugin_installed', true);
-			add_option('catalog_plugin_activated', true);
+		if (!get_option('catalogx_plugin_installed')) {
+			add_option('catalogx_plugin_installed', true);
+			add_option('catalogx_plugin_activated', true);
 		}
 
-		if (!get_option('catalog_tour_active')) {
-			add_option('catalog_tour_active', true);
-			add_option('catalog_tour_version', CatalogX()->version);
+		if (!get_option('catalogx_tour_active')) {
+			add_option('catalogx_tour_active', true);
+			add_option('catalogx_tour_version', CatalogX()->version);
 		}
         flush_rewrite_rules();
 		ob_end_clean();
@@ -221,7 +221,7 @@ final class CatalogX {
      * @return void
      */
     public function deactivate() {
-        delete_option('catalog_plugin_installed');
+        delete_option('catalogx_plugin_installed');
     }
 
 	/**
