@@ -38,10 +38,8 @@ class Block {
 				],
             ];
 
-            //this path is set for load the translation
-            $block_paths = CatalogX()->block_paths; // Uses __get()
-            $block_paths['blocks/enquiry-button'] = 'build/blocks/enquiry-button/index.js';
-            CatalogX()->block_paths = $block_paths; // Uses __set()            
+            //this path is set for load the translation       
+            CatalogX()->block_paths += ['blocks/enquiry-button' => 'build/blocks/enquiry-button/index.js'];
         }
 
         if (CatalogX()->modules->is_active('quote')) {
@@ -86,11 +84,10 @@ class Block {
                 ],
             ];
 
-            $block_paths = CatalogX()->block_paths; // Using __get()
-            $block_paths['blocks/quote-cart'] = 'build/blocks/quote-cart/index.js';
-            $block_paths['blocks/quote-button'] = 'build/blocks/quote-button/index.js';
-            $block_paths['blocks/quote-thank-you'] = 'build/blocks/quote-thank-you/index.js';
-            CatalogX()->block_paths = $block_paths; // Using __set()
+            //this path is set for load the translation
+            CatalogX()->block_paths += ['blocks/quote-cart' => 'build/blocks/quote-cart/index.js'];
+            CatalogX()->block_paths += ['blocks/quote-button' => 'build/blocks/quote-button/index.js'];
+            CatalogX()->block_paths += ['blocks/quote-thank-you' => 'build/blocks/quote-thank-you/index.js'];
             
         }
 
