@@ -112,8 +112,8 @@ class Modules {
             $module = $all_modules[ $modules_id ];
 
         
-            // Check if the module is avialable
-            if ( ! $this->is_module_avialable( $module, $license_active ) ) {
+            // Check if the module is available
+            if ( ! $this->is_module_available( $module, $license_active ) ) {
                 continue;
             }
 
@@ -147,12 +147,12 @@ class Modules {
     }
 
     /**
-     * Check a perticular module is avialable or not.
+     * Check a perticular module is available or not.
      * @param array $module
      * @param bool $license_active
      * @return bool
      */
-    private function is_module_avialable( $module, $license_active ) {
+    private function is_module_available( $module, $license_active ) {
         $is_pro_module = $module['pro_module'] ?? false;
 
         // if it is free module
@@ -178,17 +178,17 @@ class Modules {
     }
 
     /**
-     * Get all avialable modules.
+     * Get all available modules.
      * @return array
      */
-    public function get_avialable_modules() {
+    public function get_available_modules() {
         $modules           = $this->get_all_modules();
         $license_active    = Utill::is_khali_dabba();
         $available_modules = [];
 
         foreach ( $modules as $module_id => $module ) {
-            // Check if the module is avialable
-            if ( ! $this->is_module_avialable( $module, $license_active ) ) {
+            // Check if the module is available
+            if ( ! $this->is_module_available( $module, $license_active ) ) {
                 continue;
             }
 
@@ -253,12 +253,12 @@ class Modules {
     }
      
     /**
-     * Get a module is avialable or not.
+     * Get a module is available or not.
      * @param mixed $module_id
      * @return true
      */
-    public function is_avialable( $module_id ) {
-        $available_modules = $this->get_avialable_modules();
+    public function is_available( $module_id ) {
+        $available_modules = $this->get_available_modules();
 
         return in_array( $module_id, $available_modules, true );
     }

@@ -55,7 +55,7 @@ class Setting {
      */
     private function get_settings_keys() {
 
-        // Settings key are avialable
+        // Settings key are available
         if ( $this->settings_keys ) {
             return $this->settings_keys;
         }

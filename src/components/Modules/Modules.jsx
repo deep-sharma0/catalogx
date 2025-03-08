@@ -21,7 +21,7 @@ const Modules = () => {
    * @param {*} moduleId 
    * @returns 
    */
-  const isModuleAvialable = ( moduleId ) => {
+  const isModuleAvailable = ( moduleId ) => {
     const module = modulesArray.find((module) => module.id === moduleId);
 
     if ( ! module?.pro_module ) return true;
@@ -36,7 +36,7 @@ const Modules = () => {
    * @returns 
    */
   const handleOnChange = async (event, moduleId) => {
-    if ( ! isModuleAvialable( moduleId ) ) {
+    if ( ! isModuleAvailable( moduleId ) ) {
       setModelOpen(true);
       return;
     }

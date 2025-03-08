@@ -5,7 +5,7 @@ namespace CatalogX\Catalog;
 class Util {
 
     /**
-     * Check catalog functionlity avialable for current user
+     * Check catalog functionlity available for current user
      * @return bool
      */
     public static function is_available() {
@@ -47,7 +47,7 @@ class Util {
     }
 
     /**
-     * Check catalog functionlity avialable for product
+     * Check catalog functionlity available for product
      * @return bool
      */
     public static function is_available_for_product($product_id) {
