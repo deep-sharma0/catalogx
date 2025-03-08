@@ -17,29 +17,30 @@ class RestV1 {
     function register_rest_apis() {
 
         register_rest_route( CatalogX()->rest_namespace, '/settings', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
+            'methods'               => 'POST',
             'callback'              => [ $this, 'save_settings' ],
             'permission_callback'   => [ $this, 'catalogx_permission' ]
         ] );
 
         // enable/disable the module
         register_rest_route( CatalogX()->rest_namespace, '/modules', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'manage_module' ],
+            'methods'               => 'POST',
+            'callback'              => [ $this, 'save_modules' ],
             'permission_callback'   => [ $this, 'catalogx_permission' ]
         ] );
 
-        register_rest_route( CatalogX()->rest_namespace, '/tour', [
-            'methods'               => 'GET',
-            'callback'              => [ $this, 'get_tour_status' ],
-            'permission_callback'   => [ $this, 'catalogx_permission' ],
-        ]);
-    
-        register_rest_route(CatalogX()->rest_namespace, '/tour', [
-            'methods'               => 'POST',
-            'callback'              => [ $this, 'set_tour_status' ],
-            'permission_callback'   => [ $this, 'catalogx_permission' ],
-        ]);
+        register_rest_route( CatalogX()->rest_namespace, '/tour', 
+            [
+                'methods'               => 'GET',
+                'callback'              => [ $this, 'get_tour_status' ],
+                'permission_callback'   => [ $this, 'catalogx_permission' ],
+            ],
+            [
+                'methods'               => 'POST',
+                'callback'              => [ $this, 'set_tour_status' ],
+                'permission_callback'   => [ $this, 'catalogx_permission' ],
+            ]
+        );
 
 	}
 
@@ -104,7 +105,7 @@ class RestV1 {
      * @param mixed $request
      * @return void
      */
-    public function manage_module( $request ) {
+    public function save_modules( $request ) {
         $moduleId   = $request->get_param( 'id' );
         $action     = $request->get_param( 'action' );
 

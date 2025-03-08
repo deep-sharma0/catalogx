@@ -20,17 +20,17 @@ class RestV1 {
         register_rest_route( CatalogX()->rest_namespace, '/quote-cart', [
             [
                 'methods'             => 'POST',
-                'callback'            => [ $this, 'get_all_quote' ],
+                'callback'            => [ $this, 'get_quote_cart' ],
                 'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
             ],
             [
                 'methods'             => 'PUT',
-                'callback'            => [ $this, 'quote_update_cart' ],
+                'callback'            => [ $this, 'update_quote_cart' ],
                 'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
             ],
             [
                 'methods'             => 'DELETE',
-                'callback'            => [ $this, 'quote_remove_cart' ],
+                'callback'            => [ $this, 'delete_quote_cart' ],
                 'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
             ],
         ] );
@@ -48,7 +48,7 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
-    public function get_all_quote( $request ) {
+    public function get_quote_cart( $request ) {
         $row =  $request['row'];
         $page = $request['page'];
     
@@ -98,7 +98,7 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
-    public function quote_update_cart( $request ) {
+    public function update_quote_cart( $request ) {
         $products = $request->get_param('products');
 
         foreach ($products as $key => $product) {
@@ -117,7 +117,7 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
-    public function quote_remove_cart( $request ) {
+    public function delete_quote_cart( $request ) {
         $product_id = $request->get_param('productId');
         $key = $request->get_param('key');
         $status = false;

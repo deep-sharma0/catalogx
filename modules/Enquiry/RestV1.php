@@ -19,13 +19,13 @@ class RestV1 {
     function register_rest_apis() {
         register_rest_route( CatalogX()->rest_namespace, '/enquiries', [
             'methods'               => 'POST',
-            'callback'              => [ $this, 'save_form_data' ],
+            'callback'              => [ $this, 'save_enquiries' ],
             'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ],
         ]);
 
         register_rest_route( CatalogX()->rest_namespace, '/buttons', [
-            'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'render_buttons' ],
+            'methods'               => 'POST',
+            'callback'              => [ $this, 'get_buttons' ],
             'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ],
         ]);
 	}
@@ -35,7 +35,7 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
-    public function save_form_data( $request ) {
+    public function save_enquiries( $request ) {
         global $wpdb;
 
         $quantity   = $request->get_param( 'quantity' );
@@ -173,7 +173,7 @@ class RestV1 {
      * render enquiry button shortcode into block
      * @return \WP_Error|\WP_REST_Response
      */
-    public function render_buttons($request) {
+    public function get_buttons($request) {
         $product_id = $request->get_param('product_id');
 
         // Start output buffering

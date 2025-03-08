@@ -79,7 +79,6 @@ class Modules {
      * @return array
      */
     public function get_active_modules() {
-
         // If active modules are loaded return it
         if ( $this->active_modules ) {
             return $this->active_modules;
