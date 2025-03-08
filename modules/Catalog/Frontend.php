@@ -17,9 +17,9 @@ class Frontend{
         add_action( 'display_shop_page_description_box', [ self::class, 'show_description_box' ] );
 
         // Hooks for exclutions
-        add_filter( 'woocommerce_get_price_html' , [ $this, 'price_for_selected_product' ] , 10, 2 );
+        add_filter( 'woocommerce_get_price_html' , [ $this, 'exclude_price_for_selected_product' ] , 10, 2 );
 
-        add_filter( 'woocommerce_loop_add_to_cart_link', [ $this, 'add_to_cart_button_for_block' ], 10, 2 );
+        add_filter( 'woocommerce_loop_add_to_cart_link', [ $this, 'exclude_add_to_cart_button' ], 10, 2 );
         
         add_action( 'woocommerce_single_product_summary', [ $this, 'exclusion_for_single_product_page' ], 5 );
 
@@ -34,11 +34,11 @@ class Frontend{
      */
     public static function redirect_cart_checkout_page() {
 
-        // Get setting for disable bying
-        $disable_bying = CatalogX()->setting->get_setting( 'enable_cart_checkout' );
+        // Get setting for sales enabled
+        $sales_enabled = CatalogX()->setting->get_setting( 'enable_cart_checkout' );
 
-        // Check disable bying setting is enable or not
-        if ( !empty($disable_bying) ) return;
+        // Check sales enabled setting is enable or not
+        if ( !empty($sales_enabled) ) return;
 
         // Get force redirected url
         $redirect_url = CatalogX()->setting->get_setting( 'disable_cart_page_link' );
@@ -104,7 +104,8 @@ class Frontend{
      * Price exclusion for shop page
      * @return void
      */
-    public function price_for_selected_product( $price, $product ) {
+
+    public function exclude_price_for_selected_product( $price, $product ) {
         $price_hide_product_page = CatalogX()->setting->get_setting( 'hide_product_price' );
         
         if ( Util::is_available_for_product( $product->get_id() ) && $price_hide_product_page && is_shop() ) {
@@ -118,7 +119,7 @@ class Frontend{
      * Shop page add to cart button exclusion for block
      * @return void
      */
-    public function add_to_cart_button_for_block( $button, $product ) {
+    public function exclude_add_to_cart_button( $button, $product ) {
         if ( ! Util::is_available_for_product( $product->get_id() ) ) {
             return $button;
         }
@@ -126,21 +127,6 @@ class Frontend{
         return empty( CatalogX()->setting->get_setting( 'enable_cart_checkout' ) ) ? '' : $button;
         
     }
-
-    /**
-     * Shop page add to cart button exclusion
-     * @return void
-     */
-    // public function add_to_cart_button_for_selected_product() {
-    //     global $post;
-
-    //     if ( Util::is_available_for_product($post->ID)) {
-    //         if ( empty(CatalogX()->setting->get_setting( 'enable_cart_checkout' )) ) { 
-    //             remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
-    //             add_filter( 'woocommerce_loop_add_to_cart_link', '__return_empty_string', 10 );
-    //         }
-    //     }
-    // }
 
     /**
      * Single product page add to cart button exclusion

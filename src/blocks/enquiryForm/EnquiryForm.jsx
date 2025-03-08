@@ -220,7 +220,7 @@ const FreeForm = (props) => {
                 }}>
                     {__('Submit', 'catalogx')}</button>
 
-                <button id='close-enquiry-popup' className='close-enquiry-popup'>{__('Close', 'catalogx')}</button>
+                <button id='catalogx-close-enquiry-popup' className='catalogx-close-enquiry-popup'>{__('Close', 'catalogx')}</button>
            </section>
         </div>
     );

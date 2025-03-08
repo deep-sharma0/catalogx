@@ -12,8 +12,6 @@ class Frontend {
         if ( ! Util::is_available() ) return;
 
         $display_quote_button = CatalogX()->setting->get_setting( 'quote_user_permission' );
-        // print_r($display_quote_button);
-        // die;
         if ($display_quote_button && in_array('logged_out', $display_quote_button) && !is_user_logged_in()) {
             return;
         }

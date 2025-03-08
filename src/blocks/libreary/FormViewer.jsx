@@ -417,7 +417,7 @@ const FromViewer = (props) => {
                     }}
                     children={'Submit'}
                 />
-                <button id='close-enquiry-popup' className='close-enquiry-popup'>{__('Close', 'catalogx')}</button>
+                <button id='catalogx-close-enquiry-popup' className='catalogx-close-enquiry-popup'>{__('Close', 'catalogx')}</button>
             </section>
 
         </main>

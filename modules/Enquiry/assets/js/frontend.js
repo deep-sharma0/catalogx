@@ -1,6 +1,6 @@
 jQuery( document ).ready( function ( $ ) {
-    $( '#catalog-modal' ).hide();
-    var $enquiryBtn = $('.woocommerce-catalog-enquiry-btn');
+    $( '#catalogx-modal' ).hide();
+    var $enquiryBtn = $('.catalogx-enquiry-btn');
     if($('form.variations_form').length > 0){
         $enquiryBtn.hide();
     }
@@ -13,17 +13,16 @@ jQuery( document ).ready( function ( $ ) {
     });
 
     $('.modal-close-btn').on('click', function(event) {
-        $( '#catalog-modal' ).hide();
+        $( '#catalogx-modal' ).hide();
     });
     
-	$( '#woocommerce-catalog .woocommerce-catalog-enquiry-btn' ).on('click', function () {
-			$( '#catalog-modal' ).slideToggle( 1000 );
-		}
+	$( '#catalogx-enquiry .catalogx-enquiry-btn' ).on('click', function () {
+        $( '#catalogx-modal' ).slideToggle( 1000 );
+    }
 	);
-	$( '#close-enquiry-popup' ).on('click', function (e) {
+	$( '#catalogx-close-enquiry-popup' ).on('click', function (e) {
         e.preventDefault();
-			$( '#catalog-modal' ).slideToggle( 1000 );
-		}
+        $( '#catalogx-modal' ).slideToggle( 1000 );
+    }
 	);
-
 });

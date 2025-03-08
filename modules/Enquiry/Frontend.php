@@ -28,7 +28,7 @@ class Frontend{
         add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts' ] );
 
         // Enquiry button shortcode
-        add_shortcode( 'wce_enquiry_button', [ $this, 'wce_enquiry_button_shortcode' ] );
+        add_shortcode( 'catalogx_enquiry_button', [ $this, 'catalogx_enquiry_button_shortcode' ] );
 
     }
 
@@ -82,7 +82,7 @@ class Frontend{
             $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
         if ( $button_onhover_style ) {
             echo '<style>
-                .woocommerce-catalog-enquiry-btn:hover{
+                .catalogx-enquiry-btn:hover{
                 '. esc_html( $button_onhover_style ) .'
                 } 
             </style>';
@@ -100,18 +100,18 @@ class Frontend{
         $position = $position !== false ? $position : 0;
 
         ?>
-        <div id="woocommerce-catalog" name="woocommerce_catalog">
+        <div id="catalogx-enquiry">
         <?php 
             if (CatalogX()->setting->get_setting( 'is_enable_out_of_stock' ) ){
                 if ( !$productObj->managing_stock() && !$productObj->is_in_stock()) { ?>
                 <div position = "<?php echo $position; ?>">
-                    <button class="woocommerce-catalog-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalog-modal"><?php echo esc_html( $settings_array[ 'button_text' ] ); ?></button>
+                    <button class="catalogx-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalogx-modal"><?php echo esc_html( $settings_array[ 'button_text' ] ); ?></button>
                 </div>
                 <?php
                 }
         } else { ?>
                 <div position = "<?php echo $position; ?>">
-                    <button class="woocommerce-catalog-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalog-modal"><?php echo esc_html( $settings_array[ 'button_text' ] ); ?></button>
+                    <button class="catalogx-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalogx-modal"><?php echo esc_html( $settings_array[ 'button_text' ] ); ?></button>
                 </div>
                 <?php
             }
@@ -126,7 +126,7 @@ class Frontend{
                 ?>" />
             <input type="hidden" name="user_id_for_enquiry" id="user-id-for-enquiry" value="<?php echo $current_user->ID; ?>" />  			
         </div>
-        <div id="catalog-modal" style="display: none;" class="catalog-modal <?php echo (CatalogX()->setting->get_setting( 'is_disable_popup' ) == 'popup') ? 'popup_enable' : '' ?>">
+        <div id="catalogx-modal" style="display: none;" class="catalogx-modal <?php echo (CatalogX()->setting->get_setting( 'is_disable_popup' ) == 'popup') ? 'popup_enable' : '' ?>">
         </div>	
         <?php
     }
@@ -225,7 +225,7 @@ class Frontend{
      * enquiry button shortcode
      * @return void
      */
-    public function wce_enquiry_button_shortcode($attr) {
+    public function catalogx_enquiry_button_shortcode($attr) {
         ob_start();
         $product_id = isset( $attr['product_id'] ) ? (int)$attr['product_id'] : 0;
 
@@ -290,7 +290,6 @@ class Frontend{
         }
         $button_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogX\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
         if ( is_shop() ) {
-            global $product;
             $product_link = get_permalink( $product->get_id() );
             echo '<a href="' . esc_url( $product_link ) . '" class="single_add_to_cart_button button" style="' . esc_attr( $button_css ) . '">' . esc_html( $button_text ) . '</a>';
         }

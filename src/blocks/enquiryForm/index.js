@@ -3,10 +3,8 @@ import { BrowserRouter} from 'react-router-dom';
 import EnquiryForm from './EnquiryForm';
 
 // Render the App component into the DOM
-
-// render(<BrowserRouter><EnquiryForm/></BrowserRouter>, document.getElementById('catalog-modal'));
 document.addEventListener("DOMContentLoaded", () => {
-    const element = document.getElementById("catalog-modal");
+    const element = document.getElementById("catalogx-modal");
     if (element) {
       render(
         <BrowserRouter>
