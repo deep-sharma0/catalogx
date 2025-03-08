@@ -44,7 +44,7 @@ class Module {
         $this->container[ 'admin' ]     = new Admin();
         $this->container[ 'ajax' ]      = new Ajax();
         $this->container[ 'frontend' ]  = new Frontend();
-        $this->container[ 'rest' ]      = new Rest();
+        $this->container[ 'rest' ]      = new RestV1();
 		$this->container[ 'util' ]      = new Util();
 	}
 
@@ -54,7 +54,7 @@ class Module {
      */
     public function create_page_for_quote() {
         // quote page
-        $option_value = get_option('request_quote_page');
+        $option_value = get_option('catalogx_request_quote_page');
         if ($option_value > 0 && get_post($option_value)) {
             return;
         }
@@ -68,7 +68,7 @@ class Module {
         ]);
         if ($page_found) {
             if (!$option_value) {
-                update_option('request_quote_page', $page_found[0]);
+                update_option('catalogx_request_quote_page', $page_found[0]);
             }
             return;
         }
@@ -82,7 +82,7 @@ class Module {
             'comment_status' => 'closed'
         ];
         $page_id = wp_insert_post($page_data);
-        update_option('request_quote_page', $page_id);
+        update_option('catalogx_request_quote_page', $page_id);
     }
 
     /**
@@ -91,7 +91,7 @@ class Module {
      */
     function create_page_for_quote_thank_you() {
         // quote thank you page
-        $option_value = get_option('request_quote_thank_you_page');
+        $option_value = get_option('catalogx_request_quote_thank_you_page');
         if ($option_value > 0 && get_post($option_value)) {
             return;
         }
@@ -105,7 +105,7 @@ class Module {
         ]);
         if ($page_found) {
             if (!$option_value) {
-                update_option('request_quote_thank_you_page', $page_found[0]);
+                update_option('catalogx_request_quote_thank_you_page', $page_found[0]);
             }
             return;
         }
@@ -119,7 +119,7 @@ class Module {
             'comment_status' => 'closed'
         ];
         $page_id = wp_insert_post($page_data);
-        update_option('request_quote_thank_you_page', $page_id);
+        update_option('catalogx_request_quote_thank_you_page', $page_id);
     }
 
     /**

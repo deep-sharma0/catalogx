@@ -201,14 +201,14 @@ class QuoteCart {
     }
 
     public function get_request_quote_page_url() {
-        $catalogx_quote_page_id = get_option( 'request_quote_page' );
+        $catalogx_quote_page_id = get_option( 'catalogx_request_quote_page' );
         $base_url     = get_the_permalink( $catalogx_quote_page_id );
 
         return apply_filters( 'catalogx_request_quote_page_url', $base_url );
     }
 
     public function get_request_quote_thank_you_page_url() {
-        $catalogx_quote_page_id = get_option( 'request_quote_thank_you_page' );
+        $catalogx_quote_page_id = get_option( 'catalogx_request_quote_thank_you_page' );
         $base_url     = get_the_permalink( $catalogx_quote_page_id );
 
         return apply_filters( 'catalogx_request_quote_thank_you_page_url', $base_url );

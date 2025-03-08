@@ -4,7 +4,7 @@ namespace CatalogX\Quote;
 
 use CatalogX\CatalogX;
 
-class Rest {
+class RestV1 {
     /**
      * Rest class constructor functions
      */

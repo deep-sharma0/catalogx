@@ -2,7 +2,7 @@
 
 namespace CatalogX;
 
-class Rest {
+class RestV1 {
     /**
      * Rest class constructor function
      */
