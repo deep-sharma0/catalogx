@@ -18,26 +18,26 @@ class RestV1 {
 
         register_rest_route( CatalogX()->rest_namespace, '/settings', [
             'methods'               => 'POST',
-            'callback'              => [ $this, 'save_settings' ],
+            'callback'              => [ $this, 'set_settings' ],
             'permission_callback'   => [ $this, 'catalogx_permission' ]
         ] );
 
         // enable/disable the module
         register_rest_route( CatalogX()->rest_namespace, '/modules', [
             'methods'               => 'POST',
-            'callback'              => [ $this, 'save_modules' ],
+            'callback'              => [ $this, 'set_modules' ],
             'permission_callback'   => [ $this, 'catalogx_permission' ]
         ] );
 
         register_rest_route( CatalogX()->rest_namespace, '/tour', 
             [
                 'methods'               => 'GET',
-                'callback'              => [ $this, 'get_tour_status' ],
+                'callback'              => [ $this, 'get_tour' ],
                 'permission_callback'   => [ $this, 'catalogx_permission' ],
             ],
             [
                 'methods'               => 'POST',
-                'callback'              => [ $this, 'set_tour_status' ],
+                'callback'              => [ $this, 'set_tour' ],
                 'permission_callback'   => [ $this, 'catalogx_permission' ],
             ]
         );
@@ -48,7 +48,7 @@ class RestV1 {
      * get tour status
      * @return \WP_Error|\WP_REST_Response
      */
-    public function get_tour_status() {
+    public function get_tour() {
         $status = CatalogX()->setting->get_option('catalogx_tour_active', false);
         return ['active' => $status];
     }
@@ -58,7 +58,7 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
-    public function set_tour_status($request) {
+    public function set_tour($request) {
         update_option('catalogx_tour_active', $request->get_param( 'active' ));
         return ['success' => true];
     }
@@ -68,7 +68,7 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
-    public function save_settings( $request ) {
+    public function set_settings( $request ) {
         $all_details        = [];
         $get_settings_data  = $request->get_param( 'setting' );
         $settingsname       = $request->get_param( 'settingName' );
@@ -105,7 +105,7 @@ class RestV1 {
      * @param mixed $request
      * @return void
      */
-    public function save_modules( $request ) {
+    public function set_modules( $request ) {
         $moduleId   = $request->get_param( 'id' );
         $action     = $request->get_param( 'action' );
 
