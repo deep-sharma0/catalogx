@@ -21,31 +21,25 @@ class Rest {
             [
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'get_all_quote' ],
-                'permission_callback' => [ CatalogX()->restapi, 'catalog_permission' ],
+                'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
             ],
             [
                 'methods'             => 'PUT',
                 'callback'            => [ $this, 'quote_update_cart' ],
-                'permission_callback' => [ CatalogX()->restapi, 'catalog_permission' ],
+                'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
             ],
             [
                 'methods'             => 'DELETE',
                 'callback'            => [ $this, 'quote_remove_cart' ],
-                'permission_callback' => [ CatalogX()->restapi, 'catalog_permission' ],
+                'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
             ],
         ] );
         
         register_rest_route( CatalogX()->rest_namespace, '/quotes', [
             'methods'               => 'POST',
             'callback'              => [ $this, 'process_quote_request' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
+            'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ]
         ] );
-
-        // register_rest_route( CatalogX()->rest_namespace, '/reject-quote-my-acount', [
-        //     'methods'               => \WP_REST_Server::ALLMETHODS,
-        //     'callback'              => [ $this, 'reject_quote_my_acount' ],
-        //     'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ]
-        // ] );
 
     }
 
@@ -85,7 +79,7 @@ class Rest {
             $quantity = isset( $item['quantity'] ) ? $item['quantity'] : 1;
             $subtotal = $product_price * $quantity;
     
-            $quote_list[] = apply_filters( 'catalog_quote_list_data', [
+            $quote_list[] = apply_filters( 'catalogx_quote_list_data', [
                 'key'      => $key,
                 'id'       => $product->get_id(),
                 'image'    => $thumbnail,
@@ -221,7 +215,7 @@ class Rest {
         // If this request comes from an enquiry (like `create_quote` function)
         if (isset($form_data['id']) && \CatalogX\Utill::is_khali_dabba()) {
             $enquiry_id = $form_data['id'];
-            $admin_email = get_option('admin_email');
+            $admin_email = CatalogX()->admin_email;
             $admin_data = get_user_by('email', $admin_email);
             $from_user = $admin_data->ID;
             $to_user = $customer_id;

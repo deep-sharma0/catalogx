@@ -22,17 +22,17 @@ class Ajax {
         $variation_id       = filter_input( INPUT_POST, 'variation_id', FILTER_VALIDATE_INT );
         $is_valid_variation = ( $variation_id !== null ) ? ( $variation_id !== false ) : true;
         
-        $is_valid = apply_filters( 'catalog_add_item_in_cart_is_valid', $product_id && $is_valid_variation, $product_id );
+        $is_valid = apply_filters( 'catalogx_add_item_in_cart_is_valid', $product_id && $is_valid_variation, $product_id );
     
         $postdata = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
-        $postdata = apply_filters( 'catalog_add_item_in_cart_prepare', $postdata, $product_id );
-
+        $postdata = apply_filters( 'catalogx_add_item_in_cart_prepare', $postdata, $product_id );
+    
         if ( ! $is_valid ) {
             $errors[] = __( 'Error occurred while adding product to Request a Quote list.', 'catalogx' );
         } else {
             $return = CatalogX()->quotecart->add_cart_item( $postdata );
         }
-
+    
         if ( 'true' === $return ) {
             $message = __( 'Product added to quote list.', 'catalogx' );
         } elseif ( 'exists' === $return ) {

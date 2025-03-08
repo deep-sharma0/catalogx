@@ -10,9 +10,6 @@ class Frontend{
         // Check the exclution
         if ( ! Util::is_available() ) return;
 
-        // Add variation option for variation product
-        // add_action( 'woocommerce_single_product_summary', [ $this, 'add_variation_product' ], 29 );
-
         // Cart page redirect settings
         add_action( 'template_redirect', [ $this, 'redirect_cart_checkout_page' ], 10 );
 
@@ -24,36 +21,11 @@ class Frontend{
 
         add_filter( 'woocommerce_loop_add_to_cart_link', [ $this, 'add_to_cart_button_for_block' ], 10, 2 );
         
-        add_action( 'woocommerce_single_product_summary', [ $this, 'catalog_woocommerce_template_single' ], 5 );
+        add_action( 'woocommerce_single_product_summary', [ $this, 'exclusion_for_single_product_page' ], 5 );
 
         $this->register_description_box();
 
         add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts' ] );
-    }
-
-    /**
-     * Add variation in single product page.
-     * @return void
-     */
-    public function add_variation_product() {
-        global $product;
-
-        if ( $product->is_type( 'variable' ) ) {
-            $variable_product = new \WC_Product_Variable( $product );
-            
-            // Enqueue variation scripts
-            wp_enqueue_script('wc-add-to-cart-variation');
-            
-            $available_variations = $variable_product->get_available_variations();
-            
-            CatalogX()->util->get_template('variable-product.php', [
-                'available_variations' => $available_variations
-            ]);
-
-        } 
-        // elseif ( $product->is_type( 'simple' ) ) {
-        //     echo wc_get_stock_html( $product );
-        // }
     }
     
     /**
@@ -75,7 +47,7 @@ class Frontend{
          * Filter for redirect url
          * @var mixed
          */
-        $redirect_url = apply_filters( 'catalog_cart_checkout_redirect_url', $redirect_url );
+        $redirect_url = apply_filters( 'catalogx_cart_checkout_redirect_url', $redirect_url );
 
         // Get cart and checkout page id
         $cart_page_id       = wc_get_page_id( 'cart' );
@@ -174,7 +146,7 @@ class Frontend{
      * Single product page add to cart button exclusion
      * @return void
      */
-    public function catalog_woocommerce_template_single() { 
+    public function exclusion_for_single_product_page() { 
         global $post;
 
         if ( Util::is_available_for_product( $post->ID ) && is_product() ) {

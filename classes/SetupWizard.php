@@ -22,12 +22,12 @@ class SetupWizard {
      * Add admin menus/screens.
      */
     public function admin_menus() {
-        add_dashboard_page('', '', 'manage_options', 'catalog-setup', [$this, 'render_setup_wizard']);
+        add_dashboard_page('', '', 'manage_options', 'catalogx-setup', [$this, 'render_setup_wizard']);
     }
     
     function render_setup_wizard() {
         ?>
-        <div id="catalog_setup_wizard">
+        <div id="catalogx-setup-wizard">
         </div>
         <?php
     }
@@ -35,7 +35,7 @@ class SetupWizard {
     function admin_scripts() {
         $current_screen = get_current_screen();
 
-        if ( $current_screen->id === 'dashboard_page_catalog-setup' ) {
+        if ( $current_screen->id === 'dashboard_page_catalogx-setup' ) {
             wp_enqueue_script('setup-wizard-script', CatalogX()->plugin_url . 'build/blocks/setupWizard/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'react-jsx-runtime'  ], CatalogX()->version, true);
             wp_set_script_translations( 'setup-wizard-script', 'catalogx' );
             wp_enqueue_style('setup-wizard-style', CatalogX()->plugin_url . 'build/blocks/setupWizard/index.css');

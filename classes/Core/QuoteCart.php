@@ -48,13 +48,15 @@ class QuoteCart {
 
     public function quote_validation_schedule(){
 
-        if( ! wp_next_scheduled( 'quote_validation_schedule' ) ){
-            $ve = get_option( 'gmt_offset' ) > 0 ? '+' : '-';
-            wp_schedule_event( strtotime( '00:00 tomorrow ' . $ve . get_option( 'gmt_offset' ) . ' HOURS'), 'daily', 'quote_validation_schedule' );
+        if ( ! wp_next_scheduled( 'quote_validation_schedule' ) ) {
+            $timezone = wp_timezone();
+            $tomorrow = new \DateTime('tomorrow 00:00', $timezone); // Get tomorrow's midnight in the site's timezone
+            wp_schedule_event( $tomorrow->getTimestamp(), 'daily', 'quote_validation_schedule' );
         }
+        
 
         if ( !wp_next_scheduled( 'quote_clean_cron' ) ) {
-            wp_schedule_event( time(), 'daily', 'quote_clean_cron' );
+            wp_schedule_event( time(), 'hourly', 'quote_clean_cron' );
         }
     }
 
@@ -199,17 +201,17 @@ class QuoteCart {
     }
 
     public function get_request_quote_page_url() {
-        $catalog_quote_page_id = get_option( 'request_quote_page' );
-        $base_url     = get_the_permalink( $catalog_quote_page_id );
+        $catalogx_quote_page_id = get_option( 'request_quote_page' );
+        $base_url     = get_the_permalink( $catalogx_quote_page_id );
 
-        return apply_filters( 'catalog_request_quote_page_url', $base_url );
+        return apply_filters( 'catalogx_request_quote_page_url', $base_url );
     }
 
     public function get_request_quote_thank_you_page_url() {
-        $catalog_quote_page_id = get_option( 'request_quote_thank_you_page' );
-        $base_url     = get_the_permalink( $catalog_quote_page_id );
+        $catalogx_quote_page_id = get_option( 'request_quote_thank_you_page' );
+        $base_url     = get_the_permalink( $catalogx_quote_page_id );
 
-        return apply_filters( 'catalog_request_quote_thank_you_page_url', $base_url );
+        return apply_filters( 'catalogx_request_quote_thank_you_page_url', $base_url );
     }
 
     public function is_empty_cart() {

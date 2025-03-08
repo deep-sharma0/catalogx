@@ -38,7 +38,7 @@ class Block {
 				],
             ];
 
-            //this path is set for load the translation       
+            //this path is set for load the translation   
             CatalogX()->block_paths += ['blocks/enquiry-button' => 'build/blocks/enquiry-button/index.js'];
         }
 
@@ -85,10 +85,11 @@ class Block {
             ];
 
             //this path is set for load the translation
-            CatalogX()->block_paths += ['blocks/quote-cart' => 'build/blocks/quote-cart/index.js'];
-            CatalogX()->block_paths += ['blocks/quote-button' => 'build/blocks/quote-button/index.js'];
-            CatalogX()->block_paths += ['blocks/quote-thank-you' => 'build/blocks/quote-thank-you/index.js'];
-            
+            CatalogX()->block_paths += [
+                'blocks/quote-cart' => 'build/blocks/quote-cart/index.js',
+                'blocks/quote-button' => 'build/blocks/quote-button/index.js',
+                'blocks/quote-thank-you' => 'build/blocks/quote-thank-you/index.js',
+            ];            
         }
 
         return $blocks;

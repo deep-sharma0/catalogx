@@ -53,7 +53,7 @@ if ( ! class_exists( 'RequestQuoteSendEmail' ) ) {
         $this->find[ ]        = '{customer_name}';
         $this->replace[ ]     = $customer_data['name'];
         
-        $admin_email = get_option('admin_email');
+        $admin_email = CatalogX()->admin_email;
         // Get the user by email
         $admin_user = get_user_by('email', $admin_email);
         if ($admin_user) {

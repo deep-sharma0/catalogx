@@ -19,26 +19,26 @@ class Rest {
         register_rest_route( CatalogX()->rest_namespace, '/settings', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'save_settings' ],
-            'permission_callback'   => [ $this, 'catalog_permission' ]
+            'permission_callback'   => [ $this, 'catalogx_permission' ]
         ] );
 
         // enable/disable the module
         register_rest_route( CatalogX()->rest_namespace, '/modules', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'manage_module' ],
-            'permission_callback'   => [ $this, 'catalog_permission' ]
+            'permission_callback'   => [ $this, 'catalogx_permission' ]
         ] );
 
         register_rest_route( CatalogX()->rest_namespace, '/tour', [
             'methods'               => 'GET',
             'callback'              => [ $this, 'get_tour_status' ],
-            'permission_callback'   => [ $this, 'catalog_permission' ],
+            'permission_callback'   => [ $this, 'catalogx_permission' ],
         ]);
     
         register_rest_route(CatalogX()->rest_namespace, '/tour', [
             'methods'               => 'POST',
             'callback'              => [ $this, 'set_tour_status' ],
-            'permission_callback'   => [ $this, 'catalog_permission' ],
+            'permission_callback'   => [ $this, 'catalogx_permission' ],
         ]);
 
 	}
@@ -48,7 +48,7 @@ class Rest {
      * @return \WP_Error|\WP_REST_Response
      */
     public function get_tour_status() {
-        $status = get_option('catalogx_tour_active', false);
+        $status = CatalogX()->setting->get_option('catalogx_tour_active', false);
         return ['active' => $status];
     }
     
@@ -72,12 +72,12 @@ class Rest {
         $get_settings_data  = $request->get_param( 'setting' );
         $settingsname       = $request->get_param( 'settingName' );
         // $settingsname       = str_replace( "-", "_", $settingsname );
-        $optionname         = 'catalog_' . $settingsname . '_settings';
+        $optionname         = 'catalogx_' . $settingsname . '_settings';
 
         // save the settings in database
         CatalogX()->setting->update_option( $optionname, $get_settings_data );
 
-        do_action( 'catalog_settings_after_save', $settingsname, $get_settings_data );
+        do_action( 'catalogx_settings_after_save', $settingsname, $get_settings_data );
 
         $all_details[ 'error' ] = __( 'Settings Saved', 'catalogx' );
 
@@ -87,13 +87,13 @@ class Rest {
         if ($action == 'enquiry') {
             $display_option = $request->get_param('displayOption');
             $restrict_user = $request->get_param('restrictUserEnquiry');
-            CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalog_all-settings_settings');
-            CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalog_all-settings_settings');
+            CatalogX()->setting->update_setting('is_disable_popup', $display_option, 'catalogx_all-settings_settings');
+            CatalogX()->setting->update_setting('enquiry_user_permission', $restrict_user, 'catalogx_all-settings_settings');
         }
         
         if ($action == 'quote') {
             $restrict_user = $request->get_param('restrictUserQuote');
-            CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalog_all-settings_settings');
+            CatalogX()->setting->update_setting('quote_user_permission', $restrict_user, 'catalogx_all-settings_settings');
         }
 
         return rest_ensure_response($all_details);
@@ -129,7 +129,7 @@ class Rest {
      * Catalog rest api permission functions
      * @return bool
      */
-	public function catalog_permission() {
+	public function catalogx_permission() {
 		return true;
 	}
 }

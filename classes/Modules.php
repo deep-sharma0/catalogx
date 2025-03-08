@@ -15,7 +15,7 @@ class Modules {
      * Option's table key for active module list.
      * @var string
      */
-    const ACTIVE_MODULES_DB_KEY = "catalog_all_active_module_list";
+    const ACTIVE_MODULES_DB_KEY = "catalogx_all_active_module_list";
 
     /**
      * List of all module.
@@ -52,7 +52,7 @@ class Modules {
     public function get_all_modules() {
         if ( ! $this->modules ) {
 
-            $this->modules = apply_filters( 'catalog_modules', [
+            $this->modules = apply_filters( 'catalogx_modules', [
                 'catalog' => [
                     'id'             => 'catalog',
                     'module_file'    => CatalogX()->plugin_path . 'modules/Catalog/Module.php',
@@ -134,7 +134,7 @@ class Modules {
                  * 
                  * @param object $name module object
                  */
-                do_action( 'catalog_activated_module_' . $modules_id, $this->container[ $modules_id ] );
+                do_action( 'catalogx_activated_module_' . $modules_id, $this->container[ $modules_id ] );
             }
         }
 
@@ -244,7 +244,7 @@ class Modules {
                      * Module deactivation hook
                      * @param object $module deactivated module object
                      */
-                    do_action( 'catalog_deactivated_module_' . $module_id, $this->container[$module_id] );
+                    do_action( 'catalogx_deactivated_module_' . $module_id, $this->container[$module_id] );
                 }
             }
         );

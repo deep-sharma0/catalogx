@@ -12,7 +12,7 @@ export default {
             key: 'set_enquiry_cart_page',
             type: 'select',
             label: __("Set Enquiry Cart Page", "catalogx"),
-            desc: __("Select the page on which you have inserted <code>[catalog_enquiry_cart]</code> shortcode.", "catalogx"),
+            desc: __("Select the page on which you have inserted <code>[catalogx_enquiry_cart]</code> shortcode.", "catalogx"),
             options: appLocalizer.all_pages,
             proSetting: true,
         },
@@ -49,7 +49,7 @@ export default {
             option: [
                 {
                     key: '',
-                    label: '[catalog_enquiry_cart]',
+                    label: '[catalogx_enquiry_cart]',
                     desc: 'Enables you to create a seller dashboard',
                 },
                 {

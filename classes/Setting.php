@@ -64,17 +64,17 @@ class Setting {
          * Filter for register settings key's
          * @var array setting keys
          */
-        $this->settings_keys = apply_filters( 'catalog_register_settings_keys', [
-            'catalog_extra_settings',
-            'catalog_enquiry-catalog-customization_settings',
-            'catalog_all-settings_settings',
-            'catalog_tools_settings',
-            'catalog_pages_settings',
-            'catalog_enquiry-quote-exclusion_settings',
-            'catalog_enquiry-form-customization_settings',
-            'catalog_enquiry-email-temp_settings',
-            'catalog_wholesale_settings',
-            'catalog_wholesale-registration_settings'
+        $this->settings_keys = apply_filters( 'catalogx_register_settings_keys', [
+            'catalogx_extra_settings',
+            'catalogx_enquiry-catalog-customization_settings',
+            'catalogx_all-settings_settings',
+            'catalogx_tools_settings',
+            'catalogx_pages_settings',
+            'catalogx_enquiry-quote-exclusion_settings',
+            'catalogx_enquiry-form-customization_settings',
+            'catalogx_enquiry-email-temp_settings',
+            'catalogx_wholesale_settings',
+            'catalogx_wholesale-registration_settings'
         ]);
 
         return $this->settings_keys;
@@ -174,6 +174,6 @@ class Setting {
             }
         }
 
-        return 'catalog_extra_settings';
+        return 'catalogx_extra_settings';
     }
 }

@@ -30,6 +30,7 @@ final class CatalogX {
         $this->container[ 'version' ]        = CATALOGX_PLUGIN_VERSION;
         $this->container[ 'rest_namespace' ] = 'catalogx/v1';
 		$this->container[ 'block_paths' ]    = [];
+		$this->container[ 'admin_email' ]    = get_option( 'admin_email' );
 
         register_activation_hook( $file, [ $this, 'activate' ] );
 		register_deactivation_hook( $file, [ $this, 'deactivate' ] );
@@ -63,20 +64,20 @@ final class CatalogX {
 
 		$this->init_classes();
 		
-		add_action( 'init', [ $this, 'catalog_register_strings_and_setup_wizard' ] );
+		add_action( 'init', [ $this, 'catalogx_register_strings_and_setup_wizard' ] );
 		
-		do_action( 'catalog_enquiry_loaded' );
+		do_action( 'catalogx_loaded' );
 
 	}
 	
 	/**
 	 * Load setup class and register string
 	 */
-	public function catalog_register_strings_and_setup_wizard() {
+	public function catalogx_register_strings_and_setup_wizard() {
 		new SetupWizard();
 		if (get_option('catalogx_plugin_activated')) {
 			delete_option('catalogx_plugin_activated');
-			wp_redirect(admin_url('admin.php?page=catalog-setup'));
+			wp_redirect(admin_url('admin.php?page=catalogx-setup'));
 			exit;
 		}
 
@@ -94,7 +95,7 @@ final class CatalogX {
 			icl_register_string( 'catalogx', $key, $value );
 		}
 
-		$form_settings =  CatalogX()->setting->get_option('catalog_enquiry-form-customization_settings');
+		$form_settings =  CatalogX()->setting->get_option('catalogx_enquiry-form-customization_settings');
 
 		if ( function_exists( 'icl_register_string' ) ) {
 			foreach ( $form_settings['formsettings']['formfieldlist'] as $field ) {
@@ -119,7 +120,7 @@ final class CatalogX {
 		}
 
 		// Save the form settings to the options table
-		update_option( 'catalog_enquiry-form-customization_settings', $form_settings );
+		update_option( 'catalogx_enquiry-form-customization_settings', $form_settings );
 	}
 
 	public function init_classes() {
@@ -221,7 +222,7 @@ final class CatalogX {
      * @return void
      */
     public function deactivate() {
-        delete_option('catalogx_plugin_installed');
+        // Nothing to do write now
     }
 
 	/**

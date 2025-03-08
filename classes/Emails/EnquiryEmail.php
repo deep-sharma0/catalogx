@@ -24,7 +24,7 @@ class EnquiryEmail extends \WC_Email {
 	 * Constructor
 	 */
 	public function __construct() {		
-		$this->id          = 'catalog_enquiry_sent';
+		$this->id          = 'catalogx_enquiry_sent';
 		$this->title       = __( 'Enquiry sent', 'catalogx' );
 		$this->description = __( 'Admin will get an email when a customer enquires about a product.', 'catalogx' );
 

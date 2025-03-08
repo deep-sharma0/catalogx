@@ -2,7 +2,7 @@
 namespace CatalogX;
 
 class Install {
-    const VERSION_KEY = 'catalog_enquiry_plugin_version';
+    const VERSION_KEY = 'catalogx_plugin_version';
 
     const FREE_FORM_MAP = [
         'name'           => 'name-label',
@@ -35,14 +35,12 @@ class Install {
         self::$current_version  = CatalogX()->version;
 
         $this->create_database_table();
-
         $this->set_default_modules();
-
-        $this->migrate_database_table();
-        
         $this->set_default_settings();
 
-        $this->migrate_vendor_settings();
+        if (!empty(get_option('mvx_catalog_general_tab_settings'))) {
+            $this->migrate_catalog_enquiry_to_catalogx();
+        }
 
         // Update the version in database
         update_option( self::VERSION_KEY, self::$current_version );
@@ -63,7 +61,7 @@ class Install {
 
         // Create message table
         $wpdb->query(
-            "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "catelog_cust_vendor_answers` (
+            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "` (
                 `chat_message_id` bigint(20) NOT NULL AUTO_INCREMENT,
                 `to_user_id` bigint(20) NOT NULL,
                 `from_user_id` bigint(20) NOT NULL,
@@ -72,6 +70,10 @@ class Install {
                 `enquiry_id` bigint(20) NOT NULL,
                 `status` varchar(20) NOT NULL,
                 `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                `attachment` bigint(20),
+                `reaction` varchar(20),
+                `star` boolean,
+                `reply` text DEFAULT NULL,
                 PRIMARY KEY (`chat_message_id`)
             ) $collate;"
         );
@@ -108,31 +110,53 @@ class Install {
                 PRIMARY KEY ( `id` )
             ) $collate;"
         );
+    }
 
-        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
-            // Rebame the table
-            $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`"
-            );
+    public function migrate_catalog_enquiry_to_catalogx() {
+        global $wpdb;
+        // table migration
+        // Rename the table
+        $wpdb->query(
+            "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`"
+        );
 
-            // Add column to table
-            $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-                ADD COLUMN attachment bigint(20);"
-            );
-            $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-                ADD COLUMN reaction varchar(20);"
-            );
-            $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-                ADD COLUMN star boolean;"
-            );
-            $wpdb->query(
-                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-                ADD COLUMN reply text DEFAULT NULL;"
-            );
+        // Add column to table
+        $wpdb->query(
+            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+            ADD COLUMN attachment bigint(20);"
+        );
+        $wpdb->query(
+            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+            ADD COLUMN reaction varchar(20);"
+        );
+        $wpdb->query(
+            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+            ADD COLUMN star boolean;"
+        );
+        $wpdb->query(
+            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+            ADD COLUMN reply text DEFAULT NULL;"
+        );
+
+        // migrate all enquiry and details from post table to enquiry table
+        $this->migrate_database_table();
+
+        // migrate all vendor settings
+        $this->migrate_vendor_settings();
+    
+        // migrate setttings
+        $this->migrate_settings();
+
+        // module migration
+        $previous_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
+
+        // Enable enquiry module based on previous setting
+        if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
+            $active_module_list[] = 'enquiry';
         }
+
+        update_option( Modules::ACTIVE_MODULES_DB_KEY, $active_module_list );
+
     }
 
     /**
@@ -140,20 +164,13 @@ class Install {
      * @return void
      */
     public static function set_default_modules() {
-        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
+        // if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             
-            // Enable enquiry module by default
+            // Enable catalog module by default
             $active_module_list = [ 'catalog' ];
             
-            $previous_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
-
-            // Enable catalog setting based on previous setting
-            if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
-                $active_module_list[] = 'enquiry';
-            }
-
             update_option( Modules::ACTIVE_MODULES_DB_KEY, $active_module_list );
-        }
+        // }
     }
 
     /**
@@ -163,7 +180,7 @@ class Install {
     public function migrate_database_table() {
         global $wpdb;
 
-        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
+        // if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             try {
                 // Get enquiry post and post meta
                 $enquirys_datas = $wpdb->get_results(
@@ -205,7 +222,7 @@ class Install {
             } catch ( \Exception $e ) {
                 Utill::log( $e->getMessage() );
             }
-        }
+        // }
     }
 
     /**
@@ -214,11 +231,195 @@ class Install {
      */
     public function set_default_settings() {
         // Migration by version controll
-        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
+        // if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
+                       
+            // Update shopping gurnal
+            $all_settings = [
+                'is_disable_popup'        => 'popup',
+                'enable_cart_checkout'   => [],
+                'set_expiry_time'         => 'Never',
+                'is_enable_multiple_product_enquiry'    => ['is_enable_multiple_product_enquiry'],
+            ];
+
+            update_option( 'catalogx_all-settings_settings', $all_settings );
+            
+            $email_settings = [
+                'additional_alert_email'  => CatalogX()->admin_email,
+            ];
+
+            update_option( 'catalogx_enquiry-email-temp_settings', $email_settings );
+
+            // Update pages settings
+            $page_settings = [
+                'set_enquiry_cart_page'  => intval( get_option( 'catalogx_enquiry_cart_page' ) ),
+                'set_request_quote_page' => intval( get_option( 'request_quote_page' ) ),
+                'set_wholesale_product_list_page' => intval( get_option( 'wholesale_product_list_page' ) )
+            ];
+            update_option( 'catalogx_pages_settings', $page_settings );
+                        
+            // Update form settings
+            $free_form = [
+                [
+                    'key'       => 'name',
+                    'label'     => 'Enter your name',
+                    'active'    => true,
+                ],
+                [
+                    'key'       => 'email',
+                    'label'     => 'Enter your email',
+                    'active'    => true,
+                ],
+                [ "key" => "phone" ],
+                [ "key" => "address" ],
+                [ "key" => "subject" ],
+                [ "key" => "comment" ],
+                [ "key" => "fileupload" ],
+                [ "key" => "filesize-limit" ],
+                [ "key" => "captcha" ],
+            ];
+            
+            $pro_form = [ 
+                [
+                    'id'      => 1,
+                    'type'    => 'title',
+                    'label'   => 'Enquiry Form',
+                ],
+                [
+                    'id'           => 2,
+                    'type'         => 'text',
+                    'label'        => 'Enter your name',
+                    'required'     => true,
+                    'placeholder'  => 'I am default place holder',
+                    'name'         => 'name',
+                    'not_editable' => true
+                ],
+                [
+                    'id'           => 3,
+                    'type'         => 'email',
+                    'label'        => 'Enter your email',
+                    'required'     => true,
+                    'placeholder'  => 'I am default place holder',
+                    'name'         => 'email',
+                    'not_editable' => true
+                ],
+            ];
+
+            $form_settings = [
+                'formsettings'    => [
+                    'formfieldlist'  => $pro_form,
+                    'butttonsetting' => [],
+                ],
+                'freefromsetting' => $free_form,          
+            ];
+    
+            update_option( 'catalogx_enquiry-form-customization_settings', $form_settings );
+
+            $wholesale_form = [ 
+                [
+                    'id'      => 1,
+                    'type'    => 'title',
+                    'label'   => 'Wholesale Form',
+                ],
+                [
+                    'id'           => 2,
+                    'type'         => 'text',
+                    'label'        => 'Enter your name',
+                    'required'     => true,
+                    'placeholder'  => 'I am default place holder',
+                    'name'         => 'name',
+                    'not_editable' => true
+                ],
+                [
+                    'id'           => 3,
+                    'type'         => 'email',
+                    'label'        => 'Enter your email',
+                    'required'     => true,
+                    'placeholder'  => 'I am default place holder',
+                    'name'         => 'email',
+                    'not_editable' => true
+                ],
+            ];
+
+            $wholesale_from_settings = [
+                'wholesale_from_settings'    => [
+                    'formfieldlist'  => $wholesale_form,
+                    'butttonsetting' => [],
+                ],         
+            ];
+
+            update_option( 'catalogx_wholesale-registration_settings', $wholesale_from_settings );
+        // }
+    }
+
+    public function migrate_vendor_settings() {
+        // if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
+            $vendors = get_users( array( 'role' => 'dc_vendor' ) );
+
+            foreach ( $vendors as $vendor ) {
+                // Check if the vendor has the meta key '_mvx_vendor_catalog_settings'
+                $catalogx_vendor_settings = get_user_meta( $vendor->ID, '_mvx_vendor_catalog_settings', true );
+
+                if ( ! empty( $catalogx_vendor_settings['woocommerce_product_vendor_list'] ) && is_array( $catalogx_vendor_settings['woocommerce_product_vendor_list'] ) ) {
+                    $new_product_list = array();
+                    $index = 0;
+        
+                    foreach ( $catalogx_vendor_settings['woocommerce_product_vendor_list'] as $product_id ) {
+                        // Get the product title (assuming these are product IDs)
+                        $product = wc_get_product( $product_id );
+        
+                        if ( $product ) {
+                            // Create the new format for each product
+                            $new_product_list[] = array(
+                                'value' => $product_id,
+                                'label' => $product->get_name(),  // Fetch the product name
+                                'index' => $index,
+                            );
+                            $index++;
+                        }
+                    }
+                }
+
+                if ( ! empty( $catalogx_vendor_settings['woocommerce_category_vendor_list'] ) && is_array( $catalogx_vendor_settings['woocommerce_category_vendor_list'] ) ) {
+                    $new_category_list = array();
+                    $index = 0;
+        
+                    foreach ( $catalogx_vendor_settings['woocommerce_category_vendor_list'] as $category_id ) {
+                        // Get the category name using the category ID
+                        $category = get_term( $category_id, 'product_cat' ); // 'product_cat' is the WooCommerce category taxonomy
+        
+                        if ( $category ) {
+                            // Create the new format for each category
+                            $new_category_list[] = array(
+                                'value' => $category_id,
+                                'label' => $category->name,  // Fetch the category name
+                                'index' => $index,
+                            );
+                            $index++;
+                        }
+                    }
+                }
+
+                // If the meta key does not exist or is empty, create it with default values
+                if ( !empty( $catalogx_vendor_settings ) ) {
+                    $new_catalogx_vendor_settings = array(
+                        'selected_email_tpl' => $catalogx_vendor_settings['selected_email_tpl'] ? $catalogx_vendor_settings['selected_email_tpl'] : '',
+                        'woocommerce_product_list' => $new_product_list,
+                        'woocommerce_category_list' => $new_category_list,
+                    );
+
+                    // Update user meta with default catalog settings
+                    update_user_meta( $vendor->ID, 'vendor_enquiry_settings', $new_catalogx_vendor_settings );
+                }
+            }
+        // }
+    }
+
+    public function migrate_settings() {
+        // Migration by version controll
+        // if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             
             $previous_general_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
             $previous_button_settings = get_option( 'mvx_catalog_button_appearance_tab_settings', [] );
-            // $previous_general_settings = $previous_general_settings[ 'woocommerce_catalog_enquiry_general_settings' ] ?? [];
 
             // Update product page builder
             $page_builder_setting = [
@@ -236,7 +437,7 @@ class Install {
                 ]
             ];
 
-            update_option( 'catalog_enquiry-catalog-customization_settings', $page_builder_setting );
+            update_option( 'catalogx_enquiry-catalog-customization_settings', $page_builder_setting );
 
             
             // Update shopping gurnal
@@ -251,14 +452,14 @@ class Install {
                 'is_enable_multiple_product_enquiry'    => $previous_general_settings[ 'is_enable_multiple_product_enquiry' ] ?? ['is_enable_multiple_product_enquiry'],
             ];
 
-            update_option( 'catalog_all-settings_settings', $all_settings );
+            update_option( 'catalogx_all-settings_settings', $all_settings );
             
             $email_settings = [
                 'additional_alert_email'  => !empty($previous_general_settings[ 'other_emails' ]) ? $previous_general_settings[ 'other_emails' ] : get_option( 'admin_email' ),
             ];
 
             if (!empty($previous_general_settings['is_other_admin_mail'])) {
-                $admin_email = get_option('admin_email');
+                $admin_email = CatalogX()->admin_email;
                 
                 // Convert the string into an array, remove the admin email, and convert back to a string
                 $emails_array = array_map('trim', explode(',', $email_settings['additional_alert_email']));
@@ -266,20 +467,20 @@ class Install {
                 $email_settings['additional_alert_email'] = implode(', ', $emails_array);
             }
 
-            update_option( 'catalog_enquiry-email-temp_settings', $email_settings );
+            update_option( 'catalogx_enquiry-email-temp_settings', $email_settings );
 
             // Update pages settings
             $page_settings = [
-                'set_enquiry_cart_page'  => intval( get_option( 'catalog_enquiry_cart_page' ) ),
+                'set_enquiry_cart_page'  => intval( get_option( 'catalogx_enquiry_cart_page' ) ),
                 'set_request_quote_page' => intval( get_option( 'request_quote_page' ) ),
                 'set_wholesale_product_list_page' => intval( get_option( 'wholesale_product_list_page' ) )
             ];
-            update_option( 'catalog_pages_settings', $page_settings );
+            update_option( 'catalogx_pages_settings', $page_settings );
             
             $tool_settings = [
                 'custom_css_product_page'  => !empty($previous_button_settings[ 'custom_css_product_page' ]) ? $previous_button_settings[ 'custom_css_product_page' ] : '',
             ];
-            update_option( 'catalog_tools_settings', $tool_settings );
+            update_option( 'catalogx_tools_settings', $tool_settings );
             
             // Update form settings
             
@@ -384,7 +585,7 @@ class Install {
                 'freefromsetting' => $free_form,          
             ];
     
-            update_option( 'catalog_enquiry-form-customization_settings', $form_settings );
+            update_option( 'catalogx_enquiry-form-customization_settings', $form_settings );
 
             $wholesale_form = [ 
                 [
@@ -419,9 +620,9 @@ class Install {
                 ],         
             ];
 
-            update_option( 'catalog_wholesale-registration_settings', $wholesale_from_settings );
+            update_option( 'catalogx_wholesale-registration_settings', $wholesale_from_settings );
 
-            //// Update exclusion settings
+            // Update exclusion settings
             $previous_exclusion_settings = get_option( 'mvx_catalog_exclusion_tab_settings', [] );
 
             // Prepare exclusion user list
@@ -486,71 +687,19 @@ class Install {
                 'enquiry_exclusion_category_list'   => $exclusion_category_list,
             ];
 
-            update_option( 'catalog_enquiry-quote-exclusion_settings', $exclusion_settings );
-        }
-    }
+            update_option( 'catalogx_enquiry-quote-exclusion_settings', $exclusion_settings );
 
-    public function migrate_vendor_settings() {
-        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
-            $vendors = get_users( array( 'role' => 'dc_vendor' ) );
+            // delete previous option from database
+            delete_option( 'mvx_catalog_general_tab_settings' );
+            delete_option( 'mvx_catalog_enquiry_form_tab_settings' );
+            delete_option( 'mvx_catalog_exclusion_tab_settings' );
+            delete_option( 'mvx_catalog_button_appearance_tab_settings' );
 
-            foreach ( $vendors as $vendor ) {
-                // Check if the vendor has the meta key '_mvx_vendor_catalog_settings'
-                $catalog_settings = get_user_meta( $vendor->ID, '_mvx_vendor_catalog_settings', true );
-
-                if ( ! empty( $catalog_settings['woocommerce_product_vendor_list'] ) && is_array( $catalog_settings['woocommerce_product_vendor_list'] ) ) {
-                    $new_product_list = array();
-                    $index = 0;
-        
-                    foreach ( $catalog_settings['woocommerce_product_vendor_list'] as $product_id ) {
-                        // Get the product title (assuming these are product IDs)
-                        $product = wc_get_product( $product_id );
-        
-                        if ( $product ) {
-                            // Create the new format for each product
-                            $new_product_list[] = array(
-                                'value' => $product_id,
-                                'label' => $product->get_name(),  // Fetch the product name
-                                'index' => $index,
-                            );
-                            $index++;
-                        }
-                    }
-                }
-
-                if ( ! empty( $catalog_settings['woocommerce_category_vendor_list'] ) && is_array( $catalog_settings['woocommerce_category_vendor_list'] ) ) {
-                    $new_category_list = array();
-                    $index = 0;
-        
-                    foreach ( $catalog_settings['woocommerce_category_vendor_list'] as $category_id ) {
-                        // Get the category name using the category ID
-                        $category = get_term( $category_id, 'product_cat' ); // 'product_cat' is the WooCommerce category taxonomy
-        
-                        if ( $category ) {
-                            // Create the new format for each category
-                            $new_category_list[] = array(
-                                'value' => $category_id,
-                                'label' => $category->name,  // Fetch the category name
-                                'index' => $index,
-                            );
-                            $index++;
-                        }
-                    }
-                }
-
-                // If the meta key does not exist or is empty, create it with default values
-                if ( !empty( $catalog_settings ) ) {
-                    $new_catalog_settings = array(
-                        'selected_email_tpl' => $catalog_settings['selected_email_tpl'] ? $catalog_settings['selected_email_tpl'] : '',
-                        'woocommerce_product_list' => $new_product_list,
-                        'woocommerce_category_list' => $new_category_list,
-                    );
-
-                    // Update user meta with default catalog settings
-                    update_user_meta( $vendor->ID, 'vendor_enquiry_settings', $new_catalog_settings );
-                }
-            }
-        }
+            delete_option( 'woocommerce_catalog_enquiry_from_settings' );
+            delete_option( 'woocommerce_catalog_enquiry_general_settings' );
+            delete_option( 'woocommerce_catalog_enquiry_exclusion_settings' );
+            delete_option( 'woocommerce_catalog_enquiry_button_appearence_settings' );
+        // }
     }
 
 }

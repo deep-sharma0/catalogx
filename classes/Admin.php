@@ -211,7 +211,7 @@ class Admin {
         $settings_value = [];
         $tabs_names     = [ 'enquiry-catalog-customization', 'all-settings', 'enquiry-form-customization', 'enquiry-quote-exclusion', 'tools', 'enquiry-email-temp', 'wholesale', 'wholesale-registration', 'pages' ];
         foreach ( $tabs_names as $tab_name ) {
-            $settings_value[ $tab_name ] = CatalogX()->setting->get_option( 'catalog_' . $tab_name . '_settings' );
+            $settings_value[ $tab_name ] = CatalogX()->setting->get_option( 'catalogx_' . $tab_name . '_settings' );
         }
 
         if ($current_user_role === 'administrator') {
@@ -228,7 +228,7 @@ class Admin {
         wp_set_script_translations( 'catalogx-script', 'catalogx' );
 
         // Localize script
-        wp_localize_script( 'catalogx-script', 'appLocalizer', apply_filters( 'catalog_settings', [
+        wp_localize_script( 'catalogx-script', 'appLocalizer', apply_filters( 'catalogx_settings', [
             'apiurl'                    => untrailingslashit( get_rest_url() ),
             'nonce'                     => wp_create_nonce('wp_rest'),
             'tab_name'                 => "CatalogX",

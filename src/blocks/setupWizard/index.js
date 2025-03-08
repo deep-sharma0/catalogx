@@ -5,4 +5,4 @@ import SetupWizard from './SetupWizard';
 // Render the App component into the DOM
 render(<BrowserRouter>
 <SetupWizard/>
-</BrowserRouter>, document.getElementById('catalog_setup_wizard'));
+</BrowserRouter>, document.getElementById('catalogx-setup-wizard'));

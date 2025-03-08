@@ -22,7 +22,7 @@ class Frontend {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 
         // Quote button shortcode
-        add_shortcode( 'catalog_quote_button', [ $this, 'catalog_quote_button_shortcode' ] );
+        add_shortcode( 'catalogx_quote_button', [ $this, 'catalogx_quote_button_shortcode' ] );
     }
 
     /**
@@ -113,7 +113,7 @@ class Frontend {
         ]);
     }
 
-    public function catalog_quote_button_shortcode() {
+    public function catalogx_quote_button_shortcode() {
         ob_start();
         remove_action('display_shop_page_button', [ $this, 'add_button_for_quote' ]);
         $this->add_button_for_quote();

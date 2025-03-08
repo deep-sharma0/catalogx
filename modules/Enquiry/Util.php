@@ -15,7 +15,7 @@ class Util {
         $current_user = wp_get_current_user();
 
         // Get exclusion setting
-        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalog_enquiry-quote-exclusion_settings' );
+        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalogx_enquiry-quote-exclusion_settings' );
 
         // Get userroll exclusion settings
         $userroles_exclusion_settings = isset($enquiry_exclusion_setting[ 'enquiry_exclusion_userroles_list' ]) ? $enquiry_exclusion_setting[ 'enquiry_exclusion_userroles_list' ] : [];
@@ -54,7 +54,7 @@ class Util {
      */
     public static function is_available_for_product($product_id) {
         // Get exclusion setting
-        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalog_enquiry-quote-exclusion_settings' );
+        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalogx_enquiry-quote-exclusion_settings' );
 
         // Get product exclusion settings
         $product_exclusion_settings = isset($enquiry_exclusion_setting['enquiry_exclusion_product_list']) ? $enquiry_exclusion_setting['enquiry_exclusion_product_list'] : [];

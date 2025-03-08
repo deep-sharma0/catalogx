@@ -159,16 +159,16 @@ class Frontend{
             'enquiry-form-script', 'enquiryFormData', [
             'apiurl'        => untrailingslashit(get_rest_url()),
             'nonce'         => wp_create_nonce( 'wp_rest' ),
-            'settings_free' => $this->catalog_free_form_settings(),
-            'settings_pro'  => $this->catalog_pro_form_settings(),
+            'settings_free' => $this->catalogx_free_form_settings(),
+            'settings_pro'  => $this->catalogx_pro_form_settings(),
             'khali_dabba'    => \CatalogX\Utill::is_khali_dabba(),
             'product_data'  => (\CatalogX\Utill::is_khali_dabba() && !empty(CatalogX_Pro()->cart->get_cart_data())) ? CatalogX_Pro()->cart->get_cart_data() : '',
             'default_placeholder'  => [
                 'name'  => $current_user->display_name,
                 'email' => $current_user->user_email
             ],
-            'content_before_form' => apply_filters('catalog_add_content_before_form', ''),
-            'content_after_form'  => apply_filters('catalog_add_content_after_form', ''),
+            'content_before_form' => apply_filters('catalogx_add_content_before_form', ''),
+            'content_after_form'  => apply_filters('catalogx_add_content_after_form', ''),
         ]);
 
         if (is_product()) {
@@ -185,8 +185,8 @@ class Frontend{
         }
     }
 
-    public function catalog_free_form_settings() {
-        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry-form-customization_settings', [] );
+    public function catalogx_free_form_settings() {
+        $form_settings = CatalogX()->setting->get_option( 'catalogx_enquiry-form-customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['freefromsetting'] as &$free_field ) {
@@ -199,8 +199,8 @@ class Frontend{
         return $form_settings['freefromsetting'];
     }
 
-    public function catalog_pro_form_settings() {
-        $form_settings = CatalogX()->setting->get_option( 'catalog_enquiry-form-customization_settings', [] );
+    public function catalogx_pro_form_settings() {
+        $form_settings = CatalogX()->setting->get_option( 'catalogx_enquiry-form-customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['formsettings']['formfieldlist'] as &$field ) {

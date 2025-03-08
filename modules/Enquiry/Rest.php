@@ -20,13 +20,13 @@ class Rest {
         register_rest_route( CatalogX()->rest_namespace, '/enquiries', [
             'methods'               => 'POST',
             'callback'              => [ $this, 'save_form_data' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ],
+            'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ],
         ]);
 
         register_rest_route( CatalogX()->rest_namespace, '/buttons', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'render_buttons' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalog_permission' ],
+            'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ],
         ]);
 	}
 
@@ -104,7 +104,7 @@ class Rest {
 
         if ( $result ) {
             $enquiry_id   = $wpdb->insert_id;
-            $admin_email  = get_option( 'admin_email' );
+            $admin_email  = CatalogX()->admin_email;
             $User_details = get_user_by( 'email', $admin_email );
             $to_user_id   = $User_details->data->ID;
         
