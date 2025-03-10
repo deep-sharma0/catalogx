@@ -1,6 +1,6 @@
 jQuery( function( $ ) {
     
-  $(document).on('click', '.add-request-quote-button', handleClick);
+  $(document).on('click', '.catalogx-add-request-quote-button', handleClick);
 
   	function handleClick (event) {
         event.preventDefault();
@@ -24,13 +24,13 @@ jQuery( function( $ ) {
 
             currentElement.next().remove();
             if (response.result == 'true' || response.result == 'exists') {
-              $('.quote_add_item_response-' + productId).hide().addClass('hide').html('');
-              $('.quote_add_item_browse-list-' + productId).show().removeClass('hide');
+              $('.catalogx_quote_add_item_response-' + productId).hide().addClass('hide').html('');
+              $('.catalogx_quote_add_item_browse-list-' + productId).show().removeClass('hide');
               currentElement.parent().hide().removeClass('show').addClass('addedd');
               $('.add-to-quote-' + productId).attr('data-variation', response.variations);
 
             } else if (response.result == 'false') {
-              $('.quote_add_item_response-' + productId).show().removeClass('hide').html(response.message);
+              $('.catalogx_quote_add_item_response-' + productId).show().removeClass('hide').html(response.message);
             }
         });
 

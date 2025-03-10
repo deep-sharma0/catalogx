@@ -11,14 +11,14 @@ registerBlockType('catalogx/quote-button', {
         const blockProps = useBlockProps();
         return (
             <div {...blockProps}>
-                <button className="add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
+                <button className="catalogx-add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
             </div>
         );
     },
     save() {
         return (
             <div>
-                <button className="add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
+                <button className="catalogx-add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
                 <div className="quote-message-container"></div>
             </div>
         );
@@ -26,7 +26,7 @@ registerBlockType('catalogx/quote-button', {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const quoteButton = document.querySelector('.add-request-quote-button');
+    const quoteButton = document.querySelector('.catalogx-add-request-quote-button');
     if (quoteButton) {
         quoteButton.addEventListener('click', function(event) {
             event.preventDefault();

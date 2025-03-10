@@ -58,6 +58,8 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
+    // active boolean required
+    // catalogx tour active or not
     public function set_tour($request) {
         update_option('catalogx_tour_active', $request->get_param( 'active' ));
         return ['success' => true];
@@ -68,11 +70,14 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
+    // setting array required
+    // all the settings of a particular id 
+    // settingName string required
+    // Give the setting id 
     public function set_settings( $request ) {
         $all_details        = [];
         $get_settings_data  = $request->get_param( 'setting' );
         $settingsname       = $request->get_param( 'settingName' );
-        // $settingsname       = str_replace( "-", "_", $settingsname );
         $optionname         = 'catalogx_' . $settingsname . '_settings';
 
         // save the settings in database
@@ -105,6 +110,10 @@ class RestV1 {
      * @param mixed $request
      * @return void
      */
+    // id string required
+    // Give the module id 
+    // action string required
+    // Give the action that is activate or deactivate
     public function set_modules( $request ) {
         $moduleId   = $request->get_param( 'id' );
         $action     = $request->get_param( 'action' );

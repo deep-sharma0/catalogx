@@ -111,30 +111,36 @@ class QuoteCart {
     }
 
     public function add_to_quote_action() {
-        if ( ! isset( $_REQUEST['add-to-quote'] ) ) return;
-
-        $product_id      = apply_filters( 'woocommerce_add_to_quote_product_id', absint( $_REQUEST['add-to-quote'] ) );
-        $variation_id    = empty( $_REQUEST['variation_id'] ) ? '' : absint( wp_unslash( $_REQUEST['variation_id'] ) );
+        $add_to_quote = filter_input( INPUT_GET, 'add-to-quote', FILTER_SANITIZE_NUMBER_INT );
+        if ( ! $add_to_quote ) {
+            return;
+        }
+    
+        $product_id      = apply_filters( 'catalogx_add_to_quote_product_id', absint( $add_to_quote ) );
+        $variation_id    = filter_input( INPUT_GET, 'variation_id', FILTER_SANITIZE_NUMBER_INT ) ?: '';
+        $quantity        = filter_input( INPUT_GET, 'quantity', FILTER_SANITIZE_NUMBER_INT );
+        $quantity        = empty( $quantity ) ? 1 : wc_stock_amount( intval( $quantity ) );
+    
         $adding_to_quote = wc_get_product( $product_id );
-
+    
         if ( ! $adding_to_quote ) {
             return;
         }
-
-        $quantity = empty( intval( wp_unslash( $_REQUEST['quantity'] ) ) ) ? 1 : wc_stock_amount( intval( wp_unslash( $_REQUEST['quantity'] ) ) );
+    
         $raq_data = array();
-
+    
         if ( $adding_to_quote->is_type( 'variable' ) && $variation_id ) {
             $variation  = wc_get_product( $variation_id );
             $attributes = $variation->get_attributes();
-
+    
             if ( ! empty( $attributes ) ) {
                 foreach ( $attributes as $name => $value ) {
                     $raq_data[ 'attribute_' . $name ] = $value;
                 }
             }
         }
-
+    
+        // Merge request data into array
         $raq_data = array_merge(
             array(
                 'product_id'   => $product_id,
@@ -143,17 +149,18 @@ class QuoteCart {
             ),
             $raq_data
         );
-        $return   = $this->add_cart_item( $raq_data );
-
+    
+        // Add item to quote cart
+        $return = $this->add_cart_item( $raq_data );
+    
+        // Handle response messages
         if ( 'true' === $return ) {
-            $message = 'product_added';
-            wc_add_notice( $message, 'success' );
-           
+            wc_add_notice( 'product_added', 'success' );
         } elseif ( 'exists' === $return ) {
-            $message = 'already_in_quote';
-            wc_add_notice( $message, 'notice' );
+            wc_add_notice( 'already_in_quote', 'notice' );
         }
     }
+    
 
     public function add_cart_item( $cart_data ) {
 

@@ -35,6 +35,14 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
+    // quantity string required
+    // Retrieve the quantity of product
+    // productId string required
+    // Retrieve the product id of enquiry
+    // bodyparams array required
+    // Retrieve the all body parameter from request
+    // fileparams array required
+    // Retrieve the all file parameter from request
     public function set_enquiries( $request ) {
         global $wpdb;
 
@@ -173,6 +181,8 @@ class RestV1 {
      * render enquiry button shortcode into block
      * @return \WP_Error|\WP_REST_Response
      */
+    // product_id string required
+    // Retrieve the product id from block
     public function get_buttons($request) {
         $product_id = $request->get_param('product_id');
 

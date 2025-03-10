@@ -12,7 +12,7 @@ jQuery( document ).ready( function ( $ ) {
         $enquiryBtn.hide();
     });
 
-    $('.modal-close-btn').on('click', function(event) {
+    $('.catalogx-modal-close-btn').on('click', function(event) {
         $( '#catalogx-modal' ).hide();
     });
     

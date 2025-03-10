@@ -290,7 +290,7 @@ const EnquiryForm = (props) => {
                 </section>
             }
             <div className='modal-wrapper'>
-                <div className='modal-close-btn'>
+                <div className='catalogx-modal-close-btn'>
                     <i className='admin-font adminLib-cross'></i>
                 </div>
                 <div>{enquiryFormData.content_before_form}</div>

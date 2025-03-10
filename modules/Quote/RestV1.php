@@ -48,6 +48,10 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
+    // row string required
+    // Retrieve the row parameter
+    // page string optional
+    // Retrieve the current page
     public function get_quote_cart( $request ) {
         $row =  $request['row'];
         $page = $request['page'];
@@ -98,6 +102,8 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
+    // products array required
+    // Retrieve the product which is in quote cart
     public function update_quote_cart( $request ) {
         $products = $request->get_param('products');
 
@@ -117,6 +123,10 @@ class RestV1 {
      * @param mixed $request
      * @return \WP_Error|\WP_REST_Response
      */
+    // productId string required
+    // Retrieve the product id which is remove from quote cart
+    // key string required
+    // Retrieve the key which generated from quote cart
     public function delete_quote_cart( $request ) {
         $product_id = $request->get_param('productId');
         $key = $request->get_param('key');

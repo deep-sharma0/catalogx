@@ -93,9 +93,12 @@ class Admin {
         $order_statuses['wc-quote-rejected'] = _x( 'Rejected Quote', 'Order status', 'catalogx' );
         // return $order_statuses;
 
-        $request = $_REQUEST; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( (isset( $request['new_quote'] ) && $request['new_quote'] && ( isset($request['page']) && 'wc-orders' === $request['page'])) ||
-		 (isset( $request['new_quote'] ) && $request['new_quote'] && isset($request['post_type']) && 'shop_order' === $request['post_type']) ) {
+        $new_quote = filter_input( INPUT_GET, 'new_quote', FILTER_SANITIZE_SPECIAL_CHARS  );
+        $page      = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS  );
+        $post_type = filter_input( INPUT_GET, 'post_type', FILTER_SANITIZE_SPECIAL_CHARS  );
+		
+        if ( (isset( $new_quote ) && $new_quote && ( isset($page) && 'wc-orders' === $page)) ||
+		 (isset( $new_quote ) && $new_quote && isset($post_type) && 'shop_order' === $post_type) ) {
 			$new_status = array_merge( $order_statuses, $order_statuses_old );
 		} else {
 			$new_status = array_merge( $order_statuses_old, $order_statuses );

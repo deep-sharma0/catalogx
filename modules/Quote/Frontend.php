@@ -32,7 +32,7 @@ class Frontend {
              $frontend_script_path = CatalogX()->plugin_url . 'modules/Quote/js/';
             $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
 
-            wp_enqueue_script('add-to-quote-cart-script', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], CatalogX()->version, true);
+            wp_enqueue_script('add-to-quote-cart-script', $frontend_script_path . 'frontend.js', ['jquery'], CatalogX()->version, true);
             wp_localize_script(
                 'add-to-quote-cart-script',
                 'addToQuoteCart',
@@ -92,7 +92,7 @@ class Frontend {
             $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
         if ( $button_onhover_style ) {
             echo '<style>
-                .add-request-quote-button:hover{
+                .catalogx-add-request-quote-button:hover{
                 '. esc_html( $button_onhover_style ) .'
                 } 
             </style>';
@@ -100,7 +100,7 @@ class Frontend {
         $quote_btn_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : $quote_btn_text;
         CatalogX()->util->get_template('quote-button-template.php',
         [
-            'class'             => 'add-request-quote-button ',
+            'class'             => 'catalogx-add-request-quote-button ',
             'btn_style'         => $btn_style,
             'wpnonce'           => wp_create_nonce( 'add-quote-' . $product->get_id() ),
             'product_id'        => $product->get_id(),
