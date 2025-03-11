@@ -162,7 +162,7 @@ class RestV1 {
         }
 
         if (empty($form_data)) {
-            return new WP_Error('invalid_data', __('Missing form data.', 'your-text-domain'), ['status' => 400]);
+            return new WP_Error('invalid_data', __('Missing form data.', 'catalogx'), ['status' => 400]);
         }
     
         // Sanitize input fields
@@ -254,12 +254,8 @@ class RestV1 {
             CatalogX()->quotecart->clear_cart();
         }
     
-        // Redirect URL for thank you page
-        $redirect_url = add_query_arg(['order_id' => $order->get_id()], get_permalink(CatalogX()->setting->get_option('woocommerce_myaccount_page_id')) . 'request-quote-thank-you/');
-    
         return rest_ensure_response([
             'order_id'     => $order->get_id(),
-            'redirect_url' => $redirect_url,
         ]);
     }
     

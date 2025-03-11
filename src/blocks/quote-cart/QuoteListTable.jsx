@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { __ } from "@wordpress/i18n";
 import CustomTable, { TableCell } from "../../components/AdminLibrary/CustomTable/CustomTable";
 import axios from 'axios';
+import QuoteThankYou from './QuoteThankYou';
 import './QuoteListTable.scss';
 import '../../style/fonts.scss';
 
@@ -13,12 +14,22 @@ const QuoteList = () => {
 	const [responseContent, setResponseContent] = useState(false);
 	const [responseStatus, setResponseStatus] = useState('');
 	const [totalRows, setTotalRows] = useState();
+	const [showThankYou, setShowThankYou] = useState(false);
+	const [status, setStatus] = useState('');
 	const [formData, setFormData] = useState({
         name: quoteCart.name || '',
         email: quoteCart.email || '',
         phone: '',
         message: '',
     });
+
+	useEffect(() => {
+		  const params = new URLSearchParams(location.search);
+		  const orderIdParam = params.get('order_id');
+		  const statusParam = params.get('status');
+		  setShowThankYou(orderIdParam);
+		  setStatus(statusParam || '');
+		}, [location]);
 
 	const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -120,9 +131,7 @@ const QuoteList = () => {
 			setResponseContent(true);
 			if(response.status === 200 ){
 				setResponseStatus("success")
-				setTimeout(() => {
-					window.location.href = response.data.redirect_url;
-				}, 3000);
+				setShowThankYou(response.data.order_id);
 			} else{
 				setResponseStatus("error");
 				sendBtn.style.display = 'block';
@@ -172,95 +181,96 @@ const QuoteList = () => {
 
 	return (
 		<>
-			<div className="admin-enrollment-list QuoteListTable-main-wrapper">
-				<div className="admin-page-title">
-					<div className="add-to-quotation-button">
-						<button onClick={handleUpdateCart}>
-							{__("Update Cart", "catalogx")}
-						</button>
+			{showThankYou || status ? (
+				<QuoteThankYou order_id={showThankYou} status={status} />
+			) : (
+				<>
+					<div className="admin-enrollment-list QuoteListTable-main-wrapper">
+						<div className="admin-page-title">
+							<div className="add-to-quotation-button">
+								<button onClick={handleUpdateCart}>
+									{__("Update Cart", "catalogx")}
+								</button>
+							</div>
+						</div>
+						<CustomTable
+							data={data}
+							columns={columns}
+							selectable={true}
+							handleSelect={(selectRows) => {
+								setSelectedRows(selectRows);
+							}}
+							handlePagination={requestData}
+							defaultRowsParPage={10}
+							defaultTotalRows={totalRows}
+							perPageOption={[10, 25, 50]}
+						/>
 					</div>
-				</div>
-				{
-					<CustomTable
-						data={data}
-						columns={columns}
-						selectable={true}
-						handleSelect={(selectRows) => {
-							setSelectedRows(selectRows);
-						}}
-						handlePagination={requestData}
-						defaultRowsParPage={10}
-						defaultTotalRows={totalRows}
-						perPageOption={[10, 25, 50]}
-						// autoLoading={false}
-					/>
-				}
-			</div>
-			
-			{data && Object.keys(data).length > 0 && 
-				<div className='main-form'>
-					{	loading &&
-						<Loader />
-					}
-					<p className='form-row form-row-first'>
-						<label htmlFor="name">{__("Name:", "catalogx")}</label>
-						<input
-							type="text"
-							id="name"
-							name="name"
-							value={formData.name}
-							onChange={handleInputChange}
-						/>
-					</p>
-					<p className='form-row form-row-last'>
-						<label htmlFor="email">{__("Email:", "catalogx")}</label>
-						<input
-							type="email"
-							id="email"
-							name="email"
-							value={formData.email}
-							onChange={handleInputChange}
-						/>
-					</p>
-					<p className="form-row form-row-wide">
-						<label htmlFor="phone">{__("Phone:", "catalogx")}</label>
-						<input
-							type="tel"
-							id="phone"
-							name="phone"
-							value={formData.phone}
-							onChange={handleInputChange}
-						/>
-					</p>
-					<p className='form-row form-row-wide'>
-						<label htmlFor="message">{__("Message:", "catalogx")}</label>
-						<textarea
-							id="message"
-							name="message"
-							rows="4"
-							cols="50"
-							value={formData.message}
-							onChange={handleInputChange}
-						></textarea>
-					</p>
-					<p>
-						<button id='SendQuote' onClick={handleSendQuote}> {__("Send Quote", "catalogx")} </button>
-					</p>
-					{	
-						responseContent &&
-						<section className={`response-message-container ${responseStatus}`}>
-							{/* <p>{responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"}</p> */}
-							<p>
-								{responseStatus === 'error' 
-									? __('Something went wrong! Try Again', 'catalogx') 
-									: __('Form submitted successfully', 'catalogx')}
+	
+					{data && Object.keys(data).length > 0 && (
+						<div className="main-form">
+							{loading && <Loader />}
+							<p className="form-row form-row-first">
+								<label htmlFor="name">{__("Name:", "catalogx")}</label>
+								<input
+									type="text"
+									id="name"
+									name="name"
+									value={formData.name}
+									onChange={handleInputChange}
+								/>
 							</p>
-						</section>
-					}
-				</div>
-			}
+							<p className="form-row form-row-last">
+								<label htmlFor="email">{__("Email:", "catalogx")}</label>
+								<input
+									type="email"
+									id="email"
+									name="email"
+									value={formData.email}
+									onChange={handleInputChange}
+								/>
+							</p>
+							<p className="form-row form-row-wide">
+								<label htmlFor="phone">{__("Phone:", "catalogx")}</label>
+								<input
+									type="tel"
+									id="phone"
+									name="phone"
+									value={formData.phone}
+									onChange={handleInputChange}
+								/>
+							</p>
+							<p className="form-row form-row-wide">
+								<label htmlFor="message">{__("Message:", "catalogx")}</label>
+								<textarea
+									id="message"
+									name="message"
+									rows="4"
+									cols="50"
+									value={formData.message}
+									onChange={handleInputChange}
+								></textarea>
+							</p>
+							<p>
+								<button id="SendQuote" onClick={handleSendQuote}>
+									{__("Send Quote", "catalogx")}
+								</button>
+							</p>
+							{responseContent && (
+								<section className={`response-message-container ${responseStatus}`}>
+									<p>
+										{responseStatus === "error"
+											? __("Something went wrong! Try Again", "catalogx")
+											: __("Form submitted successfully", "catalogx")}
+									</p>
+								</section>
+							)}
+						</div>
+					)}
+				</>
+			)}
 		</>
-
 	);
+	
 }
 export default QuoteList;

@@ -1,8 +1,0 @@
-{
-    "apiVersion": 2,
-    "name": "catalogx/quote-thank-you",
-    "title": "Quote Thank you",
-    "category": "catalogx",
-    "editorScript": "file:./index.js",
-    "script": "file:./index.js"
-}

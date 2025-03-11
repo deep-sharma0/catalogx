@@ -54,7 +54,7 @@ export default {
                 },
                 {
                     key: '',
-                    label: '[request_quote]',
+                    label: '[catalogx_request_quote]',
                     desc: 'Enables you to create a seller dashboard',
                 },
                 {

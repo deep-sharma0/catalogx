@@ -66,29 +66,17 @@ class Block {
 						'restUrl' => CatalogX()->rest_namespace,
 						'nonce'  => wp_create_nonce('wp_rest'),
                         'name'  => $current_user->display_name,
-                        'email' => $current_user->user_email
-					],
-				],
-            ];
-
-            $blocks[] = [
-                'name' => 'quote-thank-you', // block name
-                // src link is generated (which is append from block name) within the function
-				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
-                'localize' => [
-                    'object_name' => 'quoteThankYou',
-                    'data' => [
+                        'email' => $current_user->user_email,
                         'quote_my_account_url'  => site_url('/my-account/all-quotes/'),
                         'khali_dabba'           => Utill::is_khali_dabba(),
-                    ]
-                ],
+					],
+				],
             ];
 
             //this path is set for load the translation
             CatalogX()->block_paths += [
                 'blocks/quote-cart' => 'build/blocks/quote-cart/index.js',
                 'blocks/quote-button' => 'build/blocks/quote-button/index.js',
-                'blocks/quote-thank-you' => 'build/blocks/quote-thank-you/index.js',
             ];            
         }
 

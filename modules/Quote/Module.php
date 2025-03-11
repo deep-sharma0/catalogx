@@ -31,11 +31,10 @@ class Module {
 
         if (CatalogX()->modules->is_active('quote')) {
             $this->create_page_for_quote();
-            $this->create_page_for_quote_thank_you();
         }
-    
     }
 
+   
     /**
      * Init helper classes
      * @return void
@@ -78,48 +77,16 @@ class Module {
             'post_author' => 1,
             'post_name' => 'request-quote',
             'post_title' => __('Request Quote', 'catalogx'),
-            'post_content' => '[request_quote]',
+            'post_content' => $this->request_quote_block() ? $this->request_quote_block() : '[catalogx_request_quote]',
             'comment_status' => 'closed'
         ];
         $page_id = wp_insert_post($page_data);
         update_option('catalogx_request_quote_page', $page_id);
     }
-
-    /**
-     * Create page for quote thakyou
-     * @return void
-     */
-    function create_page_for_quote_thank_you() {
-        // quote thank you page
-        $option_value = get_option('catalogx_request_quote_thank_you_page');
-        if ($option_value > 0 && get_post($option_value)) {
-            return;
-        }
-
-        $page_found = get_posts([
-            'name' => 'request-quote-thank-you',
-            'post_status' => 'publish',
-            'post_type' => 'page',
-            'fields' => 'ids',
-            'numberposts' => 1
-        ]);
-        if ($page_found) {
-            if (!$option_value) {
-                update_option('catalogx_request_quote_thank_you_page', $page_found[0]);
-            }
-            return;
-        }
-        $page_data = [
-            'post_status' => 'publish',
-            'post_type' => 'page',
-            'post_author' => 1,
-            'post_name' => 'request-quote-thank-you',
-            'post_title' => __('Quotation Confirmation', 'catalogx'),
-            'post_content' => '[request_quote_thank_you]',
-            'comment_status' => 'closed'
-        ];
-        $page_id = wp_insert_post($page_data);
-        update_option('catalogx_request_quote_thank_you_page', $page_id);
+    public function request_quote_block() {
+        return '<!-- wp:catalogx/quote-cart -->
+                <div id="request-quote-list"></div>
+                <!-- /wp:catalogx/quote-cart -->';
     }
 
     /**

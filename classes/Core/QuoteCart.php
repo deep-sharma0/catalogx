@@ -214,13 +214,6 @@ class QuoteCart {
         return apply_filters( 'catalogx_request_quote_page_url', $base_url );
     }
 
-    public function get_request_quote_thank_you_page_url() {
-        $catalogx_quote_page_id = get_option( 'catalogx_request_quote_thank_you_page' );
-        $base_url     = get_the_permalink( $catalogx_quote_page_id );
-
-        return apply_filters( 'catalogx_request_quote_thank_you_page_url', $base_url );
-    }
-
     public function is_empty_cart() {
         return empty( $this->quote_cart_content );
     }
