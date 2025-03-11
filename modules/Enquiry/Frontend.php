@@ -56,30 +56,9 @@ class Frontend{
         $form_settings = is_array( $form_settings ) ? $form_settings : [];
 
         $button_css = $button_onhover_style = "";
-        $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
-        if ( !empty( $settings_array[ 'button_background_color' ] ) )
-            $button_css .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_text_color' ] ) )
-            $button_css .= "color:" . esc_html( $settings_array[ 'button_text_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_border_color' ] ) )
-            $button_css .= "border: " . $border_size . " solid " . esc_html( $settings_array[ 'button_border_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_font_size' ] ) )
-            $button_css .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_border_radious' ] ) )
-            $button_css .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_font_width' ] ) )
-            $button_css .= "font-weight:" . esc_html( $settings_array[ 'button_font_width' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_padding' ] ) )
-            $button_css .= "padding:" . esc_html( $settings_array[ 'button_padding' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_margin' ] ) )
-            $button_css .= "margin:" . esc_html( $settings_array[ 'button_margin' ] ) . "px;";
-
-        if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
-        if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
-        if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        $button_css = $this->get_enquiry_button_styles($settings_array);
+        $button_onhover_style = $this->get_enquiry_button_styles($settings_array, true);
+        
         if ( $button_onhover_style ) {
             echo '<style>
                 .catalogx-enquiry-btn:hover{
@@ -258,24 +237,8 @@ class Frontend{
         $settings_array = CatalogX()->setting->get_setting( 'enquery_button' );
         $settings_array = is_array($settings_array) ? $settings_array : [];
         $button_css = $button_onhover_style = "";
-        $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
-        if ( !empty( $settings_array[ 'button_background_color' ] ) )
-            $button_css .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_text_color' ] ) )
-            $button_css .= "color:" . esc_html( $settings_array[ 'button_text_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_border_color' ] ) )
-            $button_css .= "border: " . $border_size . " solid " . esc_html( $settings_array[ 'button_border_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_font_size' ] ) )
-            $button_css .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_border_radious' ] ) )
-            $button_css .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
-
-        if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
-        if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
-        if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        $button_css = $this->get_enquiry_button_styles($settings_array);
+        $button_onhover_style = $this->get_enquiry_button_styles($settings_array, true);
         if ( $button_onhover_style ) {
             echo '<style>
                 .single_add_to_cart_button:hover{
@@ -293,5 +256,39 @@ class Frontend{
             $product_link = get_permalink( $product->get_id() );
             echo '<a href="' . esc_url( $product_link ) . '" class="single_add_to_cart_button button" style="' . esc_attr( $button_css ) . '">' . esc_html( $button_text ) . '</a>';
         }
+    }
+
+    public function get_enquiry_button_styles($settings_array, $hover = false) {
+        $button_css = $button_onhover_style = "";
+        $border_size = !empty($settings_array['button_border_size']) ? esc_html($settings_array['button_border_size']) . 'px' : '1px';
+        
+        if (!empty($settings_array['button_background_color']))
+            $button_css .= "background: " . esc_html($settings_array['button_background_color']) . ";";
+        if (!empty($settings_array['button_text_color']))
+            $button_css .= "color: " . esc_html($settings_array['button_text_color']) . ";";
+        if (!empty($settings_array['button_border_color']))
+            $button_css .= "border: " . $border_size . " solid " . esc_html($settings_array['button_border_color']) . ";";
+        if (!empty($settings_array['button_font_size']))
+            $button_css .= "font-size: " . esc_html($settings_array['button_font_size']) . "px;";
+        if (!empty($settings_array['button_border_radious']))
+            $button_css .= "border-radius: " . esc_html($settings_array['button_border_radious']) . "px;";
+        if (!empty($settings_array['button_font_width']))
+            $button_css .= "font-weight: " . esc_html($settings_array['button_font_width']) . "px;";
+        if (!empty($settings_array['button_padding']))
+            $button_css .= "padding: " . esc_html($settings_array['button_padding']) . "px;";
+        if (!empty($settings_array['button_margin']))
+            $button_css .= "margin: " . esc_html($settings_array['button_margin']) . "px;";
+
+        if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        
+        if ($hover) {
+            return $button_onhover_style;
+        }
+        return $button_css;
     }
 }

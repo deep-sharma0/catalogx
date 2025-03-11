@@ -4,7 +4,7 @@ namespace CatalogX\Enquiry;
 use CatalogX\Utill;
 use CatalogX\Enquiry\Module;
 
-class RestV1 {
+class Rest {
     /**
      * Rest class constructor function
      */

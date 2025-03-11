@@ -38,7 +38,7 @@ class Module {
     public function init_classes() {
 		$this->container[ 'util' ]      = new Util();
 		$this->container[ 'frontend' ]  = new Frontend();
-        $this->container[ 'rest' ]      = new RestV1();
+        $this->container[ 'rest' ]      = new Rest();
 	}
 
     /**

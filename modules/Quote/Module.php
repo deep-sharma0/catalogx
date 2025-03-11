@@ -43,7 +43,7 @@ class Module {
         $this->container[ 'admin' ]     = new Admin();
         $this->container[ 'ajax' ]      = new Ajax();
         $this->container[ 'frontend' ]  = new Frontend();
-        $this->container[ 'rest' ]      = new RestV1();
+        $this->container[ 'rest' ]      = new Rest();
 		$this->container[ 'util' ]      = new Util();
 	}
 
@@ -59,7 +59,7 @@ class Module {
         }
 
         $page_found = get_posts([
-            'name' => 'request-quote',
+            'name' => 'my-quote',
             'post_status' => 'publish',
             'post_type' => 'page',
             'fields' => 'ids',
@@ -75,14 +75,15 @@ class Module {
             'post_status' => 'publish',
             'post_type' => 'page',
             'post_author' => 1,
-            'post_name' => 'request-quote',
-            'post_title' => __('Request Quote', 'catalogx'),
+            'post_name' => 'my-quote',
+            'post_title' => __('My Quote', 'catalogx'),
             'post_content' => $this->request_quote_block() ? $this->request_quote_block() : '[catalogx_request_quote]',
             'comment_status' => 'closed'
         ];
         $page_id = wp_insert_post($page_data);
         update_option('catalogx_request_quote_page', $page_id);
     }
+
     public function request_quote_block() {
         return '<!-- wp:catalogx/quote-cart -->
                 <div id="request-quote-list"></div>
