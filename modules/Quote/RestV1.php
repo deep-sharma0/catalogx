@@ -10,6 +10,7 @@ class RestV1 {
      */
     public function __construct() {
         add_action( 'rest_api_init', [ $this, 'register_rest_api' ] );
+
     }
 
     /**
@@ -21,24 +22,24 @@ class RestV1 {
             [
                 'methods'             => 'POST',
                 'callback'            => [ $this, 'get_quote_cart' ],
-                'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
+                'permission_callback' => [ $this, 'quote_cart_permission' ],
             ],
             [
                 'methods'             => 'PUT',
                 'callback'            => [ $this, 'update_quote_cart' ],
-                'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
+                'permission_callback' => [ $this, 'quote_cart_permission' ],
             ],
             [
                 'methods'             => 'DELETE',
                 'callback'            => [ $this, 'delete_quote_cart' ],
-                'permission_callback' => [ CatalogX()->restapi, 'catalogx_permission' ],
+                'permission_callback' => [ $this, 'quote_cart_permission' ],
             ],
         ] );
         
         register_rest_route( CatalogX()->rest_namespace, '/quotes', [
             'methods'               => 'POST',
             'callback'              => [ $this, 'process_quote_request' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ]
+            'permission_callback'   => [ $this, 'quote_cart_permission' ]
         ] );
 
     }
@@ -262,23 +263,15 @@ class RestV1 {
         ]);
     }
     
-    /**
-     * reject quote from my-account page
-     * @param mixed $request
-     * @return \WP_Error|\WP_REST_Response
-     */    
-    // public function reject_quote_my_acount($request) {
-
-    //     $order_id =  $request->get_param('orderId');
-    //     $status =  $request->get_param('status');
-    //     $reason =  $request->get_param('reason');
-    //     if (!empty($order_id) && !empty($status) && !empty($reason)) {
-    //         $order = wc_get_order($order_id);
-    //         $order->update_status('wc-quote-rejected');
-    //         $order->set_customer_note($reason);
-    //         $order->save();
-    //         /* translators: %s: reject quotation number. */
-    //         return rest_ensure_response(['message' => sprintf( __( 'You have confirmed rejection of the quotation No: %d', 'catalogx' ) , $order_id )]);
-    //     }
-    // }
+    public function quote_cart_permission() {
+        $user_id = get_current_user_id();
+        $user = get_userdata($user_id);
+    
+        // Check if user is admin or customer
+        if ($user && array_intersect(['administrator', 'customer'], $user->roles)) {
+            return true;
+        }
+    
+        return new \WP_Error('woocommerce_rest_cannot_edit', __('Sorry, you are not allowed to edit this resource.', 'catalogx'), array('status' => rest_authorization_required_code()));
+    }
 }

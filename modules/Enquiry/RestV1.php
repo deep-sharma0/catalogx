@@ -20,13 +20,13 @@ class RestV1 {
         register_rest_route( CatalogX()->rest_namespace, '/enquiries', [
             'methods'               => 'POST',
             'callback'              => [ $this, 'set_enquiries' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ],
+            'permission_callback'   => [ $this, 'enquiry_permission' ],
         ]);
 
         register_rest_route( CatalogX()->rest_namespace, '/buttons', [
             'methods'               => 'POST',
             'callback'              => [ $this, 'get_buttons' ],
-            'permission_callback'   => [ CatalogX()->restapi, 'catalogx_permission' ],
+            'permission_callback'   => [ $this, 'enquiry_permission' ],
         ]);
 	}
 
@@ -175,6 +175,18 @@ class RestV1 {
         }
 
         return rest_ensure_response( null );
+    }
+
+    public function enquiry_permission() {
+        $user_id = get_current_user_id();
+        $user = get_userdata($user_id);
+    
+        // Check if user is admin or customer
+        if ($user && array_intersect(['administrator', 'customer'], $user->roles)) {
+            return true;
+        }
+    
+        return new \WP_Error('woocommerce_rest_cannot_edit', __('Sorry, you are not allowed to edit this resource.', 'catalogx'), array('status' => rest_authorization_required_code()));
     }
 
     /**
