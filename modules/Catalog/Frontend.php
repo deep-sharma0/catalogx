@@ -11,7 +11,7 @@ class Frontend{
         if ( ! Util::is_available() ) return;
 
         // Cart page redirect settings
-        add_action( 'template_redirect', [ $this, 'redirect_cart_checkout_page' ], 10 );
+        add_action( 'template_redirect', [ $this, 'catalogx_redirect_page' ], 10 );
 
         // Display single product page descrioption box 
         add_action( 'display_shop_page_description_box', [ self::class, 'show_description_box' ] );
@@ -32,7 +32,7 @@ class Frontend{
      * Redirect cart and checkout page to home page
      * @return void
      */
-    public static function redirect_cart_checkout_page() {
+    public static function catalogx_redirect_page() {
 
         // Get setting for sales enabled
         $sales_enabled = CatalogX()->setting->get_setting( 'enable_cart_checkout' );
@@ -40,29 +40,13 @@ class Frontend{
         // Check sales enabled setting is enable or not
         if ( !empty($sales_enabled) ) return;
 
-        // Get force redirected url
-        $redirect_url = CatalogX()->setting->get_setting( 'disable_cart_page_link' );
-
-        /**
-         * Filter for redirect url
-         * @var mixed
-         */
-        $redirect_url = apply_filters( 'catalogx_cart_checkout_redirect_url', $redirect_url );
-
         // Get cart and checkout page id
         $cart_page_id       = wc_get_page_id( 'cart' );
         $checkout_page_id   = wc_get_page_id( 'checkout' );
 
-        // Filter redirect url
-        if ( ! empty( $redirect_url ) ) {
-            $redirect_url = get_permalink( $redirect_url );
-        } else {
-            $redirect_url = apply_filters( 'woocommerce_redirect_to_home_url', home_url() );
-        }
-
         // Redirect to redirect url if page is cart page or checkout page
         if ( is_page( $cart_page_id ) || is_page( $checkout_page_id ) ) {
-            wp_redirect( $redirect_url );
+            wp_redirect( home_url() );
             exit;
         }
     }
