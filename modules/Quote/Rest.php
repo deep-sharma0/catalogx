@@ -223,10 +223,8 @@ class Rest {
         $order->add_meta_data('quote_customer_msg', $customer_message);
         $order->save();
     
-        // If this request comes from an enquiry
-        if (isset($form_data['id']) && \CatalogX\Utill::is_khali_dabba()) {
-            do_action('catalogx_quote_save_as_enquiry_msg', $form_data['id'], $customer_id, $product_ids, $order->get_id());
-        }
+        // If this request comes from an enquiry and quote save as enquiry msg
+        do_action('catalogx_quote_save_as_enquiry_msg', $form_data['id'], $customer_id, $product_ids, $order->get_id());
     
         // Send email
         $customer_data = [

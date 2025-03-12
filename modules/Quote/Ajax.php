@@ -22,7 +22,7 @@ class Ajax {
         $variation_id       = filter_input( INPUT_POST, 'variation_id', FILTER_VALIDATE_INT );
         $is_valid_variation = ( $variation_id !== null ) ? ( $variation_id !== false ) : true;
         
-        $is_valid = $product_id && $is_valid_variation;
+        $is_valid = $product_id && $is_valid_variation ? true : false;
     
         $postdata = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
     

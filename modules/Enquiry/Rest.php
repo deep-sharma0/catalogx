@@ -134,9 +134,7 @@ class Rest {
 				'user_enquiry_fields'   => $other_fields,
 			]);
 
-            if (Utill::is_khali_dabba()) {
-                $attachments = apply_filters( 'catalogx_set_enquiry_pdf_and_attachments', [], $enquiry_id, $enquiry_data); 
-            }
+            $attachments = apply_filters( 'catalogx_set_enquiry_pdf_and_attachments', [], $enquiry_id, $enquiry_data); 
                         
             $additional_email = CatalogX()->setting->get_setting( 'additional_alert_email' );
             $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
