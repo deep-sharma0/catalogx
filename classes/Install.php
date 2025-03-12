@@ -40,6 +40,7 @@ class Install {
 
         $this->run_default_migration();
 
+        // this function should be deleted after 7.0.0
         if (!empty(get_option('mvx_catalog_general_tab_settings'))) {
             $this->migrate_catalog_enquiry_to_catalogx();
         }
@@ -247,6 +248,7 @@ class Install {
         update_option( 'catalogx_wholesale-registration_settings', $wholesale_from_settings );
     }
 
+    // this function is for default migration run
     public function run_default_migration() {
         // Migration by specific version controll                       
         // if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
@@ -350,6 +352,10 @@ class Install {
         }
     }
 
+    /**
+     * Migrate vendor settings 
+     * @return void
+     */
     public function migrate_vendor_settings() {
         $vendors = get_users( array( 'role' => 'dc_vendor' ) );
 
@@ -411,6 +417,10 @@ class Install {
         }
     }
 
+    /**
+     * Migrate old catalog settings 
+     * @return void
+     */
     public function migrate_old_settings() {            
         $previous_general_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
         $previous_button_settings = get_option( 'mvx_catalog_button_appearance_tab_settings', [] );
@@ -535,7 +545,7 @@ class Install {
         // Pro form migration
         $previous_pro_from_setting = get_option( 'mvx_catalog_pro_enquiry_form_data', [] );
 
-        if ( is_array( $previous_pro_from_setting ) && !empty($previous_pro_from_setting) ) {
+        if ( !empty($previous_pro_from_setting) ) {
             $pro_form = array_map( function ( $form ) {
                 return [
                     ...$form,

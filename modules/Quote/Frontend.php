@@ -11,8 +11,8 @@ class Frontend {
     public function __construct() {
         if ( ! Util::is_available() ) return;
 
-        $display_quote_button = CatalogX()->setting->get_setting( 'quote_user_permission' );
-        if ($display_quote_button && in_array('logged_out', $display_quote_button) && !is_user_logged_in()) {
+        $display_quote_button = CatalogX()->setting->get_setting( 'quote_user_permission', [] );
+        if (!empty($display_quote_button) && !is_user_logged_in()) {
             return;
         }
         add_action ('display_shop_page_button', [ $this, 'add_button_for_quote'] );
@@ -48,8 +48,7 @@ class Frontend {
     /**
      * add quote button in single product page and shop page
      */
-    function add_button_for_quote() {
-
+    public function add_button_for_quote() {
         global $product;
         
         if (!$product) return;
@@ -60,10 +59,9 @@ class Frontend {
 
         $quote_btn_text = Utill::get_translated_string( 'catalogx', 'add_to_quote', 'Add to Quote' );    
         $view_quote_btn_text = Utill::get_translated_string( 'catalogx', 'view_quote', 'View Quote' ); 
-        $btn_style = '';
 
         $settings_array = CatalogX()->setting->get_setting( 'quote_button' );
-        $btn_style = "";
+        $btn_style = $button_hover_css = "";
         $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
         if ( !empty( $settings_array[ 'button_background_color' ] ) )
             $btn_style .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
@@ -81,22 +79,22 @@ class Frontend {
             $btn_style .= "padding:" . esc_html( $settings_array[ 'button_padding' ] ) . "px;";
         if ( !empty( $settings_array[ 'button_margin' ] ) )
             $btn_style .= "margin:" . esc_html( $settings_array[ 'button_margin' ] ) . "px;";
-        $button_onhover_style = $border_size = '';
-        $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? $settings_array[ 'button_border_size' ].'px' : '1px';
 
         if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
+            $button_hover_css .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
         if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
+            $button_hover_css .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
         if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
-            $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
-        if ( $button_onhover_style ) {
+            $button_hover_css .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        
+            if ( $button_hover_css ) {
             echo '<style>
                 .catalogx-add-request-quote-button:hover{
-                '. esc_html( $button_onhover_style ) .'
+                '. esc_html( $button_hover_css ) .'
                 } 
             </style>';
         } 
+
         $quote_btn_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : $quote_btn_text;
         CatalogX()->util->get_template('quote-button-template.php',
         [

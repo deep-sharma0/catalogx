@@ -15,11 +15,10 @@ class Util {
         $current_user = wp_get_current_user();
 
         // Get exclusion setting
-        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalogx_enquiry-quote-exclusion_settings' );
+        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalogx_enquiry-quote-exclusion_settings', [] );
 
         // Get userroll exclusion settings
         $userroles_exclusion_settings = isset($enquiry_exclusion_setting[ 'enquiry_exclusion_userroles_list' ]) ? $enquiry_exclusion_setting[ 'enquiry_exclusion_userroles_list' ] : [];
-        $userroles_exclusion_settings = is_array( $userroles_exclusion_settings ) ? $userroles_exclusion_settings : [];
         
         // Get excluded user roles
         $exclude_user_roles = array_map( function( $userrole ) {
@@ -33,7 +32,6 @@ class Util {
         
         // Get user exclusion settings
         $userlist_exclusion_settings = isset($enquiry_exclusion_setting[ 'enquiry_exclusion_user_list' ]) ? $enquiry_exclusion_setting[ 'enquiry_exclusion_user_list' ] : [];
-        $userlist_exclusion_settings = is_array( $userlist_exclusion_settings ) ? $userlist_exclusion_settings : [];
 
         // Get excluded user ids
         $exclude_user_ids = array_map( function( $userid ) {
@@ -54,11 +52,10 @@ class Util {
      */
     public static function is_available_for_product($product_id) {
         // Get exclusion setting
-        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalogx_enquiry-quote-exclusion_settings' );
+        $enquiry_exclusion_setting = CatalogX()->setting->get_option( 'catalogx_enquiry-quote-exclusion_settings', [] );
 
         // Get product exclusion settings
         $product_exclusion_settings = isset($enquiry_exclusion_setting['enquiry_exclusion_product_list']) ? $enquiry_exclusion_setting['enquiry_exclusion_product_list'] : [];
-        $product_exclusion_settings = is_array( $product_exclusion_settings ) ? $product_exclusion_settings : [];
         // Get excluded products
         $exclude_products = array_map( function( $product ) {
             return $product[ 'key' ];
@@ -116,7 +113,6 @@ class Util {
 
         // Get category exclusion settings
         $category_exclusion_settings = isset($enquiry_exclusion_setting['enquiry_exclusion_category_list']) ? $enquiry_exclusion_setting['enquiry_exclusion_category_list'] : [];
-        $category_exclusion_settings = is_array( $category_exclusion_settings ) ? $category_exclusion_settings : [];
         
         // Get excluded category
         $exclude_categories = array_filter(array_map(function($category) use ($product_id) {
@@ -131,7 +127,6 @@ class Util {
 
         // Get tag exclusion settings
         $tag_exclusion_settings = isset($enquiry_exclusion_setting['enquiry_exclusion_tag_list']) ? $enquiry_exclusion_setting['enquiry_exclusion_tag_list'] : [];
-        $tag_exclusion_settings = is_array( $tag_exclusion_settings ) ? $tag_exclusion_settings : [];
         
         // Get excluded tag
         $exclude_tags = array_filter(array_map( function( $tag ) use ($product_id) {

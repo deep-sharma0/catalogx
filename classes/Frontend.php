@@ -7,7 +7,7 @@ namespace CatalogX;
  * Catalog enquiry frontend class
  *
  * @class 		Frontend
- * @version		3.0.2
+ * @version		6.0.0
  * @author 		MultiVendorX
  */
 class Frontend {
@@ -29,8 +29,7 @@ class Frontend {
      */
     public function display_button_group() {
         // Get shop page button settings
-        $position_settings = CatalogX()->setting->get_setting( 'shop_page_possition_setting' );        
-        $position_settings = is_array( $position_settings ) ? $position_settings : [];
+        $position_settings = CatalogX()->setting->get_setting( 'shop_page_possition_setting', [] );        
 
         // Priority of colide position
         $possiton_priority = 1;

@@ -8,7 +8,7 @@ use CatalogX\Utill;
  * An email will be sent to the admin when a customer enquires about a product.
  *
  * @class EnquiryEmail
- * @version 3.0.2
+ * @version 6.0.0
  * @author MultiVendorX
  * @extends \WC_Email
  */

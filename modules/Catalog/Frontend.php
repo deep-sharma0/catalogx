@@ -152,8 +152,7 @@ class Frontend{
     public function register_description_box() {
         
         // Get shop page button settings
-        $position_settings = CatalogX()->setting->get_setting( 'shop_page_possition_setting' );
-        $position_settings = is_array( $position_settings ) ? $position_settings : [];
+        $position_settings = CatalogX()->setting->get_setting( 'shop_page_possition_setting', [] );
 
         // Priority of colide position
         $possiton_priority = 1;
@@ -170,23 +169,6 @@ class Frontend{
             $possition_after   = $position_settings[ 'additional_input' ]; 
         }
         
-        $position_settings = is_array( $position_settings ) ? $position_settings : [];
-
-        // Priority of colide position
-        $possiton_priority = 1;
-
-        // Possiotion after a particular section
-        $possition_after   = 'sku_category';
-
-        // If possition settings exists
-        if ( $position_settings ) {
-            // Get the colide possition priority
-            $possiton_priority = array_search( 'additional_input', array_keys( $position_settings ) ) + 1;
-
-            // Get the possition after
-            $possition_after   = $position_settings[ 'additional_input' ]; 
-        }
-
         // Display button group in a hooked based on possition setting
         switch ( $possition_after ) {
             case 'sku_category':

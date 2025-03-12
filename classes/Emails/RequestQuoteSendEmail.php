@@ -24,7 +24,7 @@ if ( ! class_exists( 'RequestQuoteSendEmail' ) ) {
 		/**
 		 * Constructor method, used to return object of the class to WC
 		 *
-		 * @since 1.0.0
+		 * @since 6.0.0
 		 */
 		public function __construct() {
 			$this->id          = 'RequestQuoteSend';

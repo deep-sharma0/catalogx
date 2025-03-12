@@ -145,15 +145,13 @@ class Rest {
                     $file_path = $upload_dir['basedir'] . '/enquiry-' . $enquiry_id . '.pdf';
             
                     file_put_contents($file_path, $pdf);
-        
-                    $pdf_output = '';
-                    $pdf_maker->get_pdf_headers($file_path, $pdf_output, $pdf);
+                    $pdf_maker->get_pdf_headers($file_path, '', $pdf);
                     // echo $pdf;
                 } else {
                     wp_die(__("PDF document could not be generated", 'catalogx-pro'));
                 }
-                $attach_pdf = CatalogX()->setting->get_setting( 'enquiry_pdf_permission' );
-                if (is_array($attach_pdf) && in_array('attach_pdf_to_email', $attach_pdf, true)) {
+                $attach_pdf = CatalogX()->setting->get_setting( 'enquiry_pdf_permission', [] );
+                if (!empty($attach_pdf) && in_array('attach_pdf_to_email', $attach_pdf, true)) {
                     $attachments[] = $file_path; // Add PDF to attachments
                 }
             }

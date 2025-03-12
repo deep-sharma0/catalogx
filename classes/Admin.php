@@ -224,7 +224,7 @@ class Admin {
 
         // Enque script and style
         wp_enqueue_style('catalogx-style', CatalogX()->plugin_url . 'build/index.css');
-        wp_enqueue_script('catalogx-script', CatalogX()->plugin_url . 'build/index.js', [ 'wp-element', 'wp-i18n', 'react-jsx-runtime' ], '1.0.0', true);
+        wp_enqueue_script('catalogx-script', CatalogX()->plugin_url . 'build/index.js', [ 'wp-element', 'wp-i18n', 'react-jsx-runtime' ], Catalogx()->version, true);
         wp_set_script_translations( 'catalogx-script', 'catalogx' );
 
         // Localize script

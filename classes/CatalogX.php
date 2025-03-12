@@ -7,7 +7,7 @@ use \Automattic\WooCommerce\Utilities\FeaturesUtil;
  * CatalogX class main function
  *
  * @class 		CatalogX class
- * @version		3.0.2
+ * @version		6.0.0
  * @author 		CatalogX
  */
 
