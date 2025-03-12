@@ -138,7 +138,7 @@ foreach ($enquiry_data['user_enquiry_fields'] as $field) {
 		<tr>
 			<td colspan="2" valign="middle" align="center">
 			<?php /* translators: %s: email footer which display the site name. */ ?>
-			<p><?php echo apply_filters('woocommerce_catalog_enquiry_email_footer_text', sprintf( __( '%s - Powered by CatalogX', 'catalogx' ), get_bloginfo( 'name', 'display' ) ) );?></a>.</p>
+			<p><?php echo apply_filters('catalogx_email_footer_text', sprintf( __( '%s - Powered by CatalogX', 'catalogx' ), get_bloginfo( 'name', 'display' ) ) );?></a>.</p>
 			</td>
 		</tr>
 	</tbody>

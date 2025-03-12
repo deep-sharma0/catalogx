@@ -75,7 +75,7 @@ if ( ! class_exists( 'RequestQuoteSendEmail' ) ) {
      * @return string
      */
     public function get_default_subject() {
-        return apply_filters( 'request_send_email_subject', __( 'New Quote Request from {customer_name}', 'catalogx' ), $this->object );
+        return apply_filters( 'catalogx_request_send_email_subject', __( 'New Quote Request from {customer_name}', 'catalogx' ), $this->object );
     }
 
     /**
@@ -85,7 +85,7 @@ if ( ! class_exists( 'RequestQuoteSendEmail' ) ) {
      * @return string
      */
     public function get_default_heading() {
-        return apply_filters( 'request_send_email_heading', __( "New Quote Submitted by {customer_name} - Please Review", 'catalogx' ), $this->object );
+        return apply_filters( 'catalogx_request_send_email_heading', __( "New Quote Submitted by {customer_name} - Please Review", 'catalogx' ), $this->object );
     }
 
     /**
