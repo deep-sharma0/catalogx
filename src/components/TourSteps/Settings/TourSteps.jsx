@@ -90,7 +90,7 @@ const Tour = () => {
                                     navigateTo(
                                         appLocalizer.enquiry_form_settings_url,
                                         2,
-                                        '.enable-visibility'
+                                        '.button-visibility'
                                     )
                                 } else {
                                     setCurrentStep(3);
@@ -115,7 +115,7 @@ const Tour = () => {
         },
 
         {
-            selector: '.enable-visibility',
+            selector: '.button-visibility .adminLib-eye-blocked',
             content: () => (
                 <div class="tour-box">
                     <h3>Customize Enquiry Form</h3>

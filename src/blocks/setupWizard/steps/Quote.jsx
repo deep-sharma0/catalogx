@@ -59,10 +59,10 @@ const Quote = (props) => {
 
             <footer className='setup-footer-btn-wrapper'>
                 <div>
-                    <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
-                    <button className='footer-btn ' onClick={onFinish}>Skip</button>
+                    <button className='footer-btn btn-red' onClick={onPrev}>Prev</button>
+                    <button className='footer-btn' onClick={onFinish}>Skip</button>
                 </div>
-                <button className='footer-btn next-btn' onClick={saveQuoteSettings}>Finish</button>
+                <button className='footer-btn btn-purple' onClick={saveQuoteSettings}>Finish</button>
             </footer>
             {loading && <Loading />}
         </section>

@@ -5,7 +5,9 @@ import { __ } from '@wordpress/i18n';
 // Register the block
 registerBlockType('catalogx/quote-button', {
     title: 'Quote Button',
-    icon: 'button',
+    icon: {
+        src: <span className="adminLib-icon adminLib-price-quote-icon"></span>,
+    },
     category: 'catalogx',
     edit() {
         const blockProps = useBlockProps();

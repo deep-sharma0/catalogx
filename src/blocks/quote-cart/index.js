@@ -7,7 +7,9 @@ import QuoteListTable from './QuoteListTable';
 registerBlockType("catalogx/quote-cart", {
 	apiVersion: 2,
 	title: "Quote Cart",
-	icon: "list-view",
+	icon: {
+        src: <span className="adminLib-icon adminLib-paid"></span>,
+    },
 	category: "catalogx",
 	supports: {
 		html: false,
