@@ -4,7 +4,7 @@
 namespace CatalogX;
 
 /**
- * Catalog enquiry frontend class
+ * CatalogX frontend class
  *
  * @class 		Frontend
  * @version		6.0.0

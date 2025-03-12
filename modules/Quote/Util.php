@@ -5,7 +5,7 @@ namespace CatalogX\Quote;
 class Util {
 
     /**
-     * Check enquiry functionlity available for current user
+     * Check quotation functionlity available for current user
      * @return bool
      */
     public static function is_available() {
@@ -45,7 +45,7 @@ class Util {
     }
 
     /**
-     * Check enquiry functionlity available for product
+     * Check quotation functionlity available for product
      * @return bool
      */
     public static function is_available_for_product($product_id) {

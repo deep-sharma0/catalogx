@@ -1,6 +1,6 @@
 <?php
 /**
- * Catalog Enquiry Email Request quote
+ * CatalogX Email Request quote
  */
 
  defined( 'ABSPATH'  ) || exit; // Exit if accessed directly
