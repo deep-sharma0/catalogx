@@ -61,24 +61,24 @@ class Frontend {
         $view_quote_btn_text = Utill::get_translated_string( 'catalogx', 'view_quote', 'View Quote' ); 
 
         $settings_array = CatalogX()->setting->get_setting( 'quote_button' );
-        $btn_style = $button_hover_css = "";
+        $btn_css = $button_hover_css = "";
         $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
         if ( !empty( $settings_array[ 'button_background_color' ] ) )
-            $btn_style .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
+            $btn_css .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
         if ( !empty( $settings_array[ 'button_text_color' ] ) )
-            $btn_style .= "color:" . esc_html( $settings_array[ 'button_text_color' ] ) . ";";
+            $btn_css .= "color:" . esc_html( $settings_array[ 'button_text_color' ] ) . ";";
         if ( !empty( $settings_array[ 'button_border_color' ] ) )
-            $btn_style .= "border: " . $border_size . " solid " . esc_html( $settings_array[ 'button_border_color' ] ) . ";";
+            $btn_css .= "border: " . $border_size . " solid " . esc_html( $settings_array[ 'button_border_color' ] ) . ";";
         if ( !empty( $settings_array[ 'button_font_size' ] ) )
-            $btn_style .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
+            $btn_css .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
         if ( !empty( $settings_array[ 'button_border_radious' ] ) )
-            $btn_style .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
+            $btn_css .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
         if ( !empty( $settings_array[ 'button_font_width' ] ) )
-            $btn_style .= "font-weight:" . esc_html( $settings_array[ 'button_font_width' ] ) . "px;";
+            $btn_css .= "font-weight:" . esc_html( $settings_array[ 'button_font_width' ] ) . "px;";
         if ( !empty( $settings_array[ 'button_padding' ] ) )
-            $btn_style .= "padding:" . esc_html( $settings_array[ 'button_padding' ] ) . "px;";
+            $btn_css .= "padding:" . esc_html( $settings_array[ 'button_padding' ] ) . "px;";
         if ( !empty( $settings_array[ 'button_margin' ] ) )
-            $btn_style .= "margin:" . esc_html( $settings_array[ 'button_margin' ] ) . "px;";
+            $btn_css .= "margin:" . esc_html( $settings_array[ 'button_margin' ] ) . "px;";
 
         if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
             $button_hover_css .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
@@ -99,7 +99,7 @@ class Frontend {
         CatalogX()->util->get_template('quote-button-template.php',
         [
             'class'             => 'catalogx-add-request-quote-button ',
-            'btn_style'         => $btn_style,
+            'btn_css'         => $btn_css,
             'wpnonce'           => wp_create_nonce( 'add-quote-' . $product->get_id() ),
             'product_id'        => $product->get_id(),
             'label'             => $quote_btn_text,

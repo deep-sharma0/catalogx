@@ -23,7 +23,7 @@ export default {
             moduleEnabled: 'catalog',
         },
         {
-            key: 'disable_cart_page_link',
+            key: 'redirect_cart_page',
             type: 'select',
             label:  __( 'Cart / Checkout Redirect Page', 'catalogx' ),
             options: [

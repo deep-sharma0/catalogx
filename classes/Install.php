@@ -429,7 +429,7 @@ class Install {
         $page_builder_setting = [
             'hide_product_price' => !empty($previous_general_settings[ 'is_remove_price_free' ]) ? true : false,
             'additional_input'   => $previous_general_settings[ 'replace_text_in_price' ] ?? '',
-            'enquery_button'     => [
+            'enquiry_button'     => [
                 'button_text_color' => !empty($previous_button_settings['custom_text_color']) ? $previous_button_settings['custom_text_color'] : '',
                 'button_background_color_onhover' => !empty($previous_button_settings['custom_hover_background_color']) ? $previous_button_settings['custom_hover_background_color'] : '',
                 'button_text_color_onhover' => !empty($previous_button_settings['custom_hover_text_color']) ? $previous_button_settings['custom_hover_text_color'] : '',

@@ -116,7 +116,7 @@ class QuoteCart {
             return;
         }
     
-        $product_id      = apply_filters( 'catalogx_add_to_quote_product_id', absint( $add_to_quote ) );
+        $product_id      = absint( $add_to_quote );
         $variation_id    = filter_input( INPUT_GET, 'variation_id', FILTER_SANITIZE_NUMBER_INT ) ?: '';
         $quantity        = filter_input( INPUT_GET, 'quantity', FILTER_SANITIZE_NUMBER_INT );
         $quantity        = empty( $quantity ) ? 1 : wc_stock_amount( intval( $quantity ) );

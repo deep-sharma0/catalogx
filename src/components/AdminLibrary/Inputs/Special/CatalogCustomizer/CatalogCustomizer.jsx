@@ -125,7 +125,7 @@ const CatalogCustomizer = (props) => {
 
   // Create default button drag and drop items.
   const [buttonItems, setButtonItems] = useState([
-    { id: 'enquery_button' },
+    { id: 'enquiry_button' },
     { id: 'quote_button' },
     { id: 'enquery_cart_button' }
   ]);
@@ -341,21 +341,21 @@ const CatalogCustomizer = (props) => {
                             >
                               {buttonItems.map(item => (
                                 <div key={item.id} className='shop-page-button-draggable'>
-                                  {item.id === 'enquery_button' && (
+                                  {item.id === 'enquiry_button' && (
                                     <div
                                       onClick={() => { handleSubMenuChange(menu[0]); }}
                                       className={`button-main-container toggle-visibility ${currentTab.id === "enquiry" ? '' : 'disable'} enquiry-btn`}
                                     >
                                       <ButtonCustomizer
                                         className='ignore-drag'
-                                        text={setting['enquery_button'] && setting['enquery_button']['button_text'] || 'enquiry'}
-                                        setting={setting['enquery_button']}
+                                        text={setting['enquiry_button'] && setting['enquiry_button']['button_text'] || 'enquiry'}
+                                        setting={setting['enquiry_button']}
                                         onChange={(key, value, isRestoreDefaults=false) => {
-                                          const previousSetting = setting['enquery_button'] || {};
+                                          const previousSetting = setting['enquiry_button'] || {};
                                           if (isRestoreDefaults) {
-                                            setSetting('enquery_button', value);
+                                            setSetting('enquiry_button', value);
                                           } else {
-                                            setSetting('enquery_button', { ...previousSetting, [key]: value });
+                                            setSetting('enquiry_button', { ...previousSetting, [key]: value });
                                           }
                                           // setSetting('enquery_button', { ...previousSetting, [key]: value });
                                         }}

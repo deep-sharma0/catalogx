@@ -135,25 +135,7 @@ class Rest {
 			]);
 
             if (Utill::is_khali_dabba()) {
-                $html = \CatalogXPro\Enquiry\Util::get_html($enquiry_data);
-                if ($html) { 
-                    $pdf_maker = new \CatalogXPro\PDFMaker($html);
-                    $pdf = $pdf_maker->output();
-
-                    // Save the PDF to a temporary location
-                    $upload_dir = wp_upload_dir();
-                    $file_path = $upload_dir['basedir'] . '/enquiry-' . $enquiry_id . '.pdf';
-            
-                    file_put_contents($file_path, $pdf);
-                    $pdf_maker->get_pdf_headers($file_path, '', $pdf);
-                    // echo $pdf;
-                } else {
-                    wp_die(__("PDF document could not be generated", 'catalogx-pro'));
-                }
-                $attach_pdf = CatalogX()->setting->get_setting( 'enquiry_pdf_permission', [] );
-                if (!empty($attach_pdf) && in_array('attach_pdf_to_email', $attach_pdf, true)) {
-                    $attachments[] = $file_path; // Add PDF to attachments
-                }
+                $attachments = apply_filters( 'catalogx_set_enquiry_pdf_and_attachments', [], $enquiry_id, $enquiry_data); 
             }
                         
             $additional_email = CatalogX()->setting->get_setting( 'additional_alert_email' );

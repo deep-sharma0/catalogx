@@ -54,8 +54,8 @@ class Rest {
     // page string optional
     // Retrieve the current page
     public function get_quote_cart( $request ) {
-        $row =  $request['row'];
-        $page = $request['page'];
+        $row =  $request->get_param('row');
+        $page = $request->get_param('page');
     
         // Get all cart data
         $all_cart_data = CatalogX()->quotecart->get_cart_data();
@@ -145,7 +145,7 @@ class Rest {
      */
     public function process_quote_request( $request ) {
         $request_data = $request->get_params();
-        $form_data = $request_data['formData'] ?? $request_data['enquiry'] ?? [];
+        $form_data = $request->get_param('formData') ?? $request->get_param('enquiry') ?? [];
 
         // Handle rejection case
         if (!empty($order_id = $request->get_param('orderId'))) {
@@ -194,7 +194,7 @@ class Rest {
         $order->set_billing_phone($customer_phone);
     
         // Get product data
-        $product_data = isset($request_data['formData']) ? CatalogX()->quotecart->get_cart_data() : $form_data['product_info'];
+        $product_data = $request->get_param('formData') ? CatalogX()->quotecart->get_cart_data() : $form_data['product_info'];
         $product_info = [];
         $product_ids = [];
     
@@ -223,21 +223,9 @@ class Rest {
         $order->add_meta_data('quote_customer_msg', $customer_message);
         $order->save();
     
-        // If this request comes from an enquiry (like `create_quote` function)
+        // If this request comes from an enquiry
         if (isset($form_data['id']) && \CatalogX\Utill::is_khali_dabba()) {
-            $enquiry_id = $form_data['id'];
-            $admin_email = CatalogX()->admin_email;
-            $admin_data = get_user_by('email', $admin_email);
-            $from_user = $admin_data->ID;
-            $to_user = $customer_id;
-    
-            \CatalogXPro\Enquiry\Util::add_enquiry_message([
-                'from_user'    => $from_user,
-                'to_user'      => $to_user,
-                'chat_message' => "Your Quote is created and Quote number is " . $order->get_id(),
-                'product_id'   => serialize($product_ids),
-                'enquiry_id'   => $enquiry_id,
-            ]);
+            do_action('catalogx_quote_save_as_enquiry_msg', $form_data['id'], $customer_id, $product_ids, $order->get_id());
         }
     
         // Send email
@@ -250,7 +238,7 @@ class Rest {
         $email->trigger($product_info, $customer_data);
     
         // Clear cart if applicable
-        if (isset($request_data['formData'])) {
+        if ($request->get_param('formData')) {
             CatalogX()->quotecart->clear_cart();
         }
     
