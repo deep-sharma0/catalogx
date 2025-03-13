@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 import './EnquiryForm.scss';
-import FromViewer from '../libreary/FormViewer';
+import FromViewer from '../../components/AdminLibrary/Inputs/Special/FromViewer/FormViewer';
 import axios from 'axios';
 import Recaptcha from './Recaptcha';
 
@@ -104,7 +104,7 @@ const FreeForm = (props) => {
     }
 
     return (
-        <div className='enquiry-free-form'>
+        <div className='catalogx-enquiry-free-form'>
             {
                 formFields.map((field) => {
                     if (!field.active) { return }
@@ -112,7 +112,7 @@ const FreeForm = (props) => {
                     switch (field.key) {
                         case "name":
                             return (
-                                <div className='form-free-sections'>
+                                <div className='catalogx-form-free-sections'>
                                     <label>{field.label}</label>
                                     <input
                                         type="text"
@@ -125,7 +125,7 @@ const FreeForm = (props) => {
                             );
                         case "email":
                             return (
-                                <div className='form-free-sections'>
+                                <div className='catalogx-form-free-sections'>
                                     <label>{field.label}</label>
                                     <div className="field-wrapper">
                                         <input
@@ -141,7 +141,7 @@ const FreeForm = (props) => {
                             );
                         case "phone":
                             return (
-                                <div className='form-free-sections'>
+                                <div className='catalogx-form-free-sections'>
                                     <label>{field.label}</label>
                                     <input
                                         type="number"
@@ -156,7 +156,7 @@ const FreeForm = (props) => {
                         case "subject":
                         case "comment":
                             return (
-                                <div className='form-free-sections'>
+                                <div className='catalogx-form-free-sections'>
                                     <label>{field.label}</label>
                                     <textarea
                                         name={field.key}
@@ -168,7 +168,7 @@ const FreeForm = (props) => {
                             );
                         case "fileupload":
                             return (
-                                <div className='form-free-sections'>
+                                <div className='catalogx-form-free-sections'>
                                     <label className='attachment-main-label'>{field.label}</label>
                                     <div className="attachment-section field-wrapper">
                                         <label
@@ -198,7 +198,7 @@ const FreeForm = (props) => {
                             );
                         case "captcha":
                             return (
-                                <div className='form-free-sections'>
+                                <div className='catalogx-form-free-sections'>
                                     <label>{field.label}</label>
                                     <div className='recaptcha-wrapper field-wrapper'>
                                         <Recaptcha

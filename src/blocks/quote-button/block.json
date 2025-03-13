@@ -3,7 +3,9 @@
     "name": "catalogx/quote-button",
     "title": "Quote Button",
     "category": "catalogx",
-    "icon": "button",
+    "icon": {
+        "src":"<span className='adminLib-icon adminLib-price-quote-icon'></span>"
+    },
     "description": "A custom quote button for single product pages.",
     "supports": {
         "html": false

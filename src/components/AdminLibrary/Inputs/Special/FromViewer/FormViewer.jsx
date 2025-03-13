@@ -223,7 +223,7 @@ const FromViewer = (props) => {
     const [ defaultDate, setDefaultDate ] = useState(new Date().getFullYear()+'-01-01')
 
     return (
-        <main className='enquiry-pro-form'>
+        <main className='catalogx-enquiry-pro-form'>
             {
                 formList.map((field) => {
                     if (field.disabled) { return }
