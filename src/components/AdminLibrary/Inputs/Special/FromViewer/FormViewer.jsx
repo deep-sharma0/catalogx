@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
-import Button from './Button';
+import Button from '../DisplayButton';
 import './FromViewer.scss';
 import { __ } from '@wordpress/i18n';
 
