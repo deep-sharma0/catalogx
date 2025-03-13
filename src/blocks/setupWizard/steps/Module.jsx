@@ -54,7 +54,7 @@ const Modules = (props) => {
                             checked={selectedModules.catalog}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="catalog"></label>
+                        <label htmlFor="catalog_checkbox"></label>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ const Modules = (props) => {
                             checked={selectedModules.enquiry}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="enquiry"></label>
+                        <label htmlFor="enquiry_checkbox"></label>
                     </div>
                 </div>
 
@@ -92,17 +92,17 @@ const Modules = (props) => {
                             checked={selectedModules.quote}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="quote"></label>
+                        <label htmlFor="quote_checkbox"></label>
                     </div>
                 </div>
 
             </article>
             <footer className='setup-footer-btn-wrapper'>
                 <div>
-                    <button className='footer-btn btn-red' onClick={onPrev}>Prev</button>
+                    <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
                     <button className='footer-btn ' onClick={onNext}>Skip</button>
                 </div>
-                <button className='footer-btn btn-purple' onClick={moduleSave}>Next</button>
+                <button className='footer-btn next-btn' onClick={moduleSave}>Next</button>
             </footer>
             {loading && <Loading />}
         </section>

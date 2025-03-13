@@ -72,8 +72,8 @@ class Frontend {
      */
     function add_button_group() {
         ?>
-        <!-- single-product-page-action-btn-catalog -->
-            <div class="single-product-page-action-btn-catalog">
+        <!-- single-product-page-action-btn-catalogx -->
+            <div class="single-product-page-action-btn-catalogx">
                 <?php do_action( 'display_shop_page_button' ); ?>
             </div>
         <?php

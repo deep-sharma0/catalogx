@@ -32,7 +32,7 @@ const SetupWizard = () => {
 
 	return (
 		<>
-		<main className='setup-wizard-main-wrapper'>
+		<main className='catalogx-setup-wizard-main-wrapper'>
 			<img src={Logo} alt="Logo" />
 			<nav className='step-count'>
 				<ul>

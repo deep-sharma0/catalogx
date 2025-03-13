@@ -3,7 +3,9 @@
   "name": "catalogx/enquiry-button",
   "title": "Enquiry Button",
   "category": "catalogx",
-  "icon": "button",
+  "icon": {
+    "src": "<span className='adminLib-icon adminLib-enquiry-form-tab'></span>"
+  },
   "description": "A block that displays enquiry button.",
   "supports": {
     "html": false
@@ -11,12 +13,12 @@
   "textdomain": "catalogx",
   "editorScript": [
     "file:./index.js",
-    "frontend-script",
+    "catalogx-enquiry-frontend-script",
     "enquiry-form-script"
   ],
   "script": [
     "file:./index.js",
-    "frontend-script",
+    "catalogx-enquiry-frontend-script",
     "enquiry-form-script"
   ],
   "editorStyle": "catalogx-enquiry-form-style",

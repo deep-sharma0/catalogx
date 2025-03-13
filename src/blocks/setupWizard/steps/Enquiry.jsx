@@ -9,10 +9,6 @@ const Enquiry = (props) => {
     const [displayOption, setDisplayOption] = useState('popup');
     const [restrictUserEnquiry, setRestrictUserEnquiry] = useState([]);
 
-    const handleDisplayOptionChange = (event) => {
-        setDisplayOption(event.target.value);
-    };
-
     const handleRestrictUserEnquiryChange = (event) => {
         const { checked, name } = event.target;
         setRestrictUserEnquiry((prevState) =>
@@ -78,17 +74,17 @@ const Enquiry = (props) => {
                             checked={restrictUserEnquiry.includes('enquiry_logged_out')}
                             onChange={handleRestrictUserEnquiryChange}
                         />
-                        <label htmlFor='enquiry_logged_out'></label>
+                        <label htmlFor='restrict_checkbox'></label>
                     </div>
                 </div>
             </article>
 
             <footer className='setup-footer-btn-wrapper'>
                 <div>
-                    <button className='footer-btn btn-red' onClick={onPrev}>Prev</button>
+                    <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
                     <button className='footer-btn ' onClick={onNext}>Skip</button>
                 </div>
-                <button className='footer-btn btn-purple' onClick={saveEnquirySettings}>Next</button>
+                <button className='footer-btn next-btn' onClick={saveEnquirySettings}>Next</button>
             </footer>
             {loading && <Loading />}
         </section>
