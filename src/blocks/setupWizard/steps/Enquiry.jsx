@@ -74,7 +74,7 @@ const Enquiry = (props) => {
                             checked={restrictUserEnquiry.includes('enquiry_logged_out')}
                             onChange={handleRestrictUserEnquiryChange}
                         />
-                        <label htmlFor='restrict_checkbox'></label>
+                        <label htmlFor='enquiry_logged_out'></label>
                     </div>
                 </div>
             </article>

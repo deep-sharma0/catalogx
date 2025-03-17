@@ -54,7 +54,7 @@ const Modules = (props) => {
                             checked={selectedModules.catalog}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="catalog_checkbox"></label>
+                        <label htmlFor="catalog"></label>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ const Modules = (props) => {
                             checked={selectedModules.enquiry}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="enquiry_checkbox"></label>
+                        <label htmlFor="enquiry"></label>
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@ const Modules = (props) => {
                             checked={selectedModules.quote}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="quote_checkbox"></label>
+                        <label htmlFor="quote"></label>
                     </div>
                 </div>
 

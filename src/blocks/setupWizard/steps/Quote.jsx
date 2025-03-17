@@ -52,7 +52,7 @@ const Quote = (props) => {
                             checked={restrictUserQuote.includes('logged_out')}
                             onChange={handleRestrictUserQuoteChange}
                         />
-                        <label htmlFor='restrict_quote_checkbox'></label>
+                        <label htmlFor='logged_out'></label>
                     </div>
                 </div>
             </article>
