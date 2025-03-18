@@ -247,6 +247,10 @@ class Rest {
     
     public function quote_cart_permission() {
         $user_id = get_current_user_id();
+        // For non-logged in user
+        if ($user_id == 0) {
+            return true;
+        }
         $user = get_userdata($user_id);
     
         // Check if user is admin or customer

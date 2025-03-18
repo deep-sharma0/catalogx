@@ -47,7 +47,7 @@ class Utill {
 	 * @return bool
 	 */
 	public static function is_khali_dabba() {
-		if ( defined( 'CATALOG_ENQUIRY_PRO_PLUGIN_TOKEN' ) ) {
+		if ( defined( 'CATALOGX_PRO_PLUGIN_TOKEN' ) ) {
 			return CatalogX_Pro()->license->is_active();
 		}
         

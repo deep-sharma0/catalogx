@@ -18,7 +18,7 @@ final class CatalogX {
     private $container       = [];
 	
 	/**
-	 * Catalog enqueiry class constructor function
+	 * CatalogX class constructor function
 	 * @param mixed $file plugin's main file
 	 */
 	public function __construct($file) {
@@ -186,7 +186,7 @@ final class CatalogX {
 
 
   	/**
-	 * Catalog enquery emails
+	 * CatalogX emails
 	 * @param array $emails
 	 * @return array
 	 */
@@ -235,7 +235,6 @@ final class CatalogX {
 			load_plugin_textdomain('catalogx', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
         } else {
             load_textdomain( 'catalogx', WP_LANG_DIR . '/plugins/catalogx-' . determine_locale() . '.mo' );
-
         }
 	}
 
