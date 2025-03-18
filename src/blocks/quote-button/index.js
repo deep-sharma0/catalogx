@@ -28,9 +28,9 @@ registerBlockType('catalogx/quote-button', {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const quoteButton = document.querySelector('.catalogx-add-request-quote-button');
-    if (quoteButton) {
-        quoteButton.addEventListener('click', function(event) {
+    const addQuoteButton = document.querySelector('.catalogx-add-request-quote-button');
+    if (addQuoteButton) {
+        addQuoteButton.addEventListener('click', function(event) {
             event.preventDefault();
             const productElement = document.querySelector('[data-block-name="woocommerce/single-product"]');
             const productId = productElement ? productElement.dataset.productId : null;

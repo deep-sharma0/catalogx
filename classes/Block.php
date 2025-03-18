@@ -8,6 +8,7 @@ class Block {
     private $blocks;
 
     public function __construct() {
+        $this->blocks = $this->initialize_blocks();
         // Register block category
         add_filter( 'block_categories_all', [$this, 'register_block_category'] );
         // Register the block
@@ -15,7 +16,6 @@ class Block {
         // Localize the script for block
         add_action( 'enqueue_block_assets', [ $this,'enqueue_all_block_assets'] );
 
-        $this->blocks = $this->initialize_blocks();
     }
     
     public function initialize_blocks() {
@@ -25,6 +25,7 @@ class Block {
         if (CatalogX()->modules->is_active('enquiry')) {
             $blocks[] = [
                 'name' => 'enquiry-button', // block name
+                'textdomain' => 'catalogx',
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'], // the react dependencies which required in js
                 'localize' => [
@@ -45,6 +46,7 @@ class Block {
         if (CatalogX()->modules->is_active('quote')) {
             $blocks[] = [
                 'name' => 'quote-button', // block name
+                'textdomain' => 'catalogx',
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
@@ -57,6 +59,7 @@ class Block {
 
             $blocks[] =  [
                 'name' => 'quote-cart', // block name
+                'textdomain' => 'catalogx',
                 // src link is generated (which is append from block name) within the function
 				'react_dependencies'   => ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
                 'localize' => [
@@ -80,17 +83,19 @@ class Block {
             ];            
         }
 
-        return $blocks;
+
+        return apply_filters('catalogx_initialize_blocks', $blocks);
     }
 
     public function enqueue_all_block_assets() {
-        foreach ($this->blocks as $block_script) {
-            wp_set_script_translations( $block_script['name'], 'catalogx' );
+        $blocks = apply_filters('catalogx_initialize_blocks', $this->blocks);
+        foreach ($blocks as $block_script) {
+            wp_set_script_translations( $block_script['name'], $block_script['textdomain'] );
             if (isset($block_script['localize']) && !empty($block_script['localize'])) {
                 // apiUrl re-initialize here beacuse in array the url is not define
                 $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
-                wp_localize_script('catalogx-' . $block_script['name'] . '-editor-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
-                wp_localize_script('catalogx-' . $block_script['name'] . '-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
+                wp_localize_script($block_script['textdomain'] . '-' . $block_script['name'] . '-editor-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
+                wp_localize_script($block_script['textdomain'] . '-' . $block_script['name'] . '-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
             }
 		}
     }
@@ -105,8 +110,13 @@ class Block {
     }
     
     public function register_blocks() {
-        foreach ($this->blocks as $block) {
-            register_block_type( CatalogX()->plugin_path . 'build/blocks/' . $block['name']);
+        $blocks = apply_filters('catalogx_initialize_blocks', $this->blocks);
+        foreach ($blocks as $block) {
+            if ($block['textdomain'] === 'catalogx-pro') {
+                register_block_type( CatalogX_Pro()->plugin_path . 'build/' . $block['name']);
+            } else {
+                register_block_type( CatalogX()->plugin_path . 'build/blocks/' . $block['name']);
+            }
         }
     }
     
