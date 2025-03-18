@@ -5,7 +5,7 @@
  * Override this template by copying it to yourtheme/woocommerce-catalog-enquiry/quote-button-template.php
  *
  * @author    MultiVendorX
- * @package   woocommerce-catalog-enquiry/Templates
+ * @package   woocommerce-catalog-enquiry/templates
  * @version   1.0.0
  */
 

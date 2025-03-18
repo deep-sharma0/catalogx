@@ -1,11 +1,17 @@
 <?php
 /**
  * CatalogX Email Request quote
+ * 
+ * Override this template by copying it to yourtheme/woocommerce-catalog-enquiry/request-quote.php
+ *
+ * @author    MultiVendorX
+ * @package   woocommerce-catalog-enquiry/templates
+ * @version   6.0.0
  */
 
  defined( 'ABSPATH'  ) || exit; // Exit if accessed directly
 
-do_action( 'woocommerce_email_header', $email_heading  ); ?>
+do_action( 'catalogx_email_header', $email_heading  ); ?>
 
 <div class="email-container">
     <h1><?php printf( __( 'Dear %s', 'catalogx' ), $admin ); ?></h1>
@@ -64,4 +70,4 @@ do_action( 'woocommerce_email_header', $email_heading  ); ?>
     </div>
 </div>
 
-<?php do_action( 'woocommerce_email_footer', $email ); ?>
+<?php do_action( 'catalogx_email_footer', $email ); ?>

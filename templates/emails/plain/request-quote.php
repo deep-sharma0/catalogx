@@ -28,4 +28,4 @@ if ( ! empty( $customer_data['details'] ) ) {
     echo $customer_data['details'] . "\n";
 }
 
-do_action( 'woocommerce_email_footer', $email );
+do_action( 'catalogx_email_footer', $email );
