@@ -1,6 +1,0 @@
-{
-  "apiVersion": 2,
-  "name": "catalogx",
-  "title": "Catalogx",
-  "editorScript": "file:./index.js"
-}

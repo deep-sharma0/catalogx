@@ -1,4 +1,4 @@
-@import './../../config.scss';
+@import '../../config.scss';
 
 .load-table {
   border-collapse: collapse;
@@ -209,8 +209,8 @@
         padding: 0 0.5rem;
 
         &:first-child {
-          min-width: 2.25rem;
-          max-width: 2.25rem;
+          min-width: 2.5rem;
+          max-width: 2.5rem;
 
           input[type=checkbox] {
             margin: 0;
