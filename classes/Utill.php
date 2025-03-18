@@ -63,14 +63,20 @@ class Utill {
      * @return void
      */
     public static function get_template( $template_name, $args = [] ) {
-
-        if ( $args && is_array( $args ) )
+        if ( $args && is_array( $args ) ) {
             extract( $args );
-
-        $located = CatalogX()->plugin_path.'templates/'.$template_name;
-        
+        }
+    
+        // Check if the template exists in the theme
+        $theme_template = get_stylesheet_directory() . '/woocommerce-catalog-enquiry/' . $template_name;
+    
+        // Use the theme template if it exists, otherwise use the plugin template
+        $located = file_exists( $theme_template ) ? $theme_template : CatalogX()->plugin_path . 'templates/' . $template_name;
+    
+        // Load the template
         load_template( $located, false, $args );
     }
+    
 
     /**
      * Create atachment from array of fiels.

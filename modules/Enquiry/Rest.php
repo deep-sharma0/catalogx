@@ -158,7 +158,7 @@ class Rest {
     public function enquiry_permission() {
         $user_id = get_current_user_id();
         // For non-logged in user
-        if ($user_id == 0) {
+        if ($user_id == 0 && empty(CatalogX()->setting->get_setting( 'enquiry_user_permission' ))) {
             return true;
         }
 
