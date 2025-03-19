@@ -44,7 +44,7 @@ registerBlockType('catalogx/enquiry-button', {
         // Fetch the rendered form from the REST API
         useEffect(() => {
             if (productId) {
-                axios.get(`${enquiryButton.apiUrl}/${enquiryButton.restUrl}/buttons?product_id=${productId}`)
+                axios.get(`${enquiryButton.apiUrl}/${enquiryButton.restUrl}/buttons?product_id=${productId}&button_type=enquiry`)
                     .then((response) => {
                         setContentHtml(response.data.html || __('Failed to load.', 'catalogx'));
                     });

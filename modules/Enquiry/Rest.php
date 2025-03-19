@@ -22,12 +22,6 @@ class Rest {
             'callback'              => [ $this, 'set_enquiries' ],
             'permission_callback'   => [ $this, 'enquiry_permission' ],
         ]);
-
-        register_rest_route( CatalogX()->rest_namespace, '/buttons', [
-            'methods'               => 'POST',
-            'callback'              => [ $this, 'get_buttons' ],
-            'permission_callback'   => [ $this, 'enquiry_permission' ],
-        ]);
 	}
 
     /**
@@ -170,24 +164,6 @@ class Rest {
         }
     
         return new \WP_Error('woocommerce_rest_cannot_edit', __('Sorry, you are not allowed to edit this resource.', 'catalogx'), array('status' => rest_authorization_required_code()));
-    }
-
-    /**
-     * render enquiry button shortcode into block
-     * @return \WP_Error|\WP_REST_Response
-     */
-    // product_id string required
-    // Retrieve the product id from block
-    public function get_buttons($request) {
-        $product_id = $request->get_param('product_id');
-
-        // Start output buffering
-        ob_start();
-
-        Module::init()->frontend->add_enquiry_button(intval($product_id));
-
-        // Return the output
-        return rest_ensure_response(['html' => ob_get_clean()]);
     }
 
 }

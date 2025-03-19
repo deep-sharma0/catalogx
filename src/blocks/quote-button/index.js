@@ -1,6 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { useState, useEffect } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
+import axios from 'axios';
 
 // Register the block
 registerBlockType('catalogx/quote-button', {
@@ -9,59 +12,54 @@ registerBlockType('catalogx/quote-button', {
         src: <span className="adminLib-icon adminLib-price-quote-icon"></span>,
     },
     category: 'catalogx',
-    edit() {
+    attributes: {
+        productId: {
+            type: 'number',
+            default: null,
+        },
+    },
+
+    edit: ({ attributes, setAttributes }) => {
         const blockProps = useBlockProps();
+        const [contentHtml, setContentHtml] = useState(__('Loading ...', 'catalogx'));
+
+        // Select the product ID from the WooCommerce Single Product Block
+        const productId = useSelect((select) => {
+            const blocks = select('core/block-editor').getBlocks();
+            const singleProductBlock = blocks.find(
+                (block) => block.name === 'woocommerce/single-product'
+            );
+            return singleProductBlock?.attributes?.productId || null;
+        }, []);
+
+        // Update the product ID attribute if it changes
+        useEffect(() => {
+            if (productId && productId !== attributes.productId) {
+                setAttributes({ productId });
+            }
+        }, [productId]);
+
+        // Fetch the rendered form from the REST API
+        useEffect(() => {
+            if (productId) {
+                axios.get(`${quoteButton.apiUrl}/${quoteButton.restUrl}/buttons?product_id=${productId}&button_type=quote`)
+                    .then((response) => {
+                        setContentHtml(response.data.html || __('Failed to load.', 'catalogx'));
+                    });
+            } else {
+                setContentHtml(__('No product selected.', 'catalogx'));
+            }
+        }, [productId]);
+
         return (
             <div {...blockProps}>
-                <button className="catalogx-add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
+                <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
             </div>
         );
     },
-    save() {
-        return (
-            <div>
-                <button className="catalogx-add-request-quote-button">{__('Add to Quote', 'catalogx')}</button>
-                <div className="quote-message-container"></div>
-            </div>
-        );
+
+    save: () => {
+        // Save function remains empty since rendering is handled by the PHP render callback
+        return null;
     },
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const addQuoteButton = document.querySelector('.catalogx-add-request-quote-button');
-    if (addQuoteButton) {
-        addQuoteButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            const productElement = document.querySelector('[data-block-name="woocommerce/single-product"]');
-            const productId = productElement ? productElement.dataset.productId : null;
-
-            const quantityElement = document.querySelector('.quantity .qty');
-            const quantity = quantityElement ? quantityElement.value : 1;
-
-            const requestData = new URLSearchParams({
-                action: 'quote_added_in_list',
-                product_id: productId,
-                quantity: quantity,
-                quote_action: 'add_item'
-            });
-
-            fetch(quoteButton.ajaxurl, {
-                method: 'POST',
-                body: requestData
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log('Response:', data.message);
-                const messageContainer = document.querySelector('.quote-message-container');
-                if (messageContainer) {
-                    messageContainer.textContent = data.message;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    }
 });

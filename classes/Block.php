@@ -52,7 +52,9 @@ class Block {
                 'localize' => [
 					'object_name' => 'quoteButton',
 					'data' => [
-                        'ajaxurl' => admin_url('admin-ajax.php'),
+                        'apiUrl'  => '', // this set blank because in scope the get_rest_url() is not defined
+                        'restUrl' => CatalogX()->rest_namespace,
+                        'nonce'   => wp_create_nonce( 'catalog-security-nonce' )
 					],
 				],
             ];

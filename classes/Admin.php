@@ -243,6 +243,7 @@ class Admin {
             'active_modules'            => CatalogX()->modules->get_active_modules(),
             'user_role'                 => $current_user_role,
             'banner_img'                => CatalogX()->plugin_url . 'assets/images/catalog-pro-add-admin-banner.jpg',
+            'default_img'               => CatalogX()->plugin_url . 'src/assets/images/default.png',
             'template1'                 => CatalogX()->plugin_url . 'assets/images/email/templates/default_wc_tpl.png',
             'template2'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_1.png',
             'template3'                 => CatalogX()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_2.png',

@@ -2,8 +2,6 @@
 
 namespace CatalogX\Quote;
 
-use CatalogX\CatalogX;
-
 class Rest {
     /**
      * Rest class constructor functions

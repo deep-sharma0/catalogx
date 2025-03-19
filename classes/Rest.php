@@ -1,6 +1,9 @@
 <?php
 
 namespace CatalogX;
+use CatalogX\Enquiry\Module as EnquiryModule;
+use CatalogX\Quote\Module as QuoteModule;
+use CatalogXPro\Enquiry\Module;
 
 class Rest {
     /**
@@ -43,6 +46,12 @@ class Rest {
                 'permission_callback'   => [ $this, 'catalogx_permission' ],
             ]
         );
+
+        register_rest_route( CatalogX()->rest_namespace, '/buttons', [
+            'methods'               => 'GET',
+            'callback'              => [ $this, 'get_buttons' ],
+            'permission_callback'   => [ $this, 'catalogx_permission' ],
+        ]);
 
 	}
 
@@ -137,6 +146,29 @@ class Rest {
         }
     }
 
+    public function get_buttons($request) {
+        $product_id = $request->get_param('product_id');
+        $button_type = $request->get_param('button_type');
+
+        // Start output buffering
+        ob_start();
+
+        if ($button_type == 'enquiry') {
+            EnquiryModule::init()->frontend->add_enquiry_button(intval($product_id));
+        }
+
+        if ($button_type == 'quote') {
+            QuoteModule::init()->frontend->add_button_for_quote(intval($product_id));
+        }
+
+        if ($button_type == 'multiple_enquiry') {
+            Module::init()->fontend->add_enquiry_cart_button(intval($product_id));
+        }
+
+        // Return the output
+        return rest_ensure_response(['html' => ob_get_clean()]);
+    }
+
     /**
      * Catalog rest api permission functions
      * @return bool
@@ -144,4 +176,5 @@ class Rest {
 	public function catalogx_permission() {
 		return true;
 	}
+
 }

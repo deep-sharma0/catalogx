@@ -28,32 +28,36 @@ class Frontend {
      * @return void
      */
     public function enqueue_scripts() {
-        if (is_shop() || is_product()) {
-             $frontend_script_path = CatalogX()->plugin_url . 'modules/Quote/js/';
-            $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
-
-            wp_enqueue_script('add-to-quote-cart-script', $frontend_script_path . 'frontend.js', ['jquery'], CatalogX()->version, true);
-            wp_localize_script(
-                'add-to-quote-cart-script',
-                'addToQuoteCart',
-                [
-                    'ajaxurl' => admin_url('admin-ajax.php'),
-                    'loader' => admin_url('images/wpspin_light.gif'),
-                    'no_more_product' => __('No more product in Quote list!', 'catalogx'),
+        $frontend_script_path = CatalogX()->plugin_url . 'modules/Quote/js/';
+        $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
+        
+        wp_register_script('add-to-quote-cart-script', $frontend_script_path . 'frontend.js', ['jquery'], CatalogX()->version, true);
+        wp_localize_script(
+            'add-to-quote-cart-script',
+            'addToQuoteCart',
+            [
+                'ajaxurl' => admin_url('admin-ajax.php'),
+                'loader' => admin_url('images/wpspin_light.gif'),
+                'no_more_product' => __('No more product in Quote list!', 'catalogx'),
                 ]
             );
+        if (is_shop() || is_product()) {
+            wp_enqueue_script('add-to-quote-cart-script');
         }
     }
 
     /**
      * add quote button in single product page and shop page
      */
-    public function add_button_for_quote() {
+    public function add_button_for_quote($productObj) {
         global $product;
         
-        if (!$product) return;
+        $productObj = is_int($productObj) ? wc_get_product($productObj) : ($productObj ?: $product);
+
+        if ( empty( $productObj ) )
+            return;
         //Exclusion settings for shop and single product page
-        if ( ! Util::is_available_for_product($product->get_id()) ) {
+        if ( ! Util::is_available_for_product($productObj->get_id()) ) {
             return;
         }
 
@@ -100,19 +104,20 @@ class Frontend {
         [
             'class'             => 'catalogx-add-request-quote-button ',
             'btn_css'         => $btn_css,
-            'wpnonce'           => wp_create_nonce( 'add-quote-' . $product->get_id() ),
-            'product_id'        => $product->get_id(),
+            'wpnonce'           => wp_create_nonce( 'add-quote-' . $productObj->get_id() ),
+            'product_id'        => $productObj->get_id(),
             'label'             => $quote_btn_text,
             'label_browse'      => $view_quote_btn_text,
             'rqa_url'           => CatalogX()->quotecart->get_request_quote_page_url(),
-            'exists'            => CatalogX()->quotecart->exists_in_cart( $product->get_id() )
+            'exists'            => CatalogX()->quotecart->exists_in_cart( $productObj->get_id() )
         ]);
     }
 
-    public function catalogx_quote_button_shortcode() {
+    public function catalogx_quote_button_shortcode($attr) {
         ob_start();
+        $product_id = isset( $attr['product_id'] ) ? (int)$attr['product_id'] : 0;
         remove_action('display_shop_page_button', [ $this, 'add_button_for_quote' ]);
-        $this->add_button_for_quote();
+        $this->add_button_for_quote($product_id);
         return ob_get_clean();
     }
 
