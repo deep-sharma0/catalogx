@@ -131,12 +131,13 @@ final class CatalogX {
 		$this->container['util']     	= new Utill();
 		$this->container['modules']	 	= new Modules();
 		$this->container['shortcode']	= new Shortcode();
-		$this->container['block'] 		= new Block();
 		$this->container['session'] 	= new Core\Session();
         $this->container['quotecart']	= new Core\QuoteCart();
 
 		// Load all active modules
 		$this->container['modules']->load_active_modules();
+
+		$this->container['block'] 		= new Block();
 	}
 
 	public function plugin_link( $links ) {	

@@ -41,25 +41,6 @@ const Modules = (props) => {
             <article className='module-wrapper'>
                 <div className="module-items">
                     <div className="module-details">
-                        <h3>Catalog</h3>
-                        <p className='module-description'>
-                            Showcase products by hiding prices, disabling purchases, and restricting access to cart and checkout page.
-                        </p>
-                    </div>
-                    <div className='toggle-checkbox'>
-                        <input
-                            type="checkbox"
-                            id="catalog"
-                            name="catalog"
-                            checked={selectedModules.catalog}
-                            onChange={handleCheckboxChange}
-                        />
-                        <label htmlFor="catalog"></label>
-                    </div>
-                </div>
-
-                <div className="module-items">
-                    <div className="module-details">
                         <h3>Enquiry </h3>
                         <p className='module-description'>
                         Add a button for customers to submit inquiries, sending their details and message to the admin for a response.

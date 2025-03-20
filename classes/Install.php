@@ -447,7 +447,7 @@ class Install {
         // Update shopping gurnal
         $all_settings = [
             'is_enable_out_of_stock'  => $previous_general_settings[ 'is_enable_out_of_stock' ] ?? [],
-            'enquiry_user_permission' => $previous_general_settings[ 'for_user_type' ]['value'] == '1' ? ['enquiry_logged_out'] : [],
+            'enquiry_user_permission' => is_array($previous_general_settings['for_user_type']) && $previous_general_settings[ 'for_user_type' ]['value'] == '1' ? ['enquiry_logged_out'] : [],
             'is_page_redirect'        => $previous_general_settings[ 'is_page_redirect' ] ?? [],
             'redirect_page_id'        => $previous_general_settings[ 'redirect_page_id' ] ? $previous_general_settings[ 'redirect_page_id' ]['value'] : '',
             'is_disable_popup'        => !empty($previous_general_settings[ 'is_disable_popup' ]) ? 'inline' : 'popup',
