@@ -698,6 +698,7 @@ class Install {
         delete_option( 'mvx_catalog_enquiry_form_tab_settings' );
         delete_option( 'mvx_catalog_exclusion_tab_settings' );
         delete_option( 'mvx_catalog_button_appearance_tab_settings' );
+        delete_option( 'mvx_catalog_pro_enquiry_form_data' );
 
         delete_option( 'woocommerce_catalog_enquiry_from_settings' );
         delete_option( 'woocommerce_catalog_enquiry_general_settings' );
