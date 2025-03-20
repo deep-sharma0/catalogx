@@ -1,6 +1,4 @@
-// @import '/src/components/config.scss';
-@import '../../../config.scss';
-
+@use '../../../config.scss' as *;
 
 .settings-input-content {
   .btn-wrapper {

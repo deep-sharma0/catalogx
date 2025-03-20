@@ -38,7 +38,7 @@ class QuoteCart {
 	function init_callback() {
         $this->get_quote_cart_session();
         $this->session->set_customer_session_cookie(true);
-        $this->quote_validation_schedule();
+        $this->quote_cron_schedule();
     }
 
     function get_quote_cart_session() {
@@ -46,14 +46,7 @@ class QuoteCart {
         return $this->quote_cart_content;
     }
 
-    public function quote_validation_schedule(){
-
-        if ( ! wp_next_scheduled( 'quote_validation_schedule' ) ) {
-            $timezone = wp_timezone();
-            $tomorrow = new \DateTime('tomorrow 00:00', $timezone); // Get tomorrow's midnight in the site's timezone
-            wp_schedule_event( $tomorrow->getTimestamp(), 'daily', 'quote_validation_schedule' );
-        }
-        
+    public function quote_cron_schedule(){     
 
         if ( !wp_next_scheduled( 'quote_clean_cron' ) ) {
             wp_schedule_event( time(), 'hourly', 'quote_clean_cron' );

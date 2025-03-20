@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@use '/src/components/config' as *;
 
 .MuiDialogContent-root:has(.admin-image-overlay) {
     &::-webkit-scrollbar {

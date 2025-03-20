@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@use '/src/components/config' as *;
 
 .catelog-customizer-main-wrapper {
   transition: transform 0.3s linear;

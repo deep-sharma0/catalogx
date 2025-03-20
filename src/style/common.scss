@@ -1,5 +1,5 @@
-@import '/src/components/config.scss';
-@import 'fonts.scss';
+@use '/src/components/config' as *;
+@use 'fonts';
 
 * {
   padding: 0;

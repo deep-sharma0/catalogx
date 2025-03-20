@@ -1,4 +1,4 @@
-@import '../config.scss';
+@use '../config' as *;
 
 .enquiry-img {
   background-image: url("../../assets/images/enquiry-page-desktop.png");

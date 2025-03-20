@@ -1,4 +1,4 @@
-@import '../../components/config.scss';
+@use '../../components/config'  as *;
 
 .catalogx-setup-wizard-main-wrapper {
     display: flex;

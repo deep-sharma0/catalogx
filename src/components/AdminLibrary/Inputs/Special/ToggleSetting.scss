@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@use '/src/components/config' as *;
 
 .toggle-setting-container{
     ul{

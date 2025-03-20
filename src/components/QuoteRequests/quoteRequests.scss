@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@use '/src/components/config' as *;
 
 .quote-img {
     background-image: url("../../assets/images/quote-page-desktop.jpg");
