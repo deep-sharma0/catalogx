@@ -296,10 +296,10 @@ class Install {
 
         // Enable enquiry module based on previous setting
         if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
-            $active_module_list[] = 'enquiry';
+            $active_modules = get_option( Modules::ACTIVE_MODULES_DB_KEY, [] );
+            update_option( Modules::ACTIVE_MODULES_DB_KEY, array_unique( array_merge( $active_modules, ['enquiry'] ) ) );
         }
 
-        update_option( Modules::ACTIVE_MODULES_DB_KEY, $active_module_list );
 
     }
 
