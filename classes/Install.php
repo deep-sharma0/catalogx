@@ -121,9 +121,8 @@ class Install {
      */
     public static function set_default_modules() {            
         // Enable catalog module by default
-        $active_module_list = [ 'catalog' ];
-        
-        update_option( Modules::ACTIVE_MODULES_DB_KEY, $active_module_list );
+        $active_modules = get_option( Modules::ACTIVE_MODULES_DB_KEY, [] );
+        update_option( Modules::ACTIVE_MODULES_DB_KEY, array_unique( array_merge( $active_modules, ['catalog'] ) ) );
     }
 
     /**
