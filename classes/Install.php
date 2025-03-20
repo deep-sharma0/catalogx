@@ -34,16 +34,16 @@ class Install {
         self::$previous_version = get_option( self::VERSION_KEY, '' );
         self::$current_version  = CatalogX()->version;
 
+        // this function should be deleted after 7.0.0
+        if (!empty(get_option('mvx_catalog_general_tab_settings'))) {
+            $this->migrate_catalog_enquiry_to_catalogx();
+        }
+
         $this->create_database_tables();
         $this->set_default_modules();
         $this->set_default_settings();
 
         $this->run_default_migration();
-
-        // this function should be deleted after 7.0.0
-        if (!empty(get_option('mvx_catalog_general_tab_settings'))) {
-            $this->migrate_catalog_enquiry_to_catalogx();
-        }
 
         // Update the version in database
         update_option( self::VERSION_KEY, self::$current_version );
