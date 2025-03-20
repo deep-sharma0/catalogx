@@ -34,7 +34,7 @@ class Rest {
             'permission_callback'   => [ $this, 'catalogx_permission' ]
         ] );
 
-        register_rest_route( CatalogX()->rest_namespace, '/tour', 
+        register_rest_route( CatalogX()->rest_namespace, '/tour', [
             [
                 'methods'               => 'GET',
                 'callback'              => [ $this, 'get_tour' ],
@@ -45,7 +45,7 @@ class Rest {
                 'callback'              => [ $this, 'set_tour' ],
                 'permission_callback'   => [ $this, 'catalogx_permission' ],
             ]
-        );
+        ] );
 
         register_rest_route( CatalogX()->rest_namespace, '/buttons', [
             'methods'               => 'GET',
