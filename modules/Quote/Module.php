@@ -32,9 +32,7 @@ class Module {
         // Init helper classes
         $this->init_classes();
 
-        if ( Utill::is_khali_dabba() ) {
-            new \CatalogXPro\Quote\Module();
-        }
+        do_action( 'load_premium_modules' );
 
         if (CatalogX()->modules->is_active('quote')) {
             $this->create_page_for_quote();
