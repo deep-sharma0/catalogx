@@ -2,6 +2,14 @@
 
 namespace CatalogX\Quote;
 
+/**
+ * CatalogX Quote Module Util class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 class Util {
 
     /**

@@ -3,9 +3,13 @@
 namespace CatalogX;
 
 /**
- * Setup Wizard Class
- * 
+ * CatalogX Setup wizard class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
  */
+
 if (!defined('ABSPATH')) {
     exit;
 }

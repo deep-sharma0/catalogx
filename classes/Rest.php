@@ -3,7 +3,14 @@
 namespace CatalogX;
 use CatalogX\Enquiry\Module as EnquiryModule;
 use CatalogX\Quote\Module as QuoteModule;
-use CatalogXPro\Enquiry\Module;
+
+/**
+ * CatalogX Rest class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
 
 class Rest {
     /**
@@ -53,7 +60,7 @@ class Rest {
             'permission_callback'   => [ $this, 'catalogx_permission' ],
         ]);
 
-	}
+    }
 
     /**
      * get tour status
@@ -114,7 +121,7 @@ class Rest {
         }
 
         return rest_ensure_response($all_details);
-	}
+    }
 
     /**
      * Manage module setting. Active or Deactive modules.
@@ -171,8 +178,8 @@ class Rest {
      * Catalog rest api permission functions
      * @return bool
      */
-	public function catalogx_permission() {
-		return true;
-	}
+    public function catalogx_permission() {
+        return true;
+    }
 
 }

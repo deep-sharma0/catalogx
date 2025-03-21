@@ -1,8 +1,15 @@
 <?php 
 
 namespace CatalogX\Enquiry;
-
 use CatalogX\Utill;
+
+/**
+ * CatalogX Enquiry Module Frontend class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
 
 class Frontend{
     /**

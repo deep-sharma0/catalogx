@@ -2,6 +2,14 @@
 
 namespace CatalogX\Quote;
 
+/**
+ * CatalogX Quote Module Ajax class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 class Ajax {
     /**
      * Ajax class constructor functions

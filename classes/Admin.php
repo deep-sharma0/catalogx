@@ -2,10 +2,15 @@
 
 namespace CatalogX;
 
+/**
+ * CatalogX Admin class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 class Admin {
-    /**
-     * CatalogEnquiry class constructor function
-     */
     public function __construct() {
         add_action( 'admin_menu', [ $this, 'add_menu' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_script' ] );
@@ -86,11 +91,11 @@ class Admin {
         if ( ! Utill::is_khali_dabba() ) {
             $submenu[ 'catalogx' ][] = [
                 '<style>
-					a:has(.upgrade-to-pro){
-						background: linear-gradient(-28deg, #f6a091, #bb939c, #5f6eb3) !important;
-						color: White !important;
-					};
-				</style>
+                    a:has(.upgrade-to-pro){
+                        background: linear-gradient(-28deg, #f6a091, #bb939c, #5f6eb3) !important;
+                        color: White !important;
+                    };
+                </style>
                 <div class="upgrade-to-pro"><i style="margin-right: 0.25rem" class="dashicons dashicons-awards"></i>' . __( 'Upgrade to pro', 'catalogx' ). '</div>',
                 'manage_woocommerce',
                 CATALOGX_PRO_SHOP_URL

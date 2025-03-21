@@ -2,6 +2,14 @@
 
 namespace CatalogX\Quote;
 
+/**
+ * CatalogX Quote Module Admin class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 class Admin {
     /**
      * Admin class constructor functions
@@ -96,15 +104,15 @@ class Admin {
         $new_quote = filter_input( INPUT_GET, 'new_quote', FILTER_SANITIZE_SPECIAL_CHARS  );
         $page      = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS  );
         $post_type = filter_input( INPUT_GET, 'post_type', FILTER_SANITIZE_SPECIAL_CHARS  );
-		
+        
         if ( (isset( $new_quote ) && $new_quote && ( isset($page) && 'wc-orders' === $page)) ||
-		 (isset( $new_quote ) && $new_quote && isset($post_type) && 'shop_order' === $post_type) ) {
-			$new_status = array_merge( $order_statuses, $order_statuses_old );
-		} else {
-			$new_status = array_merge( $order_statuses_old, $order_statuses );
-		}
+         (isset( $new_quote ) && $new_quote && isset($post_type) && 'shop_order' === $post_type) ) {
+            $new_status = array_merge( $order_statuses, $order_statuses_old );
+        } else {
+            $new_status = array_merge( $order_statuses_old, $order_statuses );
+        }
 
-		return $new_status;
+        return $new_status;
     }
 
     /**

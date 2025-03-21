@@ -2,40 +2,48 @@
 
 namespace CatalogX\Core;
 
+/**
+ * CatalogX QuoteCart class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class QuoteCart {
-	
+    
     public $session;
     public $quote_cart_content = array();
     public $errors = array();
-	/**
-	 * Constructor
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function __construct() {
-		add_action( 'init', array( $this, 'quote_session_start' ));
+    /**
+     * Constructor
+     *
+     * @access public
+     * @return void
+     */
+    public function __construct() {
+        add_action( 'init', array( $this, 'quote_session_start' ));
         add_action( 'wp_loaded', array( $this, 'init_callback' ));
         add_action( 'wp', array( $this, 'maybe_set_cart_cookies' ), 99 ); 
         add_action( 'shutdown', array( $this, 'maybe_set_cart_cookies' ), 0 );
         add_action( 'quote_clean_cron', array( $this, 'clean_session'));
         add_action( 'wp_loaded', array( $this, 'add_to_quote_action' ), 30);
-	}
+    }
 
-	/**
-	 * Starts the php session data for the cart.
-	 */
-	function quote_session_start(){
-		if( ! isset( $_COOKIE['woocommerce_items_in_cart'] ) ) {
-			do_action( 'woocommerce_set_cart_cookies', true );
-		}
-		$this->session = new Session();
-		$this->set_session();
-	}
+    /**
+     * Starts the php session data for the cart.
+     */
+    function quote_session_start(){
+        if( ! isset( $_COOKIE['woocommerce_items_in_cart'] ) ) {
+            do_action( 'woocommerce_set_cart_cookies', true );
+        }
+        $this->session = new Session();
+        $this->set_session();
+    }
 
-	function init_callback() {
+    function init_callback() {
         $this->get_quote_cart_session();
         $this->session->set_customer_session_cookie(true);
         $this->quote_cron_schedule();
@@ -59,23 +67,23 @@ class QuoteCart {
     }
 
 
-	/**
-	 * Sets the php session data for the enquiry cart.
-	 */
-	public function set_session($cart_session = array(), $can_be_empty = false) {
+    /**
+     * Sets the php session data for the enquiry cart.
+     */
+    public function set_session($cart_session = array(), $can_be_empty = false) {
 
-		if ( empty( $cart_session ) && !$can_be_empty) {
+        if ( empty( $cart_session ) && !$can_be_empty) {
             $cart_session = $this->get_quote_cart_session();
         }
         // Set quote_cart  session data
         $this->session->set( 'quote_cart', $cart_session );
-	}
+    }
 
-	public function unset_session() {
+    public function unset_session() {
         $this->session->__unset( 'quote_cart' );
     }
 
-	function maybe_set_cart_cookies() {
+    function maybe_set_cart_cookies() {
         $set = true;
 
         if ( !headers_sent() ) {

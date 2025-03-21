@@ -1,8 +1,15 @@
 <?php 
 
 namespace CatalogX\Enquiry;
-
 use CatalogX\Utill;
+
+/**
+ * CatalogX Enquiry Module class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
 
 class Module {
     /**
@@ -36,10 +43,10 @@ class Module {
      * @return void
      */
     public function init_classes() {
-		$this->container[ 'util' ]      = new Util();
-		$this->container[ 'frontend' ]  = new Frontend();
+        $this->container[ 'util' ]      = new Util();
+        $this->container[ 'frontend' ]  = new Frontend();
         $this->container[ 'rest' ]      = new Rest();
-	}
+    }
 
     /**
      * Magic getter function to get the reference of class.
@@ -61,18 +68,18 @@ class Module {
      * @param string $class The class name or key to store the instance.
      * @param object $value The instance of the class to store.
      */
-	public function __set( $class, $value ) {
-		$this->container[ $class ] = $value;
-	}
+    public function __set( $class, $value ) {
+        $this->container[ $class ] = $value;
+    }
 
-	/**
+    /**
      * Initializes Catalog class.
      * Checks for an existing instance
      * And if it doesn't find one, create it.
      * @param mixed $file
      * @return object | null
      */
-	public static function init() {
+    public static function init() {
         if ( self::$instance === null ) {
             self::$instance = new self();
         }

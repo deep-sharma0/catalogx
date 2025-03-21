@@ -2,13 +2,21 @@
 
 namespace CatalogX;
 
+/**
+ * CatalogX Shortcode class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 class Shortcode {
     /**
      * Shortcode class construct function
      */
-	public function __construct() {
-		//For quote page
-		add_shortcode( 'catalogx_request_quote', [ $this, 'display_request_quote' ] );
+    public function __construct() {
+        //For quote page
+        add_shortcode( 'catalogx_request_quote', [ $this, 'display_request_quote' ] );
     }
 
     function frontend_scripts() {
@@ -30,14 +38,14 @@ class Shortcode {
         }
     }
 
-	public function display_request_quote() {
+    public function display_request_quote() {
         $this->frontend_scripts();
-		ob_start();
+        ob_start();
         ?>
         <div id="request-quote-list">
         </div>
         <?php
-		return ob_get_clean();
-	}
+        return ob_get_clean();
+    }
     
 } 

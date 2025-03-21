@@ -6,7 +6,9 @@ namespace CatalogX\Emails;
  *
  * An email will be sent to customer
  *
- * @class 		RequestQuoteSendEmail
+ * @class 	CatalogX class
+ * @version 6.0.0
+ * @author MultiVendorX
  * @extends 	\WC_Email
  */
 
@@ -15,30 +17,30 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'RequestQuoteSendEmail' ) ) {
 
-	class RequestQuoteSendEmail extends \WC_Email {
+    class RequestQuoteSendEmail extends \WC_Email {
         // public $object;
         public $products;
         public $object;
         public $customer_data;
         public $admin;
-		/**
-		 * Constructor method, used to return object of the class to WC
-		 *
-		 * @since 6.0.0
-		 */
-		public function __construct() {
-			$this->id          = 'RequestQuoteSend';
-			$this->title       = __( 'Email to request a quote', 'catalogx' );
-			$this->description = __( 'This email is sent when a user clicks on "Request a quote" button', 'catalogx' );
+        /**
+         * Constructor method, used to return object of the class to WC
+         *
+         * @since 6.0.0
+         */
+        public function __construct() {
+            $this->id          = 'RequestQuoteSend';
+            $this->title       = __( 'Email to request a quote', 'catalogx' );
+            $this->description = __( 'This email is sent when a user clicks on "Request a quote" button', 'catalogx' );
 
-			$this->template_html  = 'emails/request-quote.php';
-			$this->template_plain = 'emails/plain/request-quote.php';
-			$this->template_base  = CatalogX()->plugin_path . 'templates/';
+            $this->template_html  = 'emails/request-quote.php';
+            $this->template_plain = 'emails/plain/request-quote.php';
+            $this->template_base  = CatalogX()->plugin_path . 'templates/';
 
              // Call parent constuctor
              parent::__construct();
         }
-	/**
+    /**
      * trigger function.
      *
      * @access public

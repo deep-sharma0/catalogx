@@ -1,6 +1,9 @@
 <?php
 /**
  * CatalogX Email Request quote (Plain Text)
+ * 
+ * @author 	MultiVendorX
+ * @version  6.0.0
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly

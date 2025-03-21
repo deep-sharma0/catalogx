@@ -2,6 +2,14 @@
 
 namespace CatalogX\Quote;
 
+/**
+ * CatalogX Quote Module Rest class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 class Rest {
     /**
      * Rest class constructor functions

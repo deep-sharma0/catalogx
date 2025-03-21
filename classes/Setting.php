@@ -5,8 +5,13 @@ namespace CatalogX;
 defined('ABSPATH') || exit;
 
 /**
- * Catalog Setting API class
+ * CatalogX Setting API class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
  */
+
 class Setting {
     /**
      * Container store global setting

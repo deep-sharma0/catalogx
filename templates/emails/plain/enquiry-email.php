@@ -1,9 +1,9 @@
 <?php
 /**
- * CatalogX Admin
+ * CatalogX Enquiry Email (Plain Text)
  *
  * @author 	MultiVendorX
- * @version   3.0.2
+ * @version  6.0.0
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -19,7 +19,7 @@ $product_obj = wc_get_product( key($product_id) );
 echo "\n Product Name : ".$product_obj->get_name();
 
 if($product_obj->get_type() == 'variation'){
-	if(isset($enquiry_data['variations']) && count($enquiry_data['variations']) > 0 ){
+    if(isset($enquiry_data['variations']) && count($enquiry_data['variations']) > 0 ){
             foreach ($enquiry_data['variations'] as $label => $value) {
                 $label = str_replace( 'attribute_pa_', '', $label );
                 $label = str_replace( 'attribute_', '', $label );
@@ -36,7 +36,7 @@ if($product_obj->get_type() == 'variation'){
 
 echo "\n\n Product link : ".$product_obj->get_permalink();
 if($product_obj->get_sku())
-	echo "\n\n Product SKU : ".$product_obj->get_sku();
+    echo "\n\n Product SKU : ".$product_obj->get_sku();
 
 echo "\n\n\n****************************************************\n\n";
 
@@ -46,13 +46,13 @@ echo "\n\n\n Name : ".$enquiry_data['cust_name'];
 
 echo "\n\n Email : ".$enquiry_data['cust_email'];
 if(isset($enquiry_data['phone']))
-	echo "\n\n User Phone : ".$enquiry_data['phone'];
+    echo "\n\n User Phone : ".$enquiry_data['phone'];
 if(isset($enquiry_data['address']))
-	echo "\n\n User Address : ".$enquiry_data['address'];
+    echo "\n\n User Address : ".$enquiry_data['address'];
 if(isset($enquiry_data['subject']))
-	echo "\n\n User Subject : ".$enquiry_data['subject'];
+    echo "\n\n User Subject : ".$enquiry_data['subject'];
 if(isset($enquiry_data['comment']))
-	echo "\n\n User Comments : ".$enquiry_data['comment'];
+    echo "\n\n User Comments : ".$enquiry_data['comment'];
 
 echo "\n\n\n****************************************************\n\n";
 

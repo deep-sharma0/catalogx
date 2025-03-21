@@ -1,8 +1,15 @@
 <?php
 
 namespace CatalogX\Quote;
-
 use CatalogX\Utill;
+
+/**
+ * CatalogX Quote Module Frontend class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
 
 class Frontend {
     /**

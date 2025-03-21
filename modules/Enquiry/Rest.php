@@ -2,14 +2,21 @@
 
 namespace CatalogX\Enquiry;
 use CatalogX\Utill;
-use CatalogX\Enquiry\Module;
+
+/**
+ * CatalogX Enquiry Module Rest class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
 
 class Rest {
     /**
      * Rest class constructor function
      */
     public function __construct() {
-		add_action( 'rest_api_init', [ $this, 'register_rest_apis' ] );
+        add_action( 'rest_api_init', [ $this, 'register_rest_apis' ] );
     }
 
     /**
@@ -22,7 +29,7 @@ class Rest {
             'callback'              => [ $this, 'set_enquiries' ],
             'permission_callback'   => [ $this, 'enquiry_permission' ],
         ]);
-	}
+    }
 
     /**
      * Save enquiry form data
@@ -121,20 +128,20 @@ class Rest {
 
             $enquiry_data = apply_filters( 'catalogx_enquiry_form_data', [
                 'enquiry_id'            => $enquiry_id,
-				'user_name'             => $customer_name ?? $user_name,
-				'user_email'            => $customer_email ?? $user_email,
-				'product_id'            => $product_info,
+                'user_name'             => $customer_name ?? $user_name,
+                'user_email'            => $customer_email ?? $user_email,
+                'product_id'            => $product_info,
                 'variations'            => $product_variations,
-				'user_enquiry_fields'   => $other_fields,
-			]);
+                'user_enquiry_fields'   => $other_fields,
+            ]);
 
             $attachments = apply_filters( 'catalogx_set_enquiry_pdf_and_attachments', [], $enquiry_id, $enquiry_data); 
                         
             $additional_email = CatalogX()->setting->get_setting( 'additional_alert_email' );
             $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
 
-			$send_email->trigger( $additional_email, $enquiry_data, $attachments );
-				
+            $send_email->trigger( $additional_email, $enquiry_data, $attachments );
+                
             $redirect_link = CatalogX()->setting->get_setting( 'is_page_redirect' ) && CatalogX()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(CatalogX()->setting->get_setting( 'redirect_page_id' )) : '';
             
             $msg = __( "Enquiry sent successfully", 'catalogx' );

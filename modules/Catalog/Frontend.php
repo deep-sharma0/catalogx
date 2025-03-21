@@ -2,6 +2,14 @@
 
 namespace CatalogX\Catalog;
 
+/**
+ * CatalogX Catalog Module Frontend class
+ *
+ * @class 		CatalogX class
+ * @version		6.0.0
+ * @author 		MultivendorX
+ */
+
 class Frontend{
     /**
      * Frontend class constructor function.
