@@ -161,9 +161,7 @@ class Rest {
             QuoteModule::init()->frontend->add_button_for_quote(intval($product_id));
         }
 
-        if ($button_type == 'multiple_enquiry') {
-            Module::init()->fontend->add_enquiry_cart_button(intval($product_id));
-        }
+        do_action('catalogx_get_buttons', $button_type, $product_id);
 
         // Return the output
         return rest_ensure_response(['html' => ob_get_clean()]);
