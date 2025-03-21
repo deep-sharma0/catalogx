@@ -290,7 +290,6 @@ class Install {
     }
 
     public function migrate_catalog_enquiry_to_catalogx() {
-        global $wpdb;
 
         // migrate all enquiry and details from post table to enquiry table
         $this->migrate_database_table();
