@@ -64,7 +64,6 @@ const Quote = (props) => {
                 </div>
                 <button className='footer-btn next-btn' onClick={saveQuoteSettings}>Finish</button>
             </footer>
-            {loading && <Loading />}
         </section>
     );
 };
