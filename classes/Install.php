@@ -41,16 +41,16 @@ class Install {
         self::$previous_version = get_option( self::VERSION_KEY, '' );
         self::$current_version  = CatalogX()->version;
 
-        // this function should be deleted after 7.0.0
-        if (!empty(get_option('mvx_catalog_general_tab_settings'))) {
-            $this->migrate_catalog_enquiry_to_catalogx();
-        }
-
         $this->create_database_tables();
         $this->set_default_modules();
         $this->set_default_settings();
 
         $this->run_default_migration();
+
+        // this function should be deleted after 7.0.0
+        if (!empty(get_option('mvx_catalog_general_tab_settings'))) {
+            $this->migrate_catalog_enquiry_to_catalogx();
+        }
 
         // Update the version in database
         update_option( self::VERSION_KEY, self::$current_version );
@@ -69,24 +69,51 @@ class Install {
             $collate = $wpdb->get_charset_collate();
         }
 
-        // Create message table
-        $wpdb->query(
-            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "` (
-                `chat_message_id` bigint(20) NOT NULL AUTO_INCREMENT,
-                `to_user_id` bigint(20) NOT NULL,
-                `from_user_id` bigint(20) NOT NULL,
-                `chat_message` text NOT NULL,
-                `product_id` text NOT NULL,
-                `enquiry_id` bigint(20) NOT NULL,
-                `status` varchar(20) NOT NULL,
-                `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                `attachment` bigint(20),
-                `reaction` varchar(20),
-                `star` boolean,
-                `reply` text DEFAULT NULL,
-                PRIMARY KEY (`chat_message_id`)
-            ) $collate;"
-        );
+        if (!empty(get_option('mvx_catalog_general_tab_settings'))) {
+            // table migration
+            // Rename the table
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`"
+            );
+
+            // Add column to table
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                ADD COLUMN attachment bigint(20);"
+            );
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                ADD COLUMN reaction varchar(20);"
+            );
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                ADD COLUMN star boolean;"
+            );
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                ADD COLUMN reply text DEFAULT NULL;"
+            );
+            
+        } else {
+            // Create message table
+            $wpdb->query(
+                "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "` (
+                    `chat_message_id` bigint(20) NOT NULL AUTO_INCREMENT,
+                    `to_user_id` bigint(20) NOT NULL,
+                    `from_user_id` bigint(20) NOT NULL,
+                    `chat_message` text NOT NULL,
+                    `product_id` text NOT NULL,
+                    `enquiry_id` bigint(20) NOT NULL,
+                    `status` varchar(20) NOT NULL,
+                    `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    `attachment` bigint(20),
+                    `reaction` varchar(20),
+                    `star` boolean,
+                    `reply` text DEFAULT NULL,
+                    PRIMARY KEY (`chat_message_id`)
+                ) $collate;"
+            );
+        }
 
         // Create enquiry table
         $wpdb->query(
@@ -264,29 +291,6 @@ class Install {
 
     public function migrate_catalog_enquiry_to_catalogx() {
         global $wpdb;
-        // table migration
-        // Rename the table
-        $wpdb->query(
-            "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`"
-        );
-
-        // Add column to table
-        $wpdb->query(
-            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-            ADD COLUMN attachment bigint(20);"
-        );
-        $wpdb->query(
-            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-            ADD COLUMN reaction varchar(20);"
-        );
-        $wpdb->query(
-            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-            ADD COLUMN star boolean;"
-        );
-        $wpdb->query(
-            "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
-            ADD COLUMN reply text DEFAULT NULL;"
-        );
 
         // migrate all enquiry and details from post table to enquiry table
         $this->migrate_database_table();
