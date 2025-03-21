@@ -8,9 +8,8 @@ use \Automattic\WooCommerce\Utilities\FeaturesUtil;
  *
  * @class 		CatalogX class
  * @version		6.0.0
- * @author 		CatalogX
+ * @author 		MultivendorX
  */
-
 final class CatalogX {
 
     private static $instance = null;
@@ -48,17 +47,14 @@ final class CatalogX {
      */
     public function declare_compatibility() {
         FeaturesUtil::declare_compatibility ( 'custom_order_tables', WP_CONTENT_DIR.'/plugins/woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php', true );
-        
     }
     
     public function init_plugin() {
 
         $this->load_plugin_textdomain();
-
-        $file = $this->file;
         
         if (is_admin() && !defined('DOING_AJAX')) {
-            add_filter('plugin_action_links_' . plugin_basename($file), [ $this, 'plugin_link' ] );
+            add_filter('plugin_action_links_' . plugin_basename($this->file), [ $this, 'plugin_link' ] );
             add_filter( 'plugin_row_meta', [ $this, 'plugin_row_meta'], 10, 2 );
         }
 
@@ -123,6 +119,7 @@ final class CatalogX {
         update_option( 'catalogx_enquiry-form-customization_settings', $form_settings );
     }
 
+    //load all classes
     public function init_classes() {
         $this->container['setting']  	= new Setting();
         $this->container['admin']    	= new Admin();

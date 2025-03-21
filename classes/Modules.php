@@ -9,7 +9,6 @@ namespace CatalogX;
  * @class 		CatalogX class
  * @author 		MultiVendorX
  */
-
 class Modules {
     /**
      * Option's table key for active module list.

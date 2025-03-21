@@ -2,6 +2,8 @@
 
 namespace CatalogX\Core;
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 /**
  * CatalogX QuoteCart class
  *
@@ -9,9 +11,6 @@ namespace CatalogX\Core;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
 class QuoteCart {
     
     public $session;

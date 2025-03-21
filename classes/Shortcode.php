@@ -9,7 +9,6 @@ namespace CatalogX;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Shortcode {
     /**
      * Shortcode class construct function
@@ -19,7 +18,7 @@ class Shortcode {
         add_shortcode( 'catalogx_request_quote', [ $this, 'display_request_quote' ] );
     }
 
-    function frontend_scripts() {
+    public function frontend_scripts() {
 
         $current_user = wp_get_current_user();
         if (CatalogX()->modules->is_active('quote')) {

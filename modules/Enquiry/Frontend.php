@@ -10,7 +10,6 @@ use CatalogX\Utill;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Frontend{
     /**
      * Frontend class constructor function.
@@ -30,6 +29,7 @@ class Frontend{
 
         add_action( 'display_shop_page_button', [ $this, 'add_enquiry_button' ] );
 
+        //Hook for exclusion
         add_action( 'woocommerce_single_product_summary', [ $this, 'enquiry_button_exclusion' ], 5);
 
         add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts' ] );

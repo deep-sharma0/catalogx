@@ -9,11 +9,12 @@ namespace CatalogX;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Admin {
     public function __construct() {
+        //Register admin menu
         add_action( 'admin_menu', [ $this, 'add_menu' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_script' ] );
+        //For load translation
         add_action( 'load_script_textdomain_relative_path', [ $this, 'textdomain_relative_path' ], 10, 2 );
     }
 

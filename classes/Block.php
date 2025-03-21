@@ -2,6 +2,8 @@
 
 namespace CatalogX;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * CatalogX Block class
  *
@@ -9,9 +11,6 @@ namespace CatalogX;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
-defined( 'ABSPATH' ) || exit;
-
 class Block {
     private $blocks;
 
@@ -27,11 +26,11 @@ class Block {
     }
     
     public function initialize_blocks() {
-        $blockarray = [];
+        $blocks = [];
         $current_user = wp_get_current_user();
 
         if (CatalogX()->modules->is_active('enquiry')) {
-            $blockarray[] = [
+            $blocks[] = [
                 'name' => 'enquiry-button', // block name
                 'textdomain' => 'catalogx',
                 'block_path' => CatalogX()->plugin_path . 'build/blocks/',
@@ -53,7 +52,7 @@ class Block {
         }
 
         if (CatalogX()->modules->is_active('quote')) {
-            $blockarray[] = [
+            $blocks[] = [
                 'name' => 'quote-button', // block name
                 'textdomain' => 'catalogx',
                 'block_path' => CatalogX()->plugin_path . 'build/blocks/',
@@ -69,7 +68,7 @@ class Block {
                 ],
             ];
 
-            $blockarray[] =  [
+            $blocks[] =  [
                 'name' => 'quote-cart', // block name
                 'textdomain' => 'catalogx',
                 'block_path' => CatalogX()->plugin_path . 'build/blocks/',
@@ -96,8 +95,7 @@ class Block {
             ];            
         }
 
-        $all_block = apply_filters('catalogx_initialize_blocks', $blockarray);
-        return $all_block;
+        return apply_filters('catalogx_initialize_blocks', $blocks);
     }
 
     public function enqueue_all_block_assets() {

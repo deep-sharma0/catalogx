@@ -9,7 +9,6 @@ namespace CatalogX;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -17,7 +16,7 @@ if (!defined('ABSPATH')) {
 class SetupWizard {
 
     public function __construct() {
-
+        //Add menu page for setup wizard
         add_action( 'admin_menu', [$this, 'admin_menus'] );
         add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts'] );
     }
@@ -29,14 +28,14 @@ class SetupWizard {
         add_dashboard_page('', '', 'manage_options', 'catalogx-setup', [$this, 'render_setup_wizard']);
     }
     
-    function render_setup_wizard() {
+    public function render_setup_wizard() {
         ?>
         <div id="catalogx-setup-wizard">
         </div>
         <?php
     }
     
-    function admin_scripts() {
+    public function admin_scripts() {
         $current_screen = get_current_screen();
 
         if ( $current_screen->id === 'dashboard_page_catalogx-setup' ) {

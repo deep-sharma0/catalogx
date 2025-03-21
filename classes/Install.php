@@ -8,7 +8,6 @@ namespace CatalogX;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Install {
     const VERSION_KEY = 'catalogx_plugin_version';
 

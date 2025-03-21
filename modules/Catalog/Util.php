@@ -9,7 +9,6 @@ namespace CatalogX\Catalog;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Util {
 
     /**

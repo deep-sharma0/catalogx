@@ -2,6 +2,8 @@
 
 namespace CatalogX;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * CatalogX Utill class
  *
@@ -9,9 +11,6 @@ namespace CatalogX;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
-defined( 'ABSPATH' ) || exit;
-
 class Utill {
     /**
      * Constent holds table name

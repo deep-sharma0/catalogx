@@ -11,7 +11,6 @@ use CatalogX\Quote\Module as QuoteModule;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Rest {
     /**
      * Rest class constructor function

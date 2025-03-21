@@ -11,7 +11,6 @@ defined('ABSPATH') || exit;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Setting {
     /**
      * Container store global setting

@@ -9,7 +9,6 @@ namespace CatalogX\Catalog;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Frontend{
     /**
      * Frontend class constructor function.
@@ -31,6 +30,7 @@ class Frontend{
         
         add_action( 'woocommerce_single_product_summary', [ $this, 'exclusion_for_single_product_page' ], 5 );
 
+        //register description box
         $this->register_description_box();
 
         add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts' ] );
