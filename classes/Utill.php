@@ -26,8 +26,7 @@ class Utill {
      * Function to console and debug errors.
      */
     public static function log( $str ) {
-        // $file = CatalogX()->plugin_path . 'log/catalog.txt';
-        $file = apply_filters( 'catalogx_log_file_path', CatalogX()->plugin_path . 'log/catalog.txt' );
+        $file = apply_filters( 'catalogx_log_file_path', CatalogX()->plugin_path . 'log/catalogx.txt' );
 
 
         if ( file_exists( $file ) ) {
