@@ -290,6 +290,14 @@ class Install {
     }
 
     public function migrate_catalog_enquiry_to_catalogx() {
+        // module migration
+        $previous_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
+
+        // Enable enquiry module based on previous setting
+        if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
+            $active_modules = get_option( Modules::ACTIVE_MODULES_DB_KEY, [] );
+            update_option( Modules::ACTIVE_MODULES_DB_KEY, array_unique( array_merge( $active_modules, ['enquiry'] ) ) );
+        }
 
         // migrate all enquiry and details from post table to enquiry table
         $this->migrate_database_table();
@@ -300,18 +308,8 @@ class Install {
         // migrate setttings
         $this->migrate_old_settings();
 
-        // module migration
-        $previous_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
-
-        // Enable enquiry module based on previous setting
-        if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
-            $active_modules = get_option( Modules::ACTIVE_MODULES_DB_KEY, [] );
-            update_option( Modules::ACTIVE_MODULES_DB_KEY, array_unique( array_merge( $active_modules, ['enquiry'] ) ) );
-        }
-
-
     }
-
+    
     /**
      * Migrate database 
      * @return void
