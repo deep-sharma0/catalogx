@@ -242,8 +242,11 @@ const FromViewer = (props) => {
                                         name={field.name}
                                         value={
                                             field.name === 'name' 
-                                                ? (enquiryFormData.default_placeholder.name || inputs[field.name]) 
-                                                : inputs[field.name]
+                                                ? ((typeof enquiryFormData !== 'undefined' && wholesaleFormData?.default_placeholder?.name) ||
+                                                (typeof wholesaleFormData !== 'undefined' && wholesaleFormData?.default_placeholder?.name) ||
+                                              (typeof enquiryCartTable !== 'undefined' && enquiryCartTable?.default_placeholder?.name) ||
+                                              inputs[field.name])
+                                            : inputs[field.name]
                                         }
                                         placeholder={field.placeholder}
                                         onChange={(e) => handleChange(field.name, e.target.value)}
@@ -259,7 +262,13 @@ const FromViewer = (props) => {
                                     <input
                                         type="email"
                                         name={field.name}
-                                        value={enquiryFormData.default_placeholder.email || inputs[field.key]}
+                                        value={
+                                            (typeof enquiryFormData !== 'undefined' && enquiryFormData?.default_placeholder?.email) ||
+                                            (typeof wholesaleFormData !== 'undefined' && wholesaleFormData?.default_placeholder?.email) ||
+                                            (typeof enquiryCartTable !== 'undefined' && enquiryCartTable?.default_placeholder?.email) ||
+                                            inputs[field.name]
+                                        }
+
                                         placeholder={field.placeholder}
                                         onChange={(e) => handleChange(field.name, e.target.value)}
                                         required={field.required}
