@@ -30,7 +30,7 @@ class Module {
         // Init helper classes
         $this->init_classes();
 
-        do_action( 'load_premium_modules' );
+        do_action( 'load_premium_quote_module' );
 
         if (CatalogX()->modules->is_active('quote')) {
             $this->create_page_for_quote();

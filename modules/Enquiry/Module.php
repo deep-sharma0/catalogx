@@ -31,7 +31,7 @@ class Module {
         // Init helper classes
         $this->init_classes();
 
-        do_action( 'load_premium_modules' );
+        do_action( 'load_premium_enquiry_module' );
             
     }
 
