@@ -82,13 +82,13 @@ class Frontend{
             if (CatalogX()->setting->get_setting( 'is_enable_out_of_stock' ) ){
                 if ( !$productObj->managing_stock() && !$productObj->is_in_stock()) { ?>
                 <div position = "<?php echo $position; ?>">
-                    <button class="catalogx-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalogx-modal"><?php echo esc_html( $button_settings[ 'button_text' ] ); ?></button>
+                    <button class="catalogx-enquiry-btn button demo btn btn-primary btn-large wp-block-button__link" style="<?php echo $button_css; ?>" href="#catalogx-modal"><?php echo esc_html( $button_settings[ 'button_text' ] ); ?></button>
                 </div>
                 <?php
                 }
         } else { ?>
                 <div position = "<?php echo $position; ?>">
-                    <button class="catalogx-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalogx-modal"><?php echo esc_html( $button_settings[ 'button_text' ] ); ?></button>
+                    <button class="catalogx-enquiry-btn button demo btn btn-primary btn-large wp-block-button__link" style="<?php echo $button_css; ?>" href="#catalogx-modal"><?php echo esc_html( $button_settings[ 'button_text' ] ); ?></button>
                 </div>
                 <?php
             }
@@ -250,7 +250,7 @@ class Frontend{
         $button_text = !empty( $button_settings[ 'button_text' ] ) ? $button_settings[ 'button_text' ] : \CatalogX\Utill::get_translated_string( 'catalogx', 'send_an_enquiry', 'Send an enquiry' );
         if ( is_shop() ) {
             $product_link = get_permalink( $product->get_id() );
-            echo '<a href="' . esc_url( $product_link ) . '" class="single_add_to_cart_button button" style="' . esc_attr( $button_css ) . '">' . esc_html( $button_text ) . '</a>';
+            echo '<a href="' . esc_url( $product_link ) . '" class="single_add_to_cart_button button wp-block-button__link" style="' . esc_attr( $button_css ) . '">' . esc_html( $button_text ) . '</a>';
         }
     }
 
