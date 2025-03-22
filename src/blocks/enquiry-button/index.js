@@ -8,7 +8,7 @@ import axios from 'axios';
 registerBlockType('catalogx/enquiry-button', {
     title: 'Enquiry Button',
     icon: {
-        src: <span className="adminLib-icon adminLib-enquiry-form-tab"></span>,
+        src: <span className="adminLib-icon adminLib-inquiry"></span>,
     },
     category: 'catalogx',
     supports: {
