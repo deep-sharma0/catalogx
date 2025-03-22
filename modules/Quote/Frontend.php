@@ -10,7 +10,6 @@ use CatalogX\Utill;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Frontend {
     /**
      * Frontend class constructor functions
@@ -63,6 +62,7 @@ class Frontend {
 
         if ( empty( $productObj ) )
             return;
+
         //Exclusion settings for shop and single product page
         if ( ! Util::is_available_for_product($productObj->get_id()) ) {
             return;
@@ -71,32 +71,32 @@ class Frontend {
         $quote_btn_text = Utill::get_translated_string( 'catalogx', 'add_to_quote', 'Add to Quote' );    
         $view_quote_btn_text = Utill::get_translated_string( 'catalogx', 'view_quote', 'View Quote' ); 
 
-        $settings_array = CatalogX()->setting->get_setting( 'quote_button' );
+        $button_settings = CatalogX()->setting->get_setting( 'quote_button' );
         $btn_css = $button_hover_css = "";
-        $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
-        if ( !empty( $settings_array[ 'button_background_color' ] ) )
-            $btn_css .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_text_color' ] ) )
-            $btn_css .= "color:" . esc_html( $settings_array[ 'button_text_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_border_color' ] ) )
-            $btn_css .= "border: " . $border_size . " solid " . esc_html( $settings_array[ 'button_border_color' ] ) . ";";
-        if ( !empty( $settings_array[ 'button_font_size' ] ) )
-            $btn_css .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_border_radious' ] ) )
-            $btn_css .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_font_width' ] ) )
-            $btn_css .= "font-weight:" . esc_html( $settings_array[ 'button_font_width' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_padding' ] ) )
-            $btn_css .= "padding:" . esc_html( $settings_array[ 'button_padding' ] ) . "px;";
-        if ( !empty( $settings_array[ 'button_margin' ] ) )
-            $btn_css .= "margin:" . esc_html( $settings_array[ 'button_margin' ] ) . "px;";
+        $border_size = ( !empty( $button_settings[ 'button_border_size' ] ) ) ? esc_html( $button_settings[ 'button_border_size' ] ).'px' : '1px';
+        if ( !empty( $button_settings[ 'button_background_color' ] ) )
+            $btn_css .= "background:" . esc_html( $button_settings[ 'button_background_color' ] ) . ";";
+        if ( !empty( $button_settings[ 'button_text_color' ] ) )
+            $btn_css .= "color:" . esc_html( $button_settings[ 'button_text_color' ] ) . ";";
+        if ( !empty( $button_settings[ 'button_border_color' ] ) )
+            $btn_css .= "border: " . $border_size . " solid " . esc_html( $button_settings[ 'button_border_color' ] ) . ";";
+        if ( !empty( $button_settings[ 'button_font_size' ] ) )
+            $btn_css .= "font-size:" . esc_html( $button_settings[ 'button_font_size' ] ) . "px;";
+        if ( !empty( $button_settings[ 'button_border_radious' ] ) )
+            $btn_css .= "border-radius:" . esc_html( $button_settings[ 'button_border_radious' ] ) . "px;";
+        if ( !empty( $button_settings[ 'button_font_width' ] ) )
+            $btn_css .= "font-weight:" . esc_html( $button_settings[ 'button_font_width' ] ) . "px;";
+        if ( !empty( $button_settings[ 'button_padding' ] ) )
+            $btn_css .= "padding:" . esc_html( $button_settings[ 'button_padding' ] ) . "px;";
+        if ( !empty( $button_settings[ 'button_margin' ] ) )
+            $btn_css .= "margin:" . esc_html( $button_settings[ 'button_margin' ] ) . "px;";
 
-        if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
-            $button_hover_css .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
-        if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
-            $button_hover_css .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
-        if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
-            $button_hover_css .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        if ( isset( $button_settings[ 'button_background_color_onhover' ] ) )
+            $button_hover_css .= !empty( $button_settings[ 'button_background_color_onhover' ] ) ? 'background: ' . $button_settings[ 'button_background_color_onhover' ] . ' !important;' : '';
+        if ( isset( $button_settings[ 'button_text_color_onhover' ] ) )
+            $button_hover_css .= !empty( $button_settings[ 'button_text_color_onhover' ] ) ? ' color: ' . $button_settings[ 'button_text_color_onhover' ] . ' !important;' : '';
+        if ( isset( $button_settings[ 'button_border_color_onhover' ] ) )
+            $button_hover_css .= !empty( $button_settings[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $button_settings[ 'button_border_color_onhover' ] . ' !important;' : '';
         
             if ( $button_hover_css ) {
             echo '<style>
@@ -106,7 +106,7 @@ class Frontend {
             </style>';
         } 
 
-        $quote_btn_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : $quote_btn_text;
+        $quote_btn_text = !empty( $button_settings[ 'button_text' ] ) ? $button_settings[ 'button_text' ] : $quote_btn_text;
         CatalogX()->util->get_template('quote-button-template.php',
         [
             'class'             => 'catalogx-add-request-quote-button ',

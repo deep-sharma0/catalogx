@@ -9,7 +9,6 @@ namespace CatalogX\Quote;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Admin {
     /**
      * Admin class constructor functions

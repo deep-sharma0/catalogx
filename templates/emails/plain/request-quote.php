@@ -5,7 +5,6 @@
  * @author 	MultiVendorX
  * @version  6.0.0
  */
-
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 /* translators: %s: Show the admin name. */
 echo "= " . sprintf( __( 'Dear %s', 'catalogx' ), $admin ) . " =\n\n";

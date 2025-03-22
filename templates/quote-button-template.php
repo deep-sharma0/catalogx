@@ -8,8 +8,6 @@
  * @package   woocommerce-catalog-enquiry/templates
  * @version   6.0.0
  */
-
-
 $data_variations = ( isset( $variations ) && ! empty( $variations ) ) ? ' data-variation="' . $variations . '" ' : '';
 $button_position_settings = CatalogX()->setting->get_setting( 'shop_page_button_position_setting', [] );
 $position = array_search('quote_button', $button_position_settings);

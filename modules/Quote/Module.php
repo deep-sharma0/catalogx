@@ -1,7 +1,6 @@
 <?php
 
 namespace CatalogX\Quote;
-use CatalogX\Utill;
 
 /**
  * CatalogX Quote Module class
@@ -10,7 +9,6 @@ use CatalogX\Utill;
  * @version		6.0.0
  * @author 		MultivendorX
  */
-
 class Module {
     /**
      * Container contain all helper class

@@ -8,7 +8,6 @@
  * @package   woocommerce-catalog-enquiry/templates
  * @version   6.0.0
  */
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 do_action( 'catalogx_email_header', $email_heading ); ?>
