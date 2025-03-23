@@ -242,7 +242,7 @@ const FromViewer = (props) => {
                                         name={field.name}
                                         value={
                                             field.name === 'name' 
-                                                ? ((typeof enquiryFormData !== 'undefined' && wholesaleFormData?.default_placeholder?.name) ||
+                                                ? ((typeof enquiryFormData !== 'undefined' && enquiryFormData?.default_placeholder?.name) ||
                                                 (typeof wholesaleFormData !== 'undefined' && wholesaleFormData?.default_placeholder?.name) ||
                                               (typeof enquiryCartTable !== 'undefined' && enquiryCartTable?.default_placeholder?.name) ||
                                               inputs[field.name])
