@@ -55,8 +55,8 @@ class Frontend{
         }
 
         $button_settings = CatalogX()->setting->get_setting( 'enquiry_button', [] );
-        $button_css = Util::get_enquiry_button_styles($button_settings);
-        $button_hover_css = Util::get_enquiry_button_styles($button_settings, true);
+        $button_css = Utill::get_button_styles($button_settings);
+        $button_hover_css = Utill::get_button_styles($button_settings, true);
         
         if ( $button_hover_css ) {
             echo '<style>
@@ -233,8 +233,8 @@ class Frontend{
         }
 
         $button_settings = CatalogX()->setting->get_setting( 'enquiry_button', [] );
-        $button_css = Util::get_enquiry_button_styles($button_settings);
-        $button_hover_css = Util::get_enquiry_button_styles($button_settings, true);
+        $button_css = Utill::get_button_styles($button_settings);
+        $button_hover_css = Utill::get_button_styles($button_settings, true);
         if ( $button_hover_css ) {
             echo '<style>
                 .single_add_to_cart_button:hover{

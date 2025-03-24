@@ -146,37 +146,4 @@ class Util {
         }
         return true;
     }
-
-    public static function get_enquiry_button_styles($button_settings, $hover = false) {
-        $button_css = "";
-        $border_size = !empty($button_settings['button_border_size']) ? esc_html($button_settings['button_border_size']) . 'px' : '1px';
-        
-        if ($hover) {
-            if ( isset( $button_settings[ 'button_background_color_onhover' ] ) )
-                $button_css .= !empty( $button_settings[ 'button_background_color_onhover' ] ) ? 'background: ' . $button_settings[ 'button_background_color_onhover' ] . ' !important;' : '';
-            if ( isset( $button_settings[ 'button_text_color_onhover' ] ) )
-                $button_css .= !empty( $button_settings[ 'button_text_color_onhover' ] ) ? ' color: ' . $button_settings[ 'button_text_color_onhover' ] . ' !important;' : '';
-            if ( isset( $button_settings[ 'button_border_color_onhover' ] ) )
-                $button_css .= !empty( $button_settings[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $button_settings[ 'button_border_color_onhover' ] . ' !important;' : '';
-        } else {
-            if (!empty($button_settings['button_background_color']))
-                $button_css .= "background: " . esc_html($button_settings['button_background_color']) . ";";
-            if (!empty($button_settings['button_text_color']))
-                $button_css .= "color: " . esc_html($button_settings['button_text_color']) . ";";
-            if (!empty($button_settings['button_border_color']))
-                $button_css .= "border: " . $border_size . " solid " . esc_html($button_settings['button_border_color']) . ";";
-            if (!empty($button_settings['button_font_size']))
-                $button_css .= "font-size: " . esc_html($button_settings['button_font_size']) . "px;";
-            if (!empty($button_settings['button_border_radious']))
-                $button_css .= "border-radius: " . esc_html($button_settings['button_border_radious']) . "px;";
-            if (!empty($button_settings['button_font_width']))
-                $button_css .= "font-weight: " . esc_html($button_settings['button_font_width']) . "px;";
-            if (!empty($button_settings['button_padding']))
-                $button_css .= "padding: " . esc_html($button_settings['button_padding']) . "px;";
-            if (!empty($button_settings['button_margin']))
-                $button_css .= "margin: " . esc_html($button_settings['button_margin']) . "px;";
-        }
-
-        return $button_css;
-    }
 }

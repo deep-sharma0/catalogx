@@ -22,7 +22,7 @@ class Frontend {
             return;
         }
         add_action ('display_shop_page_button', [ $this, 'add_button_for_quote'] );
-        add_action('woocommerce_after_shop_loop_item', [$this, 'add_button_for_quote'], 11 );
+        add_action( 'woocommerce_after_shop_loop_item', [$this, 'add_button_for_quote'], 11 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 
         // Quote button shortcode
@@ -72,33 +72,10 @@ class Frontend {
         $view_quote_btn_text = Utill::get_translated_string( 'catalogx', 'view_quote', 'View Quote' ); 
 
         $button_settings = CatalogX()->setting->get_setting( 'quote_button' );
-        $btn_css = $button_hover_css = "";
-        $border_size = ( !empty( $button_settings[ 'button_border_size' ] ) ) ? esc_html( $button_settings[ 'button_border_size' ] ).'px' : '1px';
-        if ( !empty( $button_settings[ 'button_background_color' ] ) )
-            $btn_css .= "background:" . esc_html( $button_settings[ 'button_background_color' ] ) . ";";
-        if ( !empty( $button_settings[ 'button_text_color' ] ) )
-            $btn_css .= "color:" . esc_html( $button_settings[ 'button_text_color' ] ) . ";";
-        if ( !empty( $button_settings[ 'button_border_color' ] ) )
-            $btn_css .= "border: " . $border_size . " solid " . esc_html( $button_settings[ 'button_border_color' ] ) . ";";
-        if ( !empty( $button_settings[ 'button_font_size' ] ) )
-            $btn_css .= "font-size:" . esc_html( $button_settings[ 'button_font_size' ] ) . "px;";
-        if ( !empty( $button_settings[ 'button_border_radious' ] ) )
-            $btn_css .= "border-radius:" . esc_html( $button_settings[ 'button_border_radious' ] ) . "px;";
-        if ( !empty( $button_settings[ 'button_font_width' ] ) )
-            $btn_css .= "font-weight:" . esc_html( $button_settings[ 'button_font_width' ] ) . "px;";
-        if ( !empty( $button_settings[ 'button_padding' ] ) )
-            $btn_css .= "padding:" . esc_html( $button_settings[ 'button_padding' ] ) . "px;";
-        if ( !empty( $button_settings[ 'button_margin' ] ) )
-            $btn_css .= "margin:" . esc_html( $button_settings[ 'button_margin' ] ) . "px;";
-
-        if ( isset( $button_settings[ 'button_background_color_onhover' ] ) )
-            $button_hover_css .= !empty( $button_settings[ 'button_background_color_onhover' ] ) ? 'background: ' . $button_settings[ 'button_background_color_onhover' ] . ' !important;' : '';
-        if ( isset( $button_settings[ 'button_text_color_onhover' ] ) )
-            $button_hover_css .= !empty( $button_settings[ 'button_text_color_onhover' ] ) ? ' color: ' . $button_settings[ 'button_text_color_onhover' ] . ' !important;' : '';
-        if ( isset( $button_settings[ 'button_border_color_onhover' ] ) )
-            $button_hover_css .= !empty( $button_settings[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $button_settings[ 'button_border_color_onhover' ] . ' !important;' : '';
+        $button_css = Utill::get_button_styles($button_settings);
+        $button_hover_css = Utill::get_button_styles($button_settings, true);
         
-            if ( $button_hover_css ) {
+        if ( $button_hover_css ) {
             echo '<style>
                 .catalogx-add-request-quote-button:hover{
                 '. esc_html( $button_hover_css ) .'
@@ -110,7 +87,7 @@ class Frontend {
         CatalogX()->util->get_template('quote-button-template.php',
         [
             'class'             => 'catalogx-add-request-quote-button ',
-            'btn_css'         => $btn_css,
+            'btn_css'           => $button_css,
             'wpnonce'           => wp_create_nonce( 'add-quote-' . $productObj->get_id() ),
             'product_id'        => $productObj->get_id(),
             'label'             => $quote_btn_text,
