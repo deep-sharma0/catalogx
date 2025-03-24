@@ -1,0 +1,21 @@
+{
+  "apiVersion": 2,
+  "name": "catalogx/quote-cart",
+  "title": "Quote Cart",
+  "category": "catalogx",
+  "icon": {
+    "src": "<span className='adminLib-icon adminLib-paid'></span>"
+  },
+  "description": "A block that displays quote cart using React.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "catalogx",
+  "editorScript": "file:./index.js",
+  "script": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./index.css",
+    "quote-cart-style"
+  ]
+}

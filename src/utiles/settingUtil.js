@@ -128,12 +128,12 @@ const getDefaultSettings = ( settings ) => {
 }
 
 /**
- * Get avialable settings include free settings and settings of provided ids.
+ * Get available settings include free settings and settings of provided ids.
  * @param {*} settings 
  * @param {*} ids 
  * @returns 
  */
-const getAvialableSettings = (settings, ids = []) => {
+const getAvailableSettings = (settings, ids = []) => {
     return getSettingsByPriority( [ ...getDefaultSettings( settings ) , ...filterSettingByIds( settings, ids ) ] );
 }
 
@@ -204,4 +204,4 @@ const isActiveSetting = ( setting, proActive, ids ) => {
     return false;
 }
 
-export { getAvialableSettings, getSettingById, isActiveSetting };
+export { getAvailableSettings, getSettingById, isActiveSetting };

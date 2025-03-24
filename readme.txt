@@ -1,3 +1,15 @@
+=== CatalogX - Product Catalog Mode For WooCommerce ===
+Contributors: wcmp
+Tags: product enquiry, woocommerce catalog ,request a quote, Product Catalog, wordpress catalog
+Donate link: https://multivendorx.com/donate
+Requires at least: 5.0
+Tested up to: 6.7.1
+Requires PHP: 7.4
+Stable tag: 5.0.10
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Elevate your WooCommerce Shop with Product Catalog Mode For WooCommerce and Integrated Inquiry button for an engaging catalog experience 
 == Description ==
 CatalogX is your all-in-one solution to elevate your WooCommerce store's functionality and enhance customer interactions. With six robust features designed to optimize your e-commerce experience, CatalogX is the ultimate tool for boosting sales and streamlining operations.
 

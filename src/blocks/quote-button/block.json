@@ -1,0 +1,16 @@
+{
+    "apiVersion": 2,
+    "name": "catalogx/quote-button",
+    "title": "Quote Button",
+    "category": "catalogx",
+    "icon": {
+        "src":"<span className='adminLib-icon adminLib-price-quote-icon'></span>"
+    },
+    "description": "A custom quote button for single product pages.",
+    "supports": {
+        "html": false
+    },
+    "editorScript": ["file:./index.js", "add-to-quote-cart-script"],
+    "script": ["file:./index.js", "add-to-quote-cart-script"],
+    "render": "file:./render.php"
+}

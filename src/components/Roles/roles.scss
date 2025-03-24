@@ -1,0 +1,110 @@
+
+$menu-btn-color: #522c81;
+$body-background: #f9f9f9;
+$color-white: #fff;
+$menu-color: #f9f8fb;
+$color-active: #65438f;
+
+.admin-roles-popup {
+    .MuiPaper-root{
+        max-width: 18.75rem;
+        width: 100%;
+        padding: 1.25rem;
+        margin: 1rem;
+
+        .add-new-role-wrapper{
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            flex-direction: column;
+
+            .popup-heading{
+                line-height: normal;
+            }
+
+            .popup-content-wrapper{
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 0.75rem;
+                width: 100%;
+
+                label {
+                    font-size: 0.875rem;
+                    min-width: 6.25rem;
+                }
+
+                input{
+                    padding: 0.15rem 0.5rem;
+                    background-color: transparent;
+                    width: 100%;
+                    outline: none;
+                    height: 2.205rem !important;
+                    border: 0.115rem solid rgba(0, 0, 0, 0.125);
+                    border-radius: 0;
+    
+                    &:focus,
+                    &:active {
+                        box-shadow: none;
+                    }
+
+                }
+                &.right-alignment{
+                    justify-content: flex-end;
+                }
+                button{
+                    padding: 0.5rem 1rem;
+                    font-size: 0.75rem;
+                    background-color: #522c81;
+                    color: #fff;
+                    border-radius: 0.25rem;
+                    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
+                    cursor: pointer;
+                    user-select: none;
+                    outline: none;
+                    border: none;
+                    box-shadow: none;
+
+                    &.modal-close{
+                        background-color: #522c81a5;
+                    }
+                }
+            }
+        }
+    }
+}
+.admin-roles-list{
+
+    .admin-page-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        position: relative;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+
+        p {
+            font-size: 1.5rem;
+        }
+
+        .add-to-quotation-button {
+            border-radius: 0.25rem;
+            background-color: #65438f;
+            padding: 0.5rem 1rem;
+            position: relative;
+
+            button {
+                background-color: #65438f;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                user-select: none;
+                cursor: pointer;
+            }
+        }
+    }
+}

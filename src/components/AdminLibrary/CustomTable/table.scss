@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@use '../../config' as *;
 
 .load-table {
   border-collapse: collapse;
@@ -14,7 +14,7 @@
     word-break: normal;
     border-color: rgba(0, 0, 0, 0.2);
     color: #333;
-    background-color: $color-white;
+    background-color: #fff;
     flex-grow: 1;
 
     &:first-child {
@@ -86,14 +86,10 @@
     &>div {
       flex: 1 0 9.45rem;
       width: 100%;
-      max-width: 10rem;
+      max-width: 12rem;
 
       div {
         background-color: transparent;
-
-        input{
-          width: fit-content;
-        }
       }
 
 
@@ -213,8 +209,8 @@
         padding: 0 0.5rem;
 
         &:first-child {
-          min-width: 2.25rem;
-          max-width: 2.25rem;
+          min-width: 2.5rem;
+          max-width: 2.5rem;
 
           input[type=checkbox] {
             margin: 0;
@@ -423,6 +419,12 @@
   }
 }
 
+// block editor icon style
+.block-editor-block-icon{
+  .adminLib-icon{
+    font-size: 1.4rem;
+  }
+}
 
 @media screen and (max-width:37.737rem) {
   .rdt_Pagination {

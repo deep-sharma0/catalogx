@@ -14,13 +14,13 @@ import { getApiLink, sendApiResponse } from "../../services/apiService";
 import { getTemplateData } from "../../services/templateService";
 
 // import utility function
-import { getAvialableSettings, getSettingById } from "../../utiles/settingUtil";
+import { getAvailableSettings, getSettingById } from "../../utiles/settingUtil";
 import { useState, useEffect } from "react";
 
 const Settings = () => {
 
     // get all setting
-    const settingsArray = getAvialableSettings(getTemplateData(), []);
+    const settingsArray = getAvailableSettings(getTemplateData(), []);
 
     // get current browser location
     const location = new URLSearchParams( useLocation().hash );
@@ -64,7 +64,7 @@ const Settings = () => {
                     currentTab={ location.get( 'subtab' ) }
                     getForm={getForm}
                     BannerSection = { ! appLocalizer.khali_dabba && BannerSection }
-                    prepareUrl={(subTab) => `?page=catalog#&tab=settings&subtab=${subTab}` }
+                    prepareUrl={(subTab) => `?page=catalogx#&tab=settings&subtab=${subTab}` }
                 />
             </SettingProvider>
         </>

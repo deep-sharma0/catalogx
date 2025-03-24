@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@use '../../../config' as *;
 
 .connect-main-wrapper {
   input:focus {

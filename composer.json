@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-4": {
+            "CatalogX\\": ["classes/", "modules/"]
+        }
+    },
+    "require": {}
+}
