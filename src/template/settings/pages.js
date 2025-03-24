@@ -50,17 +50,32 @@ export default {
                 {
                     key: '',
                     label: '[catalogx_enquiry_cart]',
-                    desc: 'Enables you to create a seller dashboard',
+                    desc: 'Display all products in the enquiry cart and send a single inquiry email for all items in the cart.',
                 },
                 {
                     key: '',
                     label: '[catalogx_request_quote]',
-                    desc: 'Enables you to create a seller dashboard',
+                    desc: 'Displays a list of products for which users have requested quotes, making it easy to review all requests.',
                 },
                 {
                     key: '',
-                    label: '[wholesale_product_list]',
-                    desc: 'Enables you to create a seller dashboard',
+                    label: '[wholesale_products]',
+                    desc: 'Creates a page listing all wholesale products, enabling wholesalers to easily purchase multiple items in one transaction.',
+                },
+                {
+                    key: '',
+                    label: '[catalogx_enquiry_cart_button]',
+                    desc: 'Displays the "Add to Enquiry Cart" button.',
+                },
+                {
+                    key: '',
+                    label: '[catalogx_enquiry_button]',
+                    desc: 'Displays the "Send an Enquiry" button',
+                },
+                {
+                    key: '',
+                    label: '[catalogx_quote_button]',
+                    desc: 'Displays the "Add to Quote" button.',
                 },
             ]
         }
