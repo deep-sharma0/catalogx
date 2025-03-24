@@ -4,7 +4,7 @@
   "title": "Enquiry Button",
   "category": "catalogx",
   "icon": {
-    "src": "<span className='adminLib-icon adminLib-enquiry-form-tab'></span>"
+    "src": "<span className='adminLib-icon adminLib-inquiry'></span>"
   },
   "description": "A block that displays enquiry button.",
   "supports": {
