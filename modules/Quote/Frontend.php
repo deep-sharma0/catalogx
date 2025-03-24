@@ -21,7 +21,7 @@ class Frontend {
         if (!empty($display_quote_button) && !is_user_logged_in()) {
             return;
         }
-        add_action ('display_shop_page_button', [ $this, 'add_button_for_quote'] );
+        add_action( 'display_shop_page_button', [ $this, 'add_button_for_quote'] );
         add_action( 'woocommerce_after_shop_loop_item', [$this, 'add_button_for_quote'], 11 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 

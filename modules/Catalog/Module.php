@@ -28,6 +28,9 @@ class Module{
     public function __construct() {
         // Init helper classes
         $this->init_classes();
+
+        do_action( 'load_premium_catalog_module' );
+
     }
 
     /**
