@@ -5,7 +5,7 @@ namespace CatalogX;
 /**
  * CatalogX Setup wizard class
  *
- * @class 		CatalogX class
+ * @class 		SetupWizard class
  * @version		6.0.0
  * @author 		MultivendorX
  */

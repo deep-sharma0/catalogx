@@ -5,7 +5,7 @@ namespace CatalogX\Quote;
 /**
  * CatalogX Quote Module Admin class
  *
- * @class 		CatalogX class
+ * @class 		Admin class
  * @version		6.0.0
  * @author 		MultivendorX
  */

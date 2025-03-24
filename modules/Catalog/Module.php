@@ -5,7 +5,7 @@ namespace CatalogX\Catalog;
 /**
  * CatalogX Catalog Module class
  *
- * @class 		CatalogX class
+ * @class 		Module class
  * @version		6.0.0
  * @author 		MultivendorX
  */

@@ -5,7 +5,7 @@ namespace CatalogX\Catalog;
 /**
  * CatalogX Catalog Module Frontend class
  *
- * @class 		CatalogX class
+ * @class 		Frontend class
  * @version		6.0.0
  * @author 		MultivendorX
  */

@@ -6,7 +6,7 @@ use CatalogX\Utill;
 /**
  * CatalogX Enquiry Module Rest class
  *
- * @class 		CatalogX class
+ * @class 		Rest class
  * @version		6.0.0
  * @author 		MultivendorX
  */

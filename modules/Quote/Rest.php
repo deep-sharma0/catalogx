@@ -5,7 +5,7 @@ namespace CatalogX\Quote;
 /**
  * CatalogX Quote Module Rest class
  *
- * @class 		CatalogX class
+ * @class 		Rest class
  * @version		6.0.0
  * @author 		MultivendorX
  */

@@ -6,7 +6,7 @@ namespace CatalogX\Emails;
  *
  * An email will be sent to customer
  *
- * @class 	CatalogX class
+ * @class 	RequestQuoteSendEmail class
  * @version 6.0.0
  * @author MultiVendorX
  * @extends 	\WC_Email
