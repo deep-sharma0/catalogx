@@ -9,10 +9,9 @@ Stable tag: 5.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Powerful catalog plugin for WooCommerce with integrated enquiry based quation system and dynamic wholesale pricing for B2B eCommerce success.
-
+CatalogX: Powerful WooCommerce catalog plugin with integrated inquiry based quotation system and dynamic wholesale pricing for B2B eCommerce success.
 ## Description
-"Transform Your WooCommerce Store with CatalogX: Integrated Enquiry Based Quotation System & Advanced Wholesale/B2B Pricing Management"
+Transform Your WooCommerce Store with CatalogX: Integrated Enquiry Based Quotation System & Advanced Wholesale/B2B Pricing Management.
 
 Elevate your WooCommerce store with CatalogX, featuring a fully integrated enquiry system for seamless quote requests and advanced wholesale/B2B pricing management. Enhance your catalog experience by allowing customers to easily submit inquiries for each product via custom enquiry forms.
 
