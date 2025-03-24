@@ -5,7 +5,7 @@ namespace CatalogX;
 /**
  * CatalogX Admin class
  *
- * @class 		CatalogX class
+ * @class 		Admin class
  * @version		6.0.0
  * @author 		MultivendorX
  */

@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * CatalogX Block class
  *
- * @class 		CatalogX class
+ * @class 		Block class
  * @version		6.0.0
  * @author 		MultivendorX
  */

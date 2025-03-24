@@ -5,7 +5,7 @@ namespace CatalogX;
 /**
  * CatalogX Shortcode class
  *
- * @class 		CatalogX class
+ * @class 		Shortcode class
  * @version		6.0.0
  * @author 		MultivendorX
  */

@@ -4,7 +4,7 @@ namespace CatalogX;
 /**
  * CatalogX Install class
  *
- * @class 		CatalogX class
+ * @class 		Install class
  * @version		6.0.0
  * @author 		MultivendorX
  */

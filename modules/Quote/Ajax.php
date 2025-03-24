@@ -5,7 +5,7 @@ namespace CatalogX\Quote;
 /**
  * CatalogX Quote Module Ajax class
  *
- * @class 		CatalogX class
+ * @class 		Ajax class
  * @version		6.0.0
  * @author 		MultivendorX
  */

@@ -7,7 +7,7 @@ use CatalogX\Quote\Module as QuoteModule;
 /**
  * CatalogX Rest class
  *
- * @class 		CatalogX class
+ * @class 		Rest class
  * @version		6.0.0
  * @author 		MultivendorX
  */

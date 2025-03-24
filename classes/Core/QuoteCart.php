@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * CatalogX QuoteCart class
  *
- * @class 		CatalogX class
+ * @class 		QuoteCart class
  * @version		6.0.0
  * @author 		MultivendorX
  */
