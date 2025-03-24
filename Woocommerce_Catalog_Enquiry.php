@@ -4,10 +4,10 @@
  * Plugin URI: https://catalogx.com/
  * Description: Convert your WooCommerce store into a catalog website in a click
  * Author: MultiVendorX
- * Version: 5.0.10
+ * Version: 6.0.0
  * Author URI: https://catalogx.com/
  * WC requires at least: 5.5
- * WC tested up to: 9.3.3
+ * WC tested up to: 9.7.1
  * Text Domain: catalogx
  * Domain Path: /languages/
 */
