@@ -159,6 +159,7 @@ class Frontend{
             
             wp_enqueue_script( 'catalogx-enquiry-frontend-script' );
             wp_enqueue_script( 'enquiry-form-script' );
+            wp_set_script_translations( 'enquiry-form-script', 'catalogx' );
         }
     }
 
