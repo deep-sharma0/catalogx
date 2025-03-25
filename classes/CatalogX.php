@@ -41,10 +41,10 @@ final class CatalogX {
 
         add_action( 'init', [ $this, 'migrate_from_previous' ] );
         // Major update notice
-		add_action( 'in_plugin_update_message-woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php', [ $this, 'my_plugin_update_message' ] );
+		add_action( 'in_plugin_update_message-woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php', [ $this, 'catalogx_plugin_update_message' ] );
     }
 
-    public function my_plugin_update_message() {
+    public function catalogx_plugin_update_message() {
         echo '<p><strong>Heads up!</strong> 6.0.0 is a major update. Make a full site backup and before upgrading your marketplace to avoid any undesirable situations.</p>';
         exit;
     }
