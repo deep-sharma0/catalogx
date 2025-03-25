@@ -55,7 +55,7 @@ const CatalogCustomizer = (props) => {
               }}
               className='button-visibility'
             >
-              <i className='admin-font adminLib-support'></i>
+              <i className={`admin-font ${hideProductPrice ? 'adminLib-eye-blocked' : 'adminLib-eye'}`}></i>
             </div>
             <p className='product-price' style={{ opacity: hideProductPrice ? "0.3" : "1" }}><span className='strikethrough'>$20.00</span> $18.00</p>
           </div>
@@ -77,7 +77,7 @@ const CatalogCustomizer = (props) => {
               }}
               className='button-visibility'
             >
-              <i className='admin-font adminLib-support'></i>
+              <i className={`admin-font ${hideProductDesc ? 'adminLib-eye-blocked' : 'adminLib-eye'}`}></i>
             </div>
             <p className='product-description' style={{ opacity: hideProductDesc ? "0.3" : "1" }}>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
           </div>

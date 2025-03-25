@@ -72,12 +72,7 @@ export default {
                 }
             ],
             moduleEnabled: 'enquiry',
+            proSetting: true,
         },
-        // {
-        //     key: "custom_email_subject",
-        //     type: "textarea",
-        //     desc: "Available tags |USER_NAME|,|USER_EMAIL|,|PRODUCT_NAME|,|PRODUCT_URL|,|PRODUCT_SKU|,|PRODUCT_TYPE| ****All the product related tags are not available for multiple enquiry.",
-        //     label: "Custom Email Subject",
-        // }
     ]
 }
