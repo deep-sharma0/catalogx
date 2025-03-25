@@ -12,10 +12,16 @@ defined( 'ABSPATH'  ) || exit; // Exit if accessed directly
 
 do_action( 'catalogx_email_header', $email_heading  ); ?>
 
-<div class="email-container">
-    <h1><?php printf( __( 'Dear %s', 'catalogx' ), $admin ); ?></h1>
-    <p><?php _e( 'You have received a new quote request from a customer for the following product:', 'catalogx' ); ?></p>
+<body>
+    <div style="width:600px; margin: 0 auto; ">
+
+<div class="email-container" style="border: 1px solid #557DA1;">
+    <div style="background: #557DA1; padding: 30px 30px; border: 1px solid #557DA1;">
+           <h2 style="font-family: Arial; line-height: 43px; text-align: center; color: #fff; font-size: 46px; font-weight: 700; margin: 0;padding: 0 0 0px 0;"><?php printf( __( 'Dear %s', 'catalogx' ), $admin ); ?> </h2>
+           <p style=" color:#fff; margin-bottom:0; text-align: center; font-size:16px; "><?php _e( 'You have received a new quote request from a customer for the following product:', 'catalogx' ); ?></p>
+    </div>
     
+    <div style="padding: 20px;">
     <div class="table-wrapper">
         <table cellspacing="0" cellpadding="6" style="width: 100%; border: 1px solid #eee;" border="1" bordercolor="#eee">
             <thead>
@@ -38,13 +44,13 @@ do_action( 'catalogx_email_header', $email_heading  ); ?>
                     $_product = wc_get_product( $item['product_id'] );
                 ?>
                 <tr>
-                    <td class="product_name">
+                    <td class="product_name" style="border:none;">
                     <a href="<?php echo esc_url( $_product->get_permalink() ); ?>"><?php echo $_product->get_title(); ?></a>
                     </td>
-                    <td class="product_quantity">
+                    <td class="product_quantity" style="border:none;">
                         <?php echo esc_html( $item['quantity'] ); ?>
                     </td>
-                    <td class="product_quantity">
+                    <td class="product_quantity" style="border:none;">
                         <?php echo wc_price( $_product->get_regular_price() ); ?>
                     </td>
                 </tr>
@@ -67,6 +73,9 @@ do_action( 'catalogx_email_header', $email_heading  ); ?>
         <?php } ?>
 
     </div>
+    </div>
 </div>
+</div>
+</body>
 
 <?php do_action( 'catalogx_email_footer', $email ); ?>
