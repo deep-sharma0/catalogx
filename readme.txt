@@ -53,7 +53,7 @@ The Catalog module 🛒 helps you create a tailored shopping experience by offer
 🗂️ Collect inquiries for each variation of variable products to cater to specific customer needs.
 📈 Manage price visibility strategically to boost lead generation.
 
-##✌️ [Enquiry](https://catalogx.com/docs/enquiry-communication/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
+##✌️ [Enquiry]
 The Enquiry Module is essential 📨 for businesses that want to engage with potential customers who have questions or are interested in bulk or high-value orders. By placing inquiry and quote request buttons strategically across your site, you make it easy for users to reach out, even for out-of-stock items. This module helps you capture leads, respond efficiently, and better understand product demand, all of which contribute to higher conversion rates and customer satisfaction.
 
 #Key Features:
@@ -66,7 +66,7 @@ The Enquiry Module is essential 📨 for businesses that want to engage with pot
 ✏️ Customize your inquiry form to match your brand and gather the most relevant information [PRO].
 📊 Monitor and manage all inquiries efficiently via an Inquiry Cart [PRO].
 
-##✌️ [Quotation](https://catalogx.com/docs/quotation/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
+##✌️ [Quotation]
 The Quote Module is designed 💬 to help businesses that regularly deal with custom orders, bulk purchases, or high-value transactions. By allowing customers to request quotes directly from your product catalog, you open up new sales opportunities and streamline the buying process. This module is particularly useful for businesses in B2B, wholesale, or custom manufacturing, where personalized pricing and quick response times are critical for closing deals 💼.
 
 #Key Features:
@@ -76,7 +76,7 @@ The Quote Module is designed 💬 to help businesses that regularly deal with cu
 🔐 Restrict quote requests to registered users to ensure qualified leads.
 📲 Receive instant notifications via Google Chat and SMS when a customer places a quote request, keeping you informed and responsive [Coming Soon].
 
-##✌️ [Wholesale](https://catalogx.com/docs/wholesale-pricing/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)[PRO]
+##✌️ [Wholesale]
 The Wholesale Module is perfect for businesses 🛒 that serve both retail and wholesale customers. This module helps you create distinct pricing structures, manage customer segments, and protect your retail pricing strategies. By offering exclusive wholesale pricing and preventing coupon use for wholesale customers, you can better manage your profit margins while still offering competitive deals to your business clients 💼.
 
 #Key Features:
@@ -86,7 +86,7 @@ The Wholesale Module is perfect for businesses 🛒 that serve both retail and w
 💸 Configure fixed amount or percentage discounts to suit different customer segments[PRO].
 🏷️ Set up different prices for each user or product to tailor your offerings [PRO].
 
-##✌️ [Dynamic Rule-Based Pricing](https://catalogx.com/docs/dynamic-pricing-rules/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg) [PRO]
+##✌️ [Dynamic Rule-Based Pricing] [PRO]
 The Dynamic Rule-Based Pricing module is a powerful tool 💪 for businesses looking to maximize sales through targeted pricing strategies. By creating custom discount rules based on user roles, product categories, and more, you can attract specific customer groups, encourage larger purchases, and optimize your pricing for different scenarios. This module is essential for businesses aiming to increase conversions, customer loyalty, and overall revenue through smart pricing techniques 💰.
 
 #Key Features:
@@ -98,7 +98,7 @@ The Dynamic Rule-Based Pricing module is a powerful tool 💪 for businesses loo
 🔄 Apply discounts to individual products or entire categories, depending on your promotional strategy [PRO].
 📋 Prioritize pricing rules easily with a drag-and-drop interface, ensuring the most effective discounts are applied first [PRO].
 
-##✌️ [Real-Time Page Builder](https://catalogx.com/docs/enquiry-communication/#4-toc-title/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg) [PRO]
+##✌️ [Real-Time Page Builder] [PRO]
 Description: The Real-Time Page Builder module empowers businesses ✨ to design and customize their WooCommerce shop pages without needing technical skills. This module is perfect for store owners who want to create a visually appealing and highly functional shop page that aligns with their brand. By offering real-time previews, drag-and-drop customization, and mobile-friendly design checks, this module helps you create a professional, conversion-optimized shopping experience that drives sales and enhances customer satisfaction 📈.
 
 #Key Features:
@@ -139,7 +139,7 @@ In the competitive world of e-commerce, differentiation is key. Our ingenious Wo
 #👉 Try Our [Free & Pro Demo] (https://multivendordemo.com/catalogx/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
 
 
-##➡️ Upgrade to [CatalogX Pro](https://catalogx.com/pricing/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
+##➡️ Upgrade to [CatalogX Pro]
 
 Unlock even more possibilities with CatalogXPro :
 
