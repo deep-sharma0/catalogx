@@ -48,7 +48,10 @@ class Block {
             ];
 
             //this path is set for load the translation   
-            CatalogX()->block_paths += ['blocks/enquiry-button' => 'build/blocks/enquiry-button/index.js'];
+            CatalogX()->block_paths += [
+                'blocks/enquiry-button' => 'build/blocks/enquiry-button/index.js',
+                'blocks/enquiryForm' => 'build/blocks/enquiryForm/index.js',
+            ];
         }
 
         if (CatalogX()->modules->is_active('quote')) {
