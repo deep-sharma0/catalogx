@@ -136,7 +136,7 @@ In the competitive world of e-commerce, differentiation is key. Our ingenious Wo
 
 🚀Enquiry List [PRO]: Admins have a dedicated Enquiry List page to view, sort, and manage inquiries by customer, product, or enquiry number.
 
-#👉 Try Our [Free & Pro Demo](https://multivendordemo.com/catalogx/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
+#👉 Try Our [Free & Pro Demo]
 
 
 ##➡️ Upgrade to [CatalogX Pro]
