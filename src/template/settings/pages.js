@@ -25,10 +25,10 @@ export default {
             proSetting: true,
         },
         {
-            key: 'set_wholesale_product_list_page',
+            key: 'set_wholesale_products_page',
             type: 'select',
-            label: __("Set Wholesale Product List Page", "catalogx"),
-            desc: __("Select the page on which you have inserted <code>[wholesale_product_list]</code> shortcode.", "catalogx"),
+            label: __("Set Wholesale Products Page", "catalogx"),
+            desc: __("Select the page on which you have inserted <code>[wholesale_products]</code> shortcode.", "catalogx"),
             options: appLocalizer.all_pages,
             proSetting: true,
         },
