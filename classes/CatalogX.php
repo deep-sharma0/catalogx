@@ -39,6 +39,8 @@ final class CatalogX {
         add_action( 'plugins_loaded', [ $this, 'is_woocommerce_loaded'] );
         add_filter( 'woocommerce_email_classes', [ $this, 'load_emails' ] );
 
+        add_action( 'init', [ $this, 'migrate_from_previous' ] );
+
     }
 
     /**
@@ -47,6 +49,12 @@ final class CatalogX {
      */
     public function declare_compatibility() {
         FeaturesUtil::declare_compatibility ( 'custom_order_tables', WP_CONTENT_DIR.'/plugins/woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php', true );
+    }
+
+    public function migrate_from_previous() {
+        if ( version_compare( get_option( 'catalogx_plugin_version' ), '6.0.0', '<' ) ) {
+            new Install();
+        }
     }
     
     public function init_plugin() {
