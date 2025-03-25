@@ -184,7 +184,7 @@ class Install {
         $page_settings = [
             'set_enquiry_cart_page'  => intval( get_option( 'catalogx_enquiry_cart_page' ) ),
             'set_request_quote_page' => intval( get_option( 'catalogx_request_quote_page' ) ),
-            'set_wholesale_product_list_page' => intval( get_option( 'wholesale_product_list_page' ) )
+            'set_wholesale_products_page' => intval( get_option( 'wholesale_products_page' ) )
         ];
         update_option( 'catalogx_pages_settings', $page_settings );
                     
@@ -484,7 +484,7 @@ class Install {
         $page_settings = [
             'set_enquiry_cart_page'  => intval( get_option( 'catalogx_enquiry_cart_page' ) ),
             'set_request_quote_page' => intval( get_option( 'catalogx_request_quote_page' ) ),
-            'set_wholesale_product_list_page' => intval( get_option( 'wholesale_product_list_page' ) )
+            'set_wholesale_products_page' => intval( get_option( 'wholesale_products_page' ) )
         ];
         update_option( 'catalogx_pages_settings', $page_settings );
         
