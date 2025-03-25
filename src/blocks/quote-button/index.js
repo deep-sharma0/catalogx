@@ -8,9 +8,7 @@ import axios from 'axios';
 // Register the block
 registerBlockType('catalogx/quote-button', {
     title: 'Quote Button',
-    icon: {
-        src: <span className="adminLib-icon adminLib-price-quote-icon"></span>,
-    },
+    icon: "money-alt",
     category: 'catalogx',
     attributes: {
         productId: {

@@ -3,9 +3,7 @@
   "name": "catalogx/enquiry-button",
   "title": "Enquiry Button",
   "category": "catalogx",
-  "icon": {
-    "src": "<span className='adminLib-icon adminLib-inquiry'></span>"
-  },
+  "icon": "admin-comments",
   "description": "A block that displays enquiry button.",
   "supports": {
     "html": false
