@@ -11,7 +11,7 @@ export default {
             key: 'enable_cart_checkout',
             type: 'checkbox',
             label: __( "Sitewide buy mode", "catalogx" ),
-            desc: __("Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href= ' + appLocalizer.pro_url + ' target=\"_blank\">CatalogX Pro</a>.", "catalogx"),
+            desc: __('Enabling this setting with CatalogX activates the catalog-only mode on your site, preventing customers from making purchases. To allow purchasing functionality, upgrade to <a href="' + appLocalizer.pro_url + '" target="_blank">CatalogX Pro</a> and enable this setting to activate the buying mode.', "catalogx"),              
             options: [
                 {
                     key: "enable_cart_checkout",
@@ -38,6 +38,7 @@ export default {
                 key: "enable_cart_checkout",
                 set: false
             },
+            desc: __('Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to Pro <a href="' + appLocalizer.pro_url + '" target="_blank">CatalogX Pro</a>.', "catalogx"),
             proSetting: true,
             moduleEnabled: 'catalog',
         },
