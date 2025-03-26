@@ -1,6 +1,6 @@
 === CatalogX - Product Catalog Mode For WooCommerce ===
 Contributors: wcmp
-Tags: product enquiry, woocommerce catalog ,request a quote, Product Catalog, wordpress catalog
+Tags: product catalog, b2b , dynamic pricing, wholesale pricing, request a quote
 Donate link: https://multivendorx.com/donate
 Requires at least: 6.4
 Tested up to: 6.7.2
@@ -86,7 +86,7 @@ The Wholesale Module is perfect for businesses 🛒 that serve both retail and w
 🏷️ Set up different prices for each user or product to tailor your offerings [PRO].
 
 ##✌️Dynamic Rule-Based Pricing [PRO]
-The Dynamic Rule-Based Pricing module is a powerful tool 💪 for businesses looking to maximize sales through targeted pricing strategies. By creating custom discount rules based on user roles, product categories, and more, you can attract specific customer groups, encourage larger purchases, and optimize your pricing for different scenarios. This module is essential for businesses aiming to increase conversions, customer loyalty, and overall revenue through smart pricing techniques 💰.
+The Dynamic Rule-Based Pricing module is a powerful tool 💪 for businesses looking to maximize sales through targeted pricing strategies. By creating custom discount rules based on user roles, product categories, and more, you can attract specific customer groups, encourage larger purchases, and optimize your pricing for different scenarios. This module is essential for businesses aiming to increase conversions, customer loyalty, and overall revenue through smart pricing techniques💰.
 
 #Key Features:
 ⚙️ Implement flexible pricing strategies to adapt to different customer needs and market conditions[PRO].
@@ -98,7 +98,7 @@ The Dynamic Rule-Based Pricing module is a powerful tool 💪 for businesses loo
 📋 Prioritize pricing rules easily with a drag-and-drop interface, ensuring the most effective discounts are applied first [PRO].
 
 ##✌️Real-Time Page Builder [PRO]
-Description: The Real-Time Page Builder module empowers businesses ✨ to design and customize their WooCommerce shop pages without needing technical skills. This module is perfect for store owners who want to create a visually appealing and highly functional shop page that aligns with their brand. By offering real-time previews, drag-and-drop customization, and mobile-friendly design checks, this module helps you create a professional, conversion-optimized shopping experience that drives sales and enhances customer satisfaction 📈.
+The Real-Time Page Builder module empowers businesses ✨ to design and customize their WooCommerce shop pages without needing technical skills. This module is perfect for store owners who want to create a visually appealing and highly functional shop page that aligns with their brand. By offering real-time previews, drag-and-drop customization, and mobile-friendly design checks, this module helps you create a professional, conversion-optimized shopping experience that drives sales and enhances customer satisfaction 📈.
 
 #Key Features:
 🛠️ Transform your shop page in real-time with visual customization, seeing changes as you make them.
@@ -158,16 +158,16 @@ Unlock even more possibilities with CatalogX Pro :
 #👉 Learn More About Pro: [CatalogX Pro](https://catalogx.com/pricing/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
 
 #👉 Who Can Benefit from [CatalogX](https://catalogx.com/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
-Online Retailers
-Small Business Owners
-Manufacturers and Wholesalers
-Local Businesses
-Startups
-The Real Estate
-Artists & Photographers
-Service Oriented Businesses
-Consultants
-Non-Profit Organisers displaying Initiative and Fund Raisers.
+* Online Retailers
+* Small Business Owners
+* Manufacturers and Wholesalers
+* Local Businesses
+* Startups
+* The Real Estate
+* Artists & Photographers
+* Service Oriented Businesses
+* Consultants
+* Non-Profit Organisers displaying Initiative and Fund Raisers.
 
 ##👉 Shortcodes:
 🚀 <code>[catalogx_enquiry_cart_button]</code> = Displays the "Add to Enquiry Cart" button.
