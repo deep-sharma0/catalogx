@@ -14,7 +14,7 @@ do_action( 'catalogx_email_header', $email_heading ); ?>
     <div style="width:600px; margin: 0 auto; ">
         <div class="email-container">
                 <div style="width:100%; background: #557DA1; padding: 40px 30px; border: 1px solid #557DA1;">
-                    <h2 style="font-family: Arial; line-height: 43px; text-align: center; color: #fff; font-size: 46px; font-weight: 700; margin: 0;padding: 0 0 0px 0;"><?php echo __('New Product Enquiry','catalogx-pro') . $product_title ;?> </h2>
+                    <h2 style="font-family: Arial; line-height: 43px; text-align: center; color: #fff; font-size: 46px; font-weight: 700; margin: 0;padding: 0 0 0px 0;"><?php echo __('New Product Enquiry','catalogx') . $product_title ;?> </h2>
                 </div>
             
                 <div style="width: 100%;">
