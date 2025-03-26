@@ -12,6 +12,7 @@ export default {
             type: 'checkbox',
             label: __( "Sitewide buy mode", "catalogx" ),
             desc: sprintf(
+                /* translators: %s will be replaced with a link to CatalogX Pro */
                 __('Enabling this setting with CatalogX activates the catalog-only mode on your site, preventing customers from making purchases. To allow purchasing functionality, upgrade to %s and enable this setting to activate the buying mode.', 'catalogx'),
                 '<a href="' + appLocalizer.pro_url + '" target="_blank">CatalogX Pro</a>'
             ),        
@@ -42,6 +43,7 @@ export default {
                 set: false
             },
             desc: sprintf(
+                /* translators: %s will be replaced with a link to CatalogX Pro */
                 __('Redirect users to the homepage when they click on the cart or checkout page. To customize the redirection to a different page, an upgrade to %s is required.', 'catalogx'),
                 '<a href="' + appLocalizer.pro_url + '" target="_blank">CatalogX Pro</a>'
             ),

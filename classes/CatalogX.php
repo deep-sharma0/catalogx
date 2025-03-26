@@ -193,11 +193,12 @@ final class CatalogX {
         <div class="error">
             <p>
                 <?php 
-                /* translators: 1. Opening <strong> tag, 2. Closing </strong> tag, 
+                /* translators: 
+                   1. Opening <strong> tag, 2. Closing </strong> tag, 
                    3. Opening <a> tag for WooCommerce plugin link, 4. Closing </a> tag, 
                    5. Opening <a> tag for plugin activation link, 6. Closing </a> tag */
-                printf(
-                    __('%1$sCatalogX is inactive.%2$s The %3$sWooCommerce plugin%4$s must be active for CatalogX to work. Please %5$sinstall & activate WooCommerce%6$s', 'catalogx'),
+                printf(esc_html__(
+                        '%sCatalogX is inactive.%s The %sWooCommerce plugin%s must be active for CatalogX to work. Please %sinstall & activate WooCommerce%s', 'catalogx'),
                     '<strong>', '</strong>',
                     '<a target="_blank" href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>',
                     '<a href="' . esc_url(admin_url('plugins.php')) . '">', ' &raquo;</a>'
@@ -206,7 +207,7 @@ final class CatalogX {
             </p>
         </div>
         <?php
-    }
+    }    
 
     /**
      * CatalogX emails
