@@ -31,7 +31,7 @@ class Ajax {
         
         $is_valid = $product_id && $is_valid_variation ? true : false;
     
-        $postdata = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
+        $postdata = filter_input_array( INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
     
         if ( ! $is_valid ) {
             $errors[] = __( 'Error occurred while adding product to Request a Quote list.', 'catalogx' );

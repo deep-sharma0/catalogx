@@ -731,6 +731,7 @@
                     .content {
                       background: #eff5fb;
                       width: 100%;
+                      z-index: 1;
 
                       .reaction-view {
                         background: #eff5fb;
@@ -791,7 +792,7 @@
                       position: absolute;
                       right: -1.75rem;
                       top: 0;
-                      width: calc(100% + 1.625rem);
+                      width: fit-content;;
                       justify-content: end;
 
                       i {
@@ -896,6 +897,7 @@
                       background: transparent;
                       padding: 0;
                       color: #3c434a;
+                      z-index: 2;
                     }
 
                     .reaction-wrapper {

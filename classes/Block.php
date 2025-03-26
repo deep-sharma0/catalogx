@@ -107,6 +107,9 @@ class Block {
             if (isset($block_script['localize']) && !empty($block_script['localize'])) {
                 // apiUrl re-initialize here beacuse in array the url is not define
                 $block_script['localize']['data']['apiUrl'] = untrailingslashit( get_rest_url() );
+                if (array_key_exists('cart_url', $block_script['localize']['data'])) {
+                    $block_script['localize']['data']['cart_url'] = wc_get_cart_url();
+                }
                 wp_localize_script($block_script['textdomain'] . '-' . $block_script['name'] . '-editor-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
                 wp_localize_script($block_script['textdomain'] . '-' . $block_script['name'] . '-script', $block_script['localize']['object_name'], $block_script['localize']['data']);
             }
