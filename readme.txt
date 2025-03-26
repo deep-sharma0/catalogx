@@ -12,10 +12,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 CatalogX: Integrated Enquiry Based Quotation System & Advanced Wholesale/B2B Pricing Management.
 ## Description
 
-Elevate your WooCommerce store with CatalogX, featuring a fully integrated enquiry system for seamless quote requests and advanced wholesale/B2B pricing management. Enhance your catalog experience by allowing customers to easily submit inquiries for each product via custom enquiry forms.
+Elevate your WooCommerce store with CatalogX, featuring a fully integrated enquiry system for seamless quote requests and advanced wholesale/B2B pricing management. With Catalog Mode, you can showcase your products without displaying prices and remove the 'Add to Cart' button, encouraging customers to submit enquiries for each item via custom enquiry forms.
 
 CatalogX streamlines the quotation process, enabling customers to request quotes directly from your site. Perfect for wholesale and B2B businesses, it simplifies the management of wholesale and role-based pricing. With extensive customization options, you can tailor the shopping experience to fit your unique business needs.
-
 = Features =
 🚫 Disable Purchase Options
 🛒 Replace Add-to-Cart button with a Custom Button.
