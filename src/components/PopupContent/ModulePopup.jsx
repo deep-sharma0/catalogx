@@ -17,7 +17,9 @@ const Modulepopup = (props) => {
                                     {props.name && (
                                         <>
                                             <h2>
-                                                {sprintf(__('To activate please enable the %s module first', 'catalogx'), props.name)}
+                                                {sprintf(
+                                                    /* translators: %s will be replaced with the module name */
+                                                    __('To activate please enable the %s module first', 'catalogx'), props.name)}
                                             </h2>
                                             <a className="admin-go-pro-btn" href={appLocalizer.module_page_url}>{__("Enable Now", "catalogx")}</a>
                                         </>
