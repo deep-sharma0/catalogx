@@ -33,11 +33,11 @@ CatalogX streamlines the quotation process, enabling customers to request quotes
 
 ##👉 Want to see CatalogX in action? 
 
- #🌐 Explore our [Documentation](https://catalogx.com/docs/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
+ 🌐 Explore our [Documentation](https://catalogx.com/docs/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
 
- #👉 Learn More About [CatalogX PRO](https://catalogx.com/pricing/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
+ 👉 Learn More About [CatalogX PRO](https://catalogx.com/pricing/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
 
- #👉 Try CatalogX [Free & Pro Demo](https://multivendordemo.com/catalogx/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
+ 👉 Try CatalogX [Free & Pro Demo](https://multivendordemo.com/catalogx/?utm_source=wporg&utm_medium=plugindescription&utm_campaign=catalogxwporg)
 
 
 ##✌️Catalog 
