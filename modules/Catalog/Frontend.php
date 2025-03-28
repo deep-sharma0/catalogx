@@ -1,7 +1,7 @@
 <?php 
 
 namespace CatalogX\Catalog;
-
+require_once dirname(__FILE__) . '/../custom-hook.php';
 /**
  * CatalogX Catalog Module Frontend class
  *
